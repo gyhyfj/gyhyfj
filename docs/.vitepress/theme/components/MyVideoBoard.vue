@@ -12,7 +12,8 @@ let list = reactive(store.getListInfo(props.seriesName, props.bvidList))
 
 onMounted(() => {
   if (!store[props.seriesName].isUpdated) {
-    console.log('update data')
+    let date = new Date()
+    console.log('update data', date)
     store.updateVideoListInfo(props.seriesName, props.bvidList)
   }
 })
