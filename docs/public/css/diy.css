@@ -1,0 +1,12 @@
+@import './diy-light.css';
+@import './diy-dark.css';
+
+.vp-doc h1 {
+  margin-bottom: 25px;
+}
+.vp-doc p {
+  text-indent: 2em;
+}
+/* .vp-doc {
+  font-family: -apple-system;
+} */
