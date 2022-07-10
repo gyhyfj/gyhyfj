@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { defineStore } from 'pinia'
-import wbcssg from './wbcssg'
+import wbcssg from './videoList/wbcssg'
 
 export const useVideoListStore = defineStore('videoList', {
   state: () => {
@@ -14,6 +14,7 @@ export const useVideoListStore = defineStore('videoList', {
   },
 
   getters: {
+    /* 根据传入的系列名称和bvid数组，返回播放信息数组 */
     getListInfo: state => {
       return (seriesName, bvidList) => {
         let result = []
@@ -27,11 +28,14 @@ export const useVideoListStore = defineStore('videoList', {
   },
 
   actions: {
-    async updateVideoListInfo(listName, bvidList) {
+    /* 根据系列名称和bvid数组，请求更新stata中对应系列视频列表信息Map */
+    async updateVideoListInfo(seriesName, bvidList) {
       let resultArr = []
       let resultMap = new Map()
       // axios 请求
-      let { data } = await axios.get('/api/getVideoInfo?bvid=' + bvidList[0])
+      let { data } = await axios.get(
+        '/api/getVideoListInfo?bvid=' + bvidList[0]
+      )
       // 采集返回数据到数组
       data.forEach(item => {
         resultArr.push(...item.episodes)
@@ -46,8 +50,8 @@ export const useVideoListStore = defineStore('videoList', {
           danmaku: item.arc.stat.danmaku,
         })
       })
-      this[listName].data = resultMap
-      this[listName].isUpdated = true
+      this[seriesName].data = resultMap
+      this[seriesName].isUpdated = true
     },
   },
 })

@@ -8,18 +8,17 @@ const props = defineProps({
   bvidList: Array, // ["BV1uS4y1Z7sX"]
 })
 
+// 传入系列名和bvid数组，使用pinia的get，返回用于渲染的视频信息数组
 let list = reactive(store.getListInfo(props.seriesName, props.bvidList))
 
 onMounted(() => {
   if (!store[props.seriesName].isUpdated) {
     let date = new Date()
     console.log('update data', date)
+    // 传入系列名和bvid数组，使用pinia的action，更新信息数组
     store.updateVideoListInfo(props.seriesName, props.bvidList)
   }
 })
-
-// store[seriesName] // { isUpdated, upper, data }
-// store[seriesName].data.get(bvid) // list-item
 </script>
 
 <template>

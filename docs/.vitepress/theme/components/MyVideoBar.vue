@@ -1,23 +1,23 @@
 <template>
-  <div class="box" v-for="(item, index) in favlistArr" :key="index">
+  <div class="box" v-for="(item, index) in list" :key="index">
     <div class="left">
-      <a :href="item.favlistSrc" target="_blank" class="coverLink">
-        <img :src="item.coverImg" alt="" />
+      <a :href="item.link" target="_blank" class="coverLink">
+        <img :src="item.pic" alt="" />
       </a>
     </div>
     <div class="right">
       <div class="title">
-        {{ item.favlistTitle }}
+        {{ item.title }}
       </div>
       <div class="info">
         <div>
-          UP主：<a :href="item.authorSrc" target="_blank" class="authorLink">{{
-            item.author
+          UP主：<a :href="item.link" target="_blank" class="authorLink">{{
+            item.upper
           }}</a>
         </div>
         <div>{{ item.count }}个内容</div>
       </div>
-      <a :href="item.favlistSrc" class="favPlayLink" target="_blank">
+      <a :href="item.link" class="favPlayLink" target="_blank">
         <!-- <span class="iconfont icon-24gf-play"></span> -->
         <svg
           t="1656840613666"
@@ -43,7 +43,7 @@
 
 <script setup>
 defineProps({
-  favlistArr: Object,
+  list: Object,
 })
 </script>
 
@@ -128,5 +128,10 @@ defineProps({
     background: linear-gradient(270deg, #2a2a2a, #242424);
     box-shadow: unset;
   }
+}
+/* bilibili iframe */
+iframe .bilibili-player-video-suspension-bar-btn-group {
+  display: none !important;
+  color: red;
 }
 </style>
