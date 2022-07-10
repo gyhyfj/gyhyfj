@@ -12,7 +12,7 @@ let list = reactive(store.getListInfo(props.seriesName, props.bvidList))
 
 onMounted(() => {
   if (!store[props.seriesName].isUpdated) {
-    console.log(123)
+    console.log('update data')
     store.updateVideoListInfo(props.seriesName, props.bvidList)
   }
 })
@@ -53,7 +53,12 @@ onMounted(() => {
               p-id="4010"
             ></path>
           </svg>
-          {{ item.view }} &nbsp;&nbsp;&nbsp;
+          {{
+            item.view > 9999
+              ? Math.round(item.view / 1000) / 10 + '万'
+              : item.view
+          }}
+          &nbsp;&nbsp;&nbsp;
           <svg
             t="1657089165619"
             class="icon"

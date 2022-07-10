@@ -27,11 +27,11 @@ export const useVideoListStore = defineStore('videoList', {
   },
 
   actions: {
-    async updateVideoListInfo(listName, bvid) {
+    async updateVideoListInfo(listName, bvidList) {
       let resultArr = []
       let resultMap = new Map()
       // axios 请求
-      let { data } = await axios.get('/api/getVideoInfo?bvid=' + bvid)
+      let { data } = await axios.get('/api/getVideoInfo?bvid=' + bvidList[0])
       // 采集返回数据到数组
       data.forEach(item => {
         resultArr.push(...item.episodes)
