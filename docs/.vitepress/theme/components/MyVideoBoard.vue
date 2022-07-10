@@ -32,7 +32,7 @@ onMounted(() => {
       :key="index"
     >
       <div class="left">
-        <img :src="item.pic" alt="" class="coverImg" />
+        <img :src="item.pic.replace(/http/, 'https')" alt="" class="coverImg" />
       </div>
       <div class="right">
         <div class="title double-ellipsis">
