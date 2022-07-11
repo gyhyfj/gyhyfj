@@ -13,7 +13,7 @@ const props = defineProps({
 
 let list = null
 
-if (seriesName !== 'others') {
+if (props.seriesName !== 'others') {
   // 传入系列名和bvid数组，使用pinia的get，返回用于渲染的视频信息数组
   list = reactive(listStore.getListInfo(props.seriesName, props.bvidArr))
 } else {
@@ -21,7 +21,7 @@ if (seriesName !== 'others') {
 }
 
 onMounted(() => {
-  if (seriesName !== 'others') {
+  if (props.seriesName !== 'others') {
     if (!listStore[props.seriesName].isUpdated) {
       // let date = new Date()
       // console.log('update data', date)
