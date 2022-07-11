@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { defineStore } from 'pinia'
 import videoSolo from './videoSolo/videoSolo'
-import qs from 'qs'
 
 export const useVideoArrStore = defineStore('videoArr', {
   state: () => {
