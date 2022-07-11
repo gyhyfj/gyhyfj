@@ -11,6 +11,5 @@ export default {
     app.use(pinia)
     // register global components
     app.component('MyVideoBoard', MyVideoBoard)
-    app.component('MyVideoBar', MyVideoBar)
   },
 }
