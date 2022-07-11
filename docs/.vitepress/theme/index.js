@@ -1,7 +1,6 @@
 // .vitepress/theme/index.js
 import DefaultTheme from 'vitepress/theme'
 import MyVideoBoard from './components/MyVideoBoard.vue'
-import MyVideoBar from './components/MyVideoBar.vue'
 import { createPinia } from 'pinia'
 const pinia = createPinia()
 

@@ -16,9 +16,9 @@ export const useVideoListStore = defineStore('videoList', {
   getters: {
     /* 根据传入的系列名称和bvid数组，返回播放信息数组 */
     getListInfo: state => {
-      return (seriesName, bvidList) => {
+      return (seriesName, bvidArr) => {
         let result = []
-        bvidList.forEach((item, index) => {
+        bvidArr.forEach((item, index) => {
           result.push(state[seriesName].data.get(item))
           result[index].upper = state[seriesName].upper
         })
@@ -29,13 +29,11 @@ export const useVideoListStore = defineStore('videoList', {
 
   actions: {
     /* 根据系列名称和bvid数组，请求更新stata中对应系列视频列表信息Map */
-    async updateVideoListInfo(seriesName, bvidList) {
+    async updateVideoListInfo(seriesName, bvidArr) {
       let resultArr = []
       let resultMap = new Map()
       // axios 请求
-      let { data } = await axios.get(
-        '/api/getVideoListInfo?bvid=' + bvidList[0]
-      )
+      let { data } = await axios.get('/api/getVideoListInfo?bvid=' + bvidArr[0])
       // 采集返回数据到数组
       data.forEach(item => {
         resultArr.push(...item.episodes)

@@ -1,22 +1,36 @@
 <script setup>
 import { reactive, onMounted } from 'vue'
 import { useVideoListStore } from '../store/videoList.js'
+import { useVideoArrStore } from '../store/videoArr.js'
 
-const store = useVideoListStore()
+const listStore = useVideoListStore()
+const arrStore = useVideoArrStore()
+
 const props = defineProps({
   seriesName: String, // 'wbcssg'
-  bvidList: Array, // ["BV1uS4y1Z7sX"]
+  bvidArr: Array, // ["BV1uS4y1Z7sX"]
 })
 
-// 传入系列名和bvid数组，使用pinia的get，返回用于渲染的视频信息数组
-let list = reactive(store.getListInfo(props.seriesName, props.bvidList))
+let list = null
+
+if (seriesName !== 'others') {
+  // 传入系列名和bvid数组，使用pinia的get，返回用于渲染的视频信息数组
+  list = reactive(listStore.getListInfo(props.seriesName, props.bvidArr))
+} else {
+  list = reactive(arrStore.getArrInfo(props.bvidArr))
+}
 
 onMounted(() => {
-  if (!store[props.seriesName].isUpdated) {
-    let date = new Date()
-    console.log('update data', date)
-    // 传入系列名和bvid数组，使用pinia的action，更新信息数组
-    store.updateVideoListInfo(props.seriesName, props.bvidList)
+  if (seriesName !== 'others') {
+    if (!listStore[props.seriesName].isUpdated) {
+      // let date = new Date()
+      // console.log('update data', date)
+      // 传入系列名和bvid数组，使用pinia的action，更新信息数组
+      listStore.updateVideoListInfo(props.seriesName, props.bvidArr)
+    }
+  } else {
+    // 更新信息数组
+    arrStore.updateVideoInfo(props.bvidArr)
   }
 })
 </script>
