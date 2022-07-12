@@ -3,7 +3,7 @@ export default {
   /* https://vitepress.vuejs.org/config/app-configs.html */
   base: '/', // The base URL the site will be deployed at
   lang: 'en-US', // This will render as a <html lang="en-US"> tag
-  title: '先秦诸子',
+  title: 'gyhyfj',
   description: '有物混成 先天地生',
   titleTemplate: true, // The suffix for the title
   markdown: {},
@@ -100,6 +100,28 @@ export default {
               //   text: '1',
               //   link: '1/1',
               // },
+            ],
+          },
+        ],
+      },
+      {
+        text: 'Code',
+        items: [
+          {
+            text: '',
+            items: [
+              {
+                text: 'html/css/js',
+                link: '/code/html-css-js/html/html',
+              },
+              {
+                text: 'node',
+                link: '/code/html-css-js/html/html',
+              },
+              {
+                text: 'vue/ts',
+                link: '/code/html-css-js/html/html',
+              },
             ],
           },
         ],
@@ -372,6 +394,49 @@ export default {
             {
               text: '20 曹操入兖州：收降黄巾',
               link: '/两汉历史/三国/文不醜说三国/20曹操入兖州：收降黄巾',
+            },
+            {
+              text: '21 曹操入兖州：五大谜团',
+              link: '/两汉历史/三国/文不醜说三国/21曹操入兖州：五大谜团',
+            },
+          ],
+        },
+      ],
+      '/code/html-css-js/': [
+        {
+          collapsible: true,
+          collapsed: false,
+          text: 'html',
+          items: [
+            {
+              text: 'html',
+              link: '/code/html-css-js/html/html',
+            },
+          ],
+        },
+        {
+          collapsible: true,
+          collapsed: false,
+          text: 'css',
+          items: [
+            {
+              text: 'css基础',
+              link: '/code/html-css-js/css/css基础',
+            },
+            {
+              text: 'css总结',
+              link: '/code/html-css-js/css/css总结',
+            },
+          ],
+        },
+        {
+          collapsible: true,
+          collapsed: false,
+          text: 'js',
+          items: [
+            {
+              text: 'js',
+              link: '/code/html-css-js/js/js',
             },
           ],
         },
