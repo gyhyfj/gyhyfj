@@ -6,7 +6,10 @@ export default {
   title: 'gyhyfj',
   description: '有物混成 先天地生',
   titleTemplate: true, // The suffix for the title
-  markdown: {},
+  /* https://github.com/markdown-it/markdown-it#init-with-presets-and-options */
+  markdown: {
+    breaks: true, // Convert '\n' in paragraphs into <br>
+  },
   appearance: true, // Whether to enable "Dark Mode" or not
   lastUpdated: true, // Use git commit to get the timestamp
   head: [
@@ -420,11 +423,19 @@ export default {
           text: 'css',
           items: [
             {
-              text: 'css基础',
+              text: '基础',
               link: '/code/html-css-js/css/css基础',
             },
             {
-              text: 'css总结',
+              text: '响应式与移动端适配',
+              link: '/code/html-css-js/css/css响应式',
+            },
+            {
+              text: '预处理器',
+              link: '/code/html-css-js/css/css预处理器',
+            },
+            {
+              text: '总结',
               link: '/code/html-css-js/css/css总结',
             },
           ],

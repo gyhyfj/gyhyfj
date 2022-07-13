@@ -55,16 +55,37 @@ text-overflow：ellipsis；
 ## 盒子模型
 
 box-sizing:border-box 内减模式  
-box-sizing:content-box 默认模式
+box-sizing:content-box 默认模式 // 修改 border 尺寸 和 padding 尺寸会改变盒子大小
 
 ## calc 函数
 
 width：calc（100% - 80px）  
-注意：括号里面可以使用+ - _ /来进行计算。注：+ - _ / 前后都要有一个空格才行。
+可以混合各种单位进行计算
+注意：括号里面可以使用`+ - * /`来进行计算。注：`+ - * /`前后要各加上一个空格。
+
+## border-radius
+
+border-radius: 取值; // 分一个值(O)、两个值(X)、三个值(/)、四个值(左上开始顺时针)
+border-radius 实现椭圆：border-radius:x/y; // x 表示圆角的水平半径，y 表示圆角的垂直半径
+
+## img 标签的样式
+
+在父元素中水平对齐：设置父元素的`text-align: center`
+垂直对齐：设置 img 标签的`vertical-align: top/middle/baseline/bottom`
+
+## background 属性
+
+background: color image repeat position
+background-image: url(a.png); // 路径加不加引号都可以 这里的 a 是同级的
+background-repeat: repeat/no-repeat/repeat-x/repeat-y;
+background-position: 像素值/关键字 或 水平距离 垂直距离;
+background-size: cover(完全覆盖)、contain(最大容纳) 或 两个数值：像素值、百分比（相当于盒子自身宽高），第一个代表宽度，第二个是=代表高度
 
 ## filter
 
-filter：blur（5px）数值越大越模糊
+filter：blur(5px); // 模糊内容，整个盒子（包括边框）模糊并向外晕染
+backdrop-fliter:blur(25px); // 使该元素背景呈毛玻璃效果
+-webkit-backdrop-fliter:blur(25px); // 兼容 webkit 内核
 
 ## 背景渐变
 
@@ -133,10 +154,14 @@ animation-play-state：动画运动状态 running（运动） paused（暂停）
 
 ## 元素的隐藏
 
-display: none // 隐藏后不再占用空间
-visibility: hidden // 隐藏后仍占用空间
-opacity: 0 // 只是全透明，并没有隐藏
+display: none; // 隐藏后不再占用空间，会让元素不再被渲染，子孙节点也不会渲染。修改该属性会造成整个文档重排
+visibility: hidden; // 隐藏后仍占用空间，子孙节点也会消失，但只是继承了父节点的这个属性，修改后就会显示出来。修改该元素只会造成本元素重绘。
+opacity: 0; // 只是全透明，并没有隐藏
 overflow: hidden（隐藏超出内容） scroll（显示滚动条，不论是否需要） auto（需要时才显示滚动条）
+position: absolute; // 将元素移到可视区域外
+z-index: -999; // 通过别的元素来遮挡
+clip/clip-path // 通过元素裁剪隐藏，但仍占位置
+transform: scale(0,0) // 将元素尺寸缩放为 0，但仍占位置，但不可被点击到
 
 ## 定位
 
@@ -148,8 +173,13 @@ overflow: hidden（隐藏超出内容） scroll（显示滚动条，不论是否
    相对于浏览器可视区边界偏移，必须设置宽度。**脱标**
 4. 粘性定位 sticky
    position: sticky; top: 10px;（滚动到距离顶端 10px 时候固定住）。**不脱标**
+   粘性定位必须搭配 top、bottom、left、right 才能生效，否则表现为 relatvie
 
-只有有定位的盒子，设置`z-index`属性才能生效
+## z-index
+
+只有有定位`position:relative/absolute/fixed`的盒子，设置`z-index`属性才能生效
+
+`z-index`在下列情况下会失效：
 
 ## 浮动
 
@@ -161,12 +191,11 @@ overflow: hidden（隐藏超出内容） scroll（显示滚动条，不论是否
 ## 清除浮动
 
 为什么：  
-因为父级盒子很多情况下，不方便设置高度，但盒子浮动后不占位置，会导致父级盒子高度为 0，从而影响下面的标准流盒子
+因为容器不设置高度且子元素浮动时，浮动的子元素脱离文档流，不占据空间，导致父元素高度无法被撑开，影响布局
 
 是什么：  
-清除浮动，其实是清除浮动元素造成的影响  
 如果父元素有高度，就不需要清除浮动  
-清除浮动希望达到的目的是：父元素会根据浮动的子元素来自动检测高度，从而不影响后面的标准流
+清除浮动，其实是清除浮动元素造成的影响
 
 怎么做：
 
@@ -205,9 +234,64 @@ overflow: hidden（隐藏超出内容） scroll（显示滚动条，不论是否
 
 ## 外边距坍塌
 
-互相嵌套的块级元素，子元素 margin-top 会作用在父元素上，导致父元素一起往下移动（塌陷）  
-解决办法：  
-给父元素设置 border-top 或者 padding-top（分隔父子元素的 margin-top）  
-给父元素设置 overflow：hidden  
-转换成行内块元素  
-设置浮动
+互相嵌套的块级元素，子元素和父元素的 margin-top 会合并生效在父元素上，并取最大值。
+如果子元素 margin-top 大于父元素的 margin-top，导致父元素一起往下移动（塌陷）  
+解决办法：
+
+1. 给父元素设置 border-top 或者 padding-top（分隔父子元素的 margin-top）
+2. 给父元素添加 overflow 属性（取值任意）
+3. 把子元素或父元素转换成行内块元素
+4. 给子元素或父元素设置浮动
+
+## 外边距重叠
+
+垂直布局的块级元素上下的 margin 会合并，最终距离为 margin 的最大值
+解决方法：只给其中一个盒子设置 margin
+
+## viewport
+
+布局视口：layout viewport【网页的宽度】
+
+视觉视口：visual viewport【视觉视口是指用户正在看到的网站的区域】（这个区域的宽度等同于移动设备的浏览器窗口的宽度）
+
+理想视口：ideal viewport【使布局视口的大小和屏幕宽度是一致的】
+
+通过 width=device-width，所有浏览器都能把当前的 viewport 宽度变成 ideal viewport 的宽度，但要注意的是，在 iphone 和 ipad 上，无论是竖屏还是横屏，宽度都是竖屏时 ideal viewport 的宽度
+
+## 弹性盒子
+
+弹性盒子父元素控制子元素排版：
+
+1. 水平对齐
+   justify-content: flex-start flex-end center space-between space-around
+2. 垂直对齐
+   align-items: flex-start flex-end center baseline stretch
+3. 主轴方向（flex-flow）
+   flex-direction: row row-reverse column column-reverse
+4. 是否换行（flex-flow）
+   flex-wrap: nowrap wrap wrap-reverse
+5. 行的分布
+   align-content: flex-start flex-end center space-between space-around
+6. 尺寸分配
+   flex-grow: flex-shrink: flex-basis: flex
+
+单独调整子元素对齐侧轴方式：
+align-self: lex-start、flex-end、center、baseline、strecth
+
+## 弹性盒子的文字省略
+
+一定要限制好容器宽度，
+有时用 flex 限制尺寸，要加上 width：0;
+因为弹性盒子尺寸会被内容撑开
+
+```css
+.box {
+  flex: 1;
+  width: 0;
+}
+.box h5 {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+```
