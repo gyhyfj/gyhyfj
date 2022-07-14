@@ -1,12 +1,97 @@
-@import './diy-light.css';
-@import './diy-dark.css';
+/* dark mode */
+/* 窗口滚动条 */
+html {
+  --diy-scrollbar-dark: #1a1a1a;
+}
+.dark *::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: var(--diy-scrollbar-dark);
+}
+.dark *::-webkit-scrollbar-track {
+  background-color: var(--diy-scrollbar-dark);
+}
+.dark *::-webkit-scrollbar-thumb {
+  border-radius: 0px;
+  background-color: rgba(187, 187, 187, 0.25);
+}
+.dark *::-webkit-scrollbar-button {
+  height: 0;
+  background-color: #0099ff;
+}
+/* 侧边栏滚动条 */
+.dark .VPSidebar::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: var(--diy-scrollbar-dark);
+}
+.dark .VPSidebar::-webkit-scrollbar-track {
+  background-color: var(--diy-scrollbar-dark);
+}
+.dark .VPSidebar::-webkit-scrollbar-thumb {
+  border-radius: 0px;
+  background-color: var(--diy-scrollbar-dark);
+}
+.dark .VPSidebar:hover::-webkit-scrollbar-thumb {
+  border-radius: 0px;
+  background-color: rgba(187, 187, 187, 0.25);
+}
 
+.dark .VPSidebar::-webkit-scrollbar-button {
+  height: 0;
+  background-color: #0099ff;
+}
+
+/* light mode */
+/* 窗口滚动条 */
+html {
+  --diy-scrollbar-light: #f9f9f9;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: var(--diy-scrollbar-light);
+}
+*::-webkit-scrollbar-track {
+  background-color: var(--diy-scrollbar-light);
+}
+*::-webkit-scrollbar-thumb {
+  border-radius: 0px;
+  background-color: rgba(187, 187, 187, 0.5);
+}
+*::-webkit-scrollbar-button {
+  height: 0;
+  background-color: #0099ff;
+}
+/* 侧边栏滚动条 */
+.VPSidebar::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: var(--diy-scrollbar-light);
+}
+.VPSidebar::-webkit-scrollbar-track {
+  background-color: var(--diy-scrollbar-light);
+}
+.VPSidebar::-webkit-scrollbar-thumb {
+  border-radius: 0px;
+  background-color: var(--diy-scrollbar-light);
+}
+.VPSidebar:hover::-webkit-scrollbar-thumb {
+  border-radius: 0px;
+  background-color: rgba(187, 187, 187, 0.3);
+}
+.VPSidebar::-webkit-scrollbar-button {
+  height: 0;
+  background-color: #0099ff;
+}
+
+/* 通用配置 */
 .vp-doc h1 {
   margin-bottom: 25px;
 }
 .vp-doc p {
   text-indent: 2em;
 }
-/* .vp-doc {
-  font-family: -apple-system;
-} */
+[class^='vp-doc _code'] p {
+  text-indent: unset;
+}

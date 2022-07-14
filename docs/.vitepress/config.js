@@ -115,15 +115,15 @@ export default {
             items: [
               {
                 text: 'html/css/js',
-                link: '/code/html-css-js/html/html',
+                link: '/code/html-css-js/html/html基础',
               },
               {
                 text: 'node',
-                link: '/code/html-css-js/html/html',
+                link: '/code/html-css-js/html/html基础',
               },
               {
                 text: 'vue/ts',
-                link: '/code/html-css-js/html/html',
+                link: '/code/html-css-js/html/html基础',
               },
             ],
           },
@@ -412,8 +412,8 @@ export default {
           text: 'html',
           items: [
             {
-              text: 'html',
-              link: '/code/html-css-js/html/html',
+              text: 'html基础',
+              link: '/code/html-css-js/html/html基础',
             },
           ],
         },
@@ -446,8 +446,16 @@ export default {
           text: 'js',
           items: [
             {
-              text: 'js',
-              link: '/code/html-css-js/js/js',
+              text: 'DOM',
+              link: '/code/html-css-js/js/DOM',
+            },
+            {
+              text: 'BOM',
+              link: '/code/html-css-js/js/BOM',
+            },
+            {
+              text: 'ECMAScript',
+              link: '/code/html-css-js/js/ECMAScript',
             },
           ],
         },

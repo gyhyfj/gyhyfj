@@ -1,9 +1,3 @@
-<style scoped>
-.vp-doc p {
-  text-indent: unset;
-}
-</style>
-
 # CSS 总结
 
 ## link 和 @import 的区别
@@ -36,6 +30,58 @@ animation 是动画，它不需要触发事件就能执行，可以有多个关�
 ## 为什么用 translate 来改变位置
 
 改变 translate 不会触发浏览器重新布局或重绘，只会触发复合。不会用到 CPU,效率更高，且不会脱标，不用担心扰乱标准流
+
+## 水平垂直居中
+
+1. flex 布局
+   给弹性盒子设置 `display: flex; justify-content: center; align-items: center;`
+   也可以单独设置子元素在主轴维度的对齐 `align-self: center;`
+
+2. 绝对定位 加 margin 负值
+   要求已知子元素宽高，先把左上角对齐盒子中心点，再用负数 margin 把元素整体拉到居中位置
+
+   ```css
+   父元素 {
+     position: relative;
+   }
+   子元素 {
+     position: absolute;
+     top: 50%;
+     left: 50%; // 子元素右上角与盒子中心点对齐
+     margin-top: -子元素高度/2;
+     margin-left: -子元素宽度/2; // 这里不能用百分比代表子元素宽高，所以需要提前知道子元素宽高值
+   }
+   ```
+
+3. 绝对定位 加 transform: translate()
+   不需要知道子元素宽高，先把左上角对齐盒子中心点，再用 transform: translate() 把元素整体拉到居中位置
+
+   ```css
+   父元素 {
+     position: relative;
+   }
+   子元素 {
+     position: absolute;
+     top: 0;
+     right: 0;
+     bottom: 0;
+     left: 0; // 元素充满盒子空间
+     margin: auto; // 自动分配 margin 以充满空间
+   }
+   ```
+
+4. 绝对定位 加 margin: auto
+   ```css
+   父元素 {
+     position: relative;
+   }
+   子元素 {
+     position: absolute;
+     top: 50%;
+     left: 50%; // 子元素右上角与盒子中心点对齐
+     transform: translate(-50%, -50%); // 向左向上移动自身宽高的 50%
+   }
+   ```
 
 ## 设置为 inline 或 inline-block 的元素间的空白间隔是什么
 
@@ -115,7 +161,10 @@ webpack 需要两个关机 loader 来处理 css：`css-loader`和`style-loader`
 ### 1. 实现一个三角形
 
 原理：CSS 绘制三角形主要依靠 border 属性，也就是边框
-平时在给盒子设置边框时，往往都设置的很窄，就可能误以为边框是由矩形组成的。实际上，border 是由三角形组成的。
+平时在给盒子设置边框时，往往都设置的很窄，就可能误以为边框是由矩形组成的。
+实际上，border 是由三角形组成的。
+
+<div style=" width: 0;height: 0;border: 50px solid;border-color: orange blue red green;"></div>
 
 ```css
 div {
@@ -135,6 +184,8 @@ div {
 ### 2. 实现一个扇形
 
 原理：CSS 实现一个扇形原理和实现三角形一致，就是多了个圆角样式，实现一个 90 度的扇形
+
+<div style=" width: 0;height: 0;border: 50px solid transparent;border-left-color: green; border-radius: 100px; "></div>
 
 ```css
 div {
