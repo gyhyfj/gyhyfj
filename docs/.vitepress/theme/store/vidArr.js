@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { defineStore } from 'pinia'
-import localArr from './data/data.js'
+// import localArr from './data/data.js'
+let localArr = require('./data/data.js')
 
 export const useVidArrStore = defineStore('vidArr', {
   state: () => {
