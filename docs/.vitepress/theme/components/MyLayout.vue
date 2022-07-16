@@ -9,6 +9,9 @@ watchEffect(() => {
   if (!/^\/code\//.test(route.path)) {
     let style = document.querySelector('#switch')
     style.href = '/css/article.css'
+  } else {
+    let style = document.querySelector('#switch')
+    style.href = '/css/code-article.css'
   }
 })
 </script>
