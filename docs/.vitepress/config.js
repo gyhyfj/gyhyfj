@@ -23,10 +23,6 @@ export default {
       },
     ],
     ['link', { rel: 'stylesheet', href: '/css/diy.css' }],
-    [
-      'link',
-      { rel: 'stylesheet', href: '/css/code-article.css', id: 'switch' },
-    ],
     ['script', { src: '/js/analyse.js' }],
     ['meta', { name: 'referrer', content: 'no-referrer' }],
   ],

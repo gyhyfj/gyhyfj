@@ -7,11 +7,15 @@ const { route } = useRouter()
 
 watchEffect(() => {
   if (!/^\/code\//.test(route.path)) {
-    let style = document.querySelector('#switch')
-    style.href = '/css/article.css'
+    let current = document.styleSheets[0].cssRules[0].selectorText
+    if (current !== '.vp-doc p') {
+      document.styleSheets[0].insertRule('.vp-doc p{text-indent: 2em;}', 0)
+    }
   } else {
-    let style = document.querySelector('#switch')
-    style.href = '/css/code-article.css'
+    let current = document.styleSheets[0].cssRules[0].selectorText
+    if (current === '.vp-doc p') {
+      document.styleSheets[0].deleteRule(0)
+    }
   }
 })
 </script>
