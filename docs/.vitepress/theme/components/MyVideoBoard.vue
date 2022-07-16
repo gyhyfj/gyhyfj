@@ -10,7 +10,16 @@ const props = defineProps({
 
 let list = reactive(store.getArrInfo(props.bvidArr))
 
-onMounted(() => store.updateMap(props.bvidArr))
+onMounted(async () => {
+  console.log('onMounted')
+  let arr = await store.updateMap(props.bvidArr)
+  // 如果请求成功，更新数据
+  if (arr !== 'err') {
+    for (let i in list) {
+      list[i] = arr[i]
+    }
+  }
+})
 </script>
 
 <template>

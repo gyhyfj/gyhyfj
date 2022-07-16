@@ -37,15 +37,23 @@ export const useVidArrStore = defineStore('vidArr', {
   actions: {
     async updateMap(bvidArr) {
       if (this.isUpdated) {
-        return
+        return this.getArrInfo(bvidArr)
       }
-      let { data } = await axios.get('/api/update', {
-        params: {
-          bvidArr: JSON.stringify(bvidArr),
-        },
-      })
+      let data = null
+      try {
+        let { data: res } = await axios.get('/api/update', {
+          params: {
+            bvidArr: JSON.stringify(bvidArr),
+          },
+        })
+        data = res
+      } catch (err) {
+        return 'err'
+      }
+
       this.vidMap = new Map(data)
       this.isUpdated = true
+      return this.getArrInfo(bvidArr)
     },
   },
 })
