@@ -193,9 +193,12 @@ transform: scale(0,0) // 将元素尺寸缩放为 0，但仍占位置，但不�
 
 ## z-index
 
+默认的元素层级：标准流<浮动<定位
 只有有定位`position:relative/absolute/fixed`的盒子，设置`z-index`属性才能生效
 
 `z-index`在下列情况下会失效：
+父元素 position 是 relative
+元素设置了浮动
 
 ## 浮动
 
