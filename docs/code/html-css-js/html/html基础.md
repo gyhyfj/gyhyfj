@@ -8,7 +8,7 @@
 2. 提高代码可读性，页面内容结构化，便于开发和维护
 3. 语义类还支持读屏软件，根据文章可以自动生成目录
 
-例如: header footer nav article section aside footer address mail
+例如: header footer nav article section aside footer address
 
 ## HTML5 新特性
 
@@ -18,7 +18,7 @@
 4. 进度条、度量器
 5. DOM 操作`document.querySelector()`、 `document.querySelectorAll()`
 6. webstorage
-7. history API `history.go(num)（前进或后退,可正可负）` `history.forward(num)（前进）` `history.back（num）（后退）` `pushstate（)改变url而不刷新）`
+7. history API `history.go(num)（前进或后退,可正可负）` `history.forward(num)（前进）` `history.back（num）（后退）` `pushstate（改变url而不刷新）`
 8. canvas 标签（使用 JS 在网页上绘制图像）
 9. svg 标签（使用 XML 格式定义图形）
 10. Geolocation API
@@ -47,7 +47,7 @@ HTML5 的 webstorage 提供两种 API：localStorage（本地存储） 和 sessi
 
 ## inline-block
 
-行内块元素，一行的相邻行内块元素之间有间隔，默认宽高是自身的宽高
+行内块元素，一行的相邻行内块元素之间可能会有间隔。默认宽高是自身的宽高
 
 ## img 标签
 
@@ -58,9 +58,12 @@ title 属性是鼠标移动到图片上时显示的内容
 
 ## 表格标签
 
-结构：thead、tbody 下面包裹 tr(行)， tr 下面包裹 th、td  
-样式：居中样式`align=“center/left/right”` 边框样式`<table border="1">` 将显示边框  
-合并：横向合并的格子 `<td rowspan = "跨越的行数"></td>`，纵向合并的格子 `<td colspan = "跨越的列"></td>`
+结构：
+thead、tbody 下面包裹 tr(行)， tr 下面包裹 th、td  
+样式：
+居中样式`align=“center/left/right”` 边框样式`<table border="1">` 将显示边框  
+合并：
+横向合并的格子 `<td rowspan = "跨越的行数"></td>`；纵向合并的格子 `<td colspan = "跨越的列"></td>`
 
 ## 列表标签
 
@@ -116,9 +119,24 @@ DOCTYPE（文档类型）告诉浏览器以什么样的模式（html、xhtml）�
  -->
 ```
 
-## img 标签 scrset 属性
+## img 标签 srcset 属性
 
 srcset 属性用于设置：不同屏幕密度下，自动加载不同的图片
+下面的 HTML 表明图像的默认宽度是 200 像素。 srcset 属性还指定了 200 像素版本应用于 1x 显示器，而 400 像素版本应用于 2x 显示器。
+（为方便开发，苹果将设备分为了@1x、@2x、@3x 三大类）
+
+```html
+<div class="box">
+  <img
+    src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/web/html/element/img/clock-demo-200px.png"
+    alt="Clock"
+    srcset="
+      https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/web/html/element/img/clock-demo-200px.png 1x,
+      https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/web/html/element/img/clock-demo-400px.png 2x
+    "
+  />
+</div>
+```
 
 ## web worker
 
@@ -133,3 +151,9 @@ JS 使用的是单线程模型，web worker 的作用是为 JS 创建多线程�
 ## head 标签
 
 head 标签是所有头部元素的容器，里面只有 title 标签是必须的
+
+```html
+<head>
+  <title>Document</title>
+</head>
+```

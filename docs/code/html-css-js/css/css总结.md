@@ -287,3 +287,37 @@ css 中的 1px 并不能和移动设备上的 1px 划等号
      content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no"
    />
    ```
+
+## BFC
+
+BFC(Block Formatting Context)也叫"块格式化上下文"。
+简单来说就是，BFC 是一个完全独立的空间（布局环境），让空间里的子元素不会影响到外面的布局，起到隔离保护的作用。
+
+格式化上下文影响布局，通常，我们会为定位和清除浮动创建新的 BFC，而不是更改布局，因为它将：
+
+1. 包含内部浮动
+   1. 在创建包含浮动元素的 BFC 时，通常的做法是设置父元素 overflow: auto 或者其它除默认的 overflow: visible 以外的值。div 元素变成布局中的迷你布局，任何子元素都会被包含进去。
+   2. 使用 display: flow-root
+      一个新的 display 属性的值，它可以创建无副作用的 BFC。在父级块中使用 display: flow-root 可以创建新的 BFC。
+      给 div 元素设置 display: flow-root 属性后，div 中的所有内容都会参与 BFC，浮动的内容不会从底部溢出。
+2. 排除外部浮动
+   使用 display: flow-root 和浮动实现双列布局，因为正常文档流中建立的 BFC 不得与元素本身所在的块格式化上下文中的任何浮动的外边距重叠。
+3. 阻止外边距重叠
+   创建新的 BFC 避免两个相邻的 div 之间 外边距重叠
+
+### 下列方式会创建块格式化上下文：
+
+根元素（html）
+浮动元素（float 值不为 none）
+绝对定位元素（position 值为 absolute 或 fixed）
+行内块元素（display 值为 inline-block）
+表格单元格（display 值为 table-cell，HTML 表格单元格默认值）
+表格标题（display 值为 table-caption，HTML 表格标题默认值）
+匿名表格单元格元素（display 值为 table、table-row、 table-row-group、table-header-group、table-footer-group（分别是 HTML table、tr、tbody、thead、tfoot 的默认值）或 inline-table）
+overflow 值不为 visible、clip 的块元素
+display 值为 flow-root 的元素
+contain 值为 layout、content 或 paint 的元素
+弹性元素（display 值为 flex 或 inline-flex 元素的直接子元素），如果它们本身既不是 flex、grid 也不是 table 容器
+网格元素（display 值为 grid 或 inline-grid 元素的直接子元素），如果它们本身既不是 flex、grid 也不是 table 容器
+多列容器（column-count 或 column-width (en-US) 值不为 auto，包括 column-count 为 1）
+column-span 值为 all 的元素始终会创建一个新的 BFC，即使该元素没有包裹在一个多列容器中
