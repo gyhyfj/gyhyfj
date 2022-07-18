@@ -123,7 +123,7 @@ export default {
               },
               {
                 text: 'vue/ts',
-                link: '/code/html-css-js/html/html基础',
+                link: '/code/vue-ts/others/vitepress.md',
               },
             ],
           },
@@ -446,6 +446,10 @@ export default {
           text: 'js',
           items: [
             {
+              text: 'ECMAScript',
+              link: '/code/html-css-js/js/ECMAScript',
+            },
+            {
               text: 'DOM',
               link: '/code/html-css-js/js/DOM',
             },
@@ -453,9 +457,18 @@ export default {
               text: 'BOM',
               link: '/code/html-css-js/js/BOM',
             },
+          ],
+        },
+      ],
+      '/code/vue-ts/': [
+        {
+          collapsible: true,
+          collapsed: false,
+          text: 'others',
+          items: [
             {
-              text: 'ECMAScript',
-              link: '/code/html-css-js/js/ECMAScript',
+              text: 'vitepress',
+              link: '/code/vue-ts/others/vitepress',
             },
           ],
         },

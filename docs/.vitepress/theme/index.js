@@ -7,12 +7,9 @@ const pinia = createPinia()
 
 export default {
   ...DefaultTheme,
-  Layout: MyLayout,
-
+  Layout: MyLayout, // inject MyLayout
   enhanceApp({ app }) {
-    // ues pinina
-    app.use(pinia)
-    // register global components
-    app.component('MyVideoBoard', MyVideoBoard)
+    app.use(pinia) // ues pinina
+    app.component('MyVideoBoard', MyVideoBoard) // register global components
   },
 }

@@ -89,13 +89,3 @@ html {
 .vp-doc h1 {
   margin-bottom: 25px;
 }
-/* .vp-doc p {
-  text-indent: 2em;
-} */
-/* [class^='vp-doc _code'] p {
-  text-indent: unset;
-} */
-
-/* .vp-doc:not([class^='vp-doc _code']) p {
-  text-indent: 2em;
-} */
