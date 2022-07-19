@@ -84,12 +84,7 @@ export default {
         items: [
           {
             text: '',
-            items: [
-              // {
-              //   text: '1',
-              //   link: '1/1',
-              // },
-            ],
+            items: [],
           },
         ],
       },
@@ -98,12 +93,7 @@ export default {
         items: [
           {
             text: '',
-            items: [
-              // {
-              //   text: '1',
-              //   link: '1/1',
-              // },
-            ],
+            items: [],
           },
         ],
       },
@@ -443,19 +433,34 @@ export default {
         {
           collapsible: true,
           collapsed: false,
-          text: 'js',
+          text: 'ECMAScript',
           items: [
             {
-              text: 'ECMAScript',
-              link: '/code/html-css-js/js/ECMAScript',
+              text: '数据类型',
+              link: '/code/html-css-js/es/数据类型',
             },
             {
+              text: '运算',
+              link: '/code/html-css-js/es/运算',
+            },
+            {
+              text: '流程控制',
+              link: '/code/html-css-js/es/流程控制',
+            },
+          ],
+        },
+        {
+          collapsible: true,
+          collapsed: false,
+          text: 'web api',
+          items: [
+            {
               text: 'DOM',
-              link: '/code/html-css-js/js/DOM',
+              link: '/code/html-css-js/webapi/DOM',
             },
             {
               text: 'BOM',
-              link: '/code/html-css-js/js/BOM',
+              link: '/code/html-css-js/webapi/BOM',
             },
           ],
         },

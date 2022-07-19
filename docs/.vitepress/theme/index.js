@@ -9,7 +9,7 @@ export default {
   ...DefaultTheme,
   Layout: MyLayout, // inject MyLayout
   enhanceApp({ app }) {
-    app.use(pinia) // ues pinina
+    app.use(pinia) // ues pinia
     app.component('MyVideoBoard', MyVideoBoard) // register global components
   },
 }

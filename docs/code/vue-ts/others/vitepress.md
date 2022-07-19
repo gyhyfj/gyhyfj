@@ -13,7 +13,7 @@
 
 :::details
 
-<img src="https://cdn.yachen.cc/image/无标题-2022-07-14-1805.png" width="90%">
+<img src="https://cdn.yachen.cc/image/无标题-2022-07-14-1805.png" >
 
 :::
 
