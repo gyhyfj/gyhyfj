@@ -16,20 +16,19 @@ hero:
     - theme: alt
       text: View on GitHub
       link: https://github.com/gyhyfj
-
-features:
-  - icon: 📕
-    title: 思想
-    details:
-  - icon: 📘
-    title: 经济
-    details:
-  - icon: 📔
-    title: 政治
-    details:
-  - icon: 📙
-    title: 历史
-    details:
+# features:
+#   - icon: 📕
+#     title: 思想
+#     details:
+#   - icon: 📘
+#     title: 经济
+#     details:
+#   - icon: 📔
+#     title: 政治
+#     details:
+#   - icon: 📙
+#     title: 历史
+#     details:
 ---
 
 <style>
