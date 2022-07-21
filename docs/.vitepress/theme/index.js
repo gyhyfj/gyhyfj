@@ -4,6 +4,8 @@ import MyVideoBoard from './components/MyVideoBoard.vue'
 import MyLayout from './components/MyLayout.vue'
 import { createPinia } from 'pinia'
 const pinia = createPinia()
+import './styles/diy.css'
+import './styles/vars.css'
 
 export default {
   ...DefaultTheme,
