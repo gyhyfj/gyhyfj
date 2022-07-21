@@ -64,6 +64,14 @@
 mediatype 分为 all、print、screen、speech
 mediafeature 分为 min-width、max-width、width（正好是某个宽度）、orientation（portrait 竖放、landscape 横放）、hover（取值 hover 表示设备可以实现悬浮，有鼠标等指点设备）
 
+此外还有：查询终端系统所处的亮/暗模式：
+
+```css
+@media (prefers-color-scheme: dark) {
+  /* 终端系统为暗色模式时定义的样式 */
+}
+```
+
 ## 常见的 css 布局单位
 
 ### px

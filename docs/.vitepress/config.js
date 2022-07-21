@@ -222,6 +222,12 @@ const sanguo = [
     link: '/两汉历史/三国/文不醜说三国/21曹操入兖州：五大谜团',
   },
 ]
+const daojiao = [
+  {
+    text: '道教历史',
+    link: '/绝地天通/道教/道教历史',
+  },
+]
 const html = [
   {
     text: 'html基础',
@@ -270,6 +276,18 @@ const webapi = [
     link: '/code/html-css-js/webapi/BOM',
   },
 ]
+const vue3 = [
+  {
+    text: 'vitepress',
+    link: '/code/vue-ts/others/vitepress',
+  },
+]
+const ts = [
+  {
+    text: 'vitepress',
+    link: '/code/vue-ts/others/vitepress',
+  },
+]
 const vueothers = [
   {
     text: 'vitepress',
@@ -311,7 +329,7 @@ export default {
     /* Nav */
     /* https://vitepress.vuejs.org/guide/theme-nav.html#navigation-links */
     // logo: '/image/favicon.ico', // Logo file to display in nav bar, right before the site title
-    siteTitle: '有物混成 先天地生', // Replace the default site title in nav
+    siteTitle: '有物混成，先天地生', // Replace the default site title in nav
     nav: [
       // { text: 'Guide', link: '/guide' },
       {
@@ -362,21 +380,17 @@ export default {
         items: [
           {
             text: '',
-            items: [],
+            items: [
+              {
+                text: '道教',
+                link: '/绝地天通/道教/道教历史',
+              },
+            ],
           },
         ],
       },
       {
         text: '散记',
-        items: [
-          {
-            text: '',
-            items: [],
-          },
-        ],
-      },
-      {
-        text: '慎独',
         items: [
           {
             text: '',
@@ -464,6 +478,15 @@ export default {
           items: sanguo,
         },
       ],
+      '/绝地天通/道教/': [
+        {
+          collapsible: true,
+          collapsed: false,
+          text: '道教',
+          items: daojiao,
+        },
+      ],
+
       '/code/html-css-js/': [
         {
           collapsible: true,
@@ -491,6 +514,18 @@ export default {
         },
       ],
       '/code/vue-ts/': [
+        {
+          collapsible: true,
+          collapsed: false,
+          text: 'vue3',
+          items: vue3,
+        },
+        {
+          collapsible: true,
+          collapsed: false,
+          text: 'TypeScript',
+          items: ts,
+        },
         {
           collapsible: true,
           collapsed: false,

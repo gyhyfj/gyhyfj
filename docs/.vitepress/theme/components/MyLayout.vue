@@ -22,6 +22,6 @@ watchEffect(() => {
 
 <template>
   <Layout>
-    <template> </template>
+    <template #home-features-before> </template>
   </Layout>
 </template>
