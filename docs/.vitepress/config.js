@@ -228,6 +228,12 @@ const daojiao = [
     link: '/绝地天通/道教/道教历史',
   },
 ]
+const zimablue = [
+  {
+    text: '齐马蓝',
+    link: '/散记/齐马蓝/齐马蓝',
+  },
+]
 const html = [
   {
     text: 'html基础',
@@ -337,20 +343,16 @@ export default {
         items: [
           {
             text: '',
-            items: [{ text: '墨家', link: '/先秦诸子/墨子/01墨家的由来' }],
+            items: [
+              { text: '墨家', link: '/先秦诸子/墨子/01墨家的由来' },
+              { text: '儒家', link: '/先秦诸子/孔子/01少年孔子' },
+              { text: '道家', link: '/先秦诸子/道德经/01陵行不避兕虎' },
+            ],
           },
-          {
-            text: '',
-            items: [{ text: '儒家', link: '/先秦诸子/孔子/01少年孔子' }],
-          },
-          {
-            text: '',
-            items: [{ text: '道家', link: '/先秦诸子/道德经/01陵行不避兕虎' }],
-          },
-          {
-            text: '',
-            items: [{ text: '法家', link: '#' }],
-          },
+          // {
+          //   text: '',
+          //   items: [{ text: '法家', link: '#' }],
+          // },
         ],
       },
       {
@@ -394,7 +396,12 @@ export default {
         items: [
           {
             text: '',
-            items: [],
+            items: [
+              {
+                text: '齐马蓝',
+                link: '/散记/齐马蓝/齐马蓝',
+              },
+            ],
           },
         ],
       },
@@ -484,6 +491,14 @@ export default {
           collapsed: false,
           text: '道教',
           items: daojiao,
+        },
+      ],
+      '/散记/齐马蓝/': [
+        {
+          collapsible: true,
+          collapsed: false,
+          text: 'ZIMABLUE',
+          items: zimablue,
         },
       ],
 
