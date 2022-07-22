@@ -1,123 +1,134 @@
-const mozi = [
-  {
-    text: '01 墨家的由来',
-    link: '/先秦诸子/墨子/01墨家的由来',
-  },
-  {
-    text: '02 君臣篇',
-    link: '/先秦诸子/墨子/02君臣篇',
-  },
-  {
-    text: '03 法仪篇',
-    link: '/先秦诸子/墨子/03法仪篇',
-  },
-  {
-    text: '04 七患篇',
-    link: '/先秦诸子/墨子/04七患篇',
-  },
-  {
-    text: '05 尚贤篇',
-    link: '/先秦诸子/墨子/05尚贤篇',
-  },
-  {
-    text: '06 尚同篇',
-    link: '/先秦诸子/墨子/06尚同篇',
-  },
-  {
-    text: '07 兼爱篇',
-    link: '/先秦诸子/墨子/07兼爱篇',
-  },
-  {
-    text: '08 非攻篇',
-    link: '/先秦诸子/墨子/08非攻篇',
-  },
-  {
-    text: '09 节用篇',
-    link: '/先秦诸子/墨子/09节用篇',
-  },
-  {
-    text: '10 神鬼篇',
-    link: '/先秦诸子/墨子/10神鬼篇',
-  },
-  {
-    text: '11 天命篇',
-    link: '/先秦诸子/墨子/11天命篇',
-  },
-  {
-    text: '12 墨经篇',
-    link: '/先秦诸子/墨子/12墨经篇',
-  },
-  {
-    text: '13 师徒篇',
-    link: '/先秦诸子/墨子/13师徒篇',
-  },
-  {
-    text: '14 守城篇',
-    link: '/先秦诸子/墨子/14守城篇',
-  },
-  {
-    text: '15 墨家失败的原因',
-    link: '/先秦诸子/墨子/15墨家失败的原因',
-  },
-]
 const kongzi = [
   {
     text: '01 少年孔子',
-    link: '/先秦诸子/孔子/01少年孔子',
+    link: '/先秦诸子/儒家/孔子/01少年孔子',
   },
   {
     text: '02 孔子与儒',
-    link: '/先秦诸子/孔子/02孔子与儒',
+    link: '/先秦诸子/儒家/孔子/02孔子与儒',
   },
   {
     text: '03 孔子所处的时代',
-    link: '/先秦诸子/孔子/03孔子所处的时代',
+    link: '/先秦诸子/儒家/孔子/03孔子所处的时代',
   },
   {
     text: '04 中国历史的暗线',
-    link: '/先秦诸子/孔子/04中国历史的暗线',
+    link: '/先秦诸子/儒家/孔子/04中国历史的暗线',
   },
   {
     text: '05 君君臣臣父父子子',
-    link: '/先秦诸子/孔子/05君君臣臣父父子子',
+    link: '/先秦诸子/儒家/孔子/05君君臣臣父父子子',
   },
   {
     text: '06 日暮穷途',
-    link: '/先秦诸子/孔子/06日暮穷途',
+    link: '/先秦诸子/儒家/孔子/06日暮穷途',
   },
 ]
+const lunyu = [
+  {
+    text: '00 前言',
+    link: '/先秦诸子/儒家/论语/00前言',
+  },
+  {
+    text: '01 学而',
+    link: '/先秦诸子/儒家/论语/01学而',
+  },
+]
+const mozi = [
+  {
+    text: '01 墨家的由来',
+    link: '/先秦诸子/墨家/墨子/01墨家的由来',
+  },
+  {
+    text: '02 君臣篇',
+    link: '/先秦诸子/墨家/墨子/02君臣篇',
+  },
+  {
+    text: '03 法仪篇',
+    link: '/先秦诸子/墨家/墨子/03法仪篇',
+  },
+  {
+    text: '04 七患篇',
+    link: '/先秦诸子/墨家/墨子/04七患篇',
+  },
+  {
+    text: '05 尚贤篇',
+    link: '/先秦诸子/墨家/墨子/05尚贤篇',
+  },
+  {
+    text: '06 尚同篇',
+    link: '/先秦诸子/墨家/墨子/06尚同篇',
+  },
+  {
+    text: '07 兼爱篇',
+    link: '/先秦诸子/墨家/墨子/07兼爱篇',
+  },
+  {
+    text: '08 非攻篇',
+    link: '/先秦诸子/墨家/墨子/08非攻篇',
+  },
+  {
+    text: '09 节用篇',
+    link: '/先秦诸子/墨家/墨子/09节用篇',
+  },
+  {
+    text: '10 神鬼篇',
+    link: '/先秦诸子/墨家/墨子/10神鬼篇',
+  },
+  {
+    text: '11 天命篇',
+    link: '/先秦诸子/墨家/墨子/11天命篇',
+  },
+  {
+    text: '12 墨经篇',
+    link: '/先秦诸子/墨家/墨子/12墨经篇',
+  },
+  {
+    text: '13 师徒篇',
+    link: '/先秦诸子/墨家/墨子/13师徒篇',
+  },
+  {
+    text: '14 守城篇',
+    link: '/先秦诸子/墨家/墨子/14守城篇',
+  },
+  {
+    text: '15 墨家失败的原因',
+    link: '/先秦诸子/墨家/墨子/15墨家失败的原因',
+  },
+]
+
 const daodejing = [
   {
     text: '01 陵行不避兕虎',
-    link: '/先秦诸子/道德经/01陵行不避兕虎',
+    link: '/先秦诸子/道家/道德经/01陵行不避兕虎',
   },
   {
     text: '02 念头与道',
-    link: '/先秦诸子/道德经/02念头与道',
+    link: '/先秦诸子/道家/道德经/02念头与道',
   },
   {
     text: '03 大道至简',
-    link: '/先秦诸子/道德经/03大道至简',
+    link: '/先秦诸子/道家/道德经/03大道至简',
   },
   {
     text: '04 道恒无名',
-    link: '/先秦诸子/道德经/04道恒无名',
+    link: '/先秦诸子/道家/道德经/04道恒无名',
   },
   {
     text: '05 至于无为',
-    link: '/先秦诸子/道德经/05至于无为',
+    link: '/先秦诸子/道家/道德经/05至于无为',
   },
   {
     text: '06 有物混成',
-    link: '/先秦诸子/道德经/06有物混成',
+    link: '/先秦诸子/道家/道德经/06有物混成',
   },
   {
     text: '07 玄之又玄',
-    link: '/先秦诸子/道德经/07玄之又玄',
+    link: '/先秦诸子/道家/道德经/07玄之又玄',
   },
   {
     text: '08 万物之注',
-    link: '/先秦诸子/道德经/08万物之注',
+    link: '/先秦诸子/道家/道德经/08万物之注',
   },
 ]
 const xihan = [
@@ -222,16 +233,44 @@ const sanguo = [
     link: '/两汉历史/三国/文不醜说三国/21曹操入兖州：五大谜团',
   },
 ]
+const jueditiantong = [
+  {
+    text: '绝地天通',
+    link: '/绝地天通/绝地天通/绝地天通',
+  },
+]
 const daojiao = [
   {
     text: '道教历史',
     link: '/绝地天通/道教/道教历史',
+  },
+  {
+    text: '炁体源流',
+    link: '/绝地天通/道教/炁体源流',
   },
 ]
 const zimablue = [
   {
     text: '齐马蓝',
     link: '/散记/齐马蓝/齐马蓝',
+  },
+]
+const dushu = [
+  {
+    text: '《1965年重上井冈山》',
+    link: '/散记/I-will-be-there/读书/1965年重上井冈山',
+  },
+]
+const shenghuo = [
+  {
+    text: '书单',
+    link: '/散记/I-will-be-there/读书/1965年重上井冈山',
+  },
+]
+const xinzhi = [
+  {
+    text: '书单',
+    link: '/散记/I-will-be-there/读书/1965年重上井冈山',
   },
 ]
 const html = [
@@ -344,9 +383,9 @@ export default {
           {
             text: '',
             items: [
-              { text: '墨家', link: '/先秦诸子/墨子/01墨家的由来' },
-              { text: '儒家', link: '/先秦诸子/孔子/01少年孔子' },
-              { text: '道家', link: '/先秦诸子/道德经/01陵行不避兕虎' },
+              { text: '儒家', link: '/先秦诸子/儒家/孔子/01少年孔子' },
+              { text: '墨家', link: '/先秦诸子/墨家/墨子/01墨家的由来' },
+              { text: '道家', link: '/先秦诸子/道家/道德经/01陵行不避兕虎' },
             ],
           },
           // {
@@ -384,6 +423,10 @@ export default {
             text: '',
             items: [
               {
+                text: '绝地天通',
+                link: '/绝地天通/绝地天通/绝地天通',
+              },
+              {
                 text: '道教',
                 link: '/绝地天通/道教/道教历史',
               },
@@ -400,6 +443,10 @@ export default {
               {
                 text: '齐马蓝',
                 link: '/散记/齐马蓝/齐马蓝',
+              },
+              {
+                text: "I'll Be There",
+                link: '/散记/I-will-be-there/读书/1965年重上井冈山',
               },
             ],
           },
@@ -437,7 +484,21 @@ export default {
     /* Sidebar */
     /* https://vitepress.vuejs.org/guide/theme-sidebar.html */
     sidebar: {
-      '/先秦诸子/墨子/': [
+      '/先秦诸子/儒家/': [
+        {
+          collapsible: true,
+          collapsed: false,
+          text: '孔子',
+          items: kongzi,
+        },
+        {
+          collapsible: true,
+          collapsed: false,
+          text: '论语',
+          items: lunyu,
+        },
+      ],
+      '/先秦诸子/墨家': [
         {
           collapsible: true,
           collapsed: false,
@@ -445,15 +506,8 @@ export default {
           items: mozi,
         },
       ],
-      '/先秦诸子/孔子/': [
-        {
-          collapsible: true,
-          collapsed: false,
-          text: '孔子',
-          items: kongzi,
-        },
-      ],
-      '/先秦诸子/道德经/': [
+
+      '/先秦诸子/道家': [
         {
           collapsible: true,
           collapsed: false,
@@ -485,6 +539,14 @@ export default {
           items: sanguo,
         },
       ],
+      '/绝地天通/绝地天通/': [
+        {
+          collapsible: true,
+          collapsed: false,
+          text: '绝地天通',
+          items: jueditiantong,
+        },
+      ],
       '/绝地天通/道教/': [
         {
           collapsible: true,
@@ -499,6 +561,26 @@ export default {
           collapsed: false,
           text: 'ZIMABLUE',
           items: zimablue,
+        },
+      ],
+      '/散记/I-will-be-there/': [
+        {
+          collapsible: true,
+          collapsed: false,
+          text: '读书',
+          items: dushu,
+        },
+        {
+          collapsible: true,
+          collapsed: false,
+          text: '生活',
+          items: shenghuo,
+        },
+        {
+          collapsible: true,
+          collapsed: false,
+          text: '新知',
+          items: xinzhi,
         },
       ],
 
