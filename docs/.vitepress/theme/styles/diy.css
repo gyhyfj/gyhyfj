@@ -89,3 +89,6 @@ html {
 .vp-doc h1 {
   margin-bottom: 25px;
 }
+.VPNavBarTitle a {
+  font-size: 1.1em !important;
+}
