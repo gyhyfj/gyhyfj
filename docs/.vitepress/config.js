@@ -323,14 +323,18 @@ const webapi = [
 ]
 const vue3 = [
   {
-    text: 'vitepress',
-    link: '/code/vue-ts/others/vitepress',
+    text: 'vue3',
+    link: '/code/vue-ts/vue3/vue3',
   },
 ]
 const ts = [
   {
-    text: 'vitepress',
-    link: '/code/vue-ts/others/vitepress',
+    text: 'ES6的类',
+    link: '/code/vue-ts/ts/ES6的类',
+  },
+  {
+    text: 'TypeScript',
+    link: '/code/vue-ts/ts/TypeScript',
   },
 ]
 const vueothers = [
