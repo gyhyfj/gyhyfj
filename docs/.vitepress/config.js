@@ -323,8 +323,20 @@ const webapi = [
 ]
 const vue3 = [
   {
-    text: 'vue3',
-    link: '/code/vue-ts/vue3/vue3',
+    text: '初始化项目',
+    link: '/code/vue-ts/vue3/01初始化项目',
+  },
+  {
+    text: '虚拟Dom和diff算法',
+    link: '/code/vue-ts/vue3/02虚拟Dom和diff算法',
+  },
+  {
+    text: 'ref、reactive、to 全家桶',
+    link: '/code/vue-ts/vue3/03ref-reactive-to全家桶',
+  },
+  {
+    text: '计算属性与侦听器',
+    link: '/code/vue-ts/vue3/04计算属性与侦听器',
   },
 ]
 const ts = [
@@ -472,7 +484,7 @@ export default {
               },
               {
                 text: 'vue/ts',
-                link: '/code/vue-ts/others/vitepress.md',
+                link: '/code/vue-ts/ts/TypeScript.md',
               },
             ],
           },
