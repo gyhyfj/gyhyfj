@@ -24,6 +24,23 @@ let changMsg: () => void = (): void => {
 </template>
 ```
 
+此外，还有操作 DOM 元素的访问模板 ref。
+模板 ref 需要通过一个显式指定的泛型参数和一个初始值 null 来创建
+
+```vue
+<script setup lang="ts">
+import { ref } from 'vue'
+
+// 声明一个 ref 来存放该元素的引用
+// 必须和模板 ref 同名
+const input = ref<HTMLInputElement | null>(null) // 拿到了DOM元素
+</script>
+
+<template>
+  <input ref="input" />
+</template>
+```
+
 ## isRef
 
 检查某个值是否为 ref。
@@ -284,4 +301,82 @@ const change = () => {
 
 :::
 
-## toRef toRefs toRaw
+## toRef
+
+可用于为对象上的 property 创建 ref。这样创建的 ref 与其源 property 保持同步：改变源 property 将更新 ref，反之亦然。
+`toRef<T extends object, K extends keyof T>`
+
+```vue
+<script lang="ts" setup>
+import { reactive, toRef, ToRef } from 'vue'
+interface Person {
+  name: string
+  age: number
+}
+let person: Person = reactive({
+  name: 'zs',
+  age: 18,
+}) // 如果person在这里只是一个普通对象，没有被reactive包装，那么执行change方法其值仍会更新，只是视图不更新而已
+let age: ToRef<number> = toRef(person, 'age') // key 是字符串
+const change = () => {
+  age.value = age.value - 1
+}
+</script>
+
+<template>
+  <div>person: {{ person }}</div>
+  <button @click="change">change</button>
+</template>
+```
+
+## toRefs
+
+将一个响应式对象转换为一个普通对象，但这个普通对象的每个 property 都是指向源对象相应 property 的 ref。`toRefs<T extends object>`
+实际上，每个单独的 ref 都是使用 toRef() 创建的。
+
+```ts
+const state = reactive({
+  foo: 1,
+  bar: 2,
+})
+
+const stateAsRefs = toRefs(state)
+/*
+stateAsRefs 的类型：{
+  foo: Ref<number>,
+  bar: Ref<number>
+}
+*/
+```
+
+所以，当从组合式函数中**返回响应式对象时**，toRefs 大有作为。使用它，自定义组件可以**解构/扩展**返回的对象而不会失去响应性
+
+```ts
+function useFeatureX() {
+  const state = reactive({
+    foo: 1,
+    bar: 2,
+  })
+
+  // ...基于状态的操作逻辑
+
+  // 在返回时都转为 ref
+  return toRefs(state)
+}
+
+// 可以解构而不会失去响应性
+const { foo, bar } = useFeatureX()
+```
+
+## toRaw
+
+根据一个 Vue 创建的代理返回其原始对象。`toRaw<T>(proxy: T): T`。
+这是一个可以用于临时读取而不引起代理访问/跟踪开销，或是写入而不触发更改的特殊方法。
+不建议保存对原始对象的持久引用。
+
+```ts
+const foo = {}
+const reactiveFoo = reactive(foo)
+
+console.log(toRaw(reactiveFoo) === foo) // true
+```

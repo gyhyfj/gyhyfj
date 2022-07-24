@@ -331,12 +331,24 @@ const vue3 = [
     link: '/code/vue-ts/vue3/02虚拟Dom和diff算法',
   },
   {
-    text: 'ref、reactive、to 全家桶',
+    text: 'ref-reactive-to 全家桶',
     link: '/code/vue-ts/vue3/03ref-reactive-to全家桶',
   },
   {
     text: '计算属性与侦听器',
     link: '/code/vue-ts/vue3/04计算属性与侦听器',
+  },
+  {
+    text: '组件的生命周期',
+    link: '/code/vue-ts/vue3/05组件的生命周期',
+  },
+  {
+    text: '父子组件传参',
+    link: '/code/vue-ts/vue3/06父子组件传参',
+  },
+  {
+    text: '全局组件-局部组件-递归组件',
+    link: '/code/vue-ts/vue3/07全局组件-局部组件-递归组件',
   },
 ]
 const ts = [

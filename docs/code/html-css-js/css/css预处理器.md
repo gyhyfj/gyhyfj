@@ -61,6 +61,23 @@ less 支持单行注释和多行注释，但单行注释不会保存到 css 文�
 }
 ```
 
+&还可以用来**拼接字符串**构成后代选择器
+比如
+
+```less
+.father {
+  background-color: pink;
+  &_son {
+    // 实际上是`.father_son`这个`.father`下的后代选择器
+    background-color: aqua;
+  }
+  &-son {
+    // 实际上是`.father-son`这个`.father`下的后代选择器
+    background-color: aqua;
+  }
+}
+```
+
 ### 运算
 
 四则运算符可以对任何变量、数字或颜色进行运算，
