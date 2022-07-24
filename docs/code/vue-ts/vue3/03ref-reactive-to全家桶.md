@@ -4,6 +4,7 @@
 
 Ref 是接口，使用时可以指定泛型，也可以不指定而让类型推断自动推断
 ref()返回一个对象，在 script 中要加`.value`才能操作它的值，在 mastache 中不需要加`.value`
+使用 ref 时候推荐去绑定简单数据类型，因为如果绑定的是复杂数据类型，源码还是交给 reactive 去处理
 
 ```vue
 <script lang="ts" setup>
@@ -91,6 +92,8 @@ let changMsg: () => void = (): void => {
 </template>
 ```
 
+触发 ref 更新时候，会调用 triggerRefValue 这个函数。调用 triggerRef 时候，也是调用的 triggerRefValue 这个函数。所以如果某次事件同时触发了更新 ref 和更新 shallowRef，那么 triggerRefValue 这个函数执行时候会一并把 shallowRef 的视图一起更新。
+
 ## customRef
 
 创建一个自定义的 ref，显式声明对其依赖追踪和更新触发的控制方式。
@@ -172,8 +175,113 @@ const text = useDebouncedRef('hello')
 
 ## reactive
 
+返回一个对象的响应式代理。
+源码是`function reactive<T extends object>(target: T): UnwrapNestedRefs<T>`，所以 reactive 不接受传入简单数据类型。
+
+绑定复杂数据类型时，推荐使用 reactive 而不是 ref。在 script 中对数据进行修改，不需要像 ref 绑定的数据那样加上`.value`。
+
+```vue
+<script lang="ts" setup>
+import { reactive } from 'vue'
+let arr: number[] = reactive([]) // 使用reactive绑定后的数据类型仍是number[]
+let newArr: number[] = [1, 2, 3]
+let change = () => {
+  // arr = newArr // 如果直接给数组赋值，则破坏了响应式，console出来是一个普通数组
+  arr.push(...newArr) // 没有改变arr的指向，console出来是一个Proxy
+  console.log(arr)
+}
+</script>
+
+<template>
+  <div>{{ arr }}</div>
+  <button @click="change">change</button>
+</template>
+```
+
+还有另一种解决复杂数据类型直接替换的方法，就是把这个复杂数据类型作为一个对象的一个属性，再把这个对象进行 reactive 包装：
+
+```ts
+<script lang="ts" setup>
+import { reactive } from 'vue'
+
+type O = {
+  list: number[]
+}
+let arr = reactive<O>({
+  list: [],
+})
+
+let newArr: number[] = [1, 2, 3]
+let change = () => {
+  arr.list = newArr // 直接对数组整体替换，仍维持响应式更新视图
+}
+</script>
+
+<template>
+  <div>{{ arr.list }}</div>
+  <button @click="change">change</button>
+</template>
+```
+
 ## readonly
 
+接受一个对象 (不论是响应式还是一般的) 或是一个 ref，返回一个原值的只读代理。
+这仍是一个响应式对象，只是只读而已。
+只读代理是深层的：对任何嵌套 property 的访问都将是只读的。它的 ref 解包行为与 reactive() 相同，但解包得到的值是只读的。
+
+```vue
+<script lang="ts" setup>
+import { reactive, readonly } from 'vue'
+let person = reactive({ name: 'zs' })
+let copy = readonly(person)
+
+const change = () => {
+  // copy.name='ls' // err: 无法分配到 "name" ，因为它是只读属性。
+  person.name = 'ls' // 对person的修改同样会更新copy
+}
+</script>
+
+<template>
+  <div>{{ person.name }} {{ copy.name }}</div>
+  <button @click="change">change</button>
+</template>
+```
+
 ## shallowReactive
+
+reactive() 的浅层作用形式
+和 reactive() 不同，这里没有深层级的转换：一个浅层响应式对象里只有根级别的 property 是响应式的。property 的值会被原样存储和暴露，这也意味着值为 ref 的 property 不会被自动解包了。
+
+注意：shallowReactive 如果是在 mounted 之前被调用，比如 setup 语法糖中直接调用，不具备浅层作用的特性。
+注意：和 shallowRef 类似，如果某个事件既触发了浅层的响应式又触发了深层的非响应式，视图会一起被更新。
+
+```vue
+<script lang="ts" setup>
+import { shallowReactive } from 'vue'
+let person = shallowReactive({
+  name: 'zs',
+  money: {
+    cash: 10,
+  },
+})
+const change = () => {
+  // person.name = 'ls' // 会更新视图
+  // person.money = { cash: 80 } // 这样也会更新视图，因为persom.money和person.name都是最浅层
+  person.money.cash = 0 // 不会更新视图
+}
+</script>
+
+<template>
+  <div>person: {{ person }}</div>
+  <button @click="change">change</button>
+</template>
+```
+
+::: warning
+
+谨慎使用
+浅层数据结构应该只用于组件中的根级状态。请避免将其嵌套在深层次的响应式对象中，因为它创建的树具有不一致的响应行为，这可能很难理解和调试
+
+:::
 
 ## toRef toRefs toRaw
