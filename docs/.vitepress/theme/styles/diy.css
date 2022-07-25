@@ -97,3 +97,8 @@ html {
 code span{
   font-style: unset!important;
 }
+
+/* fix bug */
+*{
+  word-break: break-word;
+}
