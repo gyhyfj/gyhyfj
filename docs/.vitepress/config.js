@@ -351,8 +351,12 @@ const vue3 = [
     link: '/code/vue-ts/vue3/07全局组件-局部组件-递归组件',
   },
   {
-    text: '匿名-具名-动态插槽',
-    link: '/code/vue-ts/vue3/08匿名-具名-动态插槽',
+    text: '匿名-具名-作用域-动态插槽',
+    link: '/code/vue-ts/vue3/08匿名-具名-作用域-动态插槽',
+  },
+  {
+    text: '异步组件-代码分包-suspense',
+    link: '/code/vue-ts/vue3/09异步组件-代码分包-suspense',
   },
 ]
 const ts = [
