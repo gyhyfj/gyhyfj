@@ -350,6 +350,10 @@ const vue3 = [
     text: '全局组件-局部组件-递归组件',
     link: '/code/vue-ts/vue3/07全局组件-局部组件-递归组件',
   },
+  {
+    text: '匿名-具名-动态插槽',
+    link: '/code/vue-ts/vue3/08匿名-具名-动态插槽',
+  },
 ]
 const ts = [
   {
