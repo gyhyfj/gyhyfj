@@ -263,8 +263,8 @@ const dushu = [
 ]
 const shenghuo = [
   {
-    text: '书单',
-    link: '/散记/I-will-be-there/读书/1965年重上井冈山',
+    text: '锻炼',
+    link: '/散记/I-will-be-there/生活/锻炼',
   },
 ]
 const xinzhi = [
@@ -368,11 +368,23 @@ const vue3 = [
   },
   {
     text: 'Transition过渡组件',
-    link: '/code/vue-ts/vue3/12Transition过渡组件.md',
+    link: '/code/vue-ts/vue3/12Transition过渡组件',
   },
   {
     text: '依赖注入provide/inject',
-    link: '/code/vue-ts/vue3/13依赖注入provide-inject.md.md',
+    link: '/code/vue-ts/vue3/13依赖注入provide-inject',
+  },
+  {
+    text: '兄弟组件传参&Bus',
+    link: '/code/vue-ts/vue3/14兄弟组件传参-Bus',
+  },
+  {
+    text: 'TSX',
+    link: '/code/vue-ts/vue3/15TSX',
+  },
+  {
+    text: 'v-model',
+    link: '/code/vue-ts/vue3/16v-model',
   },
 ]
 const ts = [
@@ -520,7 +532,7 @@ export default {
               },
               {
                 text: 'vue/ts',
-                link: '/code/vue-ts/ts/TypeScript.md',
+                link: '/code/vue-ts/ts/TypeScript',
               },
             ],
           },

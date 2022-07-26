@@ -102,3 +102,8 @@ code span{
 *{
   word-break: break-word;
 }
+
+/* scroll bar side effect */
+html{
+  overflow: overlay;
+}
