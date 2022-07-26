@@ -358,6 +358,22 @@ const vue3 = [
     text: '异步组件-代码分包-suspense',
     link: '/code/vue-ts/vue3/09异步组件-代码分包-suspense',
   },
+  {
+    text: 'Teleport传送组件',
+    link: '/code/vue-ts/vue3/10Teleport传送组件',
+  },
+  {
+    text: 'KeepAlive缓存组件',
+    link: '/code/vue-ts/vue3/11KeepAlive缓存组件',
+  },
+  {
+    text: 'Transition过渡组件',
+    link: '/code/vue-ts/vue3/12Transition过渡组件.md',
+  },
+  {
+    text: '依赖注入provide/inject',
+    link: '/code/vue-ts/vue3/13依赖注入provide-inject.md.md',
+  },
 ]
 const ts = [
   {
