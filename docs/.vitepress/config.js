@@ -310,6 +310,34 @@ const ecma = [
     text: '流程控制',
     link: '/code/html-css-js/es/流程控制',
   },
+  {
+    text: '构造函数',
+    link: '/code/html-css-js/es/构造函数',
+  },
+  {
+    text: '作用域-预解析-this指向',
+    link: '/code/html-css-js/es/作用域-预解析-this指向',
+  },
+  {
+    text: '闭包',
+    link: '/code/html-css-js/es/闭包',
+  },
+  {
+    text: '递归',
+    link: '/code/html-css-js/es/递归',
+  },
+  {
+    text: '深拷贝与浅拷贝',
+    link: '/code/html-css-js/es/深拷贝与浅拷贝',
+  },
+  {
+    text: '模块化',
+    link: '/code/html-css-js/es/模块化',
+  },
+  {
+    text: 'JS执行机制',
+    link: '/code/html-css-js/es/JS执行机制',
+  },
 ]
 const webapi = [
   {
@@ -319,6 +347,10 @@ const webapi = [
   {
     text: 'BOM',
     link: '/code/html-css-js/webapi/BOM',
+  },
+  {
+    text: '网页特效',
+    link: '/code/html-css-js/webapi/网页特效',
   },
 ]
 const vue3 = [
