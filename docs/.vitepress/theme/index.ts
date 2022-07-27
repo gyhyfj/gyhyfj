@@ -1,4 +1,4 @@
-// .vitepress/theme/index.js
+// .vitepress/theme/index.ts
 import DefaultTheme from 'vitepress/theme'
 import MyVideoBoard from './components/MyVideoBoard.vue'
 import MyLayout from './components/MyLayout.vue'

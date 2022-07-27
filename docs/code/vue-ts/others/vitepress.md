@@ -121,6 +121,6 @@ watchEffect(() => {
 
 :::details
 
-<<< @/.vitepress/theme/index.js
+<<< @/.vitepress/theme/index.ts
 
 :::

@@ -5,7 +5,7 @@ import { useVidArrStore } from '../store/vidArr.js'
 const store = useVidArrStore()
 
 const props = defineProps({
-  bvidArr: Array, // ["BV1uS4y1Z7sX"]
+  bvidArr: Array, // ["BV1uS4y1Z7sX","BV1dS4y1y7vd&p=7"]
 })
 
 let list = reactive(store.getArrInfo(props.bvidArr))
@@ -25,7 +25,7 @@ onMounted(async () => {
   <div class="container">
     <a
       class="card"
-      :href="'https://www.bilibili.com/video/' + item.bvid"
+      :href="'https://www.bilibili.com/video/' + item.bvid.replace('&', '?')"
       target="_blank"
       v-for="(item, index) in list"
       :key="index"

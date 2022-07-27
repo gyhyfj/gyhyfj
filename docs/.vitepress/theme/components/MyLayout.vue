@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { watchEffect } from 'vue'
 import DefaultTheme from 'vitepress/theme'
 import { useRouter } from 'vitepress'
