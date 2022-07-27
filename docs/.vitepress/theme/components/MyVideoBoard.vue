@@ -1,12 +1,14 @@
-<script setup>
+<script setup lang="ts">
 import { reactive, onMounted } from 'vue'
 import { useVidArrStore } from '../store/vidArr.js'
 
 const store = useVidArrStore()
 
-const props = defineProps({
-  bvidArr: Array, // ["BV1uS4y1Z7sX","BV1dS4y1y7vd&p=7"]
-})
+type Props = {
+  bvidArr: any
+}
+
+const props = defineProps<Props>()
 
 let list = reactive(store.getArrInfo(props.bvidArr))
 
@@ -17,6 +19,8 @@ onMounted(async () => {
     for (let i in list) {
       list[i] = arr[i]
     }
+    // arr.unshift(0, arr.length)
+    // list.splice.apply(list, arr)
   }
 })
 </script>

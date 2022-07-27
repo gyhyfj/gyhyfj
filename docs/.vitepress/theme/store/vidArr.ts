@@ -1,21 +1,34 @@
 import axios from 'axios'
 import { defineStore } from 'pinia'
 import localArr from './data/data.js'
-// let localArr = require('./data/data.js')
 
+type VidInfo = {
+  bvid: string
+  pic: string
+  title: string
+  upper: string
+  view: number
+  danmaku: number
+}
+
+type State = {
+  isUpdated: boolean
+  vidMap: Map<string, VidInfo>
+}
+let arr: any = localArr
 export const useVidArrStore = defineStore('vidArr', {
-  state: () => {
+  state: (): State => {
     return {
       isUpdated: false,
-      vidMap: new Map(localArr),
+      vidMap: new Map(arr),
     }
   },
   getters: {
     getArrInfo: state => {
       return bvidArr => {
-        let result = []
+        let result: VidInfo[] = []
         bvidArr.forEach(item => {
-          let temp = state.vidMap.get(item)
+          let temp: VidInfo | undefined = state.vidMap.get(item)
           if (temp) {
             result.push(temp)
           } else {
