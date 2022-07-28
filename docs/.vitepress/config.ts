@@ -422,6 +422,46 @@ const vue3 = [
     text: '自定义指令',
     link: '/code/vue-ts/vue3/17自定义指令',
   },
+  {
+    text: '自定义hooks',
+    link: '/code/vue-ts/vue3/18自定义hooks',
+  },
+  {
+    text: '全局函数和变量',
+    link: '/code/vue-ts/vue3/19全局函数和变量',
+  },
+  {
+    text: '自定义vue插件',
+    link: '/code/vue-ts/vue3/20自定义vue插件',
+  },
+  {
+    text: 'css新特性',
+    link: '/code/vue-ts/vue3/21css新特性',
+  },
+  {
+    text: 'EventLoop-nextTick',
+    link: '/code/vue-ts/vue3/22EventLoop-nextTick',
+  },
+  {
+    text: 'vue开发移动端',
+    link: '/code/vue-ts/vue3/23vue开发移动端',
+  },
+  {
+    text: '函数式编程-h函数',
+    link: '/code/vue-ts/vue3/24函数式编程-h函数',
+  },
+]
+const pinia = [
+  {
+    text: 'Pinia',
+    link: '/code/vue-ts/pinia/pinia',
+  },
+]
+const router4 = [
+  {
+    text: 'Router4',
+    link: '/code/vue-ts/router4/router4',
+  },
 ]
 const ts = [
   {
@@ -587,13 +627,13 @@ export default {
       '/先秦诸子/儒家/': [
         {
           collapsible: true,
-          collapsed: false,
+          collapsed: true,
           text: '孔子',
           items: kongzi,
         },
         {
           collapsible: true,
-          collapsed: false,
+          collapsed: true,
           text: '论语',
           items: lunyu,
         },
@@ -601,7 +641,7 @@ export default {
       '/先秦诸子/墨家': [
         {
           collapsible: true,
-          collapsed: false,
+          collapsed: true,
           text: '《墨子》',
           items: mozi,
         },
@@ -610,7 +650,7 @@ export default {
       '/先秦诸子/道家': [
         {
           collapsible: true,
-          collapsed: false,
+          collapsed: true,
           text: '《道德经》',
           items: daodejing,
         },
@@ -618,7 +658,7 @@ export default {
       '/两汉历史/西汉/': [
         {
           collapsible: true,
-          collapsed: false,
+          collapsed: true,
           text: '西汉',
           items: xihan,
         },
@@ -626,7 +666,7 @@ export default {
       '/两汉历史/东汉/': [
         {
           collapsible: true,
-          collapsed: false,
+          collapsed: true,
           text: '东汉',
           items: donghan,
         },
@@ -634,7 +674,7 @@ export default {
       '/两汉历史/三国/': [
         {
           collapsible: true,
-          collapsed: false,
+          collapsed: true,
           text: '文不醜说三国',
           items: sanguo,
         },
@@ -642,7 +682,7 @@ export default {
       '/绝地天通/绝地天通/': [
         {
           collapsible: true,
-          collapsed: false,
+          collapsed: true,
           text: '绝地天通',
           items: jueditiantong,
         },
@@ -650,7 +690,7 @@ export default {
       '/绝地天通/道教/': [
         {
           collapsible: true,
-          collapsed: false,
+          collapsed: true,
           text: '道教',
           items: daojiao,
         },
@@ -658,7 +698,7 @@ export default {
       '/散记/齐马蓝/': [
         {
           collapsible: true,
-          collapsed: false,
+          collapsed: true,
           text: 'ZIMABLUE',
           items: zimablue,
         },
@@ -666,19 +706,19 @@ export default {
       '/散记/I-will-be-there/': [
         {
           collapsible: true,
-          collapsed: false,
+          collapsed: true,
           text: '读书',
           items: dushu,
         },
         {
           collapsible: true,
-          collapsed: false,
+          collapsed: true,
           text: '生活',
           items: shenghuo,
         },
         {
           collapsible: true,
-          collapsed: false,
+          collapsed: true,
           text: '新知',
           items: xinzhi,
         },
@@ -687,25 +727,25 @@ export default {
       '/code/html-css-js/': [
         {
           collapsible: true,
-          collapsed: false,
+          collapsed: true,
           text: 'html',
           items: html,
         },
         {
           collapsible: true,
-          collapsed: false,
+          collapsed: true,
           text: 'css',
           items: css,
         },
         {
           collapsible: true,
-          collapsed: false,
+          collapsed: true,
           text: 'ECMAScript',
           items: ecma,
         },
         {
           collapsible: true,
-          collapsed: false,
+          collapsed: true,
           text: 'web api',
           items: webapi,
         },
@@ -713,20 +753,32 @@ export default {
       '/code/vue-ts/': [
         {
           collapsible: true,
-          collapsed: false,
-          text: 'vue3',
+          collapsed: true,
+          text: 'Vue3',
           items: vue3,
         },
         {
           collapsible: true,
-          collapsed: false,
+          collapsed: true,
+          text: 'Pinia',
+          items: pinia,
+        },
+        {
+          collapsible: true,
+          collapsed: true,
+          text: 'Router4',
+          items: router4,
+        },
+        {
+          collapsible: true,
+          collapsed: true,
           text: 'TypeScript',
           items: ts,
         },
         {
           collapsible: true,
-          collapsed: false,
-          text: 'others',
+          collapsed: true,
+          text: 'Others',
           items: vueothers,
         },
       ],

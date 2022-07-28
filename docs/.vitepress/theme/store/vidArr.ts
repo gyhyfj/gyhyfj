@@ -35,11 +35,11 @@ export const useVidArrStore = defineStore('vidArr', {
             state.isUpdated = false
             result.push({
               bvid: 'BV1sa411k7Zy',
-              pic: 'http://i2.hdslb.com/bfs/archive/532dcaa6cb0dd7088687cce05a622809753017fd.jpg',
-              title: 'E01.最详细的黄巾军起兵地图推演：黄巾大起义',
-              upper: '文不醜',
-              view: 120750,
-              danmaku: 509,
+              pic: '',
+              title: 'Loading...',
+              upper: 'Loading...',
+              view: NaN,
+              danmaku: NaN,
             })
           }
         })
