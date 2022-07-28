@@ -619,3 +619,23 @@ function reverse1(x: number | string): number | string | undefined {
 
 // TypeScript 参考: https://www.tslang.cn/docs/home.html
 ```
+
+## 15. 实践
+
+在 onMounted 中获取 DOM 元素，需要断言
+
+```ts
+let elem = document.querySelector('#china') as HTMLElement
+```
+
+插件：json2ts
+获取 json 对象类型：
+复制 json 文本，然后在编辑器内键入 `ctrl+alt+v`
+
+使用 ts 写 express 服务器
+需要安装额外的包
+├── @types/express
+├── @types/node
+类型从 express 中按需引入
+`import express, { Express, Router, Request, Response } from 'express'`
+并且在 package.json 的 scripts 节点中配置：` "dev":"ts-node index.ts"`

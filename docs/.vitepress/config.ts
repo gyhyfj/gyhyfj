@@ -418,6 +418,10 @@ const vue3 = [
     text: 'v-model',
     link: '/code/vue-ts/vue3/16v-model',
   },
+  {
+    text: '自定义指令',
+    link: '/code/vue-ts/vue3/17自定义指令',
+  },
 ]
 const ts = [
   {
