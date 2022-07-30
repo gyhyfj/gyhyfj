@@ -21,6 +21,7 @@ onMounted(async () => {
     for (let i in list) {
       list[i] = arr[i]
     }
+    imgShow = true
     // arr.unshift(0, arr.length)
     // list.splice.apply(list, arr)
   }
