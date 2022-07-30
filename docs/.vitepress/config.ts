@@ -353,6 +353,18 @@ const webapi = [
     link: '/code/html-css-js/webapi/网页特效',
   },
 ]
+const nodejs = [
+  {
+    text: 'NodeJS',
+    link: '/code/node/nodejs/nodejs',
+  },
+]
+const pm2 = [
+  {
+    text: 'Pm2',
+    link: '/code/node/pm2/pm2',
+  },
+]
 const vue3 = [
   {
     text: '初始化项目',
@@ -463,8 +475,52 @@ const pinia = [
 ]
 const router4 = [
   {
-    text: 'Router4',
-    link: '/code/vue-ts/router4/router4',
+    text: '开始使用',
+    link: '/code/vue-ts/router4/开始使用',
+  },
+  {
+    text: '路由模式',
+    link: '/code/vue-ts/router4/路由模式',
+  },
+  {
+    text: '命名路由-编程式导航',
+    link: '/code/vue-ts/router4/命名路由-编程式导航',
+  },
+  {
+    text: '历史记录',
+    link: '/code/vue-ts/router4/历史记录',
+  },
+  {
+    text: '路由传参',
+    link: '/code/vue-ts/router4/路由传参',
+  },
+  {
+    text: '嵌套路由',
+    link: '/code/vue-ts/router4/嵌套路由',
+  },
+  {
+    text: '命名视图',
+    link: '/code/vue-ts/router4/命名视图',
+  },
+  {
+    text: '重定向-别名',
+    link: '/code/vue-ts/router4/重定向-别名',
+  },
+  {
+    text: '导航守卫',
+    link: '/code/vue-ts/router4/导航守卫',
+  },
+  {
+    text: 'meta信息',
+    link: '/code/vue-ts/router4/meta信息',
+  },
+  {
+    text: '滚动行为',
+    link: '/code/vue-ts/router4/滚动行为',
+  },
+  {
+    text: '动态路由',
+    link: '/code/vue-ts/router4/动态路由',
   },
 ]
 const ts = [
@@ -608,7 +664,7 @@ export default {
               },
               {
                 text: 'node',
-                link: '/code/html-css-js/html/html基础',
+                link: '/code/node/pm2/pm2',
               },
               {
                 text: 'vue/ts',
@@ -752,6 +808,20 @@ export default {
           collapsed: true,
           text: 'web api',
           items: webapi,
+        },
+      ],
+      '/code/node/': [
+        {
+          collapsible: true,
+          collapsed: true,
+          text: 'NodeJS',
+          items: nodejs,
+        },
+        {
+          collapsible: true,
+          collapsed: true,
+          text: 'Pm2',
+          items: pm2,
         },
       ],
       '/code/vue-ts/': [
