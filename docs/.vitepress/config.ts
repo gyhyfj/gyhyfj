@@ -456,6 +456,10 @@ const pinia = [
     text: 'Pinia',
     link: '/code/vue-ts/pinia/pinia',
   },
+  {
+    text: 'pinia持久化插件',
+    link: '/code/vue-ts/pinia/pinia持久化插件',
+  },
 ]
 const router4 = [
   {

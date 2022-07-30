@@ -364,6 +364,7 @@ function changeDirection(direction: 'up' | 'down' | 'left' | 'right'): void {
 
 ```ts
 // 枚举enum类型用于取值被限定在一定范围内的场景, 比如一周只能有七天, 颜色限定为红绿蓝等
+// 枚举中的标识符不能重复
 // 功能类似于字面量类型 + 联合类型
 
 // 使用 enum 关键字定义枚举
@@ -412,6 +413,12 @@ enum Direction2 {
 
 // 注意: 枚举不仅用作类型, 而且枚举成员还有值,
 // 所以其他的类型会在编译为 JS 代码时自动移除, 但枚举类型会被编译为 JS 代码
+// 可以当做一个命名空间来用了
+enum Names {
+  TEST = 'TEST',
+  BASE = 'NAME',
+}
+console.log(Names.BASE) // NAME
 
 // 一般情况下, 推荐使用字面量类型 + 联合类型组合的方式, 这样比枚举更直观
 ```

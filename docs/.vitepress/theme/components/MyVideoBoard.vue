@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { reactive, onMounted } from 'vue'
+import { reactive, onMounted, ref } from 'vue'
 import { useVidArrStore } from '../store/vidArr.js'
+
+let imgShow = ref<boolean>(true)
 
 const store = useVidArrStore()
 
@@ -35,7 +37,13 @@ onMounted(async () => {
       :key="index"
     >
       <div class="left">
-        <img :src="item.pic.replace(/http/, 'https')" alt="" class="coverImg" />
+        <img
+          :src="
+            item.pic ? item.pic.replace(/http/, 'https') : (imgShow = false)
+          "
+          class="coverImg"
+          v-if="imgShow"
+        />
       </div>
       <div class="right">
         <div class="title double-ellipsis">

@@ -3,6 +3,7 @@
 ## Get Start
 
 `npm i pinia -S`
+安装 pinia -> 在 main.ts 中生成并注册 pinia 实例 -> 创建 store 文件夹，包括 store-name.ts 和 index.ts
 
 ```ts {4,6,9}
 /* main.ts */
@@ -58,7 +59,7 @@ const Test = useTestStore()
 
 修改 state 的方式：
 
-1. 直接修改 `Test.curreent++`
+1. 直接修改 `Test.current++`
 2. 批量修改 `Test.$patch({current:2, name:'test2'})` // 修改一个或多个属性
 3. 批量修改，但使用工厂函数 `Test.$patch(state => {})`
 
