@@ -338,6 +338,10 @@ const ecma = [
     text: 'JS执行机制',
     link: '/code/html-css-js/es/JS执行机制',
   },
+  {
+    text: 'JS总结',
+    link: '/code/html-css-js/es/JS总结',
+  },
 ]
 const webapi = [
   {
