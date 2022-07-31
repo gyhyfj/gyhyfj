@@ -356,6 +356,10 @@ const webapi = [
     text: '网页特效',
     link: '/code/html-css-js/webapi/网页特效',
   },
+  {
+    text: '浏览器原理',
+    link: '/code/html-css-js/webapi/浏览器原理',
+  },
 ]
 const nodejs = [
   {
@@ -539,8 +543,18 @@ const ts = [
 ]
 const vueothers = [
   {
+    text: '前端工程化',
+    link: '/code/vue-ts/others/前端工程化',
+  },
+  {
     text: 'vitepress',
     link: '/code/vue-ts/others/vitepress',
+  },
+]
+const jisuanjiwangluo = [
+  {
+    text: 'Networking',
+    link: '/code/Networking/Networking',
   },
 ]
 
@@ -673,6 +687,10 @@ export default {
               {
                 text: 'vue/ts',
                 link: '/code/vue-ts/ts/TypeScript',
+              },
+              {
+                text: 'Networking',
+                link: '/code/Networking/Networking',
               },
             ],
           },
@@ -858,6 +876,14 @@ export default {
           collapsed: true,
           text: 'Others',
           items: vueothers,
+        },
+      ],
+      '/code/Networking/': [
+        {
+          collapsible: true,
+          collapsed: true,
+          text: 'Networking',
+          items: jisuanjiwangluo,
         },
       ],
     },

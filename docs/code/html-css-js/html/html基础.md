@@ -41,9 +41,11 @@ HTML5 的 webstorage 提供两种 API：localStorage（本地存储） 和 sessi
 2. 生命周期
    cookie 在设置的过期时间后失效，sessionStorage 是在页面关闭后失效，localStorage 可以永久保存
 3. 存储大小
-   cookie 最大 4k 左右，webstorage 最大 5M
+   cookie 最大 4k 左右，webstorage 最大 5M，每个域名下 cookie 的数量不能超过 20 个
 4. 安全性
    webstorage 不会随 http 请求头发送，不会担心拦截，所以安全性更高，但仍存在伪造问题
+5. 方便性
+   cookie 需要前端开发者自己封装 setCookie 等方法
 
 ## inline-block
 

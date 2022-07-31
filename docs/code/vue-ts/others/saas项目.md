@@ -29,6 +29,8 @@ npm i less -D
 
 ## 设置代理和封装 axios 和解耦 API
 
+一般情况下不会把整串请求地址写于 url 中，所以会配置代理 proxy
+
 ```ts
 /* vite.config.ts */
 import { defineConfig } from 'vite'
