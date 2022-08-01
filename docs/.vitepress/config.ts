@@ -541,6 +541,12 @@ const ts = [
     link: '/code/vue-ts/ts/TypeScript',
   },
 ]
+const uniapp = [
+  {
+    text: 'uniapp',
+    link: '/code/vue-ts/uniapp/miniprogram',
+  },
+]
 const vueothers = [
   {
     text: '前端工程化',
@@ -689,7 +695,7 @@ export default {
                 link: '/code/vue-ts/ts/TypeScript',
               },
               {
-                text: 'Networking',
+                text: 'networking',
                 link: '/code/Networking/Networking',
               },
             ],
@@ -870,6 +876,12 @@ export default {
           collapsed: true,
           text: 'TypeScript',
           items: ts,
+        },
+        {
+          collapsible: true,
+          collapsed: true,
+          text: 'uniapp',
+          items: uniapp,
         },
         {
           collapsible: true,
