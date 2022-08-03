@@ -1,5 +1,18 @@
 # Pinia
 
+pinia 没有 mutations，只有 state、getters、actions
+pinia 分模块不需要 modules
+pinia 体积更小
+pinia 可以直接修改 state 数据
+
+> 总结：
+> `const { current, name } = storeToRefs(Test)` 响应式解构
+> `instance.$patch()` 接受一个对象或回调
+> `instance.$state={}` 整体替换
+> `instance.$reset()` 重置
+> `instance.$subscribe((args,state)=>{})` 监听 state 变化
+> `instance.$onAction((args)=>{})` 监听 action 调用
+
 ## Get Start
 
 `npm i pinia -S`
@@ -106,4 +119,4 @@ const { current, name } = storeToRefs(Test) // 具有响应式
 
 reset 恢复默认 `Test.$reset()`
 subscribe 侦听 state 变化，接收一个工厂函数 `Test.$subscribe((args,state)=>{})`
-onAction 侦听 action 被调用，接收一个工厂函数 Test.$onAction((args)=>{})`
+onAction 侦听 action 被调用，接收一个工厂函数 `Test.$onAction((args)=>{})`

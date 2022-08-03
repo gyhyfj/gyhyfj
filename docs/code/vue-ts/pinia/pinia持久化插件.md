@@ -55,3 +55,25 @@ app.mount('#app')
 ```
 
 ## 使用 npm 插件
+
+安装`npm i pinia-plugin-persist -S`
+
+创建 store/index.js ，在 main.js 中引入并挂载
+
+```js
+/* main.js */
+import store from 'store/index.js'
+app.use(store)
+```
+
+```js
+/* store/index.js */
+import { createPinia } from 'pinia'
+import piniaPluginPersist from 'pinia-plugin-persist'
+
+const store = createPinia
+store.use(piniaPluginPersist)
+export default store
+```
+
+在每个 store 文件中添加 persist 节点，添加配置

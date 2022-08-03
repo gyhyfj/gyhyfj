@@ -399,7 +399,7 @@ const vue3 = [
     link: '/code/vue-ts/vue3/06父子组件传参',
   },
   {
-    text: '全局组件-局部组件-递归组件',
+    text: '全局-局部-递归-动态组件',
     link: '/code/vue-ts/vue3/07全局组件-局部组件-递归组件',
   },
   {
@@ -469,6 +469,10 @@ const vue3 = [
   {
     text: '函数式编程-h函数',
     link: '/code/vue-ts/vue3/24函数式编程-h函数',
+  },
+  {
+    text: '选项式API与组合式API',
+    link: '/code/vue-ts/vue3/25选项式API与组合式API',
   },
 ]
 const pinia = [
