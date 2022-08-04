@@ -265,3 +265,28 @@ function throttle(fn, delay) {
   }
 }
 ```
+
+## 判断对象是否为空
+
+1. JSON.stringify 不行，因为会把`{a:()=>{}}`也转为`{}`
+
+   ```js
+   let a = {
+     x: () => {},
+   }
+   console.log(JSON.stringify(a)) // {}
+   ```
+
+2. for in 有时不行，因为 for in 会遍历整个原型链，需要用 hasOwnProperty()方法过滤掉
+3. Object.keys()方法可以，返回一个属性的数组，判断数组长度是否为 0
+4. Object.getOwnPropertyNames()方法，返回一个由指定对象的所有自身属性的属性名组成的数组，判断是否长度为 0
+
+这些方法遇到 Symbol 值作为名称的属性，或不可枚举属性，很可能会出问题
+
+```js
+let a = {
+  [Symbol()]: 'hi',
+}
+console.log(a) // { [Symbol()]: 'hi' }
+console.log(Object.keys(a)) // []
+```
