@@ -406,10 +406,7 @@ export default {
                 text: 'VUE3',
                 link: '/vue-ts/vue3/01初始化项目',
               },
-              {
-                text: 'TS',
-                link: '/vue-ts/ts/ES6的类',
-              },
+
               {
                 text: 'Router4',
                 link: '/vue-ts/router4/开始使用',
@@ -417,6 +414,18 @@ export default {
               {
                 text: 'Pinia',
                 link: '/vue-ts/pinia/pinia持久化插件',
+              },
+              {
+                text: 'TS',
+                link: '/vue-ts/ts/ES6的类',
+              },
+              {
+                text: 'UniApp',
+                link: '/vue-ts/uniapp/miniprogram',
+              },
+              {
+                text: 'Others',
+                link: '/vue-ts/others/前端工程化',
               },
             ],
           },
