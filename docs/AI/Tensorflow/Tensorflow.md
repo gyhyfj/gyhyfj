@@ -4,7 +4,7 @@
 
 > tensorflow 2.9.1
 > kares 2.9.0
-> keras-preprocessing 1.0.5
+> keras-preprocessing 1.1.2
 > Miniconda3-py39_4.12.0-Windows-x86_64
 
 1. 安装 miniconda
@@ -43,7 +43,7 @@
    pip install pandas matplotlib notebook keras
    ```
 
-5. 安装 keras-preprocessing 替换掉旧版本
+5. 安装 keras-preprocessing 替换掉旧版本 1.0.5
 
    ```bash
    pip install keras-preprocessing
