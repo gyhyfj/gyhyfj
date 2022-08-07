@@ -9,7 +9,7 @@ import './styles/vars.css'
 
 export default {
   ...DefaultTheme,
-  Layout: MyLayout, // inject MyLayout
+  // Layout: MyLayout, // inject MyLayout
   enhanceApp({ app }) {
     app.use(pinia) // ues pinia
     app.component('MyVideoBoard', MyVideoBoard) // register global components
