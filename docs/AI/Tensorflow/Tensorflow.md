@@ -1,11 +1,11 @@
-# Tensorflow2
+# Tensorflow
 
 ## Win10 安装 GPU 版本
 
-> Miniconda3-py39_4.12.0-Windows-x86_64
 > tensorflow 2.9.1
 > kares 2.9.0
 > keras-preprocessing 1.0.5
+> Miniconda3-py39_4.12.0-Windows-x86_64
 
 1. 安装 miniconda
 2. 配置 conda 和 pip 清华大学镜像

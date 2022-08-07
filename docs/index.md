@@ -12,7 +12,7 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /两汉历史/三国/文不醜说三国/01帝国丧钟：黄巾大起义
+      link: /AI/Tensorflow/Tensorflow
     - theme: alt
       text: View on GitHub
       link: https://github.com/gyhyfj
