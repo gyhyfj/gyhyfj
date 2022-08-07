@@ -316,6 +316,12 @@ const Tensorflow = [
     link: '/AI/Tensorflow/Tensorflow',
   },
 ]
+const yolo = [
+  {
+    text: 'YOLO v5',
+    link: '/AI/YOLO/YOLOv5',
+  },
+]
 
 export default {
   /* App Configs */
@@ -439,7 +445,11 @@ export default {
             items: [
               {
                 text: 'Tensorflow',
-                link: '/AI/Tensorflow/Tensorflow.md',
+                link: '/AI/Tensorflow/Tensorflow',
+              },
+              {
+                text: 'YOLO',
+                link: '/AI/YOLO/YOLOv5',
               },
             ],
           },
@@ -557,6 +567,12 @@ export default {
           collapsed: true,
           text: 'Tensorflow',
           items: Tensorflow,
+        },
+        {
+          collapsible: true,
+          collapsed: true,
+          text: 'YOLO',
+          items: yolo,
         },
       ],
 

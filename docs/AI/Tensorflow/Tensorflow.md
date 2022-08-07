@@ -1,10 +1,20 @@
 # Tensorflow
 
+https://www.tensorflow.org/overview
+
+TensorFlow 是一个端到端开源**机器学习平台**
+借助 TensorFlow，初学者和专家可以轻松地创建**机器学习模型**
+
+TensorFlow 的高阶 API 基于 Keras API 标准，用于定义和训练神经网络
+Keras 通过用户友好的 API 实现快速原型设计、先进技术研究和生产
+
 ## Win10 安装 GPU 版本
 
 > tensorflow 2.9.1
 > kares 2.9.0
 > keras-preprocessing 1.1.2
+> tensorboard 2.6.0
+> Python 3.9.12
 > Miniconda3-py39_4.12.0-Windows-x86_64
 
 1. 安装 miniconda
@@ -62,3 +72,7 @@
    ```python
    import tensorflow as tf
    ```
+
+## TensorBoard
+
+TensorFlow 的可视化工具包
