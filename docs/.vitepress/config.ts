@@ -310,6 +310,18 @@ const vueothers = [
     link: '/vue-ts/others/vitepress',
   },
 ]
+const networking = [
+  {
+    text: '计算机网络',
+    link: '/net/theory/networking',
+  },
+]
+const websocket = [
+  {
+    text: 'Websocket',
+    link: '/net/practice/websocket',
+  },
+]
 const Tensorflow = [
   {
     text: 'Intro',
@@ -436,6 +448,25 @@ export default {
               {
                 text: 'Others',
                 link: '/vue-ts/others/前端工程化',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        text: 'NETWORKING',
+        items: [
+          {
+            text: '',
+
+            items: [
+              {
+                text: 'Websocket',
+                link: '/net/practice/websocket',
+              },
+              {
+                text: 'Theory',
+                link: '/net/theory/计算机网络',
               },
             ],
           },
@@ -577,6 +608,20 @@ export default {
           collapsed: true,
           text: 'YOLO',
           items: yolo,
+        },
+      ],
+      '/net/': [
+        {
+          collapsible: true,
+          collapsed: true,
+          text: 'Theory',
+          items: networking,
+        },
+        {
+          collapsible: true,
+          collapsed: true,
+          text: 'Websocket',
+          items: websocket,
         },
       ],
 
