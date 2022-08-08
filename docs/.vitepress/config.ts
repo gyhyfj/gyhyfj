@@ -312,6 +312,10 @@ const vueothers = [
 ]
 const Tensorflow = [
   {
+    text: 'Intro',
+    link: '/AI/Tensorflow/Introduction',
+  },
+  {
     text: 'Tensorflow',
     link: '/AI/Tensorflow/Tensorflow',
   },
@@ -445,7 +449,7 @@ export default {
             items: [
               {
                 text: 'Tensorflow',
-                link: '/AI/Tensorflow/Tensorflow',
+                link: '/AI/Tensorflow/Introduction',
               },
               {
                 text: 'YOLO',
