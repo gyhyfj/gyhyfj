@@ -41,6 +41,9 @@ const input = ref<HTMLInputElement | null>(null) // 拿到了DOM元素
 </template>
 ```
 
+使用时候，也是要用`ref.value`来操作 DOM 对象
+定义多个对象时，只能分开写`const chart1=ref(); const chart2=ref();`，不能写链式等号
+
 ## isRef
 
 检查某个值是否为 ref。

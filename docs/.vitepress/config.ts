@@ -306,6 +306,10 @@ const vueothers = [
     link: '/vue-ts/others/前端工程化',
   },
   {
+    text: '实践记录',
+    link: '/vue-ts/others/实践记录',
+  },
+  {
     text: 'vitepress',
     link: '/vue-ts/others/vitepress',
   },
