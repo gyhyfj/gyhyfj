@@ -292,6 +292,7 @@ transform: scale(0,0) // 将元素尺寸缩放为 0，但仍占位置，但不�
    flex-direction: row row-reverse column column-reverse
 4. 是否换行（flex-flow）
    flex-wrap: nowrap wrap wrap-reverse
+   `flex-flow:colum wrap;`
 5. 行的分布
    align-content: flex-start flex-end center space-between space-around
 

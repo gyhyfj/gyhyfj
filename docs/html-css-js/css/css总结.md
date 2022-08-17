@@ -323,4 +323,17 @@ contain 值为 layout、content 或 paint 的元素
 多列容器（column-count 或 column-width (en-US) 值不为 auto，包括 column-count 为 1）
 column-span 值为 all 的元素始终会创建一个新的 BFC，即使该元素没有包裹在一个多列容器中
 
-## 其他
+## zoom 和 scale
+
+scale:
+只支持数值，不支持百分比和关键字
+默认左上角开始缩放，可以通过取负值从右下角缩放，也可以设置缩放中心
+scale 生效时该元素本身大小没有变化，只在当前元素上重绘，不引起页面回流（重排）
+
+zoom:
+取值可以是数值、百分比以及 normal
+缩放中心是左上角
+缩放改变了元素占据空间的大小所以会引起页面回流（重排）
+渲染方式似乎不同（zoom 是锐化而非模糊）
+zoom 不能解决 1px 问题
+zoom 兼容性差一些，是非标准属性，Firefox 和 Firefox for Android 浏览器不支持

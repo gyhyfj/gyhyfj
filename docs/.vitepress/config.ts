@@ -293,6 +293,10 @@ const ts = [
     text: 'TypeScript',
     link: '/vue-ts/ts/TypeScript',
   },
+  {
+    text: 'TS总结',
+    link: '/vue-ts/ts/TS总结',
+  },
 ]
 const uniapp = [
   {
@@ -320,10 +324,16 @@ const networking = [
     link: '/net/theory/networking',
   },
 ]
-const websocket = [
+const WebSockets = [
   {
-    text: 'Websocket',
-    link: '/net/practice/websocket',
+    text: 'WebSockets',
+    link: '/net/practice/WebSockets',
+  },
+]
+const go = [
+  {
+    text: 'Golang',
+    link: '/go/golang/golang',
   },
 ]
 const Tensorflow = [
@@ -465,12 +475,26 @@ export default {
 
             items: [
               {
-                text: 'Websocket',
-                link: '/net/practice/websocket',
+                text: 'WebSockets',
+                link: '/net/practice/WebSockets',
               },
               {
                 text: 'Theory',
                 link: '/net/theory/计算机网络',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        text: 'GO',
+        items: [
+          {
+            text: '',
+            items: [
+              {
+                text: 'Golang',
+                link: '/go/golang/golang',
               },
             ],
           },
@@ -600,6 +624,14 @@ export default {
           items: vueothers,
         },
       ],
+      '/go/': [
+        {
+          collapsible: true,
+          collapsed: true,
+          text: 'Tensorflow',
+          items: go,
+        },
+      ],
       '/AI/': [
         {
           collapsible: true,
@@ -624,8 +656,8 @@ export default {
         {
           collapsible: true,
           collapsed: true,
-          text: 'Websocket',
-          items: websocket,
+          text: 'WebSockets',
+          items: WebSockets,
         },
       ],
 
