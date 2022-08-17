@@ -3,7 +3,7 @@
 ## ref
 
 Ref 是接口，使用时可以指定泛型，也可以不指定而让类型推断自动推断
-ref()返回一个对象，在 script 中要加`.value`才能操作它的值，在 mastache 中不需要加`.value`
+ref()返回一个对象，在 script 中要加`.value`才能操作它的值（无论包裹的是否为简单数据类型），在 mastache 中不需要加`.value`
 使用 ref 时候推荐去绑定简单数据类型，因为如果绑定的是复杂数据类型，源码还是交给 reactive 去处理
 
 ```vue
@@ -41,8 +41,8 @@ const input = ref<HTMLInputElement | null>(null) // 拿到了DOM元素
 </template>
 ```
 
-使用时候，也是要用`ref.value`来操作 DOM 对象
 定义多个对象时，只能分开写`const chart1=ref(); const chart2=ref();`，不能写链式等号
+使用时候，也是要用`ref.value`来操作 DOM 对象（使用一些组件库时会遇到）
 
 ## isRef
 
