@@ -290,3 +290,7 @@ let a = {
 console.log(a) // { [Symbol()]: 'hi' }
 console.log(Object.keys(a)) // []
 ```
+
+## 函数
+
+嵌套在内部的函数，定义和调用都可以使用外面环境中的参数

@@ -237,3 +237,345 @@ var c float64 = 0.5
 c+float64(a)
 
 ```
+
+## 运算符
+
+除法运算，如果算子都是整数，那么除后去掉小数部分
+取余运算 `余数=被除数-(被除数/除数)*除数`
+自增、自减是单独语句，不是运算符，只能单独使用，不能用于赋值，只能后置不能前置
+位运算 >> 是乘以 2 的 n 次方 << 是除以 2 的 n 次方
+
+```go
+-10%3  // -10-(-10/3)*3  得-1
+```
+
+## 流程控制
+
+1.if else 语句 判断条件不需要括号，判断条件内可以定义判断体内的局部变量
+if 的大括号不能省略，左大括号必须在 if 判断语句行内
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	a := 3
+	if a > 2 {
+		fmt.Println(a)
+	}
+
+	if b := 1; b > 2 {
+		fmt.Println(b)
+	} // 这里的b作用域限制在if语句体内
+
+	if c := 0; c > 2 {
+		fmt.Println(a)
+	} else if c < 1 {
+		fmt.Println(c)
+	}
+}
+
+```
+
+2.for 循环
+
+```go
+for i := 0; i <= 10; i++ {
+	fmt.Println(i)
+}
+```
+
+3.for 无限循环 可以用 break 跳出循环
+
+```go
+i:=1
+for {
+  fmt.Println(i)
+  if i>10 {
+    break
+  }
+}
+```
+
+4.for range 循环
+不需要的参数可以用匿名变量
+
+```go
+str := "你好，Fan"
+for k, v := range str {
+	fmt.Println("key=", k, "val=", v) // 打印成数值
+}
+for k, v := range str {
+	fmt.Printf("key=%v val=%c\n", k, v) // 打印成字符
+}
+```
+
+5.switch case
+golang 中：
+可以像 if 语句那样把定义的值放在判断语句里，后面加一个分号再接这个变量名
+一个分支可以有多个值，多个值用逗号分割
+break 可以省略不写，效果与写 break 相同
+分支中可以写数量不限的表达式
+fallthrough 可以穿透当前 case 分支，继续执行下一个分支（只会穿透一层）
+
+```go
+switch extname := ".css";extname{
+  case ".css",".js":
+    fmt.Println("ok")
+    break
+  default:
+    fmt.Println("okk")
+}
+```
+
+6.golang 没有 while 循环
+
+7.break continue
+break 可以跳出当前循环
+break xx 可以跳转到 xx:这里的语句执行
+continue 可以跳过当前这一轮的循环
+continue xx 可以跳转到 xx:这里的语句执行
+
+```go
+func main() {
+	for i := 0; i < 2; i++ {
+	label: // 相当于还是跳到了continue原本要去的位置
+		for j := 0; j < 5; j++ {
+			if j == 3 {
+				continue label
+			}
+			fmt.Printf("i=%v j=%v\n", i, j)
+		}
+	}
+}
+```
+
+```go
+func main() {
+label: // 不会打印j=4，多跳出了一层循环继续循环
+	for i := 0; i < 2; i++ {
+		for j := 0; j < 5; j++ {
+			if j == 3 {
+				continue label
+			}
+			fmt.Printf("i=%v j=%v\n", i, j)
+		}
+	}
+}
+```
+
+8.goto
+用来简化一些代码的实现过程，对快速跳出循环和避免重复退出上有一定帮助
+
+```go
+func main() {
+	a := 1
+	goto label
+	a += 100
+label:
+	fmt.Println(a)
+}
+```
+
+## 数组
+
+数组声明：
+
+```go
+// 数组的长度是类型的一部分
+var arr1 [3]int
+var arr2 [3]string
+
+fmt.Printf("%T",arr1) // [3]int
+fmt.Printf("%T",arr2) // [3]string
+```
+
+数组初始化：
+默认初始化为零值
+
+```go
+var arr1 [3]bool
+arr1[0] = true
+
+var arr1 = [3]string{"a", "b", "c"}
+
+
+arr1 := [3]string{"a", "b", "c"}
+
+arr1 := [...]string{"a", "b", "c"} // 自动推断数组长度
+
+arr1 := [...]int{1: 1, 3: 5} // [0 1 0 5]
+```
+
+数组遍历：
+
+两种 for 循环，借助索引范围和借助 range
+
+```go
+arr := [...]int{1: 1, 3: 5, 10: 9}
+for i := 0; i < len(arr); i++ {
+	fmt.Println(arr[i])
+}
+
+arr := [...]int{1: 1, 3: 5, 10: 9}
+for _, v := range arr {
+	fmt.Println(v)
+}
+```
+
+引用类型
+
+```go
+var arr1 = [...]int{1, 2, 3} // 值类型
+arr2 := arr1
+arr2[0] = 9
+fmt.Println(arr1) // [1 2 3]
+
+var arr1 = []int{1, 2, 3} // 不加...是引用类型
+arr2 := arr1
+arr2[0] = 9
+fmt.Println(arr1) // [9 2 3]
+```
+
+多维数组
+
+```go
+var arr=[2][3]int{} // 二行三列
+arr[0] // 第一行
+```
+
+## 切片
+
+切片是一个拥有相同类型元素的可变长度序列，切片的本质是基于数组类型做的封装，支持自动扩容，
+是引用类型，内部结构包含地址（切片第一个元素的地址）、长度 len 和容量 cap
+切片的循环遍历与数组相同
+
+1.声明切片
+
+```go
+/* 声明切片像是声明数组，但要把长度去掉 */
+// 1.
+var name []T // 默认值是nil，长度为0，且不能用索引方式扩容
+// 2.
+var arr=[]int{1,2,3,4}
+// 3.
+var arr=[]int{0:1,3:9}
+// 4.
+make函数
+
+/* 通过数组生成切片 */
+a:=[5]int{1,2,3,4,5}
+b:=a[:] // 获取数组里的所有值，转为切片
+c:=a[1:4] // 左包右不包 [1,2,3]
+d:=a[2:] // [3,4,5]
+e:=a[:3] // [0,1,2]
+
+/* 切片再切片 */
+f:=b[1:]
+```
+
+2.切片的长度和容量
+长度就是包含元素个数，容量是从第一个元素开始到其**底层数组**元素末尾的个数
+分别用 len()和 cap()获取
+
+3.make 与 append
+
+```go
+/* make函数构造切片 */
+var sliceA = make([]int, 4, 8) // 类型 长度 容量 且有初始值
+fmt.Println(sliceA) // [0 0 0 0]
+
+/* 修改切片数据 */
+sliceA[0]=10
+
+/* append方法扩容 */
+var slice int[]
+// golang扩容切片要用append方法，不能用索引
+slice=append(slice,9,8)
+
+/* append方法还可以合并切片 */
+sliceA:=int[]{1,2}
+sliceB:=int[]{3,4,5}
+sliceA=append(sliceA,sliceB...) // 其实是展开了sliceB再合并到sliceA
+```
+
+4.切片的扩容策略
++1 2 倍 4 分之 1
+
+5.copy 函数 复制切片
+
+```go
+sliceA:=int[]{1,2}
+sliceB:=make([]int,2,2)
+copy(sliceB,sliceA)
+```
+
+6.从切片中删除元素
+
+```go
+slice:=int[]{1,2,3,4,5,6} // 要删除第三个元素
+a=append(a[:2],a[3:]...) // 合并前后两截切片，注意append第二个参数开始要用展开值...
+```
+
+7.字符串操作转为切片
+byte rune
+
+8.sort 包排序
+
+```go
+// 要引入sort包
+// 默认从小到大排序
+sort.Ints(intList)
+
+// 降序
+sort.Sort(sort.Reverse(sort.IntSlice(intList)))
+```
+
+## map 类型
+
+无序基于 k v 的数据结构
+是引用类型，必须初始化才能使用
+
+```go
+var userinfo=make(map[string]string)
+userinfo["9527"]="zs"
+
+// 也支持再声明时候填充元素
+var userinfo=map[string]string{
+  "9527":"zs",
+  "9526":"ls",
+}
+
+userinfo:=map[string]string{
+  "9527":"zs",
+  "9526":"ls",
+}
+```
+
+获取或修改数据，以及判断是否存在，通过 key
+
+```go
+v,ok:=userinfo["9527"] // ok为布尔值
+v,ok:=userinfo["9528"] //  false
+```
+
+for range 循环遍历
+
+```go
+for k,v:=range userinfo{
+  fmt.Println(k,v)
+}
+```
+
+delete 函数删除键值对
+
+```go
+delete(userinfo,"9526")
+```
+
+创建元素为 map 类型的切片
+
+```go
+var userinfo = make([]map[string]string,3,3) // 不初始化默认值都是nil
+```
