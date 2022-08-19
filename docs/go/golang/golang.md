@@ -251,7 +251,7 @@ c+float64(a)
 
 ## 流程控制
 
-1.if else 语句 判断条件不需要括号，判断条件内可以定义判断体内的局部变量
+1.if else 语句 判断条件不需要括号，判断条件内可以定义方法体内的局部变量
 if 的大括号不能省略，左大括号必须在 if 判断语句行内
 
 ```go
@@ -541,6 +541,9 @@ sort.Sort(sort.Reverse(sort.IntSlice(intList)))
 var userinfo=make(map[string]string)
 userinfo["9527"]="zs"
 
+var countMap=make(map[string]int)
+countMap["hello"]++ // 默认值为0，++执行后为1
+
 // 也支持再声明时候填充元素
 var userinfo=map[string]string{
   "9527":"zs",
@@ -578,4 +581,633 @@ delete(userinfo,"9526")
 
 ```go
 var userinfo = make([]map[string]string,3,3) // 不初始化默认值都是nil
+```
+
+定义一个 value 为切片的 map
+
+```go
+var userinfo=make(map[string][]string)
+userinfo["hobby"]=[]string{
+  "a","b","c",
+}
+```
+
+## 函数
+
+```go
+/* func 关键词 */
+func sumFn(x int,y int)int{
+  sum:=x+y
+  return sum
+}
+
+/* 类型简写，省略相同类型参数的类型 */
+func sumFn(x, y int)int{
+  sum:=x+y
+  return sum
+}
+
+/* 可变（数量）参数 */
+// 会把所有参数组成一个切片赋给x
+func sumFn(x ...int)int{
+}
+// 固定参数与可变参数结合使用，第一个参数给x，剩下参数组成一个切片给y
+func sumFn(x,y ...int)int{
+}
+
+/* return关键词一次返回多个值 */
+func calc(x,y int)(int,int){
+  sum:=x+y
+  sub:=x-y
+  return sum,sub
+}
+a,b:=calc(10,2) // 接收要用两个值
+
+/* 返回值命名，函数定义时可以给返回值命名，并在函数体内直接使用这些变量 */
+func calc(x,y int)(sum int,sub int){
+  sum=x+y
+  su=x-y
+  return sum,sub
+}
+
+/* 返回值命名类型也可以简写 */
+func calc(x,y int)(sum,sub int){
+  sum=x+y
+  su=x-y
+  return sum,sub
+}
+
+/*  */
+```
+
+## 函数作为参数和返回值
+
+自定义函数类型
+
+```go
+type calc func(int,int) int // 定义了一个calc的类型
+
+func add(x,y int)int{
+  return x+y
+}
+
+var c calc // 指定是calc类型
+c=add // c是calc类型
+d:=c // 类型推导，推到出的类型是funciton类型，而不会是calc类型
+```
+
+函数作为另一个函数的参数
+
+```go
+func calc (x,y int ,cb func(int,int)int)int{
+  return cb(x,y)
+}
+// 或自定义类型
+type calcType func(int,int)int
+// 调用：把add函数传入
+calc(10,5,add)
+
+/* 也可以第三个参数直接传入一个匿名函数 */
+j:=calc(10,5,func(x,y int)int{
+  return x*y
+})
+```
+
+函数作为另一个函数的返回值
+返回的也可以是一个匿名函数（貌似返回 nil 也可以）
+
+匿名函数需要保存到某个变量或者作为立即执行函数
+
+```go
+/* 立即执行 定义函数后面加括号 */
+func (){
+  fmt.Println("hello")
+}()
+
+/* 保存匿名函数 */
+var fn=func(x,y int)int{
+  return x*y
+}
+```
+
+## defer 语句
+
+defer 延迟执行被定义的语句
+多个被 defer 的语句会被逆序执行
+想要延迟但不逆序执行一系列语句，可以放在一个被 defer 定义的匿名自执行函数中
+
+defer 在匿名返回和命名返回中的表现不一样
+
+```go
+func f1()int{
+  var a int
+  defer func(){
+    a++
+  }()
+  return a // 返回0
+}
+
+func f2()(a int){
+  var a int
+  defer func(){
+    a++
+  }()
+  return a // 返回1
+}
+
+func f2()(b int){
+  var a int
+  defer func(){
+    a++
+  }()
+  return a // 返回0
+}
+
+func f2()(a int){
+  var a int
+  defer func(){
+    a++
+  }(a) //这里是给匿名函数传承
+  return a // 返回0
+}
+```
+
+**defer 注册要延迟执行的函数时该函数的所有参数都需要确定其值**
+**区分一个注册顺序，一个执行顺序**
+**注册时候如果有参数是另外函数的执行结果，要先执行这样的函数，然后得到返回结果再完成对延迟执行函数的注册**
+
+## panic recover
+
+panic 可以在任何地方引发，recover 只有在 defer 调用的函数中有效
+遇到 panic 程序会结束执行
+
+```go
+func fn(){
+  defer func(){
+    err:=recover()
+    if err!=nil{
+      fmt.Println(err)
+    }
+  }()
+  panic("抛出一个异常")
+}
+// 然后在main函数中调用
+```
+
+```go
+func fn(a,b int)int{
+  defer func(){
+    err:=recover()
+    if err!=nil{
+      fmt.Println("error",err)
+    }
+  }()
+  return a/b
+}
+func main(){
+  fmt.Println(fn(10,0))
+}
+```
+
+## time 包与日期函数
+
+1.获取当前日期对象和日期字符串
+
+> time.Now()
+> timeObj.Year()
+> timeObj.Format("2006-01-02 03:04:05")
+
+```go
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+	timeObj := time.Now()
+	// 2022-08-19 08:56:08.8163444 +0800 CST m=+0.008046701
+	fmt.Println(timeObj)
+
+	timeObj.Year()
+	timeObj.Month()
+	timeObj.Day()
+	timeObj.Hour()
+	timeObj.Minute()
+	timeObj.Second()
+	fmt.Printf("%02d\n", 5) // 05
+	/**
+	  格式化字符串模板：
+	  2006 年
+	  01 月
+	  02 日
+	  03 时-12小时制 15 时-24小时制
+	  04 分
+	  05 秒
+	*/
+	timeStr := timeObj.Format("2006-01-02 03:04:05") // 返回一个字符串
+	fmt.Println(timeStr) // 2022-08-19 09:00:42
+}
+```
+
+2.获取当前时间戳
+
+> timeObj.Unix()
+> timeObj.UnixNano()
+
+```go
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+	timeObj := time.Now()
+	unixtime := timeObj.Unix()
+	fmt.Println(unixtime) // 1660875431
+
+	unixNatime := timeObj.UnixNano()
+	fmt.Println(unixNatime) // 1660875431218481200 纳秒
+}
+```
+
+3.时间戳转日期对象和日期字符串
+
+> time.Unix(unixTime,0) 转换毫秒时间戳
+> time.Unix(0,unixNaTime) 转换纳秒时间戳
+
+参数必须是显式的 int64
+如果不是的话，可以用`int64()`做类型转换
+
+```go
+var unixtime int64 = 1660875431 // 必须指明为int64
+timeObj := time.Unix(unixtime, 0)
+fmt.Println(timeObj)                               // 2022-08-19 10:17:11 +0800 CST
+fmt.Println(timeObj.Format("2006-01-02 15:04:05")) // 2022-08-19 10:17:11
+```
+
+4.日期字符串转时间戳 time.ParseInLocation
+
+> time.ParseInLocation(tmp, timeStr, time.Local)
+
+```go
+/* 字符串转时间戳 */
+var timeStr = "2022/08/19 10:17:11"
+
+var tmp = "2006/01/02 15:04:05" // 写出针对的模板
+timeObj, _ := time.ParseInLocation(tmp, timeStr, time.Local)
+
+fmt.Println(timeObj)        // 时间对象 2022-08-19 10:17:11 +0800 CST
+fmt.Println(timeObj.Unix()) // 时间戳 1660875431
+```
+
+5.时间间隔常量与时间操作函数
+
+> Add Sub Equal Before
+
+```go
+	var timeObj = time.Now()
+	fmt.Println(timeObj)
+
+	timeObj = timeObj.Add(time.Hour)
+	fmt.Println(timeObj) // 时间推进一小时
+```
+
+6.定时器与休眠
+
+> ticker := time.NewTicker(time.Second) ticker.Stop() // 创建一个定时器，不用时需要销毁
+> time.Sleep(time.Second) // 执行到这个语句时休眠一段时间，可用于循环
+
+```go
+ticker := time.NewTicker(time.Second) // 定义一个定时器，赋值给ticker
+n := 5
+
+for t := range ticker.C { // for循环用ticker.C遍历，且前面只有一个参数
+	n--
+	if n == 0 {
+		ticker.Stop() // 终止定时器执行，销毁内存
+		break // 跳出循环
+	}
+	fmt.Println(t) // 每隔一秒执行操作，打印一个时间对象
+}
+```
+
+## 指针
+
+变量名其实是内存地址的别名
+取地址运算符`&` 取值运算符`*`
+指针的值是另一个地址
+
+```go
+var a int64 = 10
+var b = &a
+
+var c = *b // c取出b地址的值，但是copy的另一份
+*b++ // a的值会变，c的值不会变
+```
+
+new 和 make
+使用引用类型，不仅要声明，还要为它分配内存空间，否则无法存储
+make 只能用于 slice map channel 的初始化，返回的是这三个引用类型本身
+new 用于类型的内存分配，初始化为零值，返回的是指向类型的指针（很少用，因为一般都是&取其他变量地址）
+
+```go
+var userinfo = make(map[string]string)
+userinfo["name"] = "zs"
+fmt.Println(userinfo) // map[name:zs]
+
+var slice = make([]int, 4, 4)
+slice[0] = 1
+fmt.Println(slice) // [1 0 0 0]
+
+var a *int = new(int)
+*a = 9
+fmt.Printf("%v %T %v", a, a, *a) // 0xc0000160e0 *int 9
+```
+
+## 结构体
+
+golang 没有类的概念
+
+1.类型别名
+
+> type myInt int64
+> type myFn func(int,int)int
+> type 类型名 struct {字段名（唯一） 字段类型,} （键值对要加逗号）
+
+```go
+type myInt int
+
+var a myInt = 10
+fmt.Printf("%T", a) //main.myInt
+```
+
+结构体首字母大写表示这个结构体是公有的，小写表示是私有的，只要这个包里可以使用
+
+结构体是值类型，改变副本不改变源
+
+实例化结构体的七种方法
+
+```go
+var p1 Person
+p1.name = "zs"
+p1.age = 20
+p1.sex = "male"
+fmt.Printf("%v %T", p1, p1)  // {zs 20 male} main.Person
+fmt.Printf("%+v %T", p1, p1)  // {name:zs age:20 sex:male} main.Person
+fmt.Printf("%#v %T", p1, p1) // main.Person{name:"zs",age:20, sex:"male"} main.Person
+```
+
+```go
+var p1 = new(Person) // 返回一个地址
+p1.name = "zs" // 结构体指针可以用.运算符访问成员（非成员地址），类似C语言的->
+(*p1).age = 20 // 这样也可以访问成员
+p1.sex = "male"
+fmt.Printf("%#v %T", p1, p1) // &main.Person{name:"zs", age:20, sex:"male"} *main.Person
+```
+
+```go
+var p1 = &Person{}
+p1.name = "zs"
+p1.age = 20
+p1.sex = "male"
+fmt.Printf("%#v %T", p1, p1) // &main.Person{name:"zs", age:20, sex:"male"} *main.Person
+```
+
+```go
+var p1 = Person{
+	name: "zs",
+	age:  20,
+	sex:  "male",
+}
+fmt.Printf("%#v %T", p1, p1) // main.Person{name:"zs", age:20, sex:"male"} main.Person
+```
+
+```go
+var p1 = &Person{ // 底层和new相似
+	name: "zs",
+	age:  20,
+	sex:  "male",
+}
+
+fmt.Printf("%#v %T", p1, p1) // &main.Person{name:"zs", age:20, sex:"male"} *main.Person
+```
+
+```go
+var p1 = &Person{
+	name: "zs", // 其他值缺省则为默认零值
+}
+
+fmt.Printf("%#v %T", p1, p1) // &main.Person{name:"zs", age:0, sex:""} *main.Person
+```
+
+```go
+var p1 = &Person{
+	"zs", // 实例化结构体时候可以不写键，但不可缺省且要一一对应
+	20,
+	"male",
+}
+
+fmt.Printf("%#v %T", p1, p1) // &main.Person{name:"zs", age:20, sex:"male"} *mainPerson
+```
+
+## 结构体方法和接收者
+
+golang 没有类的概念但是可以给类型（结构体、自定义类型）定义方法
+所谓方法就是定义了接收者的函数。接收者概念就类似 JS 的 this
+写法是普通函数在函数名前面写`(接收者变量 接收者类型)`
+
+接收者类型可以是变量也可以是指针
+如果是指针类型，就可以修改当前实例中的属性
+
+```go
+package main
+
+import "fmt"
+
+type Person struct {
+	name string
+	age  int
+	sex  string
+}
+
+func (p Person) PrintInfo() { // 大写表示公有方法
+	fmt.Println(p)
+}
+
+func (p *Person) SetInfo(name string, age int) { // 接收指针
+	p.name = name
+	p.age = age
+}
+
+func main() {
+	var p1 = Person{
+		"zs",
+		0,
+		"male",
+	}
+	p1.PrintInfo() // {zs 0 male}
+
+	p1.SetInfo("zzs", 10)
+	p1.PrintInfo() // {zzs 10 male}
+}
+```
+
+可以定义给结构体也可以定义给自定义类型
+
+```go
+package main
+
+import "fmt"
+
+type MyInt int
+
+// 非本地类型不能定义方法，即不能给别的包里的类型定义方法
+func (x MyInt) printInfo() {
+	fmt.Println("俺是myInt")
+}
+
+func main() {
+	var a MyInt = 20
+	a.printInfo() // 俺是myInt
+}
+```
+
+## 嵌套结构体
+
+结构体允许成员字段在声明时候使用匿名字段
+一般只用于嵌套结构体
+
+```go
+type Person struct {
+  string
+  int
+  string
+}
+
+p := Person{
+  "zs",
+  10,
+  "male"
+}
+```
+
+结构体字段可以是各种类型包括结构体
+如果是切片、map 的话，创建实例时候要用 make 申请空间
+
+```go
+var p Person
+
+p.Name = "zs"
+p.Hobby = make([]string, 3, 6)
+p.Hobby[0] = "a"
+p.Hobby[1] = "b"
+p.Hobby[2] = "c"
+
+p.map1 = make(map[string]string)
+p.map1["address"] = "深圳"
+p.map1["phone"] = "007"
+fmt.Printf("%#v", p)
+```
+
+嵌套结构体的定义和实例化
+嵌套的那个字段名可以和结构体名相同
+如果那个字段名不写，就是匿名结构体
+当访问结构体成员时候会先在结构体中查找该字段，找不到就去匿名结构体中查找
+所以`p.Address.City==p.City`
+如果出现和匿名结构体中重名的字段，访问时候会报错
+一个结构体嵌套于另一个结构体，前者的属性和方法相当于被继承
+
+```go
+package main
+
+import "fmt"
+
+type Person struct {
+	Name    string
+	Age     int
+	// Address Address
+  Address // 嵌套了一个匿名结构体
+}
+
+type Address struct {
+	Phone string
+	City  string
+}
+
+func main() {
+	var p Person
+	p.Name = "zs"
+	p.Age = 10
+
+	p.Address.City = "sz"
+	p.Address.Phone = "007"
+
+	fmt.Println(p)
+}
+```
+
+## 结构体与 JSON 的转换
+
+> jsonByte, \_ := json.Marshal(p)
+> err := json.Unmarshal([]byte(str), &p)
+
+结构体转 JSON
+可以使用结构体标签
+
+```go
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+)
+
+type Person struct {
+	Name string // 必须大写开头，私有属性不能被json包访问
+	Age  int    `json:"oh"`
+}
+
+func main() {
+	var p = Person{
+		Name: "zs",
+		Age:  10,
+	}
+	jsonByte, _ := json.Marshal(p) // 返回byte类型的切片
+	jsonStr := string(jsonByte)    // 转为字符串
+
+	fmt.Println(jsonStr) // {"Name":"zs","oh":10}
+}
+```
+
+JSON 转结构体
+
+```go
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+)
+
+type Person struct {
+	Name string // 必须大写开头，私有属性不能被json包访问
+	Age  int
+}
+
+func main() {
+	var str = `{"Name":"zs","Age":10}`
+	// var p Person
+	// err := json.Unmarshal([]byte(str), &p)
+	var p =&Person{}
+	err := json.Unmarshal([]byte(str), p)
+
+	if err == nil {
+		// fmt.Printf("%#v", p) // main.Person{Name:"zs", Age:10}
+		fmt.Printf("%#v", p) // &main.Person{Name:"zs", Age:10}
+	}
+}
 ```

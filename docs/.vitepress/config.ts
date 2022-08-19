@@ -318,16 +318,34 @@ const vueothers = [
     link: '/vue-ts/others/vitepress',
   },
 ]
+const bcfs = [
+  {
+    text: '函数式编程',
+    link: '/rxjs/编程范式/函数式编程',
+  },
+]
+const rxjs = [
+  {
+    text: 'RXJS',
+    link: '/rxjs/rxjs/rxjs',
+  },
+]
 const networking = [
   {
     text: '计算机网络',
-    link: '/net/theory/networking',
+    link: '/408/net/theory/计算机网络',
   },
 ]
-const WebSockets = [
+const netPractice = [
   {
     text: 'WebSockets',
-    link: '/net/practice/WebSockets',
+    link: '/408/net/practice/WebSockets',
+  },
+]
+const algo = [
+  {
+    text: 'Sort',
+    link: '/408/Algorithm/排序',
   },
 ]
 const go = [
@@ -468,19 +486,36 @@ export default {
         ],
       },
       {
-        text: 'NETWORKING',
+        text: 'RXJS',
         items: [
           {
             text: '',
-
             items: [
               {
-                text: 'WebSockets',
-                link: '/net/practice/WebSockets',
+                text: '编程范式',
+                link: '/rxjs/编程范式/函数式编程',
               },
               {
-                text: 'Theory',
-                link: '/net/theory/计算机网络',
+                text: 'RXJS',
+                link: '/rxjs/rxjs/rxjs',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        text: '408',
+        items: [
+          {
+            text: '',
+            items: [
+              {
+                text: '数据结构与算法',
+                link: '/408/Algorithm/排序',
+              },
+              {
+                text: '计算机网络',
+                link: '/408/net/practice/WebSockets',
               },
             ],
           },
@@ -624,11 +659,47 @@ export default {
           items: vueothers,
         },
       ],
+      '/rxjs/': [
+        {
+          collapsible: true,
+          collapsed: true,
+          text: '编程范式',
+          items: bcfs,
+        },
+        {
+          collapsible: true,
+          collapsed: true,
+          text: 'RXJS',
+          items: rxjs,
+        },
+      ],
+      '/408/net/': [
+        {
+          collapsible: true,
+          collapsed: true,
+          text: '计算机网络',
+          items: networking,
+        },
+        {
+          collapsible: true,
+          collapsed: true,
+          text: 'WebSockets',
+          items: netPractice,
+        },
+      ],
+      '/408/Algorithm/': [
+        {
+          collapsible: true,
+          collapsed: true,
+          text: '数据结构与算法',
+          items: algo,
+        },
+      ],
       '/go/': [
         {
           collapsible: true,
           collapsed: true,
-          text: 'Tensorflow',
+          text: 'Go',
           items: go,
         },
       ],
@@ -644,20 +715,6 @@ export default {
           collapsed: true,
           text: 'YOLO',
           items: yolo,
-        },
-      ],
-      '/net/': [
-        {
-          collapsible: true,
-          collapsed: true,
-          text: 'Theory',
-          items: networking,
-        },
-        {
-          collapsible: true,
-          collapsed: true,
-          text: 'WebSockets',
-          items: WebSockets,
         },
       ],
 
