@@ -326,6 +326,10 @@ const bcfs = [
 ]
 const rxjs = [
   {
+    text: 'Promise',
+    link: '/rxjs/rxjs/promise',
+  },
+  {
     text: 'RXJS',
     link: '/rxjs/rxjs/rxjs',
   },

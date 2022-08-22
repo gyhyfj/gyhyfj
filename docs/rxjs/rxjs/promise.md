@@ -1,5 +1,12 @@
 # Promise
 
+## Promise 准确描述
+
+一个 Promise 代表一个在它创建时不一定已知值的代理
+一个 Promise 必然处于三种状态之一：pending、fulfilled、rejected
+
+构造函数 Promise() 创建一个新的 Promise 对象，这个构造函数主要用于包裹还没添加 pormise 支持的函数
+
 ## 使用 Promise
 
 Promise 是一个对象，代表一个异步操作的最终完成或者失败
@@ -32,6 +39,8 @@ catch(failureCallback) 其实是 then(null, failureCallback) 的缩写形式
 所以，catch 的后面仍可以继续使用链式操作
 
 通常，一遇到异常抛出，浏览器就会顺着 Promise 链寻找下一个 onRejected 失败回调函数或者由 .catch() 指定的回调函数
+
+.finally()方法在前面的 Promise 无论被 resolve 还是 reject 都会被调用，返回一个 Promise
 
 ## Promise 拒绝事件
 
@@ -85,6 +94,8 @@ Promise 的构造器接收一个执行函数，在这个执行函数里手动地
 
 Promise.resolve() 和 Promise.reject() 是手动创建一个已经 resolve 或者 reject 的 Promise 快捷方法
 
+### Promise.resolve()
+
 Promise.resolve(value)返回一个 Promise，如果 value 是 Promise，则返回这个 Promise；如果 value 是 thenable，则返回其最终状态
 
 例如：
@@ -112,4 +123,43 @@ console.log('original === cast ? ' + (original === cast)) // original === cast ?
  */
 ```
 
-Promise.all() 和 Promise.race() 是并行运行异步操作的两个组合式工具
+### Promise.reject()
+
+Promise.reject(reason) 返回一个带有拒绝原因的 Promise 对象
+
+```js
+Promise.reject(new Error('fail'))
+```
+
+## Promise.all() 和 Promise.race()
+
+并行运行异步操作的两个组合式工具
+
+### Promise.all()
+
+接收一个 iterable 类型（Array，Map，Set），如一个 promise 数组，返回一个 Promise，值是一个结果数组。
+
+Promise.all()等待所有都完成，或第一个失败
+
+```js
+const promise1 = Promise.resolve(3)
+const promise2 = 42 // 输入不是Promise但也没关系
+const promise3 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 100, 'foo')
+})
+
+Promise.all([promise1, promise2, promise3]).then(values => {
+  console.log(values) // [ 3, 42, 'foo' ]
+})
+```
+
+如果传入为空迭代，则作为同步任务立即执行
+
+### Promise.race()
+
+接收一个 iterable 类型（Array，Map，Set），一旦某个 promise 被 resolve 或 inject，返回的 promise 就会 resolve 或 inject
+
+## 书写规范
+
+不要嵌套
+总是返回或终止 Promise 链

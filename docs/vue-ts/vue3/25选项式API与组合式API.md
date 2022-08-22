@@ -16,11 +16,16 @@ import { reactive } from 'vue'
 
 let arr = reactive([1, 2, 3])
 let change = () => {
-  arr.length = 0 // 清空数组
-  arr.push(7, 8, 9)
+  let data = [7, 8, 9]
+  arr.splice(0, arr.length, ...data)
   // 或：
-  // let data = [7, 8, 9]
-  // arr.splice(0, arr.length, ...data)
+  // arr.length = 0 // 清空数组
+  // arr.push(...data)
+
+  // 或：
+  // arr.length = 0 // 清空数组
+  // arr.push.apply(arr, data)
+
   console.log(arr.length)
 }
 </script>
