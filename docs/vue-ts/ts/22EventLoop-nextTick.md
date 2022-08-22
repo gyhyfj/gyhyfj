@@ -7,6 +7,5 @@ HTML5 到来后 js 也支持了多线程 webworker，但也是不允许操作 do
 ## 异步任务
 
 1. 宏任务
-   script 整体代码、 setTimeout、 setInterval、 UI 交互事件、 postMessage、 Ajax
+   script 整体代码 setTimeout setInterval UI 交互事件 postMessage Ajax
 2. 微任务
-   Promise.then catch finally、 MutaionObserver、 process.nextTick（Node.js 环境）

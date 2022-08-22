@@ -344,7 +344,7 @@ const netPractice = [
 ]
 const algo = [
   {
-    text: 'Sort',
+    text: '排序',
     link: '/408/Algorithm/排序',
   },
 ]
