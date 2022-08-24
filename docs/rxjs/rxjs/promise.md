@@ -163,3 +163,20 @@ Promise.all([promise1, promise2, promise3]).then(values => {
 
 不要嵌套
 总是返回或终止 Promise 链
+
+## async await
+
+async 标注的函数作为同步任务执行，但执行到内部的 await 语句，会作为微任务放入任务队列，await 语句下面的代码，其实相当于写在 Promise.then 里面的
+
+```js
+async function func() {
+  console.log('X')
+  await Promise.resolve()
+  console.log('Y')
+}
+
+func()
+console.log('Z')
+
+// X Z Y
+```
