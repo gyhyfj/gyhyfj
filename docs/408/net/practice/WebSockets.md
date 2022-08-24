@@ -56,8 +56,23 @@ MessageEvent 是接口代表一段被目标对象接收的消息。
 ```js
 /* websocket.js */
 import { onUnmounted } from 'vue'
+
 function useWs() {
+  /**
+   * 重连锁
+   */
   let recLock = false
+
+  /**
+   * @params url callbackck data
+   * @return ws
+   * 检测浏览器是否支持ws，
+   * 创建ws连接对象，绑定事件处理函数：
+   * onopen发送data并初始化心跳检测，
+   * onmessage调用callback并初始化心跳检测，
+   * onclose判断是否正常关闭，按需要重连
+   * onerror进行重连
+   */
   const startWs = (url, callback, data) => {
     if (typeof WebSocket === 'undefined') {
       return console.log('您的浏览器不支持WebSocket, 无法获取数据')
@@ -86,21 +101,35 @@ function useWs() {
       console.log('WS错误 e.data:', e.data)
       reconnect()
     }
+
+    /**
+     * 重连函数
+     * 判断是否锁定重连，
+     * 如果有，则不执行任何操作
+     * 如果没有，则锁定重连，在3秒后递归调用整个startWs函数
+     */
     const reconnect = () => {
       if (!recLock) {
         recLock = true
         setTimeout(() => {
+          ws = null // 释放ws内存
           startWs(url, callback, data)
           recLock = false
         }, 3000)
       }
     }
+    /**
+     * 组件卸载时，调用主动关闭ws连接方法
+     */
     onUnmounted(() => {
       endWs(ws)
     })
     return ws
   }
 
+  /**
+   * 接收一个创建的ws实例，关闭ws连接，锁定重连，关闭心跳检测
+   */
   const endWs = ws => {
     if (ws) {
       ws.close(1000)
@@ -109,36 +138,45 @@ function useWs() {
     }
   }
 
+  /**
+   * 心跳检测对象
+   */
   let heartCheck = {
-    timeout: 5000,
-    timeoutObj: null,
-    serverTimeoutObj: null,
+    timeout: 5000, // 发送心跳以及判断心跳是否超时的间隔
+    sendHeartClock: null, // 心跳定时器，定期发送心跳
+    reconnectClock: null, // 重连定时器，超时未被清除则重连
+
+    /* 开启心跳检测 */
     start(ws) {
-      this.timeoutObj && clearTimeout(this.timeoutObj)
-      this.serverTimeoutObj && clearTimeout(this.serverTimeoutObj)
-      this.timeoutObj = setTimeout(() => {
+      this.sendHeartClock && clearTimeout(this.sendHeartClock) // 如果有心跳定时器，则清除掉
+      this.reconnectClock && clearTimeout(this.reconnectClock) // 如果有重连定时器，则清除掉
+
+      /* 开启一个心跳定时器，5秒后发送心跳 */
+      this.sendHeartClock = setTimeout(() => {
         const ping = { ping: true }
         ws.send(JSON.stringify(ping))
-        this.serverTimeoutObj = setTimeout(() => {
+
+        /* 开启一个重连定时器，5秒没收到心跳则调用reconnect重连 */
+        this.reconnectClock = setTimeout(() => {
           console.log('没有收到后台的数据，重新连接')
           reconnect()
         }, this.timeout)
       }, this.timeout)
     },
-    // reset(ws) {
-    //   clearTimeout(this.timeoutObj)
-    //   clearTimeout(this.serverTimeoutObj)
-    //   this.start(ws)
-    // },
+
+    /* 关闭心跳检测 */
     stop() {
-      clearTimeout(this.timeoutObj)
-      clearTimeout(this.serverTimeoutObj)
+      clearTimeout(this.sendHeartClock)
+      clearTimeout(this.reconnectClock)
     },
   }
+
+  /* 返回一个对象，里面有startWs endWs两个成员 */
   return { startWs, endWs }
 }
 
-export default useWs
+/* 导出这个伪构造函数 */
+export default useWs // return { startWs, endWs }
 ```
 
 ```js

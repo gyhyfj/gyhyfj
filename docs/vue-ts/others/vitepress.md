@@ -3,11 +3,17 @@
 ::: info
 
 "less": "^4.1.3",
-"vitepress": "^1.0.0-alpha.1"
+"vitepress": "^1.0.0-alpha.8"
 "axios": "^0.27.2",
-"pinia": "^2.0.14"
+"pinia": "2.0.18"
 
 :::
+
+VitePress 是基于 Vite + Vue3 + TS 构建的文档生成工具，因此具有 vite 的各种特性，比如闪电般的启动速度，按需编译正在服务的页面，闪电般的 HMR，以及更快的构建(内部使用 Rollup)。
+
+VitePress 允许用户在 Markdown 内容中自由使用 Vue 组件，编译器可以自动分离动、静态内容来构建页面。
+
+因此使用者可以使用 Vue3 和各种 Vue3 依赖来构建自己的文档项目。
 
 ## 自定义 MyVideoBoard 组件
 
@@ -56,12 +62,7 @@
 
 ```js
 export default {
-  head: [
-    [
-      'link',
-      { rel: 'stylesheet', href: '/css/code-article.css', id: 'switch' },
-    ],
-  ],
+  head: [['link', { rel: 'stylesheet', href: '/css/code-article.css', id: 'switch' }]],
 }
 ```
 
