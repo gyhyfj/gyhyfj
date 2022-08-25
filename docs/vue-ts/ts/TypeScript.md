@@ -1,5 +1,9 @@
 # TypeScript
 
+> npm i typescript -g
+> npm i ts-node -g
+> npm i nodemon -g
+
 ## 概念
 
 1. TypeScript 是添加了类型系统的 JavaScript, 是 JavaScript 的超集. TypeScript 的类型系统，在很大程度上弥补了 JavaScript 的缺点
@@ -25,33 +29,73 @@
 TS 类型分为两类
 
 1. JS 已有类型
-   原始类型: number/string/boolean/null/undefined/symbol
+   原始类型: number/string/boolean/null/undefined/symbol(ES6)/bigint(ES10)
    对象类型: object ( 包括，数组、对象、函数等对象 )
 2. TS 新增类型
    联合类型、自定义类型（类型别名）、接口、元组、字面量类型、枚举、void、any 等
 
-## 1. 原始类型
+## 原始类型
 
 ```ts
-let num: number = 26
+/* 1.字符串string */
 let nackname: string = 'gyhyfj'
+let fullname: string = `${firstname} ${lastname}` // ts也可以用es6模板字符串
+
+/* 2.数字number */
+let nanNum: number = NaN
+let infNum: number = Infinity
+let num: number = 26
+let hex: number = 0xf00d // 十六进制
+let binary: number = 0b1010 // 二进制
+let octal: number = 0o744 // 八进制
+
+/* 3.布尔boolean */
 let flag: boolean = false
-// let unusable: void = undefined
+// let createdBoolean: boolean = new Boolean(1) // 报错！返回的是一个Boolean对象
+// let createdBoolean: Boolean = new Boolean(1) // 正确
+// let createdBoolean: boolean = Boolean(1) // 正确，返回值是boolean类型
+
+/* 4.空值void undefinede null */
+let unusable: void = undefined
 // 定义为void类型其实不如直接定义为undefined或null
 // 如果一个变量被定义为void然后赋值为undefined, 那么后续就不能再被赋值为void. 反之亦然
 let u: undefined = undefined
 let n: null = null
+
+// 如果你配置了tsconfig.json 开启了严格模式, 则null和undefined不能赋给void类型
+{
+    "compilerOptions":{
+        "strict": true
+    }
+}
 ```
 
-## 2. 对象类型
+## 对象类型
 
 ```ts
 /* 2.1 数组类型 */
 let numberArr: number[] = [1, 3, 5]
 let stringArr: string[] = ['a', 'b', 'c']
-// 或
+// 或数组泛型
 let numberArr: Array<number> = [1, 3, 5]
-// 数组的一些方法的参数也会根据数组在定义时约定的类型进行限制
+// 多维数组
+let data: number[][] = [
+  [1, 2],
+  [3, 4],
+]
+// arguments类数组
+function Arr(...args: any): void {
+  //ts内置对象IArguments 定义
+  let arr: IArguments = arguments
+}
+//其中 IArguments 是 TypeScript 中定义好了的类型，它实际上就是：
+interface IArguments {
+  [index: number]: any
+  length: number
+  callee: Function
+}
+
+// 数组的一些方法的参数也会受限
 numberArr.push(1) // ok, 参数会被约定类型
 
 /* 2.2 函数类型 */
@@ -73,10 +117,7 @@ let add1 = (n1: number, n2: number): number => {
 }
 // 注意add1函数的写法, 可以通过编译, 不过事实上, 这段代码只对等号右侧的匿名函数进行了类型定义
 // 而等号左边的add1是通过赋值操作进行类型推论而推断出来的
-let add2: (n1: number, n2: number) => number = (
-  n1: number,
-  n2: number
-): number => {
+let add2: (n1: number, n2: number) => number = (n1: number, n2: number): number => {
   return n1 + n2
 }
 // 注意区别TypeScript的=>和ES6的=>, 在TS中, =>用来表示函数的定义, 左侧是输入类型, 需要用括号括起来, 右侧是输出类型
@@ -91,10 +132,7 @@ function greet(name: string): void {
 interface SearchFunc {
   (source: string, subString: string): boolean
 }
-let mySearch: SearchFunc = function (
-  source: string,
-  subString: string
-): boolean {
+let mySearch: SearchFunc = function (source: string, subString: string): boolean {
   return source.search(subString) !== -1
 }
 
@@ -163,34 +201,181 @@ let config: { url?: string; method?: string } = {
 }
 ```
 
-## 3. 联合类型
+## 内置对象
+
+当你在使用一些常用的方法的时候，TypeScript 实际上已经帮你做了很多类型判断的工作了，
+而他们的定义文件，则在[TypeScript 核心库的定义文件](https://github.com/Microsoft/TypeScript/tree/main/src/lib)中
+
+ES 内置对象
+Boolean、Number、string、RegExp、Date、Error
 
 ```ts
-let arr: (number | string)[] = ['1', 'a']
-// 当 TypeScript 不确定一个联合类型的变量到底是哪个类型的时候, 我们只能访问此联合类型的所有类型里共有的属性或方法
-function getLength(something: string | number): number {
-  // return something.length; //  length不是string和number的共有属性, 会报错
-  return 0
+let b: Boolean = new Boolean(1)
+console.log(b)
+let n: Number = new Number(true)
+console.log(n)
+let s: String = new String('哔哩哔哩关注小满zs')
+console.log(s)
+let d: Date = new Date()
+console.log(d)
+let r: RegExp = /^1/
+console.log(r)
+let e: Error = new Error('error!')
+console.log(e)
+```
+
+DOM 和 BOM 内置对象
+Document、HTMLElement、Event、NodeList 等
+
+```ts
+let body: HTMLElement = document.body
+let allDiv: NodeList = document.querySelectorAll('div')
+//读取div 这种需要类型断言 或者加个判断应为读不到返回null
+let div: HTMLElement = document.querySelector('div') as HTMLDivElement
+document.addEventListener('click', function (e: MouseEvent) {})
+//dom元素的映射表
+interface HTMLElementTagNameMap {
+  a: HTMLAnchorElement
+  abbr: HTMLElement
+  address: HTMLElement
+  applet: HTMLAppletElement
+  area: HTMLAreaElement
+  article: HTMLElement
+  aside: HTMLElement
+  audio: HTMLAudioElement
+  b: HTMLElement
+  base: HTMLBaseElement
+  bdi: HTMLElement
+  bdo: HTMLElement
+  blockquote: HTMLQuoteElement
+  body: HTMLBodyElement
+  br: HTMLBRElement
+  button: HTMLButtonElement
+  canvas: HTMLCanvasElement
+  caption: HTMLTableCaptionElement
+  cite: HTMLElement
+  code: HTMLElement
+  col: HTMLTableColElement
+  colgroup: HTMLTableColElement
+  data: HTMLDataElement
+  datalist: HTMLDataListElement
+  dd: HTMLElement
+  del: HTMLModElement
+  details: HTMLDetailsElement
+  dfn: HTMLElement
+  dialog: HTMLDialogElement
+  dir: HTMLDirectoryElement
+  div: HTMLDivElement
+  dl: HTMLDListElement
+  dt: HTMLElement
+  em: HTMLElement
+  embed: HTMLEmbedElement
+  fieldset: HTMLFieldSetElement
+  figcaption: HTMLElement
+  figure: HTMLElement
+  font: HTMLFontElement
+  footer: HTMLElement
+  form: HTMLFormElement
+  frame: HTMLFrameElement
+  frameset: HTMLFrameSetElement
+  h1: HTMLHeadingElement
+  h2: HTMLHeadingElement
+  h3: HTMLHeadingElement
+  h4: HTMLHeadingElement
+  h5: HTMLHeadingElement
+  h6: HTMLHeadingElement
+  head: HTMLHeadElement
+  header: HTMLElement
+  hgroup: HTMLElement
+  hr: HTMLHRElement
+  html: HTMLHtmlElement
+  i: HTMLElement
+  iframe: HTMLIFrameElement
+  img: HTMLImageElement
+  input: HTMLInputElement
+  ins: HTMLModElement
+  kbd: HTMLElement
+  label: HTMLLabelElement
+  legend: HTMLLegendElement
+  li: HTMLLIElement
+  link: HTMLLinkElement
+  main: HTMLElement
+  map: HTMLMapElement
+  mark: HTMLElement
+  marquee: HTMLMarqueeElement
+  menu: HTMLMenuElement
+  meta: HTMLMetaElement
+  meter: HTMLMeterElement
+  nav: HTMLElement
+  noscript: HTMLElement
+  object: HTMLObjectElement
+  ol: HTMLOListElement
+  optgroup: HTMLOptGroupElement
+  option: HTMLOptionElement
+  output: HTMLOutputElement
+  p: HTMLParagraphElement
+  param: HTMLParamElement
+  picture: HTMLPictureElement
+  pre: HTMLPreElement
+  progress: HTMLProgressElement
+  q: HTMLQuoteElement
+  rp: HTMLElement
+  rt: HTMLElement
+  ruby: HTMLElement
+  s: HTMLElement
+  samp: HTMLElement
+  script: HTMLScriptElement
+  section: HTMLElement
+  select: HTMLSelectElement
+  slot: HTMLSlotElement
+  small: HTMLElement
+  source: HTMLSourceElement
+  span: HTMLSpanElement
+  strong: HTMLElement
+  style: HTMLStyleElement
+  sub: HTMLElement
+  summary: HTMLElement
+  sup: HTMLElement
+  table: HTMLTableElement
+  tbody: HTMLTableSectionElement
+  td: HTMLTableDataCellElement
+  template: HTMLTemplateElement
+  textarea: HTMLTextAreaElement
+  tfoot: HTMLTableSectionElement
+  th: HTMLTableHeaderCellElement
+  thead: HTMLTableSectionElement
+  time: HTMLTimeElement
+  title: HTMLTitleElement
+  tr: HTMLTableRowElement
+  track: HTMLTrackElement
+  u: HTMLElement
+  ul: HTMLUListElement
+  var: HTMLElement
+  video: HTMLVideoElement
+  wbr: HTMLElement
 }
-// 联合类型的变量在被赋值的时候, 会根据类型推论的规则推断出一个类型
-// 推断出类型后, 可以且只可以访问它所有的属性和方法
 ```
 
-## 4. 类型别名（自定义类型）
+定义 Promise
 
 ```ts
-// 使用 type 关键字来创建类型别名
-// 类型别名常用于联合类型
-type CustomArr = (number | string)[]
-// 创建类型别名后, 直接使用该类型别名作为变量的类型注解
-let arr1: CustomArr = ['1', 'a']
+function promise(): Promise<number> {
+  return new Promise<number>((resolve, reject) => {
+    resolve(1)
+  })
+}
+
+promise().then(res => {
+  console.log(res)
+})
 ```
 
-## 5. 接口
+## 接口
 
 ```ts
 // 在面向对象语言中, 接口(Interfaces)是一个很重要的概念, 它是对行为的抽象, 而具体如何行动需要由类去实现
-// 在TypeScript里, 接口的作用就是为这些类型命名和为你的代码或第三方代码定义契约
+// 在TypeScript里, 接口的作用就是为这些类型命名和为你的代码或第三方代码定义约定
+// 使用接口来定义一种约束，让数据的结构满足约束的格式
 // 使用 interface 关键字来声明
 // 接口一般首字母大写, 有时候会建议给接口名称加上I前缀
 // 注意: 换行分隔各个属性, 那么属性类型后没有分号
@@ -213,14 +398,14 @@ let person1: IPerson = {
 // 定义的变量比接口少了一些属性是不允许的
 // 多一些属性也是不允许的
 
-// 可选属性
+/* 可选属性 */
 // 有时我们希望不要完全匹配一个形状, 那么可以用可选属性:
 interface xPerson {
   name: string
   age?: number
 }
 
-// 任意属性
+/* 任意属性 */
 // 有时候我们希望一个接口允许有任意的属性, 可以用任意属性:
 interface xxPerson {
   name: string
@@ -242,7 +427,7 @@ type IPerson1 = {
   sayHi(name: string): void
 }
 
-// 只读属性
+/* 只读属性 */
 // 时候我们希望对象中的一些字段只能在创建的时候被赋值, 那么可以用readonly定义只读属性:
 interface xxxPerson {
   readonly id: number
@@ -263,7 +448,61 @@ interface Point3D extends Point2D {
 // 使用 extends 关键字继承 Ponit2D全部属性和方法 且新增属性和方法
 ```
 
-## 6. 元组
+## 联合类型，交叉类型
+
+```ts
+/* 联合类型 */
+let arr: (number | string)[] = ['1', 'a']
+// 当 TypeScript 不确定一个联合类型的变量到底是哪个类型的时候, 我们只能访问此联合类型的所有类型里共有的属性或方法
+function getLength(something: string | number): number {
+  // return something.length; //  length不是string和number的共有属性, 会报错
+  return 0
+}
+// 联合类型的变量在被赋值的时候, 会根据类型推论的规则推断出一个类型
+// 推断出类型后, 可以且只可以访问它所有的属性和方法
+
+/* 交叉类型 */
+interface People {
+  age: number,
+  height： number
+}
+interface Man{
+  sex: string
+}
+const xiaoman = (man: People & Man) => {
+  console.log(man.age)
+  console.log(man.height)
+  console.log(man.sex)
+}
+xiaoman({age: 18,height: 180,sex: 'male'});
+```
+
+## any 类型和 unknown 顶级类型
+
+```ts
+// 可以对 any 进行任何操作，不需要检查类型
+let obj: any = { x: 0 }
+obj = 3
+// 所有类型都可以分配给 unknown，但 unknown 比 any 更加安全和严格：
+// 1. unkonwn 不能赋值给 any/unknown 外的其他类型
+let a: unknown = 1
+let b: number = a // 报错
+// 2. 如果是 any 类型的对象，获取它即使没有的属性不会报错，如果是 unknown，获取存在的属性也不行
+let obj: unkonwn = { a: 1, b: 2 }
+obj.a
+```
+
+## 类型别名（自定义类型）
+
+```ts
+// 使用 type 关键字来创建类型别名
+// 类型别名常用于联合类型
+type CustomArr = (number | string)[]
+// 创建类型别名后, 直接使用该类型别名作为变量的类型注解
+let arr1: CustomArr = ['1', 'a']
+```
+
+## 元组
 
 ```ts
 // 元组类型是另一种类型的数组, 确切地知道包含多少个元素, 以及特定索引对应的类型
@@ -275,7 +514,7 @@ position.push(3.14)
 console.log(position)
 ```
 
-## 7. 类型推论
+## 类型推论
 
 ```ts
 // 一些地方的类型注解可以省略不写
@@ -284,9 +523,22 @@ console.log(position)
 // (3) 如果定义的时候没有赋值, 不管之后有没有赋值, 都会被推断成 any 类型而完全不被类型检查
 ```
 
-## 8. 类型断言
+## 类型断言
 
 ```ts
+// 通过类型断言避免警告（读取的属性可能不存在）
+const fn = (type: A | B): string => {
+  return (type as A).run
+}
+// 可以使用类型断言来推断他传入的是A接口的值
+
+// as const 对字面值的断言
+let names2 = '小满' as const
+names2 = 'aa' //无法修改
+
+let a1 = [10, 20] as const
+a1.unshift(30) // 错误，此时已经断言字面量为[10, 20],数据无法做任何修改
+
 // 用来手动指定一个值的类型
 // 语法:  值 as 类型,  或:  <类型>值 (第二种不推荐, 在jsx语法的ts版中不适用), as 类型是一种修饰符, 类似 : 类型
 // 用例1: 使用类型断言, 将一个联合类型断言为其中一个类型, 以访问其独有的属性或方法
@@ -343,7 +595,7 @@ console.log(position)
 // 的约束, 这也同时去除掉了代码中的any, 是最优的一个解决方案.
 ```
 
-## 9. 字面量类型
+## 字面量类型
 
 ```ts
 // 某个特定的字符串也可以作为 TS 中的类型
@@ -360,7 +612,7 @@ function changeDirection(direction: 'up' | 'down' | 'left' | 'right'): void {
 }
 ```
 
-## 10. 枚举
+## 枚举
 
 ```ts
 // 枚举enum类型用于取值被限定在一定范围内的场景, 比如一周只能有七天, 颜色限定为红绿蓝等
@@ -423,16 +675,7 @@ console.log(Names.BASE) // NAME
 // 一般情况下, 推荐使用字面量类型 + 联合类型组合的方式, 这样比枚举更直观
 ```
 
-## 11. any
-
-```ts
-let obj: any = { x: 0 }
-// 尽可能的避免使用 any 类型, 除非临时使用 any 来"避免"书写很长 / 很复杂的类型
-// 其他隐式具有 any 类型的情况: 1.声明变量不提供类型也不提供默认值 2.函数参数不加类型
-// 声明一个变量为任意值之后, 对它的任何操作, 返回的内容的类型都是任意值
-```
-
-## 12. 类
+## 类
 
 ```ts
 // JavaScript中类的简单介绍:
@@ -486,6 +729,7 @@ class Car implements Alarm, Light {
 class Point {
   x: number
   y: number
+  // TypeScript不允许直接在constructor定义变量，需要在constructor上面先声明
   constructor(x: number, y: number) {
     this.x = x
     this.y = y
@@ -495,9 +739,72 @@ interface Point3d extends Point {
   z: number
 } // 也成功创建了一个类, 但不推荐
 let point3d: Point3d = { x: 1, y: 2, z: 3 }
+
+/* 类的修饰符 public private protected */
+// public 修饰符 可以让你定义的变量 内部访问 也可以外部访问 如果不写默认就是public
+// protected 修饰符 代表定义的变量私有的只能在内部和继承的子类中访问 不能在外部访问
+// private 修饰符 代表定义的变量私有的只能在内部访问 不能在外部访问
+
+/* static静态属性和方法 */
+// 用static定义的属性，不可以通过this去访问，只能通过类名去调用
+// static静态函数，同样也是不能通过this去调用，也是通过类名去调用
+
+/* interface定义类 extends一个类，implements多个接口 */
+interface PersonClass {
+  get(type: boolean): boolean
+}
+
+interface PersonClass2 {
+  set(): void
+  school: string
+}
+
+class A {
+  name: string
+  constructor() {
+    this.name = 'zs'
+  }
+}
+
+class Person extends A implements PersonClass, PersonClass2 {
+  school: string
+  constructor() {
+    super() // 在constructor中必须调用super方法,因为子类没有自己的this对象,而是继承父类的this对象,然后对其进行加工,而super就代表了父类的构造函数
+    this.school = 'TSU'
+  }
+  get(type: boolean): boolean {
+    return type
+  }
+  set() {}
+}
+
+/* 抽象类 abstract */
+// 如果你写的类实例化之后毫无用处，此时你可以把他定义为抽象类
+abstract class A {
+  name: string
+  constructor(name: string) {
+    this.name = name
+  }
+  print(): string {
+    return this.name
+  }
+  abstract getName(): string
+}
+
+class B extends A {
+  constructor() {
+    super('小满') // 在constructor中必须调用super方法,因为子类没有自己的this对象,而是继承父类的this对象,然后对其进行加工,而super就代表了父类的构造函数
+  }
+  getName(): string {
+    return this.name
+  }
+}
+
+let b = new B()
+console.log(b.getName())
 ```
 
-## 13. 泛型
+## 泛型
 
 ```ts
 // 1. 泛型是指在定义函数\接口\类的时候, 不预先指定具体类型, 而在使用时候再指定具体类型的一种特性
@@ -602,7 +909,7 @@ function createArray3<T = string>(length: number, value: T): Array<T> {
 }
 ```
 
-## 14. 声明合并, 同名函数、接口、类的合并
+## 声明合并，同名函数、接口、类的合并
 
 ```ts
 // 如果定义了两个相同名字的函数、接口或类，那么它们会合并成一个类型
@@ -627,7 +934,7 @@ function reverse1(x: number | string): number | string | undefined {
 // TypeScript 参考: https://www.tslang.cn/docs/home.html
 ```
 
-## 15. 实践
+## 实践
 
 在 onMounted 中获取 DOM 元素，需要断言
 

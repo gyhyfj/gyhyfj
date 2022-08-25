@@ -57,6 +57,7 @@ src 属性可以用绝对路径或相对路径
 相对路径：`/`表示下级路径 `./`表示同级路径 `../`表示上级路径  
 alt 属性是图片加载不出来时显示的内容
 title 属性是鼠标移动到图片上时显示的内容
+src 接收 base64: `<img :src="'data:image/png;base64,'+base64数据" />`
 
 ## 表格标签
 
@@ -104,10 +105,7 @@ DOCTYPE（文档类型）告诉浏览器以什么样的模式（html、xhtml）�
 <!-- name属性，description，页面描述 -->
 <meta name="description" content="页面描述" />
 <!-- name属性，viewport，视口 -->
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1, maximum-scale=1"
-/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <!-- name属性，搜索引擎索引方式 -->
 <meta name="robots" content="index,follow" />
 <!-- 
