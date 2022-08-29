@@ -304,20 +304,6 @@ const uniapp = [
     link: '/vue-ts/uniapp/miniprogram',
   },
 ]
-const vueothers = [
-  {
-    text: '前端工程化',
-    link: '/vue-ts/others/前端工程化',
-  },
-  {
-    text: '实践记录',
-    link: '/vue-ts/others/实践记录',
-  },
-  {
-    text: 'vitepress',
-    link: '/vue-ts/others/vitepress',
-  },
-]
 const bcfs = [
   {
     text: '函数式编程',
@@ -332,6 +318,16 @@ const rxjs = [
   {
     text: 'RXJS',
     link: '/rxjs/rxjs/rxjs',
+  },
+]
+const engineer = [
+  {
+    text: 'Git',
+    link: '/工程化/git',
+  },
+  {
+    text: 'Vite',
+    link: '/工程化/vite',
   },
 ]
 const networking = [
@@ -481,10 +477,6 @@ export default {
                 text: 'UniApp',
                 link: '/vue-ts/uniapp/miniprogram',
               },
-              {
-                text: 'Others',
-                link: '/vue-ts/others/前端工程化',
-              },
             ],
           },
         ],
@@ -502,6 +494,24 @@ export default {
               {
                 text: 'RXJS',
                 link: '/rxjs/rxjs/rxjs',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        text: '工程化',
+        items: [
+          {
+            text: '',
+            items: [
+              {
+                text: 'Git',
+                link: '/工程化/git',
+              },
+              {
+                text: 'Vite',
+                link: '/工程化/vite',
               },
             ],
           },
@@ -656,12 +666,6 @@ export default {
           text: 'uniapp',
           items: uniapp,
         },
-        {
-          collapsible: true,
-          collapsed: true,
-          text: 'Others',
-          items: vueothers,
-        },
       ],
       '/rxjs/': [
         {
@@ -677,6 +681,15 @@ export default {
           items: rxjs,
         },
       ],
+      '/工程化/': [
+        {
+          collapsible: true,
+          collapsed: true,
+          text: '前端工程化',
+          items: engineer,
+        },
+      ],
+
       '/408/net/': [
         {
           collapsible: true,
