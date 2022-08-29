@@ -68,6 +68,24 @@ let n: null = null
         "strict": true
     }
 }
+
+/* 5 symbol 类型 */
+// symbol类型的值是通过Symbol构造函数创建的
+let sym1 = Symbol();
+let sym2 = Symbol("key"); // 可选的字符串key
+
+// Symbol的值是唯一的
+const s1 = Symbol()
+const s2 = Symbol()
+s1 === s2 // false
+
+// 用作对象属性的键
+let sym = Symbol()
+let obj={
+  [sym]:"value"
+}
+console.log(obj[sym]) // value
+
 ```
 
 ## 对象类型
@@ -130,13 +148,13 @@ function greet(name: string): void {
 
 // 用接口定义函数的形状
 interface SearchFunc {
-  (source: string, subString: string): boolean
+  (source: string, subString: string): boolean // 花括号中写一行 (形参类型表):返回类型
 }
 let mySearch: SearchFunc = function (source: string, subString: string): boolean {
   return source.search(subString) !== -1
 }
 
-// 采用函数表达式+接口定义函数的方式时, 对等号左侧进行类型限制, 可以保证以后对函数名赋值时保证参数个数、参数类型、返回值类型不变
+// 采用函数表达式+接口定义函数的方式时, 对等号左侧进行类型限制, 可以保证以后对函数名重新赋值时保证参数个数、参数类型、返回值类型不变
 // mySearch = function () {
 //   return 0
 // } // 报错
@@ -160,6 +178,7 @@ function func(a?: number, b?: number): void {
 //   })
 // }
 // 事实上, items是一个数组, 所以TypeScript的写法是:
+// ...items: any[]
 function push(array: any[], ...items: any[]) {
   items.forEach(function (item) {
     array.push(item)
@@ -169,7 +188,8 @@ let a: any[] = []
 push(a, 1, 2, 3, '4')
 console.log(a)
 
-// 重载
+// 函数重载
+// 重载是方法名字相同，而参数不同，返回类型可以相同也可以不同。
 function reverse(x: number): number
 function reverse(x: string): string
 function reverse(x: number | string): number | string | void {
@@ -492,124 +512,17 @@ let obj: unkonwn = { a: 1, b: 2 }
 obj.a
 ```
 
-## 类型别名（自定义类型）
-
-```ts
-// 使用 type 关键字来创建类型别名
-// 类型别名常用于联合类型
-type CustomArr = (number | string)[]
-// 创建类型别名后, 直接使用该类型别名作为变量的类型注解
-let arr1: CustomArr = ['1', 'a']
-```
-
 ## 元组
 
 ```ts
-// 元组类型是另一种类型的数组, 确切地知道包含多少个元素, 以及特定索引对应的类型
+// 元组类型是另一种类型的数组, 确切地知道包含多少个元素, 以及特定索引对应的类型，且不允许越界
 // 为元组类型的变量赋值时候, 需要提供所有指定的项
 let position: [number, number] = [3.14, 3.14]
 // 对比普通数组写法 let position: number[] = [3.14, 3.14]
 // 当添加越界的元素时, 它的类型会被限制为元组中每个类型的联合类型
+// 元组的好处在于可以把多个元素作为一个单元传递。如果一个方法需要返回多个值，可以把这多个值作为元组返回，而不需要创建额外的类来表示
 position.push(3.14)
 console.log(position)
-```
-
-## 类型推论
-
-```ts
-// 一些地方的类型注解可以省略不写
-// (1) 声明且初始化变量时候, 后面的代码会严格按赋值时推论的类型看待这个声明的的变量
-// (2) 决定函数返回值的时候, 例如返回两个number的相加, 那么返回值必定是number, 可以省略而被推论
-// (3) 如果定义的时候没有赋值, 不管之后有没有赋值, 都会被推断成 any 类型而完全不被类型检查
-```
-
-## 类型断言
-
-```ts
-// 通过类型断言避免警告（读取的属性可能不存在）
-const fn = (type: A | B): string => {
-  return (type as A).run
-}
-// 可以使用类型断言来推断他传入的是A接口的值
-
-// as const 对字面值的断言
-let names2 = '小满' as const
-names2 = 'aa' //无法修改
-
-let a1 = [10, 20] as const
-a1.unshift(30) // 错误，此时已经断言字面量为[10, 20],数据无法做任何修改
-
-// 用来手动指定一个值的类型
-// 语法:  值 as 类型,  或:  <类型>值 (第二种不推荐, 在jsx语法的ts版中不适用), as 类型是一种修饰符, 类似 : 类型
-// 用例1: 使用类型断言, 将一个联合类型断言为其中一个类型, 以访问其独有的属性或方法
-// 注意: 类型断言只能欺骗编译器, 无法避免运行时的错误, 所以尽量避免断言后调用方法或引用深层属性
-// 用例2: 将一个父类断言为更加具体的子类, 以调用其属性和方法
-// 注意: 如果只是互相继承的类而不是接口, 可以用instanceof实现同样的功能
-// 用例3: 将任何一个类型断言为any
-// (window as any).foo = 1 // 临时将window断言为any, 添加一个属性foo
-// 注意: 将一个变量断言为any是解决TypeScript中类型问题的最后一个手段, 我们需要在类型的严格性和开发的便利性之间掌握平衡
-// 用例4: 将any断言为一个具体的类型
-// 遇到any类型的变量时, 我们可以选择无视它, 任由它滋生更多的any
-// 我们也可以选择改进它, 通过类型断言及时的把 any 断言为精确的类型, 亡羊补牢, 使我们的代码向着高可维护性的目标发展
-// 例如调用某个吃any吐any的函数, 可以调用完后立即将它断言为一个类型
-// const tom=fooFunc('tom') as Cat
-// 注意: 并不是任何一个类型都可以被断言为任何另一个类型, 只有他们能一方兼容另一方才可以
-
-// 双重断言
-// as any as Cat 可以先断言any再断言为其他任何类型, 打破断言限制, 非迫不得已勿用
-
-// 类型断言 vs 类型转换
-// 类型断言只会影响TypeScript编译时的类型, 类型断言语句在编译结果中会被删除
-// 所以类型断言不是类型转换, 它不会真的影响到变量的类型
-
-// 类型断言 vs 类型声明
-// const tom=fooFunc('tom') as Cat
-// const tom: Cat=fooFunc('tom') 可以同样解决这个问题, 接下来的代码中tom都变成了Cat类型
-// 但两者有区别:
-// a断言为b时, a和b有重叠的部分即
-// a声明为b时, a必须具备b的所有属性和方法
-// 所以类型声明是比类型断言更加严格的
-// 所以为了增加代码的质量, 我们最好优先使用类型声明, 这也比类型断言的 as  语法更加优雅
-
-// 类型断言 vs 泛型
-// function getCacheData(key: string): any {
-//   return (window as any).cache[key];
-// }
-// interface Cat {
-//   name: string;
-//   run(): void;
-// }
-// const tom = getCacheData('tom') as Cat;
-// tom.run()
-// 我们还有第三种方式可以解决这个问题, 那就是泛型
-// function getCacheData<T>(key: string): T {
-//   return (window as any).cache[key];
-// }
-// interface Cat {
-//   name: string;
-//   run(): void;
-// }
-// const tom = getCacheData<Cat>('tom');
-// tom.run()
-// 通过给getCacheData函数添加了一个泛型<T>, 我们可以更加规范的实现对getCacheData返回值
-// 的约束, 这也同时去除掉了代码中的any, 是最优的一个解决方案.
-```
-
-## 字面量类型
-
-```ts
-// 某个特定的字符串也可以作为 TS 中的类型
-// 除字符串外, 任意的 JS 字面量 (比如, 对象、数字等) 都可以作为类型使用
-let str = 'Hello TS'
-const str1 = 'Hello TS'
-// str 是一个变量, 类型是 string
-// str1 是常量, 类型是 'Hello TS', 一个字面量类型
-
-// 相比于 string 类型, 使用字面量类型更加精确和严谨
-// 比如如下函数只能接收传入上下左右四个类型的一个 (用了联合类型), 如: 传入 const a= 'up'
-function changeDirection(direction: 'up' | 'down' | 'left' | 'right'): void {
-  console.log(direction)
-}
 ```
 
 ## 枚举
@@ -622,8 +535,10 @@ function changeDirection(direction: 'up' | 'down' | 'left' | 'right'): void {
 // 使用 enum 关键字定义枚举
 // 注意: 一般约定枚举名称 / 枚举中的值以大写字母开头
 // 注意: 枚举中的值以逗号分隔
+
+/* 数字枚举 */
 enum Direction {
-  Up,
+  Up, // 0
   Down,
   Left,
   Right,
@@ -641,7 +556,7 @@ function changeDirection1(direction: Direction) {
 // console.log(Direction['Right']) // 打印结果是 3
 
 // 也可以给枚举中的成员初始化值, 可以有缺省, 若没有全部赋值, 则后面的按前面已赋值的自增
-enum Direction1 {
+enum Direction1 { // 数字枚举
   Up = 2,
   Down,
   Left = 5,
@@ -654,14 +569,41 @@ function changeDirection2(direction: Direction1) {
 // changeDirection2(Direction1.Down) // 打印结果是 3
 // changeDirection2(Direction1.Right) // 打印结果是 6
 
+/* 字符串枚举 */
 // 也可以给枚举赋值字符串, 称为字符串枚举
 // 字符串枚举的每个成员必须有初始值
-enum Direction2 {
+enum Direction2 { // 字符串枚举
   Up = 'Up',
   Down = 'Down',
   Left = 'Left',
   Right = 'Right',
 }
+
+/* 接口枚举 */
+enum Types {
+  a,
+  b,
+}
+interface A {
+  red: Types.a
+}
+let obj: A = {
+  red: Types.a,
+}
+
+/* const枚举 */
+// 声明枚举只能使用const，不能用let或var
+// 普通声明的枚举编译完后是个对象，const 声明的枚举会被编译成常量
+
+/* 反向映射 */
+// 注意的是 不会为字符串枚举成员生成反向映射
+enum Enum {
+  fall,
+}
+let a = Enum.fall
+console.log(a) //0
+let nameOfA = Enum[a]
+console.log(nameOfA) //fall
 
 // 注意: 枚举不仅用作类型, 而且枚举成员还有值,
 // 所以其他的类型会在编译为 JS 代码时自动移除, 但枚举类型会被编译为 JS 代码
@@ -674,6 +616,18 @@ console.log(Names.BASE) // NAME
 
 // 一般情况下, 推荐使用字面量类型 + 联合类型组合的方式, 这样比枚举更直观
 ```
+
+## never 类型
+
+never 类型来表示不应该存在的状态
+返回 never 的函数必须存在无法达到的终点
+比如死循环，比如 throw new Error('msg')
+
+与 void 的区别：void 类型只是没有返回值 但本身不会出错
+
+应用场景：
+比如 switch case 的兜底逻辑，如果正常根本不可能进入 default 语句，那么在 default 后面放一句 `const exhaustiveCheck: never = val;`，如果有进入到这个地方的可能那就是程序异常
+原理：由于任何类型都不能赋值给 never 类型的变量，所以当存在进入 default 分支的可能性时，TS 的类型检查会及时帮我们发现这个问题
 
 ## 类
 
@@ -802,6 +756,114 @@ class B extends A {
 
 let b = new B()
 console.log(b.getName())
+```
+
+## 类型别名（自定义类型）
+
+```ts
+// 使用 type 关键字来创建类型别名
+// 类型别名常用于联合类型
+type CustomArr = (number | string)[]
+// 创建类型别名后, 直接使用该类型别名作为变量的类型注解
+let arr1: CustomArr = ['1', 'a']
+```
+
+## 类型推论
+
+```ts
+// 一些地方的类型注解可以省略不写
+// (1) 声明且初始化变量时候, 后面的代码会严格按赋值时推论的类型看待这个声明的的变量
+// (2) 决定函数返回值的时候, 例如返回两个number的相加, 那么返回值必定是number, 可以省略而被推论
+// (3) 如果定义的时候没有赋值, 不管之后有没有赋值, 都会被推断成 any 类型而完全不被类型检查
+```
+
+## 类型断言
+
+```ts
+// 通过类型断言避免警告（读取的属性可能不存在）
+const fn = (type: A | B): string => {
+  return (type as A).run
+}
+// 可以使用类型断言来推断他传入的是A接口的值
+
+// as const 对字面值的断言
+let names2 = '小满' as const
+names2 = 'aa' //无法修改
+
+let a1 = [10, 20] as const
+a1.unshift(30) // 错误，此时已经断言字面量为[10, 20],数据无法做任何修改
+
+// 用来手动指定一个值的类型
+// 语法:  值 as 类型,  或:  <类型>值 (第二种不推荐, 在jsx语法的ts版中不适用), as 类型是一种修饰符, 类似 : 类型
+// 用例1: 使用类型断言, 将一个联合类型断言为其中一个类型, 以访问其独有的属性或方法
+// 注意: 类型断言只能欺骗编译器, 无法避免运行时的错误, 所以尽量避免断言后调用方法或引用深层属性
+// 用例2: 将一个父类断言为更加具体的子类, 以调用其属性和方法
+// 注意: 如果只是互相继承的类而不是接口, 可以用instanceof实现同样的功能
+// 用例3: 将任何一个类型断言为any
+// (window as any).foo = 1 // 临时将window断言为any, 添加一个属性foo
+// 注意: 将一个变量断言为any是解决TypeScript中类型问题的最后一个手段, 我们需要在类型的严格性和开发的便利性之间掌握平衡
+// 用例4: 将any断言为一个具体的类型
+// 遇到any类型的变量时, 我们可以选择无视它, 任由它滋生更多的any
+// 我们也可以选择改进它, 通过类型断言及时的把 any 断言为精确的类型, 亡羊补牢, 使我们的代码向着高可维护性的目标发展
+// 例如调用某个吃any吐any的函数, 可以调用完后立即将它断言为一个类型
+// const tom=fooFunc('tom') as Cat
+// 注意: 并不是任何一个类型都可以被断言为任何另一个类型, 只有他们能一方兼容另一方才可以
+
+// 双重断言
+// as any as Cat 可以先断言any再断言为其他任何类型, 打破断言限制, 非迫不得已勿用
+
+// 类型断言 vs 类型转换
+// 类型断言只会影响TypeScript编译时的类型, 类型断言语句在编译结果中会被删除
+// 所以类型断言不是类型转换, 它不会真的影响到变量的类型
+
+// 类型断言 vs 类型声明
+// const tom=fooFunc('tom') as Cat
+// const tom: Cat=fooFunc('tom') 可以同样解决这个问题, 接下来的代码中tom都变成了Cat类型
+// 但两者有区别:
+// a断言为b时, a和b有重叠的部分即
+// a声明为b时, a必须具备b的所有属性和方法
+// 所以类型声明是比类型断言更加严格的
+// 所以为了增加代码的质量, 我们最好优先使用类型声明, 这也比类型断言的 as  语法更加优雅
+
+// 类型断言 vs 泛型
+// function getCacheData(key: string): any {
+//   return (window as any).cache[key];
+// }
+// interface Cat {
+//   name: string;
+//   run(): void;
+// }
+// const tom = getCacheData('tom') as Cat;
+// tom.run()
+// 我们还有第三种方式可以解决这个问题, 那就是泛型
+// function getCacheData<T>(key: string): T {
+//   return (window as any).cache[key];
+// }
+// interface Cat {
+//   name: string;
+//   run(): void;
+// }
+// const tom = getCacheData<Cat>('tom');
+// tom.run()
+// 通过给getCacheData函数添加了一个泛型<T>, 我们可以更加规范的实现对getCacheData返回值
+// 的约束, 这也同时去除掉了代码中的any, 是最优的一个解决方案.
+```
+
+## 字面量类型
+
+```ts
+// 某个特定的字符串也可以作为 TS 中的类型
+// 除字符串外, 任意的 JS 字面量 (比如, 对象、数字等) 都可以作为类型使用
+let str = 'Hello TS'
+const str1 = 'Hello TS'
+// str 是一个变量, 类型是 string
+// str1 是常量, 类型是 'Hello TS', 一个字面量类型
+
+// 相比于 string 类型, 使用字面量类型更加精确和严谨
+// 比如如下函数只能接收传入上下左右四个类型的一个 (用了联合类型), 如: 传入 const a= 'up'
+function changeDirection(direction: 'up' | 'down' | 'left' | 'right'): void {
+  console.log(direction)
+}
 ```
 
 ## 泛型

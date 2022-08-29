@@ -180,3 +180,25 @@ console.log('Z')
 
 // X Z Y
 ```
+
+try 语句
+try 语句包含了由一个或者多个语句组成的 try 块，和一个或多个（条件 catch 块） catch 块或者一个 finally 块的其中一个，或者两个兼有
+
+如果 try 中抛出异常，则进入 catch 语句
+catch 块指定一个标识符作为形参，保存由 throw 语句指定的值
+
+如果从 finally 块中返回一个值，那么这个值将会成为整个 try-catch-finally 的返回值，无论是否有 return 语句在 try 和 catch 中。
+
+```js
+const func = () => {
+  try {
+    let a = 0 // a的作用域只在这个花括号内
+    return a
+  } catch (e) {
+    console.log(e)
+  } finally {
+    return 1
+  }
+}
+console.log(func()) // 1
+```

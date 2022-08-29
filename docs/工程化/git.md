@@ -1,0 +1,101 @@
+# Git
+
+三个区域：工作区 暂存区 仓库
+三个状态：已修改 已暂存 已提交
+基本的工作流程：修改 暂存 提交
+
+https://www.bookstack.cn/read/git-tutorial
+
+```bash
+# git 配置
+git config
+
+# 查看git状态 但不显示stash状态
+git status
+git status -s
+
+# 将文件添加到暂存区 可追踪新文件
+git add [file1] [file2]
+git add [dir]
+git add .
+
+# 提交修改
+git commit -m "msg" # 提交已暂存修改
+git commit -a -m # 提交已跟踪修改，包括新增文件
+
+# 查看日志
+git log
+git log -5 --pretty=oneline
+
+# 查看项目当前状态
+git status
+git status -s
+
+# 回退版本
+git reset [--soft | --mixed | --hard] [HEAD]
+git reset e1af2 # 回退所有内容到e1af2版本
+git reset HEAD^ # 回退所有内容到上一个版本
+git reset HEAD^ a.txt # 回退a.txt到上一个版本
+
+# --mixed 重置暂存区，工作区不变，默认可以省略
+# --soft 都不重置 # 不小心把不该提交的内容提交了，可以执行这个，消除提交记录，最后统一提交
+# --hard 都重置，且删除之前的提交
+
+git checkout <commitID> # 切换到指定快照
+git checkout -- <filename> # 将指定文件从暂存区复制到工作区，丢弃工作区对该文件的修改
+git checkout HEAD~ -- <filename> # 指定从某个 commit 恢复指定文件，同时改变暂存区和工作区
+
+# 分支操作
+git branch # 查看分支
+git branch test # 创建新分支
+git branch -d test # 删除分支
+
+git checkout test # 切换分支
+git checkout -b test # 创建并切换到新分支
+
+git merge test # 把指定分支合并到当前分支
+
+# 暂存操作
+git stash
+git stash list # 列出所有暂时保存的工作
+git stash apply stash@{1} # 恢复某个暂时保存的工作
+git stash pop # 恢复最近一次stash的文件
+git stash drop # 丢弃最近一次stash的文件
+git stash clear # 删除所有的stash
+
+# 本地修改与 source 存在冲突的情况 提示： Please commit your changes or stash them before you merge
+# a、git stash # 保存修改在本地
+# b、git pull source master # 跟新 source 的代码
+# c、git stash pop # 提去本地的修改
+# d、解决具体的冲突文件 ，此时编译器把冲突文件已经标红
+# e、git status -> git add ->git commit -m "" -> git push origin master
+
+# 远程操作
+
+# 连接远程仓库
+git remote add upstream xxxx.git # 添加与xxxx.git的连接并重命名为upstream
+
+# 展示配置的远程仓库
+git remote
+git remote -v # 加上-v展示实际链接地址
+git remote show origin # 展示全部信息
+
+# 查看远程仓库的分支
+git branch -a
+
+# 获取远程分支
+git checkout -b test origin/test # 切换分支，并在本地创建同样的分支名
+
+# 推送本地更新到远程分支
+git push origin dev
+
+# 获取远程分支更新
+git pull origin dev
+```
+
+merge 与 rebase
+git merge 会让 2 个分支的提交按照提交时间进行排序，并且会把最新的 2 个 commit 合并成一个 commit。最后的分支树呈现非线性的结构
+git rebase 将 dev 的当前提交复制到 master 的最新提交之后，会形成一个线性的分支树
+
+git flow
+git revert
