@@ -1,5 +1,7 @@
 # Git
 
+## Git
+
 三个区域：工作区 暂存区 仓库
 三个状态：已修改 已暂存 已提交
 基本的工作流程：修改 暂存 提交
@@ -8,7 +10,15 @@ https://www.bookstack.cn/read/git-tutorial
 
 ```bash
 # git 配置
-git config
+# 全局配置
+git config --global user.name "username"
+git config --global user.email "email"
+# 当前仓库配置
+git config user.name "username"
+git config user.email "email"
+
+# 创建git仓库
+git init --initial-branch=main
 
 # 查看git状态 但不显示stash状态
 git status
@@ -21,7 +31,7 @@ git add .
 
 # 提交修改
 git commit -m "msg" # 提交已暂存修改
-git commit -a -m # 提交已跟踪修改，包括新增文件
+git commit -a -m # 提交已跟踪修改，不包括新增文件
 
 # 查看日志
 git log
@@ -88,6 +98,7 @@ git checkout -b test origin/test # 切换分支，并在本地创建同样的分
 
 # 推送本地更新到远程分支
 git push origin dev
+git push -u origin main # 加 -u 后，以后可以直接执行 git push
 
 # 获取远程分支更新
 git pull origin dev
@@ -99,3 +110,10 @@ git rebase 将 dev 的当前提交复制到 master 的最新提交之后，会�
 
 git flow
 git revert
+
+## Gitlab
+
+```bash
+ssh-keygen -t ed25519 -C "gyhyfj@gmail.com"
+ssh -T git@gitlab.com
+```
