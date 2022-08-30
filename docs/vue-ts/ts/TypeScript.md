@@ -135,7 +135,10 @@ let add1 = (n1: number, n2: number): number => {
 }
 // 注意add1函数的写法, 可以通过编译, 不过事实上, 这段代码只对等号右侧的匿名函数进行了类型定义
 // 而等号左边的add1是通过赋值操作进行类型推论而推断出来的
-let add2: (n1: number, n2: number) => number = (n1: number, n2: number): number => {
+let add2: (n1: number, n2: number) => number = (
+  n1: number,
+  n2: number
+): number => {
   return n1 + n2
 }
 // 注意区别TypeScript的=>和ES6的=>, 在TS中, =>用来表示函数的定义, 左侧是输入类型, 需要用括号括起来, 右侧是输出类型
@@ -150,7 +153,10 @@ function greet(name: string): void {
 interface SearchFunc {
   (source: string, subString: string): boolean // 花括号中写一行 (形参类型表):返回类型
 }
-let mySearch: SearchFunc = function (source: string, subString: string): boolean {
+let mySearch: SearchFunc = function (
+  source: string,
+  subString: string
+): boolean {
   return source.search(subString) !== -1
 }
 
@@ -870,6 +876,15 @@ function changeDirection(direction: 'up' | 'down' | 'left' | 'right'): void {
 
 ```ts
 // 1. 泛型是指在定义函数\接口\类的时候, 不预先指定具体类型, 而在使用时候再指定具体类型的一种特性
+// 语法是函数名字后面跟一个<参数值>，参数名可以随便写，比如T
+// 当我们使用这个函数时候把参数的类型传递进去就ok（也就是动态类型）
+// 可以使用不同的泛型参数名，只要使用时候在数量和使用方式上能对应就ok
+function Sub<T, U>(a: T, b: U): Array<T | U> {
+  const params: Array<T | U> = [a, b]
+  return params
+}
+Sub<Boolean, number>(false, 1)
+
 // 比较下面两段代码:
 function createArr(len: number, val: any): Array<any> {
   let result = []
@@ -898,6 +913,7 @@ function swap<T, U>(tuple: [T, U]): [U, T] {
 }
 
 // 3. 泛型约束
+// extends
 // 在函数内部使用泛型变量的时候,由于事先不知道它是哪种类型,所以不能随意的操作它的属性或方法
 
 // function loggingIdentity<T>(arg: T): T {
@@ -916,6 +932,45 @@ function loggingIdentity<T extends Lengthwise>(arg: T): T {
 }
 // 上例中, 我们使用了 extends 约束了泛型 T 必须符合接口 Lengthwise 的形状, 也就是必须包含 length 属性
 // 此时如果调用 loggingIdentity 的时候, 传入的 arg 不包含 length, 那么在编译阶段就会报错
+
+// keyof
+// 通过 keyof 操作符可以获取对象中的所有键类型组成的联合类型
+type Person = {
+  id: number
+  name: string
+  age: number
+}
+type P1 = keyof Person //'id' | 'name' | 'age'
+// 下面举例说明：
+interface Cass {
+  age: number
+  myName: string
+}
+// 或使用下面这种方式定义
+// type Xiaoguaishou= {
+//     age: number;
+//     myName: string;
+// };
+// 关于interface和type的区别,请查阅别的文章
+const person: Cass = {
+  age: 6,
+  myName: 'xiaoguaishou',
+}
+
+function prop<T extends object, K extends keyof T>(obj: T, key: K) {
+  return obj[key]
+}
+
+// 下面这种写法和上面的写法在实际使用中的区别
+// 1.输出的结果都是一致
+// 2.上面的方式在编码过程就能知道输入的类型是否正确，下面这种方式需要在运行之后
+// function prop(obj:Xiaoguaishou, key:string){
+//     return obj[key];
+// }
+const age = prop(person, 'age')
+const myName = prop(person, 'myName')
+console.log('age====', age)
+console.log('myName===', myName)
 
 // 4. 泛型接口
 // 可以用接口来定义函数的形状
