@@ -16,6 +16,8 @@ WebPack:
 
 ```ts
 /* vite.config.ts */
+// ts环境需要安装@types/node
+import path from 'path'
 export default defineConfig({
   plugins: [vue()],
   resolve: {

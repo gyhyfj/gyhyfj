@@ -337,3 +337,8 @@ zoom:
 渲染方式似乎不同（zoom 是锐化而非模糊）
 zoom 不能解决 1px 问题
 zoom 兼容性差一些，是非标准属性，Firefox 和 Firefox for Android 浏览器不支持
+
+## 子元素继承
+
+百分比：
+内减模式，继承父元素宽高，不包括 margin 和 padding

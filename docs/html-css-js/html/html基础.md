@@ -105,7 +105,10 @@ DOCTYPE（文档类型）告诉浏览器以什么样的模式（html、xhtml）�
 <!-- name属性，description，页面描述 -->
 <meta name="description" content="页面描述" />
 <!-- name属性，viewport，视口 -->
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1"
+/>
 <!-- name属性，搜索引擎索引方式 -->
 <meta name="robots" content="index,follow" />
 <!-- 
@@ -157,3 +160,8 @@ head 标签是所有头部元素的容器，里面只有 title 标签是必须�
   <title>Document</title>
 </head>
 ```
+
+## 其他
+
+禁止页面文字被选中
+`<body onselectstart="return false">`

@@ -43,6 +43,7 @@ window
 ## Function.prototype.call()
 
 call() 方法使用一个指定的 this 值和单独给出的一个或多个参数**来调用一个函数**。
+比如 fn(x,y)，执行 fn(a,m,n)仍是调用了 fn(x,y)，只是这个函数执行的时候它的 this 变成了 a
 
 ```js
 function fn(a, b) {

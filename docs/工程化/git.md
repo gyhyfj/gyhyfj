@@ -59,6 +59,7 @@ git checkout HEAD~ -- <filename> # 指定从某个 commit 恢复指定文件，�
 git branch # 查看分支
 git branch test # 创建新分支
 git branch -d test # 删除分支
+git branch -m master main # 重命名分支，把master重命名为main
 
 git checkout test # 切换分支
 git checkout -b test # 创建并切换到新分支
