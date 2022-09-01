@@ -12,7 +12,7 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /AI/Tensorflow/Tensorflow
+      link: /rxjs/编程范式/函数式编程
     - theme: alt
       text: View on GitHub
       link: https://github.com/gyhyfj
