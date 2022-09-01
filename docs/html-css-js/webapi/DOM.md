@@ -101,7 +101,7 @@ true 会全部复制，缺省默认为 false
 事件对象的属性：
 e.target 返回触发事件的对象（点击了哪个元素返回哪个对象或元素）
 e.type 返回事件的类型 比如 click、mouseover
-e.preventDefault() 该属性阻止默认事件（默认行为） 标准 比如不让链接跳转
+e 上面有个 preventDefault 方法 `e.preventDefault()`，该方法阻止默认事件（默认行为） 标准 比如不让链接跳转
 
 ```js
 let a = document.querySelector('a')
@@ -144,11 +144,9 @@ e.key 返回一个字符串，表示按下的键名
 ### 阻止事件流动
 
 若想把事件就限制在当前元素内，就需要阻止事件流动
-`e.stopPropagation()`
+e 有个 stopPropagation 方法 `e.stopPropagation()`
 此方法可以阻断事件流动传播，不光在冒泡阶段有效，捕获阶段也有效
 
-### 阻止默认行为
-
-`e.preventDefault()`
-
 ## 重绘和回流
+
+回流也叫重排

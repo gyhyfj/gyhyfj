@@ -48,8 +48,9 @@ text-overflow：ellipsis；
 
 ## 盒子模型
 
-box-sizing:border-box 内减模式  
-box-sizing:content-box 默认模式 // 修改 border 尺寸 和 padding 尺寸会改变盒子大小
+box-sizing:border-box 内减模式 （怪异盒子） // 盒子宽高包含了 padding 和 border
+box-sizing:content-box 默认模式 （标注盒子） // 盒子宽高只包含 content，修改 border 尺寸 和 padding 尺寸会改变盒子大小
+box-sizing:padding-box 默认模式 （标注盒子） // 盒子宽高包含 padding
 
 ## calc 函数
 
@@ -94,7 +95,7 @@ body 元素默认有 8px 的 margin，所以设置全网页背景要设置给 ht
 background: color image repeat position
 background-image: url(a.png); // 路径加不加引号都可以 这里的 a 是同级的
 background-repeat: repeat/no-repeat/repeat-x/repeat-y;
-background-position: 像素值/关键字 或 水平距离 垂直距离;
+background-position: 像素值/关键字（center） 或 水平距离 垂直距离;
 background-size: cover(完全覆盖)、contain(最大容纳) 或 两个数值：像素值、百分比（相当于盒子自身宽高），第一个代表宽度，第二个是=代表高度
 
 ## filter
@@ -249,20 +250,20 @@ transform: scale(0,0) // 将元素尺寸缩放为 0，但仍占位置，但不�
 ## 一个冒号与两个冒号
 
 一般一个冒号用于伪类，两个冒号用于伪元素  
-`.clearfix:before`这里的一个冒号是 w3c 给的特殊规定，只有少数几个早期出现的伪元素可以用一个或两个冒号
+`.clearfix:before`这里的一个冒号是 w3c（万维网联盟） 给的特殊规定，只有少数几个早期出现的伪元素可以用一个或两个冒号
 
-## 外边距坍塌
+## 外边距 margin 坍塌
 
 互相嵌套的块级元素，子元素和父元素的 margin-top 会合并生效在父元素上，并取最大值。
 如果子元素 margin-top 大于父元素的 margin-top，导致父元素一起往下移动（塌陷）  
 解决办法：
 
-1. 给父元素设置 border-top 或者 padding-top（分隔父子元素的 margin-top）
+1. 分隔父子元素的 margin-top（给父元素设置 border-top 或者 padding-top）
 2. 给父元素添加 overflow 属性（取值任意）
 3. 把子元素或父元素转换成行内块元素
 4. 给子元素或父元素设置浮动
 
-## 外边距重叠
+## 外边距 margin 重叠
 
 垂直布局的块级元素上下的 margin 会合并，最终距离为 margin 的最大值
 解决方法：只给其中一个盒子设置 margin

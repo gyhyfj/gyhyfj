@@ -329,6 +329,10 @@ const engineer = [
     text: 'Vite',
     link: '/工程化/vite',
   },
+  {
+    text: '构建组件库',
+    link: '/工程化/构建组件库',
+  },
 ]
 const networking = [
   {
@@ -512,6 +516,10 @@ export default {
               {
                 text: 'Vite',
                 link: '/工程化/vite',
+              },
+              {
+                text: '构建组件库',
+                link: '/工程化/构建组件库',
               },
             ],
           },
