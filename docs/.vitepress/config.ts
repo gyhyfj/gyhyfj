@@ -585,10 +585,6 @@ export default {
                 text: "I'll Be There",
                 link: '/散记/I-will-be-there/读书/1965年重上井冈山',
               },
-              {
-                text: '天命',
-                link: '/散记/I-will-be-there/读书/1965年重上井冈山',
-              },
             ],
           },
         ],
