@@ -76,8 +76,8 @@ const js = [
     link: '/html-css-js/js/07JS执行机制',
   },
   {
-    text: '08JS总结',
-    link: '/html-css-js/js/08JS总结',
+    text: '08常用代码',
+    link: '/html-css-js/js/08常用代码',
   },
 ]
 const webapi = [
@@ -579,6 +579,10 @@ export default {
               },
               {
                 text: "I'll Be There",
+                link: '/散记/I-will-be-there/读书/1965年重上井冈山',
+              },
+              {
+                text: '天命',
                 link: '/散记/I-will-be-there/读书/1965年重上井冈山',
               },
             ],

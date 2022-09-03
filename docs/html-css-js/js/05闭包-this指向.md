@@ -141,3 +141,57 @@ let bindFunc = modulex.get.bind(modulex)
 bindFunc() // 0
 console.log(bindFunc())
 ```
+
+## 实践-数组的冒泡排序
+
+首先是一个数组的冒泡排序
+
+```js
+let arr = [5, 6, 6, 7, 1, 2, 3, 4]
+const compare = (x, y) => (x - y < 0 ? true : false)
+
+const sortFn = (array, compare) => {
+  let len = array.length
+  for (let i = 0; i < len - 1; i++) {
+    for (let j = 0; j < len - i - 1; j++) {
+      if (!compare(array[j], array[j + 1])) {
+        let tmp = array[j]
+        array[j] = array[j + 1]
+        array[j + 1] = tmp
+      }
+    }
+  }
+}
+
+sortFn(arr, compare)
+console.log(arr) // [1, 2, 3, 4,  5, 6, 6, 7]
+```
+
+如果想通过`arr.sortFn(compare)`排序：
+思路：
+把 sortFn 方法挂载到 arr 的原型链上
+因为`arr.__proto__ === Array.prototype`，所以可以挂载在构造函数`Array`上，把箭头函数改为普通函数，this 自动指向实例对象
+
+```js
+let arr = [5, 6, 6, 7, 1, 2, 3, 4]
+const compare = (x, y) => (x - y < 0 ? true : false)
+
+function sortFn(compare) {
+  let len = this.length
+  for (let i = 0; i < len - 1; i++) {
+    for (let j = 0; j < len - i - 1; j++) {
+      if (!compare(this[j], this[j + 1])) {
+        let tmp = this[j]
+        this[j] = this[j + 1]
+        this[j + 1] = tmp
+      }
+    }
+  }
+}
+
+console.log(arr.__proto__ === this.prototype) // true
+
+Array.prototype.sortFn = sortFn
+arr.sortFn(compare)
+console.log(arr) // [1, 2, 3, 4,  5, 6, 6, 7]
+```

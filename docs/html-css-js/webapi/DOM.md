@@ -150,3 +150,66 @@ e 有个 stopPropagation 方法 `e.stopPropagation()`
 ## 重绘和回流
 
 回流也叫重排
+
+## 防抖和节流
+
+函数防抖是指在事件被触发 n 秒后再执行回调，如果在这 n 秒内事件又被触发，则重新计时
+场景：
+按钮提交场景：防⽌多次提交按钮，只执⾏最后提交的⼀次
+服务端验证场景：表单验证需要服务端配合，只执⾏⼀段连续的输⼊事件的最后⼀次，还有搜索联想词功能
+
+函数节流是指规定一个单位时间，在这个单位时间内，只能有一次触发事件的回调函数执行，如果在同一个单位时间内某事件被触发多次，只有一次能生效
+场景：
+拖拽 缩放 滚动 滑动
+
+实现：
+防抖：
+
+```js
+function debounce(fn, wait) {
+  let timer = null
+  // 返回了一个匿名函数作为事件的回调函数
+  return function (...rest) {
+    let context = this
+
+    /* 如果存在定时器 */
+    if (timer) {
+      clearTimeout(timer)
+      timer = null
+    }
+
+    timer = setTimeout(() => {
+      fn.apply(context, rest)
+    }, wait)
+  }
+}
+```
+
+节流：
+
+```js
+function throttle(fn, delay) {
+  let preTime = Date.now()
+  return function (...rest) {
+    let context = this
+    nowTime = Date.now()
+    if (nowTime - preTime >= delay) {
+      preTime = Date.now()
+      return fn.apply(context, args)
+    }
+  }
+}
+// 或
+function throttle(fn, delay) {
+  let timeout = null
+  return function (...rest) {
+    let context = this
+    if (!timeout) {
+      timeout = setTimeout(() => {
+        fn.apply(context, rest)
+        timeout = null
+      }, delay)
+    }
+  }
+}
+```
