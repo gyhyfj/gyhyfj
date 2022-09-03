@@ -102,7 +102,14 @@ git push origin dev
 git push -u origin main # 加 -u 后，以后可以直接执行 git push
 
 # 获取远程分支更新
+git fetch
+# 更新 git remote 中所有的远程 repo 所包含分支的最新 commit-id, 将其记录到 .git/FETCH_HEAD 文件中
+
+git checkout my-dev
 git pull origin dev
+# 将 origin 的 dev 分支合并到本地的 my-dev 分支
+# git pull 其实是 git fetch 与 git merge 两个命令的集合
+# 先执行 git fetch origin 当前分支名, 再执行 git merge FETCH_HEAD
 ```
 
 merge 与 rebase

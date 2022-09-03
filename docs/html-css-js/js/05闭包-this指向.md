@@ -31,7 +31,7 @@ console.log(i) // 5 5 6 7 8 9
 函数预解析
 就是把所有的函数声明提升到当前作用域的最前面，不调用函数。
 
-## this 指向
+## this 指向汇总
 
 1.构造函数
 指向实例对象（调用构造函数时生成的那个实例对象），原型对象里面的方法也指向实例对象
@@ -57,14 +57,15 @@ let p = new Point(1, 2) // Point { x: 1, y: 2 }
 外层作用域中的 this（且 this 指向不可改变）
 
 5.定时器、立即执行函数、普通函数
-window
+全局对象
 
 ## 改变 this 指向
 
 ## Function.prototype.call()
 
-call() 方法使用一个指定的 this 值和单独给出的一个或多个参数**来调用一个函数**。
-比如 fn(x,y)，执行 fn(a,m,n)仍是调用了 fn(x,y)，只是这个函数执行的时候它的 this 变成了 a
+`call()` 方法使用一个指定的 `this` 值和单独给出的一个或多个参数**来调用一个函数**。
+即：改变默认 this 指向地调用函数
+比如 `fn(x,y)`，执行 `fn.call(a,m,n)`仍是调用了 `fn(x,y)`，只是这个函数执行的时候它的 `this` 变成了 `a`
 
 ```js
 function fn(a, b) {
@@ -85,7 +86,8 @@ fn.call(obj, 1, 2) // console.log(this) // { name: 'zs', age: 10 } 3
 ## Function.prototype.apply()
 
 apply() 方法**调用一个**具有给定 this 值的函数，以及以一个数组（或一个类数组对象）的形式提供的参数。
-apply 与 call() 非常相似，不同之处在于提供参数的方式。apply 使用参数数组而不是一组参数列表
+即：改变默认 this 指向地调用函数
+apply 与 call() 非常相似，不同之处在于提供参数的方式。apply 使用数组作为第二个参数而不是一个参数列表
 
 示例：
 用 apply 将数组各项添加到另一个数组：
@@ -112,7 +114,7 @@ let min = Math.min.apply(null, a) // 1
 ## Function.prototype.bind()
 
 bind() 方法创建一个新的函数，在 bind() 被调用时，这个新函数的 this 被指定为 bind() 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。
-
+即：改变 this 指向地创建一个新函数
 bind() 最简单的用法是创建一个函数，不论怎么调用，这个函数都有同样的 this 值。用原始的对象创建一个绑定函数，可以避免 this 指向其他地方
 
 ```js
@@ -139,5 +141,3 @@ let bindFunc = modulex.get.bind(modulex)
 bindFunc() // 0
 console.log(bindFunc())
 ```
-
-更多：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind

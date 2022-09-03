@@ -48,44 +48,36 @@ const css = [
 ]
 const js = [
   {
-    text: '数据类型',
-    link: '/html-css-js/js/数据类型',
+    text: '01数据类型',
+    link: '/html-css-js/js/01数据类型',
   },
   {
-    text: '运算',
-    link: '/html-css-js/js/运算',
+    text: '02运算',
+    link: '/html-css-js/js/02运算',
   },
   {
-    text: '流程控制',
-    link: '/html-css-js/js/流程控制',
+    text: '03流程控制',
+    link: '/html-css-js/js/03流程控制',
   },
   {
-    text: '构造函数与原型链',
-    link: '/html-css-js/js/构造函数与原型链',
+    text: '04构造函数与原型链',
+    link: '/html-css-js/js/04构造函数与原型链',
   },
   {
-    text: '作用域-预解析-this指向',
-    link: '/html-css-js/js/作用域-预解析-this指向',
+    text: '05闭包-this指向.md',
+    link: '/html-css-js/js/05闭包-this指向.md',
   },
   {
-    text: '递归',
-    link: '/html-css-js/js/递归',
+    text: '06深拷贝与浅拷贝',
+    link: '/html-css-js/js/06深拷贝与浅拷贝',
   },
   {
-    text: '深拷贝与浅拷贝',
-    link: '/html-css-js/js/深拷贝与浅拷贝',
+    text: '07JS执行机制',
+    link: '/html-css-js/js/07JS执行机制',
   },
   {
-    text: '模块化',
-    link: '/html-css-js/js/模块化',
-  },
-  {
-    text: 'JS执行机制',
-    link: '/html-css-js/js/JS执行机制',
-  },
-  {
-    text: 'JS总结',
-    link: '/html-css-js/js/JS总结',
+    text: '08JS总结',
+    link: '/html-css-js/js/08JS总结',
   },
 ]
 const webapi = [
@@ -322,6 +314,10 @@ const engineer = [
     link: '/工程化/git',
   },
   {
+    text: '模块化',
+    link: '/工程化/模块化',
+  },
+  {
     text: 'Vite',
     link: '/工程化/vite',
   },
@@ -425,7 +421,7 @@ export default {
               },
               {
                 text: 'JavaScript',
-                link: '/html-css-js/js/数据类型',
+                link: '/html-css-js/js/01数据类型',
               },
             ],
           },
