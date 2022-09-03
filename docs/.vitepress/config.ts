@@ -506,6 +506,10 @@ export default {
                 link: '/工程化/git',
               },
               {
+                text: '模块化',
+                link: '/工程化/模块化',
+              },
+              {
                 text: 'Vite',
                 link: '/工程化/vite',
               },
