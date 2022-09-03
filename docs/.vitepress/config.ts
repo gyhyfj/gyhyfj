@@ -60,16 +60,12 @@ const js = [
     link: '/html-css-js/js/流程控制',
   },
   {
-    text: '构造函数',
-    link: '/html-css-js/js/构造函数',
+    text: '构造函数与原型链',
+    link: '/html-css-js/js/构造函数与原型链',
   },
   {
     text: '作用域-预解析-this指向',
     link: '/html-css-js/js/作用域-预解析-this指向',
-  },
-  {
-    text: '闭包',
-    link: '/html-css-js/js/闭包',
   },
   {
     text: '递归',

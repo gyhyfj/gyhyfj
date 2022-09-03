@@ -5,7 +5,9 @@
 toString()、toLocalString()、join()
 pop() 和 push()，push 方法可以传入多个参数
 shift() 和 unshift() unshift 方法可以传递多个参数，表示在数组开头增加
-reverse() 和 sort()，sort() 方法可以传入一个函数来进行比较，传入前后两个值，如果返回值为正数，则交换两个参数的位置
+reverse() 和 sort()，都改变原数组
+reverse()是把数组顺序颠倒
+sort() 方法可以传入一个函数来进行比较，传入前后两个值，比如是 x 和 y，返回一个数字，如果数字小于 0，则 x 在 y 前面，如果数字大于 0，则 x 在 y 后面。默认是升序
 concat() ，返回的是拼接好的数组，不影响原数组
 slice(begin [ end ])，用于截取数组中的一部分返回，不影响原数组。
 array.splice(start[, deleteCount[, item1[, item2[, ...]]]])，改变原数组
@@ -58,123 +60,6 @@ function deepCopy(obj) {
   }
   return newObj
 }
-```
-
-## 原型
-
-每个函数都有显式原型`prototype`，
-每个对象都有隐式原型`__proto__`，
-
-```js
-// 构造函数
-function Point(x, y) {
-  this.x = x
-  this.y = y
-}
-
-// 实例
-const point = new Point(1, 1)
-
-console.log(Point.prototype)
-/*
- * {
- *   constructor: f Point(x,y),
- *   [[prototype]]: Object
- * }
- *
- * 构造函数的原型对象，默认有两个属性：
- * 一个是 constructor，指向构造函数本身；
- * 另一个是`__proto__`，也就是`[[prototype]]`指向其上一级的原型
- */
-console.log(Point.prototype.constructor === Point) // true
-
-console.log(point.__proto__ === Point.prototype) // true
-/*
- * 实例对象的`__proto__`，指向它构造函数的显式原型
- * `point.__proto__ === Point.prototype`
- */
-```
-
-原型的属性被所有实例共享，
-原型的方法 this 指向实例本身
-
-## 原型链
-
-JS 原型链的本质：建立了对象属性（包括方法）的查找机制
-当**某个对象访问某个属性的时候**：先查自身，再查其隐式原型，向上直到 Object.prototype 为止，因为它的隐式原型为 null `Object.prototype.__proto__ = null`
-`point.__proto__.__proto__.__proto__`
-`` point-----(`__proto__`)----->Point.prototype-----(`__proto__`)----->Object.prototype-----(`__proto__`)----->null ``
-
-## 闭包
-
-执行上下文
-在执行 js 代码前会创建执行上下文
-● 全局上下文：变量定义，函数声明
-● 函数上下文：变量定义，函数声明，this，arguments
-作用域链
-
-```js
-for (var i = 0; i < 5; i++) {
-  setTimeout(() => {
-    console.log(i++)
-  }, 4000)
-}
-console.log(i) // 5 5 6 7 8 9
-```
-
-## 异步编程
-
-Event Loop（JS 执行机制）
-主线程不断重复地获取任务和执行任务，叫做事件循环
-三个位置: 执行栈 宿主环境 任务队列
-异步任务委托给宿主环境执行，执行后的回调函数放入任务队列
-异步任务又分为宏任务（ajax fs setTimeout setInterval）和微任务（click resize then catch finally nextTick），优先检测是否有微任务并执行
-
-Promise 对象
-一个 Promise 实例有三种状态，分别是 pending、resolved 和 rejected，分别代表了进行中、已成功和已失败
-可以通过 resolve() 和 reject() 函数来**改变**状态，参数传递给后面的.then 或.catch 处理
-.then 方法返回新的 Promise 实例
-.catch 方法捕捉失败结果
-.finally 方法是不管 promise 最后的状态，在执行完 then 或 catch 指定的回调函数以后，都会执行 finally 方法指定的回调函数
-
-Promise.all([ p1,p2,p3 ])
-当所有的子 Promise 都完成，该 Promise 完成，返回值是全部值的数组,这个数组按顺序保存着每一个 promise 对象 resolve 执行时的值
-但如果有任何一个失败，该 Promise 失败，返回值是第一个失败的子 Promise 的结果
-Promise.race([ p1,p2,p3 ])
-与 all 不同的是，当最先执行完的事件执行完之后，就直接返回该 promise 对象的值。如果第一个 promise 对象状态变成 resolved，那自身的状态变成了 resolved；反之第一个 promise 变成 rejected，那自身状态就会变成 rejected
-实际应用中常用来参合进去一个计时的，当超过多长时间，这些异步任务就都不做了
-Promise.race([ p1,p2,p3,timeOutPromise(5000) ])
-
-async await
-捕捉异常：
-
-```js
-async function fn() {
-  try {
-    let a = await xxxxx
-  } catch (err) {
-    console.log(err)
-  }
-}
-```
-
-并发与并行
-并发是宏观概念，同一时间通过任务间的切换完成多个任务也是并发
-并行是微观概念，同一时间多个指令在处理器上同时进行
-
-三个定时器函数
-最常用的是 setTimeout，很多人认为 setTimeout 是延时多久，那就应该是多久后执行，其实这个观点是错误的，因为 JS 是单线程执行的，如果前面的代码影响了性能，就会导致 setTimeout 不会按期执行。当然了，可以通过代码去修正 setTimeout，从而使定时器相对准确。
-setInterval，其实这个函数作用和 setTimeout 基本一致，只是该函数是每隔一段时间执行一次回调函数，通常来说不建议使用 setInterval。第一，它和 setTimeout 一样，不能保证在预期的时间执行任务。第二，它存在执行累积的问题，如果定时器执行过程中出现了耗时操作，多个回调函数会在耗时操作结束以后同时执行，这样可能就会带来性能上的问题。
-requestAnimationFrame 会把每一帧中的所有 DOM 操作集中起来，在一次重绘或回流中就完成，并且重绘或回流的时间间隔紧紧跟随浏览器的刷新频率。在隐藏或不可见的元素中，requestAnimationFrame 将不会进行重绘或回流。如果有循环定时器的需求，其实完全可以通过 requestAnimationFrame 来实现，首先 requestAnimationFrame 自带函数节流功能，基本可以保证在 16.6 毫秒内只执行一次（不掉帧的情况下），并且该函数的延时效果是精确的，没有其他定时器时间不准的问题。
-
-```js
-let clock = setInterval(() => console.log('hi'), 1000)
-clearInterval(clock)
-
-let clock = setTimeout(() => console.log('hi'), 1000)
-clearTimeout(clock)
-
-window.requestAnimationFrame(回调函数)
 ```
 
 ## 浏览器的垃圾回收机制
