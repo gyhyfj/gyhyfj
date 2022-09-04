@@ -36,8 +36,27 @@ window.onload 传统注册事件方式只能写一次，会以最后一个 windo
 网页中，定时器中的 this 指向 window 对象
 
 setTimeout()
+clearTimeout()
 
 setInterval()
+clearInterval()
+
+重要：
+关于清除定时器：
+
+1. 必须用 clearTimeout，才能关掉定时器
+   如果直接把定时器赋值为 null，不能关掉定时器，只会改变定时器指向而已
+2. 用 clearTimeout 关掉定时器后
+   这个定时器仍然存在，并不是从内存中清除了，并不等于 null
+
+```js
+let timeout = setTimeout(() => {
+  console.log(999)
+}, 500)
+// clearTimeout(timeout)
+// timeout = null
+console.log(timeout)
+```
 
 ## localStorage
 
