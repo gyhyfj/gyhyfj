@@ -6,7 +6,7 @@ const { Layout } = DefaultTheme
 const { route } = useRouter()
 
 watchEffect(() => {
-  if (!/^\/code\//.test(route.path)) {
+  if (/^\/%E6%95%A3%E8%AE%B0\//.test(route.path)) {
     let current = document.styleSheets[0].cssRules[0].selectorText
     if (current !== '.vp-doc p') {
       document.styleSheets[0].insertRule('.vp-doc p{text-indent: 2em;}', 0)
