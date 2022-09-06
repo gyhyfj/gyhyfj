@@ -1,3 +1,5 @@
+# canvas
+
 ## 绘制形状
 
 绘制矩形
@@ -46,7 +48,7 @@ globalAlpha = transparencyValue // 全局透明度，但只对后面的代码生
 
 线型
 lineWidth = value // number，单位是 px
-lineCap = type // butt（默认）|round|square(线段末端以方形结束，但是增加了一个宽度和线段相同，长度是线段宽度一半的矩形区域。)
+lineCap = type // butt（默认）|round|square（线段末端以方形结束，但是增加了一个宽度和线段相同，长度是线段宽度一半的矩形区域。）
 lineJoin = type // miter（默认，延长相交）|bevel（方拐角）|round（圆角）
 miterLimit = value // number，单位是 px（线条交接处内角顶点到外角顶点的最大长度）
 setLineDash(segments) // 设置虚线样式，接收一个数组，描述交替绘制线段和间距长度的数组。如果数组元素的数量是奇数， 数组的元素会被复制并重复。
@@ -148,7 +150,7 @@ for (var i = 0; i < 3; i++) {
 ```
 
 旋转
-rotate(angle) // 旋转的中心点始终是 canvas 的原点，如果要改变它，我们需要用到 translate 方法
+rotate(angle) // 旋转的中心点始终是左上角的 canvas 的原点，如果要改变它，我们需要用到 translate 方法
 
 ```ts
 const canvas = document.getElementById('canvas')
@@ -202,3 +204,117 @@ ctx.arc(0,0,60,0,Math.PI\*2,true)
 ctx.clip()
 
 ## 动画
+
+1. 清空 canvas clearRect(x,y,width,height)
+2. save()
+3. 绘制动画帧
+4. restore()
+
+执行重绘
+https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial/Basic_animations
+
+1. setInterval setTimeout requestAnimationFrame
+2. 交互事件
+
+```js
+function clock() {
+  var now = new Date()
+  var ctx = document.getElementById('canvas').getContext('2d')
+  ctx.save()
+  ctx.clearRect(0, 0, 150, 150)
+  ctx.translate(75, 75)
+  ctx.scale(0.4, 0.4)
+  ctx.rotate(-Math.PI / 2)
+  ctx.strokeStyle = 'black'
+  ctx.fillStyle = 'white'
+  ctx.lineWidth = 8
+  ctx.lineCap = 'round'
+
+  // Hour marks
+  ctx.save()
+  for (var i = 0; i < 12; i++) {
+    ctx.beginPath()
+    ctx.rotate(Math.PI / 6)
+    ctx.moveTo(100, 0)
+    ctx.lineTo(120, 0)
+    ctx.stroke()
+  }
+  ctx.restore()
+
+  // Minute marks
+  ctx.save()
+  ctx.lineWidth = 5
+  for (i = 0; i < 60; i++) {
+    if (i % 5 != 0) {
+      ctx.beginPath()
+      ctx.moveTo(117, 0)
+      ctx.lineTo(120, 0)
+      ctx.stroke()
+    }
+    ctx.rotate(Math.PI / 30)
+  }
+  ctx.restore()
+
+  var sec = now.getSeconds()
+  var min = now.getMinutes()
+  var hr = now.getHours()
+  hr = hr >= 12 ? hr - 12 : hr
+
+  ctx.fillStyle = 'black'
+
+  // write Hours
+  ctx.save()
+  ctx.rotate(
+    hr * (Math.PI / 6) + (Math.PI / 360) * min + (Math.PI / 21600) * sec
+  )
+  ctx.lineWidth = 14
+  ctx.beginPath()
+  ctx.moveTo(-20, 0)
+  ctx.lineTo(80, 0)
+  ctx.stroke()
+  ctx.restore()
+
+  // write Minutes
+  ctx.save()
+  ctx.rotate((Math.PI / 30) * min + (Math.PI / 1800) * sec)
+  ctx.lineWidth = 10
+  ctx.beginPath()
+  ctx.moveTo(-28, 0)
+  ctx.lineTo(112, 0)
+  ctx.stroke()
+  ctx.restore()
+
+  // Write seconds
+  ctx.save()
+  ctx.rotate((sec * Math.PI) / 30)
+  ctx.strokeStyle = '#D40000'
+  ctx.fillStyle = '#D40000'
+  ctx.lineWidth = 6
+  ctx.beginPath()
+  ctx.moveTo(-30, 0)
+  ctx.lineTo(83, 0)
+  ctx.stroke()
+  ctx.beginPath()
+  ctx.arc(0, 0, 10, 0, Math.PI * 2, true)
+  ctx.fill()
+  ctx.beginPath()
+  ctx.arc(95, 0, 10, 0, Math.PI * 2, true)
+  ctx.stroke()
+  ctx.fillStyle = 'rgba(0,0,0,0)'
+  ctx.arc(0, 0, 3, 0, Math.PI * 2, true)
+  ctx.fill()
+  ctx.restore()
+
+  ctx.beginPath()
+  ctx.lineWidth = 14
+  ctx.strokeStyle = '#325FA2'
+  ctx.arc(0, 0, 142, 0, Math.PI * 2, true)
+  ctx.stroke()
+
+  ctx.restore()
+
+  window.requestAnimationFrame(clock)
+}
+
+window.requestAnimationFrame(clock)
+```

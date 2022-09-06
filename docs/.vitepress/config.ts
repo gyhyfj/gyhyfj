@@ -101,6 +101,10 @@ const webapi = [
     text: 'canvas',
     link: '/html-css-js/webapi/canvas',
   },
+  {
+    text: 'svg',
+    link: '/html-css-js/webapi/svg',
+  },
 ]
 const nodejs = [
   {
