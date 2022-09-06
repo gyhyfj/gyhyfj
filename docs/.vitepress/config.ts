@@ -97,6 +97,10 @@ const webapi = [
     text: '浏览器原理',
     link: '/html-css-js/webapi/浏览器原理',
   },
+  {
+    text: 'canvas',
+    link: '/html-css-js/webapi/canvas',
+  },
 ]
 const nodejs = [
   {
