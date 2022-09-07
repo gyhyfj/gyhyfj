@@ -81,7 +81,7 @@ window.addEventListener(
 setTimeout(() => console.log('3s passed'), 3000)
 
 // 改写后
-const wait = ms => new Promise(res => setTimeout(resolve, ms))
+const wait = ms => new Promise(res => setTimeout(res, ms)) // res是resolve函数
 wait(3000)
   .then(() => console.log('3s passed'))
   .catch(err => console.log(err))
