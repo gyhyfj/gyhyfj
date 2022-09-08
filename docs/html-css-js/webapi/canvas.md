@@ -1,5 +1,20 @@
 # canvas
 
+1. 创建固定大小的画布
+   使用 canvas 标签，传入 height 和 weight 参数，不带单位，默认是 px
+   `<canvas width="300" height="300"></canvas>`
+2. 获取渲染上下文
+   先获取 canvas 元素，再使用 getContext()方法获取渲染上下文
+   `let canvas = document.querySelector('canvas') as HTMLCanvasElement`
+   `if(!canvas.getContext) { return } // 判断浏览器兼容性`
+   `let ctx = canvas.getContext('2d') as CanvasRenderingContext2D`
+   getContext 方法接收一个参数，是绘图上下文的类型：
+   - 2d：二维渲染上下文，可以用`CanvasRenderingContext2D()`来替换 `getContext('2d')`
+   - webgl2
+   - bitmaprenderer
+3. 拿到渲染上下文后进行绘制
+   所以在 vue 中要在 onMounted 中调用
+
 ## 绘制形状
 
 绘制矩形
@@ -8,9 +23,11 @@ fillRect(x, y, width, height)
 clearRect(x, y, width, height) // 设置矩形区域内像素完全透明
 
 绘制路径
-beginPath() // 每次这个方法调用之后，列表清空重置，然后我们就可以重新绘制新的图形
-closePath() // 闭合路径
-stroke() // 绘制 border，非内减模式
+beginPath() // 新建一条路径，生成之后，图形绘制命令被指向到路径上
+// 每次这个方法调用之后，列表清空重置，然后我们就可以重新绘制新的图形，这个方法不接受参数，调用后必须使用 moveTo 或 rect 才能确定起点去画直线，否则，调用的第一个 lineTo 只会作为 moveTo 存在，不会被渲染
+closePath() // 闭合路径，图形绘制命令又重新指向到上下文
+// 只能配合 beginPath()使用，其实这个命令不是必须的，只要每次需要绘制路径都开启新路径就 ok
+stroke() // 绘制 border，非内减模式，叠加的路径会看起来变粗变深
 fill() // 调用这个函数会自动闭合路径
 
 绘制直线
@@ -18,15 +35,28 @@ moveTo(x,y) // 移动笔触
 lineTo(x,y) // 画直线
 
 绘制矩形路径
-rect(x, y, width, height)
+rect(x, y, width, height) // 绘制完毕后终点是左上角
 
 绘制圆弧
 arc(x, y, r, startAngle, endAngle, anticlockwise) // 弧度=(Math.PI/180)\*角度，向右下象限旋转
 // anticlockwise 为 true 逆时针，默认 false 顺时针
+// 圆弧的起点是 startAngle 指向的那个点
+// 在调用 beginPath 后调用此方法，如果没起点（比如提前 moveTo 某个点），那么只会画出圆弧，否则会先从起点连线到圆弧起点
+
+绘制椭圆
+ellipse(x, y, radiusX, radiusY, rotation, startAngle, endAngle, anticlockwise)
+// x、y：椭圆的圆心位置
+// radiusX、radiusY：x 轴和 y 轴的半径
+// rotation：椭圆的旋转角度，以弧度表示
+// startAngle：开始绘制点
+// endAngle：结束绘制点
+// anticlockwise：绘制的方向（默认 false 顺时针），可选参数
 
 贝塞尔曲线
 quadraticCurveTo(cp1x, cp1y, x, y)
-bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)
+bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y) // 三次贝塞尔曲线有两个控制点，可以用来画 S
+[二次贝塞尔曲线调试工具](http://blogs.sitepointstatic.com/examples/tech/canvas-curves/quadratic-curve.html)
+[三次贝塞尔曲线调试工具](http://blogs.sitepointstatic.com/examples/tech/canvas-curves/bezier-curve.html)
 
 Path2D
 Path 对象，存储的是路径
@@ -44,15 +74,21 @@ ctx.stroke(rectangle) // stroke 接收一个路径对象
 色彩
 fillStyle = colorStr
 strokeStyle = colorStr
+
+透明
 globalAlpha = transparencyValue // 全局透明度，但只对后面的代码生效
+也可以使用 rgba 和 transparent 这样的 css 样式
 
 线型
-lineWidth = value // number，单位是 px
+lineWidth = value // number，单位是 px，默认是 1
 lineCap = type // butt（默认）|round|square（线段末端以方形结束，但是增加了一个宽度和线段相同，长度是线段宽度一半的矩形区域。）
 lineJoin = type // miter（默认，延长相交）|bevel（方拐角）|round（圆角）
 miterLimit = value // number，单位是 px（线条交接处内角顶点到外角顶点的最大长度）
+
+虚线
 setLineDash(segments) // 设置虚线样式，接收一个数组，描述交替绘制线段和间距长度的数组。如果数组元素的数量是奇数， 数组的元素会被复制并重复。
 getLineDash() // 返回一个包含当前虚线样式，长度为非负偶数的数组
+ctx.lineDashOffset = 3 // 虚线样式的起始偏移量，起点向左偏移 3 像素
 
 渐变
 先创建渐变对象
