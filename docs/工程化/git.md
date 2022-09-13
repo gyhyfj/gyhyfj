@@ -43,14 +43,16 @@ git status
 git status -s
 
 # 回退版本
-git reset [--soft | --mixed | --hard] [HEAD]
+git revert # 撤销某次提交的修改，之后的 commit 仍存在
+
+git reset [--soft | --mixed | --hard] [HEAD] # 之后的 commit 不再存在
 git reset e1af2 # 回退所有内容到e1af2版本
 git reset HEAD^ # 回退所有内容到上一个版本
 git reset HEAD^ a.txt # 回退a.txt到上一个版本
 
-# --mixed 重置暂存区，工作区不变，默认可以省略
-# --soft 都不重置 # 不小心把不该提交的内容提交了，可以执行这个，消除提交记录，最后统一提交
-# --hard 都重置，且删除之前的提交
+# --soft 取消了 commit，之后的 commit 出现在暂存区 # 不小心把不该提交的内容提交了，可以执行这个，消除提交记录，最后统一提交（将原来多次的git提交记录合并为一个）
+# --mixed 取消了 commit 和 add，重置暂存区，工作区不变，默认可以省略
+# --hard 取消了commit 和 add 和源文件修改
 
 git checkout <commitID> # 切换到指定快照 switch也行
 git checkout -- <filename> # 将指定文件从暂存区复制到工作区，丢弃工作区对该文件的修改
@@ -68,6 +70,7 @@ git checkout -b test # 创建并切换到新分支
 git merge test # 把指定分支合并到当前分支
 
 # 暂存操作
+# stash 操作并不限制于某个分支，所以可以用来将对一个分支的修改移动到另一个分支
 git stash
 git stash list # 列出所有暂时保存的工作
 git stash apply stash@{1} # 恢复某个暂时保存的工作
@@ -109,18 +112,31 @@ git fetch
 
 git diff origin/dev # 查看与 远程仓库名/分支名 区别
 
+git merge dev # 合并dev到当前分支
+
+git tag 1.0.0 # 打标签
+
 git checkout my-dev
 git pull origin dev
 # 将 origin 的 dev 分支合并到本地的 my-dev 分支
 # git pull 其实是 git fetch 与 git merge 两个命令的集合，直接存到工作区
 # 先执行 git fetch origin 当前分支名, 再执行 git merge FETCH_HEAD
+
+# 变基rebase
+# 千万不要用 rebase 处理已被其他人引用的提交
+git rebase main # 把当前分支变基到 main 分支上，不再原样保留当前分支之前独立出去的提交
+
+# 解决合并冲突
+# 1. 用 merge，将主干分支 merge 到特性分支，并在合并时解决冲突，这样在特性分支中就创造了一个无冲突的合并
+# 2. 用 rebase，将特性分支 rebase 到主干分支，并在 rebase 的过程中解决冲突。因为少创造一个节点出来，所以减轻代码审查者的负担。生成相对清爽的提交历史，方便工程历史的追溯和缺陷排查
+
+# 交互式rebase
+git rebase -i 分支/版本号
+# 通过改变上方todo-list排序，进行提交搬移和重建（从上到下）
+# 将 pick 改为 squash [skwɑːʃ] 后，会把这一行和上一行合并为一次提交，追加到 main 分支后，实现提交的压缩
+# 将 pick 改为 drop，则会丢弃这一行的更改提交记录，也会在后面的提交中丢弃这一行的更改
 ```
 
-merge 与 rebase
-git merge 会让 2 个分支的提交按照提交时间进行排序，并且会把最新的 2 个 commit 合并成一个 commit。最后的分支树呈现非线性的结构
-git rebase 将 dev 的当前提交复制到 master 的最新提交之后，会形成一个线性的分支树
-
-git flow
 git revert
 
 ## Git 工作流
@@ -148,7 +164,34 @@ git revert
 每个开发者的命名规约、分支用途不一致，会给沟通和管理带来困难，所以需要用同意的分支模式
 
 分支类型：
-master develop feature bugfix hotfix release support（维护分支）
+master（主干分支，通常只允许其他分支代码合入，不允许直接提交代码）
+develop（开发分支）
+feature（特性分支，通常从 develop 分支拉出）
+release（发布分支，从 develop 分支出来，介于 develop 和 master 之间的分支，其作用是发布前的准备工作，后以 fast forward 方式合并到 master 上。release 上可能还会修改一些内容，所以还要合并回 develop 分支）
+hotfix（热修复分支，验证通过后，合并到 Master 和 Develop 分支）
+support（旧版本维护分支）
+
+开发流程：
+（本质上，分支只是引用）
+
+1. 根据需求从 develop 上创建 feature 分支（其实就是创建了一个新的引用）
+2. 提交修改到创建的 feature 分支
+3. 合并 feature 分支到 develop 分支
+4. 从 develop 分支创建 release 分支，到测试环境测试
+5. 合并 release 到 develop 和 master 分支（其实就是改变了 develop 和 master 的引用）
+6. 打标签
+7. 清理分支（清理分支，只是把引用删掉了）
+
+维护分支：
+可以在某个大版本统一维护破坏更新之前的老版本
+
+1. `git checkout 1.1.0` 切换到某个大版本的 tag
+2. `git checkout -b support/1.x` 创建 support 分支，相当于过去的 main 分支
+3. `git checkout -b feature/6` 基于 support 创建 feature 分支
+4. `git commit` 提交对 feature 分支的修改
+5. `git checkout support/1.x` 切换到 support 分支
+6. `git merge feature/6` 把 feature 分支的修改合并到创建的 support 分支
+7. `git tag 1.2.0` 打标签
 
 ### GitHub flow
 
@@ -175,6 +218,22 @@ master develop feature bugfix hotfix release support（维护分支）
 13. 删除功能分支
 
 ### GitLab flow
+
+GitHub flow 隐含一个假定：每次合并 feature，主分支的代码是立即发布的。然而，实际中常常不能满足这个假定，例如：你无法控制代码发布时间，例如 App 发布要等审核通过。再例如：发布时间窗口限制，合并分支的时候也许并不在发布时间窗口。
+
+GitLab flow 只存在一个主分支 master，它是所有其他分支的"上游"。只有上游分支采纳的代码变化，才能应用到其他分支。一切代码的变化，必须由"上游"向"下游"发展。
+对于"版本发布"的项目，每一个稳定版本，都要从 master 分支拉出一个长期存在的 release 分支，比如 2-3-stable、2-4-stable 等等。以后，只有修补 bug，才允许将代码合并到这些分支，并且此时要更新小版本号。
+
+工作流程：
+
+1. 开发新功能前，要用 master 分支创建一个开发新功能的 feature 分支
+2. 当功能开发完成后，用 master 分支去合并 feature 分支，合并完成后将 feature 分支删除
+3. 将 master 分支的代码部署到测试环境，如果测试出 bug，直接在 master 分支上修复
+4. master 分支的代码测试通过后，用 master 分支创建 pre-production 预发布分支，将其部署到预发布环境
+5. 预发布的代码出现 bug 时，不能直接在分支 pre-production 上修复 bug，要用 pre-production 分支创建出一个 fixbug 分支。bug 被修复后，用 pre-production 分支合并 fixbug 分支，然后将 pre-production 分支的代码部署到预发布环境进行测试，若测试通过则 bug 修复完毕，删除 fixbug 分支
+6. 用预发布 pre-production 分支创建 production 正式分支，将其部署到正式环境
+7. 如果要修复正式环境 bug，用 production 分支创建出一个 fixbug 分支，在 bug 修复后，在本地测试通过后，用 master 分支合并 fixbug 分支，将 master 分支的代码部署到测试环境进行测试，测试通过后才能发布到正式环境。
+8. 在 GitLab flow 中版本发布不是采用打 tag 的形式。而是要用 master 分支创建 release 分支，分支的名字为 2-3-stable、2-4-stable 等等
 
 ## GitHub
 

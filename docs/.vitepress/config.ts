@@ -286,8 +286,52 @@ const ts = [
     link: '/vue-ts/ts/ES6的类',
   },
   {
-    text: 'TypeScript',
-    link: '/vue-ts/ts/TypeScript',
+    text: 'TS类型系统',
+    link: '/vue-ts/ts/01类型系统',
+  },
+  {
+    text: 'tsconfig配置文件',
+    link: '/vue-ts/ts/02tsconfig配置文件',
+  },
+  {
+    text: '命名空间',
+    link: '/vue-ts/ts/03命名空间',
+  },
+  {
+    text: '三斜杠指令',
+    link: '/vue-ts/ts/04三斜杠指令',
+  },
+  {
+    text: '声明文件',
+    link: '/vue-ts/ts/05声明文件',
+  },
+  {
+    text: '混入Mixins',
+    link: '/vue-ts/ts/06混入Mixins',
+  },
+  {
+    text: '装饰器',
+    link: '/vue-ts/ts/07装饰器',
+  },
+  {
+    text: 'TS编写发布订阅模式',
+    link: '/vue-ts/ts/08TS编写发布订阅模式',
+  },
+  {
+    text: 'Proxy-Reflect',
+    link: '/vue-ts/ts/09Proxy-Reflect',
+  },
+  {
+    text: 'Partial-Pick ',
+    link: '/vue-ts/ts/10Partial-Pick ',
+  },
+  {
+    text: 'Record-Readonly',
+    link: '/vue-ts/ts/11Record-Readonly',
+  },
+  {
+    text: 'infer',
+    link: '/vue-ts/ts/12infer',
   },
   {
     text: 'TS总结',
