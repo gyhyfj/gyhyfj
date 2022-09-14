@@ -370,6 +370,10 @@ const engineer = [
     link: '/工程化/模块化',
   },
   {
+    text: '代码规范',
+    link: '/工程化/代码规范',
+  },
+  {
     text: 'Vite',
     link: '/工程化/vite',
   },
@@ -768,6 +772,10 @@ export default {
               {
                 text: '模块化',
                 link: '/工程化/模块化',
+              },
+              {
+                text: '代码规范',
+                link: '/工程化/代码规范',
               },
               {
                 text: 'Vite',
