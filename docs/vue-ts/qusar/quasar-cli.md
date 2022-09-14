@@ -27,3 +27,69 @@ If you want independence of the globally installed @quasar/cli package, you need
   "build:pwa": "quasar build -m pwa"
 }
 ```
+
+## 项目结构
+
+没有 `main.ts`
+
+```bash
+quasar-project
+├── .quasar
+│   ├── app.js
+│   ├── client-entry.js
+│   ├── client-prefetch.js
+│   └── quasar-user-options.js
+├── .vscode
+│   ├── extensions.json
+│   └── settings.json
+├── public
+│   ├── icons
+│   │   ├── favicon-128x128.png
+│   │   ├── favicon-16x16.png
+│   │   ├── favicon-32x32.png
+│   │   └── favicon-96x96.png
+│   └── favicon.ico
+├── src
+│   ├── assets
+│   │   └── quasar-logo-vertical.svg
+│   ├── boot
+│   │   ├── axios.ts
+│   │   └── i18n.ts
+│   ├── components
+│   │   ├── EssentialLink.vue
+│   │   ├── ExampleComponent.vue
+│   │   └── models.ts
+│   ├── css
+│   │   ├── app.scss
+│   │   └── quasar.variables.scss
+│   ├── i18n
+│   │   ├── en-US
+│   │   └── index.ts
+│   ├── layouts
+│   │   └── MainLayout.vue
+│   ├── pages
+│   │   ├── ErrorNotFound.vue
+│   │   └── IndexPage.vue
+│   ├── router
+│   │   ├── index.ts
+│   │   └── routes.ts
+│   ├── stores
+│   │   ├── example-store.ts
+│   │   ├── index.ts
+│   │   └── store-flag.d.ts
+│   ├── App.vue
+│   ├── env.d.ts
+│   ├── quasar.d.ts
+│   └── shims-vue.d.ts
+├── .editorconfig
+├── .eslintignore
+├── .eslintrc.js
+├── .prettierrc
+├── README.md
+├── index.html
+├── package.json
+├── postcss.config.js
+├── quasar.config.js
+├── tsconfig.json
+└── yarn.lock
+```
