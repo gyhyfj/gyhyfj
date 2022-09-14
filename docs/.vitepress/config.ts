@@ -322,8 +322,8 @@ const ts = [
     link: '/vue-ts/ts/09Proxy-Reflect',
   },
   {
-    text: 'Partial-Pick ',
-    link: '/vue-ts/ts/10Partial-Pick ',
+    text: 'Partial-Pick',
+    link: '/vue-ts/ts/10Partial-Pick',
   },
   {
     text: 'Record-Readonly',
