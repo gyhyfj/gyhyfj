@@ -342,6 +342,18 @@ const ts = [
     link: '/vue-ts/ts/TS总结',
   },
 ]
+const quasar = [
+  {
+    text: '初始化项目',
+    link: '/vue-ts/quasar/初始化项目',
+  },
+]
+const elementplus = [
+  {
+    text: 'Element Plus',
+    link: '/vue-ts/element-plus/element-plus',
+  },
+]
 const uniapp = [
   {
     text: 'uniapp',
@@ -738,6 +750,14 @@ export default {
                 link: '/vue-ts/ts/ES6的类',
               },
               {
+                text: 'Quasar',
+                link: '/vue-ts/quasar/初始化项目',
+              },
+              {
+                text: 'Element Plus',
+                link: '/vue-ts/element-plus/element-plus',
+              },
+              {
                 text: 'UniApp',
                 link: '/vue-ts/uniapp/miniprogram',
               },
@@ -939,6 +959,18 @@ export default {
           collapsed: true,
           text: 'TypeScript',
           items: ts,
+        },
+        {
+          collapsible: true,
+          collapsed: true,
+          text: 'Quasar',
+          items: quasar,
+        },
+        {
+          collapsible: true,
+          collapsed: true,
+          text: 'ElementPlus',
+          items: elementplus,
         },
         {
           collapsible: true,

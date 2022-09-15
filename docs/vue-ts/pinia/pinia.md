@@ -38,6 +38,8 @@ export const enum Names {
 }
 ```
 
+选项式 store：
+
 ```ts
 /* store/index.ts */
 import { defineStore } from 'pinia'
@@ -54,6 +56,23 @@ export const useTestStore = defineStore(Names.TEST, {
   getters: {},
   // 做一些同步或异步，提交state
   actions: {},
+})
+```
+
+函数式 store：
+
+```ts
+/* store/index.ts */
+import { ref } from 'vue'
+import { defineStore } from 'pinia'
+import { Names } from './store-name'
+
+export const useTestStore = defineStore(Names.TEST, () => {
+  const count = ref(0)
+  const add = () => {
+    cout.value++
+  }
+  return { count, add }
 })
 ```
 
