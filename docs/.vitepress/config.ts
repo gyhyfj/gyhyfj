@@ -9,6 +9,10 @@ const dushu = [
     text: '《1965年重上井冈山》',
     link: '/散记/I-will-be-there/读书/1965年重上井冈山',
   },
+  {
+    text: '《阴符经》',
+    link: '/散记/I-will-be-there/读书/阴符经',
+  },
 ]
 const shenghuo = [
   {
