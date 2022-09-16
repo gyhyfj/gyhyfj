@@ -394,6 +394,20 @@ const react = [
     text: 'Hooks',
     link: '/react/react/05Hooks',
   },
+  {
+    text: 'Router',
+    link: '/react/react/06Router',
+  },
+]
+const reactState = [
+  {
+    text: 'Recoil',
+    link: '/react/状态管理/01Recoil',
+  },
+  {
+    text: '02Redux',
+    link: '/react/状态管理/02Redux',
+  },
 ]
 const bcfs = [
   {
@@ -810,6 +824,10 @@ export default {
                 text: 'React',
                 link: '/react/react/01JSX',
               },
+              {
+                text: '状态管理',
+                link: '/react/状态管理/01Recoil',
+              },
             ],
           },
         ],
@@ -1028,12 +1046,18 @@ export default {
           items: uniapp,
         },
       ],
-      '/react/react': [
+      '/react/': [
         {
           collapsible: true,
           collapsed: true,
           text: 'React',
           items: react,
+        },
+        {
+          collapsible: true,
+          collapsed: true,
+          text: '状态管理',
+          items: reactState,
         },
       ],
       '/rxjs/': [
