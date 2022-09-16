@@ -373,6 +373,20 @@ const uniapp = [
     link: '/vue-ts/uniapp/miniprogram',
   },
 ]
+const react = [
+  {
+    text: 'JSX',
+    link: '/react/react/01JSX',
+  },
+  {
+    text: '工具链',
+    link: '/react/react/02工具链',
+  },
+  {
+    text: '组件',
+    link: '/react/react/03组件',
+  },
+]
 const bcfs = [
   {
     text: '函数式编程',
@@ -779,6 +793,20 @@ export default {
         ],
       },
       {
+        text: 'REACT',
+        items: [
+          {
+            text: '',
+            items: [
+              {
+                text: 'React',
+                link: '/react/react/01JSX',
+              },
+            ],
+          },
+        ],
+      },
+      {
         text: 'RXJS',
         items: [
           {
@@ -844,38 +872,38 @@ export default {
           },
         ],
       },
-      {
-        text: 'GO',
-        items: [
-          {
-            text: '',
-            items: [
-              {
-                text: 'Golang',
-                link: '/go/golang/golang',
-              },
-            ],
-          },
-        ],
-      },
-      {
-        text: 'AI',
-        items: [
-          {
-            text: '',
-            items: [
-              {
-                text: 'Tensorflow',
-                link: '/AI/Tensorflow/Introduction',
-              },
-              {
-                text: 'YOLO',
-                link: '/AI/YOLO/YOLOv5',
-              },
-            ],
-          },
-        ],
-      },
+      // {
+      //   text: 'GO',
+      //   items: [
+      //     {
+      //       text: '',
+      //       items: [
+      //         {
+      //           text: 'Golang',
+      //           link: '/go/golang/golang',
+      //         },
+      //       ],
+      //     },
+      //   ],
+      // },
+      // {
+      //   text: 'AI',
+      //   items: [
+      //     {
+      //       text: '',
+      //       items: [
+      //         {
+      //           text: 'Tensorflow',
+      //           link: '/AI/Tensorflow/Introduction',
+      //         },
+      //         {
+      //           text: 'YOLO',
+      //           link: '/AI/YOLO/YOLOv5',
+      //         },
+      //       ],
+      //     },
+      //   ],
+      // },
       {
         text: '散记',
         items: [
@@ -990,6 +1018,14 @@ export default {
           collapsed: true,
           text: 'uniapp',
           items: uniapp,
+        },
+      ],
+      '/react/react': [
+        {
+          collapsible: true,
+          collapsed: true,
+          text: 'React',
+          items: react,
         },
       ],
       '/rxjs/': [
