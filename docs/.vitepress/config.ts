@@ -386,6 +386,14 @@ const react = [
     text: '组件',
     link: '/react/react/03组件',
   },
+  {
+    text: '组件通信',
+    link: '/react/react/04组件通信',
+  },
+  {
+    text: 'Hooks',
+    link: '/react/react/05Hooks',
+  },
 ]
 const bcfs = [
   {
