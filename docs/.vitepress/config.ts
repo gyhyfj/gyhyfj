@@ -237,51 +237,64 @@ const pinia = [
 const router4 = [
   {
     text: '开始使用',
-    link: '/vue-ts/router4/开始使用',
+    link: '/vue-ts/router4/01开始使用',
   },
   {
-    text: '路由模式',
-    link: '/vue-ts/router4/路由模式',
-  },
-  {
-    text: '命名路由-编程式导航',
-    link: '/vue-ts/router4/命名路由-编程式导航',
-  },
-  {
-    text: '历史记录',
-    link: '/vue-ts/router4/历史记录',
-  },
-  {
-    text: '路由传参',
-    link: '/vue-ts/router4/路由传参',
-  },
-  {
-    text: '嵌套路由',
-    link: '/vue-ts/router4/嵌套路由',
-  },
-  {
-    text: '命名视图',
-    link: '/vue-ts/router4/命名视图',
-  },
-  {
-    text: '重定向-别名',
-    link: '/vue-ts/router4/重定向-别名',
-  },
-  {
-    text: '导航守卫',
-    link: '/vue-ts/router4/导航守卫',
-  },
-  {
-    text: 'meta信息',
-    link: '/vue-ts/router4/meta信息',
-  },
-  {
-    text: '滚动行为',
-    link: '/vue-ts/router4/滚动行为',
+    text: '跳转与传参',
+    link: '/vue-ts/router4/02跳转与传参',
   },
   {
     text: '动态路由',
-    link: '/vue-ts/router4/动态路由',
+    link: '/vue-ts/router4/03动态路由',
+  },
+  {
+    text: '嵌套路由',
+    link: '/vue-ts/router4/04嵌套路由',
+  },
+  {
+    text: '命名视图',
+    link: '/vue-ts/router4/05命名视图',
+  },
+  {
+    text: '重定向-别名',
+    link: '/vue-ts/router4/06重定向-别名',
+  },
+  {
+    text: '路由组件传参',
+    link: '/vue-ts/router4/07路由组件传参',
+  },
+
+  {
+    text: '路由模式',
+    link: '/vue-ts/router4/08路由模式',
+  },
+  {
+    text: '导航守卫',
+    link: '/vue-ts/router4/09导航守卫',
+  },
+  {
+    text: '路由元信息',
+    link: '/vue-ts/router4/10路由元信息',
+  },
+  {
+    text: '数据获取',
+    link: '/vue-ts/router4/11数据获取',
+  },
+  {
+    text: '过渡动效',
+    link: '/vue-ts/router4/12过渡动效',
+  },
+  {
+    text: '滚动行为',
+    link: '/vue-ts/router4/13滚动行为',
+  },
+  {
+    text: '导航故障',
+    link: '/vue-ts/router4/14导航故障',
+  },
+  {
+    text: '动态路由表',
+    link: '/vue-ts/router4/15动态路由表',
   },
 ]
 const ts = [
@@ -739,7 +752,7 @@ export default {
 
               {
                 text: 'Router4',
-                link: '/vue-ts/router4/开始使用',
+                link: '/vue-ts/router4/01开始使用',
               },
               {
                 text: 'Pinia',

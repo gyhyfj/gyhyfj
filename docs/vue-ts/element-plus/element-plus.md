@@ -64,7 +64,7 @@ provide 和 inject
 `window.$message = ElMessage`
 然后在每个组件中直接使用`window.$message`
 但是需要解决 ts 报错
-在`*.d.ts`中
+在`*.d.ts`中拓展 Window 接口
 
 ```ts
 interface Window {
