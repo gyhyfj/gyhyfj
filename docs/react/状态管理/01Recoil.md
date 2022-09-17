@@ -102,9 +102,9 @@ export const countState = atom({
       console.log('hello')
     },
     ({ onSet }) => {
-      // 状态变化时触发，类似vue的侦听器
-      onSet((newVal, oldVal) => {
-        console.log(newVal, oldVal)
+      // 状态变化时触发，类似绑定set事件的处理函数
+      onSet((newVal, oldVal, isReset) => {
+        console.log(newVal, oldVal, isReset)
       })
     },
   ],
