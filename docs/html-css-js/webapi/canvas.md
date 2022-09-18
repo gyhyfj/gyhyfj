@@ -148,8 +148,16 @@ text.width // 16
 
 绘制图片
 drawImage(image, x, y) // image 是 image 或者 canvas 对象，x 和 y 是其在目标 canvas 里的起始坐标
-drawImage(image, x, y, width, height) // width 和 height，这两个参数用来控制 当向 canvas 画入时应该缩放的大小
-drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight) // 第一个参数和其它的是相同的，都是一个图像或者另一个 canvas 的引用。其它 8 个参数的前 4 个是定义图像源的切片位置和大小，后 4 个则是定义切片的目标显示位置和大小
+drawImage(image, x, y, width, height) // 后 4 个参数表示在哪里缩放多少
+drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight) // image 后的前 4 个参数表示从哪里裁剪多少，后 4 个参数表示在哪里缩放多少
+
+```ts
+var img = new Image()
+img.src = 'https://xxx'
+img.onload = function () {
+  ctx.drawImage(img, 0, 0)
+}
+```
 
 控制图像的缩放行为
 // imageSmoothingEnabled 属性来控制是否在缩放图像时使用平滑算法。默认值为 true，即启用平滑缩放
@@ -162,6 +170,10 @@ ctx.imageSmoothingEnabled = false
 ## 变形
 
 变形是一种更强大的方法，可以将原点移动到另一点、对网格进行旋转和缩放。
+
+一个绘画状态包括：
+应用的变形：移动、旋转、缩放、strokeStyle、fillStyle、globalAlpha、lineWidth、lineCap、lineJoin、miterLimit、lineDashOffset、shadowOffsetX、shadowOffsetY、shadowBlur、shadowColor、globalCompositeOperation、font、textAlign、textBaseline、direction、imageSmoothingEnabled 等。
+应用的裁切路径：clipping path
 
 状态保存和恢复
 save() // 保存画布的所有状态 Canvas 状态存储在栈中，每当 save 方法被调用后，当前的状态就被推送到栈中保存
@@ -211,7 +223,7 @@ for (var i = 1; i < 6; i++) {
 ```
 
 缩放
-scale(x, y) // 以 1 为分界线进行缩放，如果参数为负实数，相当于以 x 或 y 轴作为对称轴镜像反转
+scale(x, y) // 以 1 为分界线进行缩放，如果参数为负数，相当于以 x 或 y 轴作为对称轴镜像反转
 
 变形
 // 允许对变形矩阵直接修改
@@ -226,6 +238,10 @@ d(m22) 竖直方向的缩放
 e(dx) 水平方向的移动
 f(dy) 竖直方向的移动
 
+setTransform(a, b, c, d, e, f)方法会将当前变形矩阵重置为单位矩阵，然后用相同的参数调用 transform 方法
+resetTransform()方法为重置当前变形为单位矩阵。效果等同于调用 setTransform(1, 0, 0, 1, 0, 0)
+=
+
 ## 合成与裁剪
 
 globalCompositeOperation
@@ -233,6 +249,7 @@ globalCompositeOperation
 globalCompositeOperation = type // [12 种参数](https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial/Compositing/Example)
 
 clip
+所有在裁剪路径以外的部分都不会在 canvas 上绘制出来
 // 将当前正在构建的路径转换为当前的裁剪路径
 // 裁切路径创建之后所有出现在它里面的东西才会画出来
 ctx.beginPath()
@@ -354,3 +371,42 @@ function clock() {
 
 window.requestAnimationFrame(clock)
 ```
+
+## 保存图片
+
+保存图片 toDataURL()
+`let url = canvas.toDataURL('image/png') // base64`
+
+```ts
+/* 获取图片base64 */
+let url = canvas.toDataURL('image/png') // base64
+
+/* 转换base64 */
+let arr = url.split(',')
+var mime = ((arr[0] as string).match(/:(.*?);/) as Array<string>)[1] // 此处得到的为文件类型
+let bstr = atob(arr[1])
+var n = bstr.length
+var u8arr = new Uint8Array(n)
+while (n--) {
+  u8arr[n] = bstr.charCodeAt(n)
+}
+
+/* 生成File对象 */
+var file = new File([u8arr], 'filename', { type: mime }) // File 对象
+let href = URL.createObjectURL(file) // 将file对象转成 UTF-16 字符串
+
+/* 下载 */
+var aDom = document.createElement('a') // 创建一个 a 标签
+aDom.download = file.name // 设置文件名
+aDom.href = href // 放入href
+document.body.appendChild(aDom) // 将a标签插入 body
+aDom.click() // 触发 a 标签的点击
+document.body.removeChild(aDom) // 移除刚才插入的 a 标签
+URL.revokeObjectURL(href) // 释放刚才生成的 UTF-16 字符串
+```
+
+## 像素操作
+
+获取像素数据
+ctx.getImageData(left, top, width, height)
+
