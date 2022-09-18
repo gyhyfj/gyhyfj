@@ -372,14 +372,45 @@ function clock() {
 window.requestAnimationFrame(clock)
 ```
 
+## 像素操作
+
+ImageData 对象
+存储着 canvas 对象真实的像素数据
+包含 data colorSpace height width 四个属性
+data 是 Uint8ClampedArray 类型的一维数组，[r1, g1, b1, a1, r2, g2, b2, a2 ...]，10*10*4 个值 4 个值都是 0-255，对于透明度，0 为完全透明，255 为完全不透明
+
+创建 ImageData 对象
+预设为透明黑 rgba(0,0,0,0)
+let myImageData = ctx.createImageData(width, height) // 创建一个指定宽高的空白的对象
+let myImageData = ctx.createImageData(anotherImageData) // 以另一个 ImageData 对象创建相同像素的空白对象
+
+获取包含画布场景的 ImageData 对象
+ctx.getImageData(left, top, width, height)
+getImageData() 可以正确地接受超出 canvas 边界的矩形；canvas 范围外的像素返回值是透明的
+
+```ts
+let x = ctx.getImageData(0, 0, 10, 10)
+console.log(x) // ImageData对象，data colorSpace height width 四个属性
+console.log(x.data) // 一维数组 [r1, g1, b1, a1, r2, g2, b2, a2 ...]，10*10*4个值 4个值都是0-255，对于透明度，0为完全透明，255为完全不透明
+console.log(Object.prototype.toString.call(x.data)) // [object Uint8ClampedArray]
+```
+
+在场景中写入 ImageData 对象
+ctx.putImageData(imagedata, dx, dy) // dx dy 表示要放置的位置
+ctx.putImageData(imagedata, dx, dy, dirtyX, dirtyY, dirtyWidth, dirtyHeight) // 后四个参数表示复制过来后不显示整个图像，只显示这四个参数裁剪出的那块图像
+
 ## 保存图片
 
 保存图片 toDataURL()
+HTMLCanvasElement 提供一个 toDataURL() 方法，返回一个包含被类型参数规定的图像表现格式的数据链接。返回的图片分辨率是 96dpi
+`canvas.toDataURL(type, encoderOptions)` type 默认是 `image/png`，
+如果指定格式是 `image/jpeg` 或 `image/webp`时，可以配置 encoderOptions 为 0-1 表示图片质量。如果超出取值范围，则取默认值 0.92
 `let url = canvas.toDataURL('image/png') // base64`
 
 ```ts
 /* 获取图片base64 */
 let url = canvas.toDataURL('image/png') // base64
+// data:image/png;base64,iVBORw0KGgoAAAANS...
 
 /* 转换base64 */
 let arr = url.split(',')
@@ -405,8 +436,38 @@ document.body.removeChild(aDom) // 移除刚才插入的 a 标签
 URL.revokeObjectURL(href) // 释放刚才生成的 UTF-16 字符串
 ```
 
-## 像素操作
+或者使用 toBlob 方法
 
-获取像素数据
-ctx.getImageData(left, top, width, height)
+```ts
+function downloadByBlob(blobObj: Blob) {
+  const link = document.createElement('a')
+  link.style.display = 'none'
+  const downloadUrl = window.URL.createObjectURL(blobObj)
+  link.href = downloadUrl
+  link.download = `test.png`
+  document.body.appendChild(link)
+  link.click()
+  link.remove()
+}
 
+canvas.toBlob(blob => {
+  let newImg = document.createElement('img')
+  let url = URL.createObjectURL(blob as Blob) //
+  downloadByBlob(blob as Blob)
+  newImg.src = url
+  newImg.onload = function () {
+    // no longer need to read the blob so it's revoked
+    URL.revokeObjectURL(url)
+  }
+  document.body.appendChild(newImg)
+})
+```
+
+[toBlob()](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLCanvasElement/toBlob)
+[Blob](https://developer.mozilla.org/zh-CN/docs/Web/API/Blob)
+[Data URLs](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/Data_URLs)
+[Base64](https://developer.mozilla.org/en-US/docs/Glossary/Base64)
+[btoa()](https://developer.mozilla.org/zh-CN/docs/Web/API/btoa)
+[File](https://developer.mozilla.org/zh-CN/docs/Web/API/File)
+[File.File()](https://developer.mozilla.org/zh-CN/docs/Web/API/File/File)
+[URL.createObjectURL()](https://developer.mozilla.org/zh-CN/docs/Web/API/URL/createObjectURL)
