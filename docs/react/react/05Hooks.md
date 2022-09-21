@@ -81,6 +81,29 @@ useEffect 回调函数中用到的数据就是依赖数据
 - 如果定义了多个 Effect，则按顺序执行
 - 如果要在 useEffect 中执行异步任务，不可以直接在 useEffect 的回调函数外层直接包裹 await ，因为异步会导致清理函数无法立即返回。正确写法是 在内部单独定义一个 async 修饰的函数
 
+useEffect 执行异步操作：
+1、useEffect 中的第一个回调参数返回的是一个 clean-up 函数，所以不能返回 promise 对象，更不能直接使用 async/await，否则会报错；
+2、可以在回调参数中使用 async/await：
+方法一：使用自执行函数
+方法二：在 useEffect 的回调参数内部定义一个 async 函数：
+
+```ts
+useEffect(()=>{
+	// 使用自执行函数 IIFE
+	（async function fn(){
+		await otherFn();
+	})()
+},[])
+
+useEffect(()=>{
+	const fn=async ()=>{
+		// do something
+		await otherFn()
+	}
+	fn()
+},[])
+```
+
 案例：执行顺序
 
 ```tsx
@@ -136,6 +159,7 @@ export function useWindowScroll() {
 
 ## useRef
 
+1.获取 DOM 对象
 useRef 在函数组件中获取 DOM 元素对象或组件对象（函数组件由于没有实例，不能使用 ref 获取）
 
 使用步骤：
@@ -158,6 +182,17 @@ function App() {
   )
 }
 export default App
+```
+
+2.响应式
+和 useEffect useState 一起使用解决拿不到 useState 新值的问题
+
+```ts
+const [isInpainting, setIsInpainting] = useState(false) // TODO: 异步问题
+let forbid = useRef(false)
+useEffect(() => {
+  forbid.current = isInpainting
+}, [isInpainting])
 ```
 
 ## useContext

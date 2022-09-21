@@ -69,6 +69,7 @@ JSX 最终还是用纯 JS 的方式创建虚拟 DOM
 列表渲染使用数组 `map` 方法，作为一个`JS表达式`，写在`{}`中，要为遍历项添加`key`属性
 形如：`{songs.map(item => <li key={item.id}>{item.name}</li>)}`
 条件渲染，仍是在`{}`中写`JS表达式`，可以用三元运算符或`&&`运算符
+如果要在 DOM 结构中显示布尔值，不可以用`{isClearable}`，也不可以用`{true?isClearable:''}`或`{isClearable?true:false}`，只能用`{isClearable.toString()}`
 
 3.样式处理
 行内样式：
