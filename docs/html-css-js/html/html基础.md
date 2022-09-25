@@ -53,8 +53,8 @@ HTML5 的 webstorage 提供两种 API：localStorage（本地存储） 和 sessi
 
 ## img 标签
 
-src 属性可以用绝对路径或相对路径  
-相对路径：`/`表示下级路径 `./`表示同级路径 `../`表示上级路径  
+src 属性可以用绝对路径或相对路径
+相对路径：`/`表示下级路径 `./`表示同级路径 `../`表示上级路径
 alt 属性是图片加载不出来时显示的内容
 title 属性是鼠标移动到图片上时显示的内容
 src 接收 base64: `<img :src="'data:image/png;base64,'+base64数据" />`
@@ -62,9 +62,9 @@ src 接收 base64: `<img :src="'data:image/png;base64,'+base64数据" />`
 ## 表格标签
 
 结构：
-thead、tbody 下面包裹 tr(行)， tr 下面包裹 th、td  
+thead、tbody 下面包裹 tr(行)， tr 下面包裹 th、td
 样式：
-居中样式`align=“center/left/right”` 边框样式`<table border="1">` 将显示边框  
+居中样式`align=“center/left/right”` 边框样式`<table border="1">` 将显示边框
 合并：
 横向合并的格子 `<td rowspan = "跨越的行数"></td>`；纵向合并的格子 `<td colspan = "跨越的列"></td>`
 
@@ -80,7 +80,7 @@ src 用于替换当前元素，href 用于在当前文档和引用资源之间�
 
 ## DOCTYPE 的作用
 
-DOCTYPE（文档类型）告诉浏览器以什么样的模式（html、xhtml）来渲染文档，  
+DOCTYPE（文档类型）告诉浏览器以什么样的模式（html、xhtml）来渲染文档，
 必须在 html 文档的第一行`<!DOCTYPE html>`
 
 ## script 标签的 defer 和 async
@@ -92,7 +92,7 @@ DOCTYPE（文档类型）告诉浏览器以什么样的模式（html、xhtml）�
 
 ## meta 标签
 
-常用的 meta 标签  
+常用的 meta 标签
 属性：charset http-equiv name（keywords、description、viewport、robots）
 
 ```html
@@ -111,7 +111,7 @@ DOCTYPE（文档类型）告诉浏览器以什么样的模式（html、xhtml）�
 />
 <!-- name属性，搜索引擎索引方式 -->
 <meta name="robots" content="index,follow" />
-<!-- 
+<!--
   其中，content 参数有以下几种：
   all：文件将被检索，且页面上的链接可以被查询；
   none：文件将不被检索，且页面上的链接不可以被查询；
@@ -165,3 +165,7 @@ head 标签是所有头部元素的容器，里面只有 title 标签是必须�
 
 禁止页面文字被选中
 `<body onselectstart="return false">`
+
+内容插入换行：
+转义字符`\n`不生效
+可以插入一个空 div 标签`<div />`，会生成一个高度 0 宽度 100%的空 div 块，导致换行

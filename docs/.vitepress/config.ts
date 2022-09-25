@@ -188,8 +188,8 @@ const vue3 = [
     link: '/vue-ts/vue3/16v-model',
   },
   {
-    text: '自定义指令',
-    link: '/vue-ts/vue3/17自定义指令',
+    text: '指令与自定义指令',
+    link: '/vue-ts/vue3/17指令与自定义指令',
   },
   {
     text: '自定义hooks',
