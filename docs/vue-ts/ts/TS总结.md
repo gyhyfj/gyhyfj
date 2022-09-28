@@ -81,3 +81,15 @@ export default interface Config {
 type Config2 = { name: string }
 export default Config2
 ```
+
+## TS 函数类型
+
+```ts
+// 平时常用的这两种一样的写法，函数类型不同
+// 所以如果要严格限制handleClick类型为()=>void，则只能用第二种写法
+let handleClick = () => count.value++
+
+let handleClick = () => {
+  count.value++
+}
+```
