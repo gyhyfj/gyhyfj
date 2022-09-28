@@ -1,5 +1,25 @@
 # TS 总结
 
+## 跳过 ts 检查
+
+只能用单行注释，不支持多行注释的写法
+
+```ts
+/* 单行忽略 */
+// @ts-ignore
+
+/* 忽略全文 */
+// @ts-nocheck
+
+/* 取消忽略全文 */
+// @ts-check
+
+/* 跳过eslint检查 */
+/* eslint-disable */
+const watermark = require('watermark-dom') // @ts-ignore
+/* eslint-enable */
+```
+
 ## interface 和 type 的区别
 
 1.类型别名可以用于其它类型 （联合类型、元组类型、基本类型（原始值）），interface 不支持
