@@ -13,6 +13,10 @@ const dushu = [
     text: '《阴符经》',
     link: '/散记/I-will-be-there/读书/阴符经',
   },
+  {
+    text: '《中国的西北角》',
+    link: '/散记/I-will-be-there/读书/中国的西北角',
+  },
 ]
 const shenghuo = [
   {
