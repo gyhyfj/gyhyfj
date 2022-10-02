@@ -5,6 +5,7 @@
 三个区域：工作区 暂存区 仓库
 三个状态：已修改 已暂存 已提交
 基本的工作流程：修改 暂存 提交
+进行 Git 操作前，多数情况下一定要暂存或提交当前的修改
 
 https://www.bookstack.cn/read/git-tutorial
 
@@ -31,20 +32,35 @@ git add [dir]
 git add .
 
 # 提交修改
-git commit -m "msg" # 提交已暂存修改
+git commit -m 'msg' # 提交已暂存修改
 git commit -a -m # 提交已跟踪修改，不包括新增文件
+git commit --amend -m 'msg' # 在上次commit的基础上附加修改且可同时修改msg，最终只保留一次commit记录，hash值每次都会更新
 
 # 查看日志
+# 由于命令窗口尺寸限制，默认显示不完全，可按回车查看更多内容，最好按 q 退出
 git log
 git log -5 --pretty=oneline
+
+
+# git 指针
+HEAD  HEAD~0  HEAD^0 # 当前
+HEAD~1  HEAD^1  HEAD~  HEAD^ # 当前的上一个
+HEAD~5 HEAD^5 # 当前的上五个
+
+# HEAD~ 和 HEAD^ 的作用是相同的，这两者的区别出现在重复使用或者加数字的
+
 
 # 查看项目当前状态
 git status
 git status -s
 
-# 回退版本
-git revert # 撤销某次提交的修改，之后的 commit 仍存在
+# 还原
+# 多数清空下推荐使用revert
+git revert 版本号 # 撤销某次修改并生成新的commit
+git revert -n 版本号 # 撤销某次提交的修改，在此基础上进行继续修改
 
+# 重置
+# 甚至可以重置不是本分支上的版本
 git reset [--soft | --mixed | --hard] [HEAD] # 之后的 commit 不再存在
 git reset e1af2 # 回退所有内容到e1af2版本
 git reset HEAD^ # 回退所有内容到上一个版本
@@ -54,9 +70,10 @@ git reset HEAD^ a.txt # 回退a.txt到上一个版本
 # --mixed 取消了 commit 和 add，重置暂存区，工作区不变，默认可以省略
 # --hard 取消了commit 和 add 和源文件修改
 
-git checkout <commitID> # 切换到指定快照 switch也行
-git checkout -- <filename> # 将指定文件从暂存区复制到工作区，丢弃工作区对该文件的修改
-git checkout HEAD~ -- <filename> # 指定从某个 commit 恢复指定文件，同时改变暂存区和工作区
+# 重置
+git checkout <commitID> # 切换到指定快照 switch也行，之后的 commit 不再存在
+git checkout <commitID> <filename> # 将指定文件从暂存区复制到工作区，丢弃工作区对该文件的修改
+git checkout HEAD~ <commitID> <filename> # 指定从某个 commit 恢复指定文件，同时改变暂存区和工作区
 
 # 分支操作
 git branch # 查看分支
@@ -71,9 +88,13 @@ git merge test # 把指定分支合并到当前分支
 
 # 暂存操作
 # stash 操作并不限制于某个分支，所以可以用来将对一个分支的修改移动到另一个分支
-git stash
+# stash 暂存修改只会操作被追踪的文件，所以执行 stash 前一般要执行 git add .
+# stash 对新增文件的处理会比较暧昧
+# stash 恢复修改会把暂存的修改和现有修改合并，所以如果要放弃现有修改，需要先执行 git checkout . 或 git reset HEAD . 或 git clean -xdff 或 git stash
+git stash save "msg" # 暂存修改
+git stash # 同后面没跟注解的 git stash save，名称就是最新一次commit的名称
 git stash list # 列出所有暂时保存的工作
-git stash apply stash@{1} # 恢复某个暂时保存的工作
+git stash apply stash@{1} # 恢复某个暂时保存的工作 # 如果使用 pwsh ,需要给大括号加上反引号写成 `{0`}，否则大括号会被认为是代码块执行标识符
 git stash pop # 恢复最近一次stash的文件
 git stash drop # 丢弃最近一次stash的文件
 git stash clear # 删除所有的stash
@@ -137,7 +158,38 @@ git rebase -i 分支/版本号
 # 将 pick 改为 drop，则会丢弃这一行的更改提交记录，也会在后面的提交中丢弃这一行的更改
 ```
 
-git revert
+### 常见情景：
+
+1.在本地写了不想要的代码，但是还没有做 push 操作
+
+```bash
+# 文件被修改了，但未执行git add操作
+git checkout filename # 撤销工作区的某个文件的修改
+git checkout . # 撤销工作区的全部文件的修改
+
+# 同时对多个文件执行了git add操作，但本次只想提交其中一部分文件
+git reset HEAD filename # reset --mixed，保留工作区，移除暂存区的指定文件的修改
+
+# 文件被修改了且commit了，但想继续修改并提交，且不产生新commit
+git add filename
+git commit --amend -m 'msg' # --amend用来修改上次commit的修改以及上次commit的msg
+```
+
+2.刚线上更新的代码出现问题了，需要还原这次提交的代码
+
+```bash
+git revert HEAD # 放弃某次提交，但这次提交记录还在，而且会生成因此而生的新提交
+git push
+# 或
+git reset --hard HEAD^ # HEAD指针指向指定提交，历史中不会出现放弃的提交
+git push -f
+```
+
+3.想要干掉之前的某次提交
+
+```bash
+git rebase -i 分支/版本号
+```
 
 ## Git 工作流
 
