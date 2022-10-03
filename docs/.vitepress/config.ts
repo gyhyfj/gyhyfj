@@ -419,16 +419,28 @@ const packmanager = [
 // NAV 6
 const linux = [
   {
-    text: 'WSL2',
-    link: '/06LINUX/wsl2',
+    text: '简介',
+    link: '/06LINUX/01LINUX/01简介',
   },
   {
+    text: '权限',
+    link: '/06LINUX/01LINUX/02权限',
+  },
+]
+const wsl2 = [
+  {
+    text: 'WSL2',
+    link: '/06LINUX/02WSL2/01wsl2',
+  },
+]
+const nginx = [
+  {
     text: 'PM2',
-    link: '/06LINUX/pm2',
+    link: '/06LINUX/03NGINX/01pm2',
   },
   {
     text: 'NGINX',
-    link: '/06LINUX/nginx',
+    link: '/06LINUX/03NGINX/02nginx',
   },
 ]
 // NAV 7
@@ -871,7 +883,7 @@ export default {
             items: [
               {
                 text: 'LINUX',
-                link: '/06LINUX/wsl2',
+                link: '/06LINUX/01LINUX/01简介',
               },
             ],
           },
@@ -1073,6 +1085,18 @@ export default {
           collapsed: true,
           text: 'LINUX',
           items: linux,
+        },
+        {
+          collapsible: true,
+          collapsed: true,
+          text: 'WSL2',
+          items: wsl2,
+        },
+        {
+          collapsible: true,
+          collapsed: true,
+          text: 'NGINX',
+          items: nginx,
         },
       ],
       '/07工程化/': [
