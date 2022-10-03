@@ -1,3 +1,468 @@
+// NAV 1
+const html = [
+  {
+    text: 'HTML基础',
+    link: '/01HTML-CSS-JS/01HTML/01html基础',
+  },
+]
+const css = [
+  {
+    text: 'CSS基础',
+    link: '/01HTML-CSS-JS/02CSS/01css基础',
+  },
+  {
+    text: '响应式与移动端适配',
+    link: '/01HTML-CSS-JS/02CSS/02css响应式',
+  },
+  {
+    text: '预处理器',
+    link: '/01HTML-CSS-JS/02CSS/03css预处理器',
+  },
+  {
+    text: 'CSS总结',
+    link: '/01HTML-CSS-JS/02CSS/04css总结',
+  },
+]
+const js = [
+  {
+    text: '01数据类型',
+    link: '/01HTML-CSS-JS/03JAVASCRIPT/01数据类型',
+  },
+  {
+    text: '02运算',
+    link: '/01HTML-CSS-JS/03JAVASCRIPT/02运算',
+  },
+  {
+    text: '03流程控制',
+    link: '/01HTML-CSS-JS/03JAVASCRIPT/03流程控制',
+  },
+  {
+    text: '04构造函数与原型链',
+    link: '/01HTML-CSS-JS/03JAVASCRIPT/04构造函数与原型链',
+  },
+  {
+    text: '05闭包-this指向.md',
+    link: '/01HTML-CSS-JS/03JAVASCRIPT/05闭包-this指向.md',
+  },
+  {
+    text: '06深拷贝与浅拷贝',
+    link: '/01HTML-CSS-JS/03JAVASCRIPT/06深拷贝与浅拷贝',
+  },
+  {
+    text: '07JS执行机制',
+    link: '/01HTML-CSS-JS/03JAVASCRIPT/07js执行机制',
+  },
+  {
+    text: '08PROMISE',
+    link: '/01HTML-CSS-JS/03JAVASCRIPT/08promise',
+  },
+  {
+    text: '09ES6的类',
+    link: '/01HTML-CSS-JS/03JAVASCRIPT/09es6的类',
+  },
+  {
+    text: '08Promise',
+    link: '/01HTML-CSS-JS/03JAVASCRIPT/08promise',
+  },
+  {
+    text: '常用代码',
+    link: '/01HTML-CSS-JS/03JAVASCRIPT/常用代码',
+  },
+]
+const webapi = [
+  {
+    text: 'DOM',
+    link: '/01HTML-CSS-JS/04WEBAPI/01dom',
+  },
+  {
+    text: 'BOM',
+    link: '/01HTML-CSS-JS/04WEBAPI/02bom',
+  },
+  {
+    text: '网页特效',
+    link: '/01HTML-CSS-JS/04WEBAPI/03网页特效',
+  },
+  {
+    text: '浏览器原理',
+    link: '/01HTML-CSS-JS/04WEBAPI/04浏览器原理',
+  },
+  {
+    text: 'CANVAS',
+    link: '/01HTML-CSS-JS/04WEBAPI/05canvas',
+  },
+  {
+    text: 'SVG',
+    link: '/01HTML-CSS-JS/04WEBAPI/06svg',
+  },
+]
+// NAV 2
+const ts = [
+  {
+    text: 'TS类型系统',
+    link: '/02TYPESCRIPT/01类型系统',
+  },
+  {
+    text: 'tsconfig配置文件',
+    link: '/02TYPESCRIPT/02tsconfig配置文件',
+  },
+  {
+    text: '命名空间',
+    link: '/02TYPESCRIPT/03命名空间',
+  },
+  {
+    text: '三斜杠指令',
+    link: '/02TYPESCRIPT/04三斜杠指令',
+  },
+  {
+    text: '声明文件',
+    link: '/02TYPESCRIPT/05声明文件',
+  },
+  {
+    text: '混入Mixins',
+    link: '/02TYPESCRIPT/06混入Mixins',
+  },
+  {
+    text: '装饰器',
+    link: '/02TYPESCRIPT/07装饰器',
+  },
+  {
+    text: 'TS编写发布订阅模式',
+    link: '/02TYPESCRIPT/08TS编写发布订阅模式',
+  },
+  {
+    text: 'Proxy-Reflect',
+    link: '/02TYPESCRIPT/09Proxy-Reflect',
+  },
+  {
+    text: 'Partial-Pick',
+    link: '/02TYPESCRIPT/10Partial-Pick',
+  },
+  {
+    text: 'Record-Readonly',
+    link: '/02TYPESCRIPT/11Record-Readonly',
+  },
+  {
+    text: 'infer',
+    link: '/02TYPESCRIPT/12infer',
+  },
+  {
+    text: 'TS总结',
+    link: '/02TYPESCRIPT/TS总结',
+  },
+]
+// NAV 3
+const vue3 = [
+  {
+    text: '初始化项目',
+    link: '/03VUE/01VUE3/01初始化项目',
+  },
+  {
+    text: '虚拟Dom和diff算法',
+    link: '/03VUE/01VUE3/02虚拟Dom和diff算法',
+  },
+  {
+    text: 'ref-reactive-to 全家桶',
+    link: '/03VUE/01VUE3/03ref-reactive-to全家桶',
+  },
+  {
+    text: '计算属性与侦听器',
+    link: '/03VUE/01VUE3/04计算属性与侦听器',
+  },
+  {
+    text: '组件的生命周期',
+    link: '/03VUE/01VUE3/05组件的生命周期',
+  },
+  {
+    text: '父子组件传参',
+    link: '/03VUE/01VUE3/06父子组件传参',
+  },
+  {
+    text: '全局-局部-递归-动态组件',
+    link: '/03VUE/01VUE3/07全局组件-局部组件-递归组件',
+  },
+  {
+    text: '匿名-具名-作用域-动态插槽',
+    link: '/03VUE/01VUE3/08匿名-具名-作用域-动态插槽',
+  },
+  {
+    text: '异步组件-代码分包-suspense',
+    link: '/03VUE/01VUE3/09异步组件-代码分包-suspense',
+  },
+  {
+    text: 'Teleport传送组件',
+    link: '/03VUE/01VUE3/10Teleport传送组件',
+  },
+  {
+    text: 'KeepAlive缓存组件',
+    link: '/03VUE/01VUE3/11KeepAlive缓存组件',
+  },
+  {
+    text: 'Transition过渡组件',
+    link: '/03VUE/01VUE3/12Transition过渡组件',
+  },
+  {
+    text: '依赖注入provide/inject',
+    link: '/03VUE/01VUE3/13依赖注入provide-inject',
+  },
+  {
+    text: '兄弟组件传参&Bus',
+    link: '/03VUE/01VUE3/14兄弟组件传参-Bus',
+  },
+  {
+    text: 'TSX',
+    link: '/03VUE/01VUE3/15TSX',
+  },
+  {
+    text: 'v-model',
+    link: '/03VUE/01VUE3/16v-model',
+  },
+  {
+    text: '指令与自定义指令',
+    link: '/03VUE/01VUE3/17指令与自定义指令',
+  },
+  {
+    text: '自定义hooks',
+    link: '/03VUE/01VUE3/18自定义hooks',
+  },
+  {
+    text: '全局函数和变量',
+    link: '/03VUE/01VUE3/19全局函数和变量',
+  },
+  {
+    text: '自定义vue插件',
+    link: '/03VUE/01VUE3/20自定义vue插件',
+  },
+  {
+    text: 'css新特性',
+    link: '/03VUE/01VUE3/21css新特性',
+  },
+  {
+    text: 'EventLoop-nextTick',
+    link: '/03VUE/01VUE3/22EventLoop-nextTick',
+  },
+  {
+    text: 'vue开发移动端',
+    link: '/03VUE/01VUE3/23vue开发移动端',
+  },
+  {
+    text: '函数式编程-h函数',
+    link: '/03VUE/01VUE3/24函数式编程-h函数',
+  },
+  {
+    text: '选项式API与组合式API',
+    link: '/03VUE/01VUE3/25选项式API与组合式API',
+  },
+]
+const router4 = [
+  {
+    text: '开始使用',
+    link: '/03VUE/02ROUTER4/01开始使用',
+  },
+  {
+    text: '跳转与传参',
+    link: '/03VUE/02ROUTER4/02跳转与传参',
+  },
+  {
+    text: '动态路由',
+    link: '/03VUE/02ROUTER4/03动态路由',
+  },
+  {
+    text: '嵌套路由',
+    link: '/03VUE/02ROUTER4/04嵌套路由',
+  },
+  {
+    text: '命名视图',
+    link: '/03VUE/02ROUTER4/05命名视图',
+  },
+  {
+    text: '重定向-别名',
+    link: '/03VUE/02ROUTER4/06重定向-别名',
+  },
+  {
+    text: '路由组件传参',
+    link: '/03VUE/02ROUTER4/07路由组件传参',
+  },
+
+  {
+    text: '路由模式',
+    link: '/03VUE/02ROUTER4/08路由模式',
+  },
+  {
+    text: '导航守卫',
+    link: '/03VUE/02ROUTER4/09导航守卫',
+  },
+  {
+    text: '路由元信息',
+    link: '/03VUE/02ROUTER4/10路由元信息',
+  },
+  {
+    text: '数据获取',
+    link: '/03VUE/02ROUTER4/11数据获取',
+  },
+  {
+    text: '过渡动效',
+    link: '/03VUE/02ROUTER4/12过渡动效',
+  },
+  {
+    text: '滚动行为',
+    link: '/03VUE/02ROUTER4/13滚动行为',
+  },
+  {
+    text: '导航故障',
+    link: '/03VUE/02ROUTER4/14导航故障',
+  },
+  {
+    text: '动态路由表',
+    link: '/03VUE/02ROUTER4/15动态路由表',
+  },
+]
+const pinia = [
+  {
+    text: 'Pinia',
+    link: '/03VUE/03PINIA/01pinia',
+  },
+  {
+    text: 'pinia持久化插件',
+    link: '/03VUE/03PINIA/02pinia持久化插件',
+  },
+]
+const quasar = [
+  {
+    text: '初始化项目',
+    link: '/03VUE/04QUASAR/01初始化项目',
+  },
+]
+const vueuilib = [
+  {
+    text: 'Element Plus',
+    link: '/03VUE/05UI组件库/01element-plus',
+  },
+]
+const uniapp = [
+  {
+    text: 'uniapp',
+    link: '/03VUE/06UNIAPP/01miniprogram',
+  },
+]
+// NAV 4
+const react18 = [
+  {
+    text: 'JSX',
+    link: '/04REACT/01REACT18/01JSX',
+  },
+  {
+    text: '工具链',
+    link: '/04REACT/01REACT18/02初始化项目',
+  },
+  {
+    text: '组件',
+    link: '/04REACT/01REACT18/03组件',
+  },
+  {
+    text: '组件通信',
+    link: '/04REACT/01REACT18/04组件通信',
+  },
+  {
+    text: 'Hooks',
+    link: '/04REACT/01REACT18/05Hooks',
+  },
+  {
+    text: 'Router',
+    link: '/04REACT/01REACT18/06Router',
+  },
+]
+const reactState = [
+  {
+    text: 'REDUX',
+    link: '/04REACT/02状态管理/01redux',
+  },
+  {
+    text: 'RECOIL',
+    link: '/04REACT/02状态管理/02recoil',
+  },
+]
+const next = [
+  {
+    text: '初始化项目',
+    link: '/04REACT/03NEXT/01初始化项目',
+  },
+]
+// NAV 5
+const nodejs = [
+  {
+    text: 'NODEJS',
+    link: '/05NODE/01NODEJS/01nodejs',
+  },
+  {
+    text: '模块化',
+    link: '/05NODE/01NODEJS/02模块化',
+  },
+  {
+    text: 'AXIOS',
+    link: '/05NODE/01NODEJS/03axios',
+  },
+]
+const packmanager = [
+  {
+    text: 'NPM',
+    link: '/05NODE/02包管理工具/01npm',
+  },
+  {
+    text: 'YARN',
+    link: '/05NODE/02包管理工具/02yarn',
+  },
+  {
+    text: 'PNPM',
+    link: '/05NODE/02包管理工具/03pnpm',
+  },
+]
+// NAV 6
+const linux = [
+  {
+    text: 'WSL2',
+    link: '/06LINUX/wsl2',
+  },
+  {
+    text: 'PM2',
+    link: '/06LINUX/pm2',
+  },
+  {
+    text: 'NGINX',
+    link: '/06LINUX/nginx',
+  },
+]
+// NAV 7
+const git = [
+  {
+    text: 'GIT',
+    link: '/07工程化/01GIT/git',
+  },
+]
+const format = [
+  {
+    text: '代码规范',
+    link: '/07工程化/02代码规范/代码规范',
+  },
+]
+const paradigm = [
+  {
+    text: '编程范式',
+    link: '/07工程化/03编程范式/编程范式',
+  },
+]
+const toolschain = [
+  {
+    text: 'VITE',
+    link: '/07工程化/04前端工具链/vite',
+  },
+]
+const diylib = [
+  {
+    text: '构建组件库',
+    link: '/07工程化/05构建组件库/构建组件库',
+  },
+]
+// NAV 散记
 const zimablue = [
   {
     text: '齐马蓝',
@@ -28,467 +493,6 @@ const xinzhi = [
   {
     text: '书单',
     link: '/散记/I-will-be-there/读书/1965年重上井冈山',
-  },
-]
-const html = [
-  {
-    text: 'HTML基础',
-    link: '/html-css-js/html/html基础',
-  },
-]
-const css = [
-  {
-    text: '基础',
-    link: '/html-css-js/css/css基础',
-  },
-  {
-    text: '响应式与移动端适配',
-    link: '/html-css-js/css/css响应式',
-  },
-  {
-    text: '预处理器',
-    link: '/html-css-js/css/css预处理器',
-  },
-  {
-    text: '总结',
-    link: '/html-css-js/css/css总结',
-  },
-]
-const js = [
-  {
-    text: '01数据类型',
-    link: '/html-css-js/js/01数据类型',
-  },
-  {
-    text: '02运算',
-    link: '/html-css-js/js/02运算',
-  },
-  {
-    text: '03流程控制',
-    link: '/html-css-js/js/03流程控制',
-  },
-  {
-    text: '04构造函数与原型链',
-    link: '/html-css-js/js/04构造函数与原型链',
-  },
-  {
-    text: '05闭包-this指向.md',
-    link: '/html-css-js/js/05闭包-this指向.md',
-  },
-  {
-    text: '06深拷贝与浅拷贝',
-    link: '/html-css-js/js/06深拷贝与浅拷贝',
-  },
-  {
-    text: '07JS执行机制',
-    link: '/html-css-js/js/07JS执行机制',
-  },
-  {
-    text: '08常用代码',
-    link: '/html-css-js/js/08常用代码',
-  },
-]
-const webapi = [
-  {
-    text: 'DOM',
-    link: '/html-css-js/webapi/DOM',
-  },
-  {
-    text: 'BOM',
-    link: '/html-css-js/webapi/BOM',
-  },
-  {
-    text: '网页特效',
-    link: '/html-css-js/webapi/网页特效',
-  },
-  {
-    text: '浏览器原理',
-    link: '/html-css-js/webapi/浏览器原理',
-  },
-  {
-    text: 'canvas',
-    link: '/html-css-js/webapi/canvas',
-  },
-  {
-    text: 'svg',
-    link: '/html-css-js/webapi/svg',
-  },
-]
-const nodejs = [
-  {
-    text: 'Node',
-    link: '/node/nodejs/nodejs',
-  },
-]
-const pm2 = [
-  {
-    text: 'Pm2',
-    link: '/node/pm2/pm2',
-  },
-]
-const vue3 = [
-  {
-    text: '初始化项目',
-    link: '/vue-ts/vue3/01初始化项目',
-  },
-  {
-    text: '虚拟Dom和diff算法',
-    link: '/vue-ts/vue3/02虚拟Dom和diff算法',
-  },
-  {
-    text: 'ref-reactive-to 全家桶',
-    link: '/vue-ts/vue3/03ref-reactive-to全家桶',
-  },
-  {
-    text: '计算属性与侦听器',
-    link: '/vue-ts/vue3/04计算属性与侦听器',
-  },
-  {
-    text: '组件的生命周期',
-    link: '/vue-ts/vue3/05组件的生命周期',
-  },
-  {
-    text: '父子组件传参',
-    link: '/vue-ts/vue3/06父子组件传参',
-  },
-  {
-    text: '全局-局部-递归-动态组件',
-    link: '/vue-ts/vue3/07全局组件-局部组件-递归组件',
-  },
-  {
-    text: '匿名-具名-作用域-动态插槽',
-    link: '/vue-ts/vue3/08匿名-具名-作用域-动态插槽',
-  },
-  {
-    text: '异步组件-代码分包-suspense',
-    link: '/vue-ts/vue3/09异步组件-代码分包-suspense',
-  },
-  {
-    text: 'Teleport传送组件',
-    link: '/vue-ts/vue3/10Teleport传送组件',
-  },
-  {
-    text: 'KeepAlive缓存组件',
-    link: '/vue-ts/vue3/11KeepAlive缓存组件',
-  },
-  {
-    text: 'Transition过渡组件',
-    link: '/vue-ts/vue3/12Transition过渡组件',
-  },
-  {
-    text: '依赖注入provide/inject',
-    link: '/vue-ts/vue3/13依赖注入provide-inject',
-  },
-  {
-    text: '兄弟组件传参&Bus',
-    link: '/vue-ts/vue3/14兄弟组件传参-Bus',
-  },
-  {
-    text: 'TSX',
-    link: '/vue-ts/vue3/15TSX',
-  },
-  {
-    text: 'v-model',
-    link: '/vue-ts/vue3/16v-model',
-  },
-  {
-    text: '指令与自定义指令',
-    link: '/vue-ts/vue3/17指令与自定义指令',
-  },
-  {
-    text: '自定义hooks',
-    link: '/vue-ts/vue3/18自定义hooks',
-  },
-  {
-    text: '全局函数和变量',
-    link: '/vue-ts/vue3/19全局函数和变量',
-  },
-  {
-    text: '自定义vue插件',
-    link: '/vue-ts/vue3/20自定义vue插件',
-  },
-  {
-    text: 'css新特性',
-    link: '/vue-ts/vue3/21css新特性',
-  },
-  {
-    text: 'EventLoop-nextTick',
-    link: '/vue-ts/vue3/22EventLoop-nextTick',
-  },
-  {
-    text: 'vue开发移动端',
-    link: '/vue-ts/vue3/23vue开发移动端',
-  },
-  {
-    text: '函数式编程-h函数',
-    link: '/vue-ts/vue3/24函数式编程-h函数',
-  },
-  {
-    text: '选项式API与组合式API',
-    link: '/vue-ts/vue3/25选项式API与组合式API',
-  },
-]
-const pinia = [
-  {
-    text: 'Pinia',
-    link: '/vue-ts/pinia/pinia',
-  },
-  {
-    text: 'pinia持久化插件',
-    link: '/vue-ts/pinia/pinia持久化插件',
-  },
-]
-const router4 = [
-  {
-    text: '开始使用',
-    link: '/vue-ts/router4/01开始使用',
-  },
-  {
-    text: '跳转与传参',
-    link: '/vue-ts/router4/02跳转与传参',
-  },
-  {
-    text: '动态路由',
-    link: '/vue-ts/router4/03动态路由',
-  },
-  {
-    text: '嵌套路由',
-    link: '/vue-ts/router4/04嵌套路由',
-  },
-  {
-    text: '命名视图',
-    link: '/vue-ts/router4/05命名视图',
-  },
-  {
-    text: '重定向-别名',
-    link: '/vue-ts/router4/06重定向-别名',
-  },
-  {
-    text: '路由组件传参',
-    link: '/vue-ts/router4/07路由组件传参',
-  },
-
-  {
-    text: '路由模式',
-    link: '/vue-ts/router4/08路由模式',
-  },
-  {
-    text: '导航守卫',
-    link: '/vue-ts/router4/09导航守卫',
-  },
-  {
-    text: '路由元信息',
-    link: '/vue-ts/router4/10路由元信息',
-  },
-  {
-    text: '数据获取',
-    link: '/vue-ts/router4/11数据获取',
-  },
-  {
-    text: '过渡动效',
-    link: '/vue-ts/router4/12过渡动效',
-  },
-  {
-    text: '滚动行为',
-    link: '/vue-ts/router4/13滚动行为',
-  },
-  {
-    text: '导航故障',
-    link: '/vue-ts/router4/14导航故障',
-  },
-  {
-    text: '动态路由表',
-    link: '/vue-ts/router4/15动态路由表',
-  },
-]
-const ts = [
-  {
-    text: 'ES6的类',
-    link: '/vue-ts/ts/ES6的类',
-  },
-  {
-    text: 'TS类型系统',
-    link: '/vue-ts/ts/01类型系统',
-  },
-  {
-    text: 'tsconfig配置文件',
-    link: '/vue-ts/ts/02tsconfig配置文件',
-  },
-  {
-    text: '命名空间',
-    link: '/vue-ts/ts/03命名空间',
-  },
-  {
-    text: '三斜杠指令',
-    link: '/vue-ts/ts/04三斜杠指令',
-  },
-  {
-    text: '声明文件',
-    link: '/vue-ts/ts/05声明文件',
-  },
-  {
-    text: '混入Mixins',
-    link: '/vue-ts/ts/06混入Mixins',
-  },
-  {
-    text: '装饰器',
-    link: '/vue-ts/ts/07装饰器',
-  },
-  {
-    text: 'TS编写发布订阅模式',
-    link: '/vue-ts/ts/08TS编写发布订阅模式',
-  },
-  {
-    text: 'Proxy-Reflect',
-    link: '/vue-ts/ts/09Proxy-Reflect',
-  },
-  {
-    text: 'Partial-Pick',
-    link: '/vue-ts/ts/10Partial-Pick',
-  },
-  {
-    text: 'Record-Readonly',
-    link: '/vue-ts/ts/11Record-Readonly',
-  },
-  {
-    text: 'infer',
-    link: '/vue-ts/ts/12infer',
-  },
-  {
-    text: 'TS总结',
-    link: '/vue-ts/ts/TS总结',
-  },
-]
-const quasar = [
-  {
-    text: '初始化项目',
-    link: '/vue-ts/quasar/初始化项目',
-  },
-]
-const elementplus = [
-  {
-    text: 'Element Plus',
-    link: '/vue-ts/element-plus/element-plus',
-  },
-]
-const uniapp = [
-  {
-    text: 'uniapp',
-    link: '/vue-ts/uniapp/miniprogram',
-  },
-]
-const react = [
-  {
-    text: 'JSX',
-    link: '/react/react/01JSX',
-  },
-  {
-    text: '工具链',
-    link: '/react/react/02工具链',
-  },
-  {
-    text: '组件',
-    link: '/react/react/03组件',
-  },
-  {
-    text: '组件通信',
-    link: '/react/react/04组件通信',
-  },
-  {
-    text: 'Hooks',
-    link: '/react/react/05Hooks',
-  },
-  {
-    text: 'Router',
-    link: '/react/react/06Router',
-  },
-]
-const reactState = [
-  {
-    text: 'Recoil',
-    link: '/react/状态管理/01Recoil',
-  },
-  {
-    text: '02Redux',
-    link: '/react/状态管理/02Redux',
-  },
-]
-const bcfs = [
-  {
-    text: '函数式编程',
-    link: '/rxjs/编程范式/函数式编程',
-  },
-]
-const rxjs = [
-  {
-    text: 'Promise',
-    link: '/rxjs/rxjs/promise',
-  },
-  {
-    text: 'RXJS',
-    link: '/rxjs/rxjs/rxjs',
-  },
-]
-const engineer = [
-  {
-    text: 'Git',
-    link: '/工程化/git',
-  },
-  {
-    text: '模块化',
-    link: '/工程化/模块化',
-  },
-  {
-    text: '代码规范',
-    link: '/工程化/代码规范',
-  },
-  {
-    text: 'Vite',
-    link: '/工程化/vite',
-  },
-  {
-    text: '构建组件库',
-    link: '/工程化/构建组件库',
-  },
-]
-const networking = [
-  {
-    text: '计算机网络',
-    link: '/408/net/theory/计算机网络',
-  },
-]
-const netPractice = [
-  {
-    text: 'WebSockets',
-    link: '/408/net/practice/WebSockets',
-  },
-]
-const algo = [
-  {
-    text: '排序',
-    link: '/408/Algorithm/排序',
-  },
-]
-const go = [
-  {
-    text: 'Golang',
-    link: '/go/golang/golang',
-  },
-]
-const Tensorflow = [
-  {
-    text: 'Intro',
-    link: '/AI/Tensorflow/Introduction',
-  },
-  {
-    text: 'Tensorflow',
-    link: '/AI/Tensorflow/Tensorflow',
-  },
-]
-const yolo = [
-  {
-    text: 'YOLO v5',
-    link: '/AI/YOLO/YOLOv5',
   },
 ]
 const kongzi = [
@@ -724,7 +728,7 @@ export default {
         href: '/image/favicon.ico',
       },
     ],
-    ['script', { src: '/js/analyse.js' }],
+    ['script', { src: '/03JAVASCRIPT/analyse.js' }],
     ['meta', { name: 'referrer', content: 'no-referrer' }],
   ],
 
@@ -737,7 +741,7 @@ export default {
     siteTitle: '有物混成，先天地生', // Replace the default site title in nav
     nav: [
       // { text: 'Guide', link: '/guide' },
-
+      // nav1
       {
         text: 'HTML/CSS/JS',
         items: [
@@ -746,20 +750,99 @@ export default {
             items: [
               {
                 text: 'HTML',
-                link: '/html-css-js/html/html基础',
+                link: '/01HTML-CSS-JS/01HTML/01html基础',
               },
               {
                 text: 'CSS',
-                link: '/html-css-js/css/css基础',
+                link: '/01HTML-CSS-JS/02CSS/01css基础',
               },
               {
-                text: 'JavaScript',
-                link: '/html-css-js/js/01数据类型',
+                text: 'JAVASCRIPT',
+                link: '/01HTML-CSS-JS/03JAVASCRIPT/01数据类型',
+              },
+              {
+                text: 'WEBAPI',
+                link: '/01HTML-CSS-JS/04WEBAPI/01dom',
               },
             ],
           },
         ],
       },
+      // nav2
+      {
+        text: 'TS',
+        items: [
+          {
+            text: '',
+            items: [
+              {
+                text: 'TYPESCRIPT',
+                link: '/02TYPESCRIPT/01类型系统',
+              },
+            ],
+          },
+        ],
+      },
+      // nav3
+      {
+        text: 'VUE',
+        items: [
+          {
+            text: '',
+            items: [
+              {
+                text: 'VUE3',
+                link: '/03VUE/01VUE3/01初始化项目',
+              },
+
+              {
+                text: 'ROUTER4',
+                link: '/03VUE/02ROUTER4/01开始使用',
+              },
+              {
+                text: 'PINIA',
+                link: '/03VUE/03PINIA/01pinia',
+              },
+              {
+                text: 'QUASAR',
+                link: '/03VUE/04QUASAR/01初始化项目',
+              },
+              {
+                text: 'UI组件库',
+                link: '/03VUE/05UI组件库/01element-plus',
+              },
+              {
+                text: 'UNIAPP',
+                link: '/03VUE/06UNIAPP/01miniprogram',
+              },
+            ],
+          },
+        ],
+      },
+      // nav4
+      {
+        text: 'REACT',
+        items: [
+          {
+            text: '',
+            items: [
+              {
+                text: 'REACT18',
+                link: '/04REACT/01REACT18/01JSX',
+              },
+              {
+                text: '状态管理',
+                link: '/04REACT/02状态管理/01redux',
+              },
+              {
+                text: 'NEXT',
+                link: '/04REACT/03NEXT/01初始化项目',
+              },
+            ],
+          },
+        ],
+      },
+      // nav5
       {
         text: 'NODE',
         items: [
@@ -768,92 +851,33 @@ export default {
 
             items: [
               {
-                text: 'Node',
-                link: '/node/nodejs/nodejs',
+                text: 'NODEJS',
+                link: '/05NODE/01NODEJS/01nodejs',
               },
               {
-                text: 'PM2',
-                link: '/node/pm2/pm2',
+                text: '包管理工具',
+                link: '/05NODE/02包管理工具/01npm',
               },
             ],
           },
         ],
       },
+      // nav6
       {
-        text: 'VUE/TS',
+        text: 'LINUX',
         items: [
           {
             text: '',
             items: [
               {
-                text: 'VUE3',
-                link: '/vue-ts/vue3/01初始化项目',
-              },
-
-              {
-                text: 'Router4',
-                link: '/vue-ts/router4/01开始使用',
-              },
-              {
-                text: 'Pinia',
-                link: '/vue-ts/pinia/pinia持久化插件',
-              },
-              {
-                text: 'TS',
-                link: '/vue-ts/ts/ES6的类',
-              },
-              {
-                text: 'Quasar',
-                link: '/vue-ts/quasar/初始化项目',
-              },
-              {
-                text: 'Element Plus',
-                link: '/vue-ts/element-plus/element-plus',
-              },
-              {
-                text: 'UniApp',
-                link: '/vue-ts/uniapp/miniprogram',
+                text: 'LINUX',
+                link: '/06LINUX/wsl2',
               },
             ],
           },
         ],
       },
-      {
-        text: 'REACT',
-        items: [
-          {
-            text: '',
-            items: [
-              {
-                text: 'React',
-                link: '/react/react/01JSX',
-              },
-              {
-                text: '状态管理',
-                link: '/react/状态管理/01Recoil',
-              },
-            ],
-          },
-        ],
-      },
-      {
-        text: 'RXJS',
-        items: [
-          {
-            text: '',
-            items: [
-              {
-                text: '编程范式',
-                link: '/rxjs/编程范式/函数式编程',
-              },
-              {
-                text: 'RXJS',
-                link: '/rxjs/rxjs/rxjs',
-              },
-            ],
-          },
-        ],
-      },
+      // nav7
       {
         text: '工程化',
         items: [
@@ -861,79 +885,50 @@ export default {
             text: '',
             items: [
               {
-                text: 'Git',
-                link: '/工程化/git',
-              },
-              {
-                text: '模块化',
-                link: '/工程化/模块化',
+                text: 'GIT',
+                link: '/07工程化/01GIT/git',
               },
               {
                 text: '代码规范',
-                link: '/工程化/代码规范',
+                link: '/07工程化/02代码规范/代码规范',
               },
               {
-                text: 'Vite',
-                link: '/工程化/vite',
+                text: '编程范式',
+                link: '/07工程化/03编程范式/函数式编程',
+              },
+
+              {
+                text: '前端工具链',
+                link: '/07工程化/04前端工具链/vite',
               },
               {
                 text: '构建组件库',
-                link: '/工程化/构建组件库',
+                link: '/07工程化/05构建组件库/构建组件库',
               },
             ],
           },
         ],
       },
-      {
-        text: '408',
-        items: [
-          {
-            text: '',
-            items: [
-              {
-                text: '数据结构与算法',
-                link: '/408/Algorithm/排序',
-              },
-              {
-                text: '计算机网络',
-                link: '/408/net/practice/WebSockets',
-              },
-            ],
-          },
-        ],
-      },
+      // nav8
       // {
-      //   text: 'GO',
+      //   text: '408',
       //   items: [
       //     {
       //       text: '',
       //       items: [
       //         {
-      //           text: 'Golang',
-      //           link: '/go/golang/golang',
+      //           text: '数据结构与算法',
+      //           link: '/08408/01ALGO/排序',
+      //         },
+      //         {
+      //           text: '计算机网络',
+      //           link: '/08408/02NET/practice/WebSockets',
       //         },
       //       ],
       //     },
       //   ],
       // },
-      // {
-      //   text: 'AI',
-      //   items: [
-      //     {
-      //       text: '',
-      //       items: [
-      //         {
-      //           text: 'Tensorflow',
-      //           link: '/AI/Tensorflow/Introduction',
-      //         },
-      //         {
-      //           text: 'YOLO',
-      //           link: '/AI/YOLO/YOLOv5',
-      //         },
-      //       ],
-      //     },
-      //   ],
-      // },
+      // nav 散记
       {
         text: '散记',
         items: [
@@ -966,7 +961,7 @@ export default {
     /* Sidebar */
     /* https://vitepress.vuejs.org/guide/theme-sidebar.html */
     sidebar: {
-      '/html-css-js': [
+      '/01HTML-CSS-JS/': [
         {
           collapsible: true,
           collapsed: false,
@@ -982,7 +977,7 @@ export default {
         {
           collapsible: true,
           collapsed: true,
-          text: 'JavaScript',
+          text: 'JAVASCRIPT',
           items: js,
         },
         {
@@ -992,70 +987,58 @@ export default {
           items: webapi,
         },
       ],
-      '/node/': [
+      '/02TYPESCRIPT/': [
         {
           collapsible: true,
           collapsed: true,
-          text: 'Node',
-          items: nodejs,
-        },
-        {
-          collapsible: true,
-          collapsed: true,
-          text: 'Pm2',
-          items: pm2,
+          text: 'TYPESCRIPT',
+          items: ts,
         },
       ],
-      '/vue-ts/': [
+      '/03VUE/': [
         {
           collapsible: true,
           collapsed: true,
-          text: 'Vue3',
+          text: 'VUE3',
           items: vue3,
         },
         {
           collapsible: true,
           collapsed: true,
-          text: 'Pinia',
-          items: pinia,
-        },
-        {
-          collapsible: true,
-          collapsed: true,
-          text: 'Router4',
+          text: 'ROUTER4',
           items: router4,
         },
         {
           collapsible: true,
           collapsed: true,
-          text: 'TypeScript',
-          items: ts,
+          text: 'PINIA',
+          items: pinia,
         },
         {
           collapsible: true,
           collapsed: true,
-          text: 'Quasar',
+          text: 'QUASAR',
           items: quasar,
         },
         {
           collapsible: true,
           collapsed: true,
-          text: 'ElementPlus',
-          items: elementplus,
+          text: 'UI组件库',
+          items: vueuilib,
         },
         {
           collapsible: true,
           collapsed: true,
-          text: 'uniapp',
+          text: 'UNIAPP',
           items: uniapp,
         },
       ],
-      '/react/': [
+      '/04REACT/': [
         {
           collapsible: true,
           collapsed: true,
-          text: 'React',
-          items: react,
+          text: 'REACT18',
+          items: react18,
         },
         {
           collapsible: true,
@@ -1063,75 +1046,67 @@ export default {
           text: '状态管理',
           items: reactState,
         },
+        {
+          collapsible: true,
+          collapsed: true,
+          text: 'NEXT',
+          items: next,
+        },
       ],
-      '/rxjs/': [
+      '/05NODE/': [
+        {
+          collapsible: true,
+          collapsed: true,
+          text: 'NODEJS',
+          items: nodejs,
+        },
+        {
+          collapsible: true,
+          collapsed: true,
+          text: '包管理工具',
+          items: packmanager,
+        },
+      ],
+      '/06LINUX/': [
+        {
+          collapsible: true,
+          collapsed: true,
+          text: 'LINUX',
+          items: linux,
+        },
+      ],
+      '/07工程化/': [
+        {
+          collapsible: true,
+          collapsed: true,
+          text: 'GIT',
+          items: git,
+        },
+        {
+          collapsible: true,
+          collapsed: true,
+          text: '代码规范',
+          items: format,
+        },
         {
           collapsible: true,
           collapsed: true,
           text: '编程范式',
-          items: bcfs,
+          items: paradigm,
         },
         {
           collapsible: true,
           collapsed: true,
-          text: 'RXJS',
-          items: rxjs,
+          text: '前端工具链',
+          items: toolschain,
+        },
+        {
+          collapsible: true,
+          collapsed: true,
+          text: '构建组件库',
+          items: diylib,
         },
       ],
-      '/工程化/': [
-        {
-          collapsible: true,
-          collapsed: true,
-          text: '前端工程化',
-          items: engineer,
-        },
-      ],
-
-      '/408/net/': [
-        {
-          collapsible: true,
-          collapsed: true,
-          text: '计算机网络',
-          items: networking,
-        },
-        {
-          collapsible: true,
-          collapsed: true,
-          text: 'WebSockets',
-          items: netPractice,
-        },
-      ],
-      '/408/Algorithm/': [
-        {
-          collapsible: true,
-          collapsed: true,
-          text: '数据结构与算法',
-          items: algo,
-        },
-      ],
-      '/go/': [
-        {
-          collapsible: true,
-          collapsed: true,
-          text: 'Go',
-          items: go,
-        },
-      ],
-      '/AI/': [
-        {
-          collapsible: true,
-          collapsed: true,
-          text: 'Tensorflow',
-          items: Tensorflow,
-        },
-        {
-          collapsible: true,
-          collapsed: true,
-          text: 'YOLO',
-          items: yolo,
-        },
-      ],
-
       '/散记/齐马蓝/': [
         {
           collapsible: true,
