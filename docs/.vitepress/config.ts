@@ -426,6 +426,10 @@ const linux = [
     text: '权限',
     link: '/06LINUX/01LINUX/02权限',
   },
+  {
+    text: '配置环境',
+    link: '/06LINUX/01LINUX/03配置环境',
+  },
 ]
 const wsl2 = [
   {
