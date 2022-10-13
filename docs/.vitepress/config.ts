@@ -436,6 +436,10 @@ const wsl2 = [
     text: 'WSL2',
     link: '/06LINUX/02WSL2/01wsl2',
   },
+  {
+    text: 'TERMINAL',
+    link: '/06LINUX/02WSL2/02terminal',
+  },
 ]
 const nginx = [
   {

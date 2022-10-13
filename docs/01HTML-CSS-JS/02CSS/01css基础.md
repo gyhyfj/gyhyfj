@@ -29,7 +29,7 @@
 
 `!important`>`行内样式`>`id选择器`>`类、伪类、属性选择器`>`标签、伪元素选择器`>`通配符和继承`
 
-## 溢出文字省略并显示省略号
+## 溢出文字省略
 
 一行
 
@@ -50,17 +50,17 @@ text-overflow：ellipsis；
 -webkit-box-orient：vertical；
 ```
 
+:::warning
+一定要限制好容器宽度，
+如果用 flex 属性分配尺寸，要加上 width:0
+因为弹性盒子尺寸会被内容撑开
+:::
+
 ## 盒子模型
 
 box-sizing:border-box 内减模式 （怪异盒子） // 盒子宽高包含了 padding 和 border
 box-sizing:content-box 默认模式 （标注盒子） // 盒子宽高只包含 content，修改 border 尺寸 和 padding 尺寸会改变盒子大小
 box-sizing:padding-box 默认模式 （标注盒子） // 盒子宽高包含 padding
-
-## calc 函数
-
-width：calc（100% - 80px）
-可以混合各种单位进行计算
-注意：括号里面可以使用`+ - * /`来进行计算。注：`+ - * /`前后要各加上一个空格。
 
 ## border-radius
 
@@ -127,11 +127,16 @@ transform: scale(x, y); // x 和 y 是缩放倍率，小于 1 缩小，大于 1 
 transform: skew(x, y); // x 和 y 是倾斜角度，单位 deg
 transform: rotate(angle); // angle 是旋转角度，单位 deg
 
+:::danger
 旋转会改变坐标的轴向
-如果以后既有位移又有旋转 一定要先写位移
+如果以后既有位移又有旋转，一定要先写位移，再写旋转
+
 transform: translate() rotate();
-多重转换效果且不能分开写
-只有后面的生效 因为 css 重叠性
+多重转换效果不能分开写
+只有后面的生效，因为 css 重叠性
+
+transform: translate(x,y) 如果写百分比，那么是相对元素自身的宽高
+:::
 
 默认情况下，CSS3 的各种变形（平移、缩放、倾斜等）都是以元素的中心原点进行变形的
 我们可以设置 transform-origin 属性来改变元素的中心原点
@@ -154,7 +159,9 @@ transform-origin： 50% 50%（自身元素、默认值）
 @keyframes 动画名 {
   0% {
   }
-  …… 100% {
+  50% {
+  }
+  100% {
   }
 }
 
@@ -175,14 +182,14 @@ animation-play-state：动画运动状态 running（运动） paused（暂停）
 
 ## 元素的隐藏
 
-display: none; // 隐藏后不再占用空间，会导致整个文档重排。会让元素不再被渲染，子孙节点也不会渲染。
-visibility: hidden; // 隐藏后仍占用空间，不会导致重排。子孙节点也会消失，但只是继承了父节点的`visibility: hidden;`属性，修改后就会显示出来。修改该元素只会造成本元素重绘。且隐藏后点击事件不再触发。
-opacity: 0; // 只是全透明，并没有隐藏。点击事件等仍可触发。`[əʊˈpæsəti]`
-overflow: hidden（隐藏超出内容） scroll（显示滚动条，不论是否需要） auto（需要时才显示滚动条）
-position: absolute; // 将元素移到可视区域外
-z-index: -999; // 通过别的元素来遮挡
-clip/clip-path // 通过元素裁剪隐藏，但仍占位置
-transform: scale(0,0) // 将元素尺寸缩放为 0，但仍占位置，但不可被点击到
+1. display: none; // 隐藏后不再占用空间，会导致整个文档重排。会让元素不再被渲染，子孙节点也不会渲染。
+2. visibility: hidden; // 隐藏后仍占用空间，不会导致重排。子孙节点也会消失，但只是继承了父节点的`visibility: hidden;`属性，修改后就会显示出来。修改该元素只会造成本元素重绘。**点击事件不再触发**。
+3. opacity: 0; // 只是全透明，并没有隐藏。点击事件等仍可触发。`[əʊˈpæsəti]`
+4. overflow: hidden //隐藏超出内容
+5. position: absolute、fixed; // 将元素定位到可视区域外
+6. z-index: -999; // 通过别的元素来遮挡
+7. clip/clip-path // 通过元素裁剪隐藏，但仍占位置
+8. transform: scale(0,0) // 将元素尺寸缩放为 0，但仍占位置，但不可被点击到
 
 ## 定位
 
@@ -312,20 +319,7 @@ transform: scale(0,0) // 将元素尺寸缩放为 0，但仍占位置，但不�
 3. 对齐侧轴方式：
    align-self: lex-start、flex-end、center、baseline、strecth
 
-## 弹性盒子的文字省略
-
-一定要限制好容器宽度，
-有时用 flex 限制尺寸，要加上 width: 0;
-因为弹性盒子尺寸会被内容撑开
-
-```css
-.box {
-  flex: 1;
-  width: 0;
-}
-.box h5 {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-```
+:::danger
+父元素 子元素都是 flex 布局时候，注意一些属性的继承，
+比如 flex-direction， 子元素会继承父元素的属性
+:::
