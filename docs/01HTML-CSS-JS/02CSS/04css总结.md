@@ -221,7 +221,7 @@ div {
 }
 ```
 
-1. 利用元素的 margin、padding 百分比是相对父元素 width 值这个原理来实现
+2. 利用元素的 margin、padding 百分比是相对父元素 width 值这个原理来实现
 
 ```css
 .square {
@@ -244,6 +244,15 @@ div {
   content: '';
   display: block;
   margin-top: 100%; // 形成的正方形其实是伪元素的margin-top实现的，容器有内容则不再是正方形
+}
+```
+
+4. aspect-ratio 属性确定宽高比
+   注意：在微信安装内置浏览器中不兼容
+
+```css
+.square {
+  aspect-ratio: 1 / 1;
 }
 ```
 
