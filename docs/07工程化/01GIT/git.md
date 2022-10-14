@@ -95,7 +95,7 @@ git stash save "msg" # 暂存修改
 git stash # 同后面没跟注解的 git stash save，名称就是最新一次commit的名称
 git stash list # 列出所有暂时保存的工作
 git stash apply stash@{1} # 恢复某个暂时保存的工作 # 如果使用 pwsh ,需要给大括号加上反引号写成 `{0`}，否则大括号会被认为是代码块执行标识符
-git stash pop # 恢复最近一次stash的文件
+git stash pop # 恢复最近一次stash的文件，并丢弃stash
 git stash drop # 丢弃最近一次stash的文件
 git stash clear # 删除所有的stash
 
