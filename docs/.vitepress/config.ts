@@ -134,8 +134,8 @@ const ts = [
     link: '/02TYPESCRIPT/09Proxy-Reflect',
   },
   {
-    text: 'Partial-Pick',
-    link: '/02TYPESCRIPT/10Partial-Pick',
+    text: 'Partial-Pick-Omit-Required',
+    link: '/02TYPESCRIPT/10Partial-Pick-Omit-Required',
   },
   {
     text: 'Record-Readonly',
