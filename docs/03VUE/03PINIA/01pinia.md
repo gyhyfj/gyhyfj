@@ -39,6 +39,7 @@ export const enum Names {
 ```
 
 选项式 store：
+如果要定义 state 的类型，就写成 `state: (): TYPE => { return {} }`
 
 ```ts
 /* store/index.ts */
