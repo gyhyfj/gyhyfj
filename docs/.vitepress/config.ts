@@ -487,7 +487,7 @@ const format = [
 const paradigm = [
   {
     text: '编程范式',
-    link: '/07工程化/03编程范式/编程范式',
+    link: '/07工程化/03编程范式/函数式编程',
   },
   {
     text: 'TS编写发布订阅模式',

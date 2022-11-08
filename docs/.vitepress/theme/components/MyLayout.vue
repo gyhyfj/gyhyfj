@@ -2,6 +2,7 @@
 import { watchEffect } from 'vue'
 import DefaultTheme from 'vitepress/theme'
 import { useRouter } from 'vitepress'
+
 const { Layout } = DefaultTheme
 const { route } = useRouter()
 
