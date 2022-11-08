@@ -65,6 +65,14 @@ const js = [
     link: '/01HTML-CSS-JS/03JAVASCRIPT/08promise',
   },
   {
+    text: '09ES6的类',
+    link: '/01HTML-CSS-JS/03JAVASCRIPT/09es6的类',
+  },
+  {
+    text: '10Proxy-Reflect',
+    link: '/01HTML-CSS-JS/03JAVASCRIPT/10proxy-reflect',
+  },
+  {
     text: '常用代码',
     link: '/01HTML-CSS-JS/03JAVASCRIPT/常用代码',
   },
@@ -98,56 +106,68 @@ const webapi = [
 // NAV 2
 const ts = [
   {
-    text: 'TS类型系统',
-    link: '/02TYPESCRIPT/01类型系统',
+    text: '01TS简介',
+    link: '/02TYPESCRIPT/01TS简介',
   },
   {
-    text: 'tsconfig配置文件',
-    link: '/02TYPESCRIPT/02tsconfig配置文件',
+    text: '02TS简单类型',
+    link: '/02TYPESCRIPT/02TS简单类型',
   },
   {
-    text: '命名空间',
-    link: '/02TYPESCRIPT/03命名空间',
+    text: '03TS对象类型',
+    link: '/02TYPESCRIPT/03TS对象类型',
   },
   {
-    text: '三斜杠指令',
-    link: '/02TYPESCRIPT/04三斜杠指令',
+    text: '04新增类型',
+    link: '/02TYPESCRIPT/04新增类型',
   },
   {
-    text: '声明文件',
-    link: '/02TYPESCRIPT/05声明文件',
+    text: '05模块',
+    link: '/02TYPESCRIPT/05模块',
   },
   {
-    text: '混入Mixins',
-    link: '/02TYPESCRIPT/06混入Mixins',
+    text: '06命名空间',
+    link: '/02TYPESCRIPT/06命名空间',
   },
   {
-    text: '装饰器',
+    text: '07装饰器',
     link: '/02TYPESCRIPT/07装饰器',
   },
   {
-    text: 'TS编写发布订阅模式',
-    link: '/02TYPESCRIPT/08TS编写发布订阅模式',
+    text: '08混入Mixins',
+    link: '/02TYPESCRIPT/08混入Mixins',
   },
   {
-    text: 'Proxy-Reflect',
-    link: '/02TYPESCRIPT/09Proxy-Reflect',
+    text: '09三斜杠指令',
+    link: '/02TYPESCRIPT/09三斜杠指令',
   },
   {
-    text: 'Partial-Pick-Omit-Required',
-    link: '/02TYPESCRIPT/10Partial-Pick-Omit-Required',
+    text: '10extends',
+    link: '/02TYPESCRIPT/10extends',
   },
   {
-    text: 'Record-Readonly',
-    link: '/02TYPESCRIPT/11Record-Readonly',
+    text: '11条件类型-infer',
+    link: '/02TYPESCRIPT/11条件类型-infer',
   },
   {
-    text: 'infer',
-    link: '/02TYPESCRIPT/12infer',
+    text: '12Record-Readonly',
+    link: '/02TYPESCRIPT/12Record-Readonly',
   },
   {
-    text: 'TS总结',
-    link: '/02TYPESCRIPT/TS总结',
+    text: '13Partial-Pick-Omit-Required',
+    link: '/02TYPESCRIPT/13Partial-Pick-Omit-Required',
+  },
+  {
+    text: '14文件类型检查',
+    link: '/02TYPESCRIPT/14文件类型检查',
+  },
+  {
+    text: '15声明文件',
+    link: '/02TYPESCRIPT/15声明文件',
+  },
+  {
+    text: '16项目配置',
+    link: '/02TYPESCRIPT/16项目配置',
   },
 ]
 // NAV 3
@@ -469,6 +489,10 @@ const paradigm = [
     text: '编程范式',
     link: '/07工程化/03编程范式/编程范式',
   },
+  {
+    text: 'TS编写发布订阅模式',
+    link: '/07工程化/03编程范式/TS编写发布订阅模式',
+  },
 ]
 const toolschain = [
   {
@@ -748,7 +772,7 @@ export default {
         href: '/image/favicon.ico',
       },
     ],
-    ['script', { src: '/03JAVASCRIPT/analyse.js' }],
+    ['script', { src: '/js/analyse.js' }],
     ['meta', { name: 'referrer', content: 'no-referrer' }],
   ],
 
@@ -797,7 +821,7 @@ export default {
             items: [
               {
                 text: 'TYPESCRIPT',
-                link: '/02TYPESCRIPT/01类型系统',
+                link: '/02TYPESCRIPT/01TS简介',
               },
             ],
           },

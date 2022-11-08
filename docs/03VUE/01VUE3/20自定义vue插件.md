@@ -34,7 +34,7 @@ defineExpose({
 ```
 
 ```ts
-/* components/Loadingindex.ts */
+/* components/Loading/index.ts */
 import { App, createVNode, VNode, render } from 'vue' // 引入app的类型
 import Loading from './index.vue'
 
