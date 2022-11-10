@@ -1,8 +1,12 @@
 // NAV 1
 const html = [
   {
-    text: 'HTML基础',
+    text: '01HTML基础',
     link: '/01HTML-CSS-JS/01HTML/01html基础',
+  },
+  {
+    text: '02img标签',
+    link: '/01HTML-CSS-JS/01HTML/02img标签',
   },
 ]
 const css = [
