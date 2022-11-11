@@ -140,3 +140,7 @@ const { current, name } = storeToRefs(Test) // 具有响应式
 reset 恢复默认 `Test.$reset()`
 subscribe 侦听 state 变化，接收一个工厂函数 `Test.$subscribe((args,state)=>{})`
 onAction 侦听 action 被调用，接收一个工厂函数 `Test.$onAction((args)=>{})`
+
+:::tip
+pinia 不能跨页面共享数据，想跨页面只能借助 localStorage
+:::
