@@ -144,3 +144,30 @@ onAction 侦听 action 被调用，接收一个工厂函数 `Test.$onAction((arg
 :::tip
 pinia 不能跨页面共享数据，想跨页面只能借助 localStorage
 :::
+
+### $onAction
+
+会监听 store 所有 action 的调用，如果只想对某个 action 的调用做处理，需要在回调里对 name 属性进行判断
+
+```ts
+const unsubscribe = testStore.$onAction(
+  ({ name, store, args, after, onError }) => {
+    /* 进行action之前的操作 */
+    console.log(1, name) // action键值（字符串）
+    console.log(2, store) // store实例
+    console.log(3, args) // 实参数组
+
+    /* action resolve 之后的操作 */
+    after(res => {
+      // 钩子函数
+    })
+
+    /* action reject 之后的操作 */
+    onError(error => {
+      // 钩子函数
+    })
+  }
+)
+
+unsubscribe() // 手动移除订阅
+```
