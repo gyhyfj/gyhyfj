@@ -8,6 +8,14 @@ const html = [
     text: '02img标签',
     link: '/01HTML-CSS-JS/01HTML/02img标签',
   },
+  {
+    text: '03事件',
+    link: '/01HTML-CSS-JS/01HTML/03事件',
+  },
+  {
+    text: '04属性',
+    link: '/01HTML-CSS-JS/01HTML/04属性',
+  },
 ]
 const css = [
   {
@@ -23,8 +31,16 @@ const css = [
     link: '/01HTML-CSS-JS/02CSS/03css预处理器',
   },
   {
+    text: '居中',
+    link: '/01HTML-CSS-JS/02CSS/04css居中',
+  },
+  {
+    text: 'css函数',
+    link: '/01HTML-CSS-JS/02CSS/05css函数',
+  },
+  {
     text: 'CSS总结',
-    link: '/01HTML-CSS-JS/02CSS/04css总结',
+    link: '/01HTML-CSS-JS/02CSS/css总结',
   },
 ]
 const js = [
@@ -75,6 +91,10 @@ const js = [
   {
     text: '10Proxy-Reflect',
     link: '/01HTML-CSS-JS/03JAVASCRIPT/10proxy-reflect',
+  },
+  {
+    text: '11形参为对象的函数',
+    link: '/01HTML-CSS-JS/03JAVASCRIPT/11形参为对象的函数',
   },
   {
     text: '常用代码',
