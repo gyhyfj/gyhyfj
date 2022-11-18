@@ -7,6 +7,16 @@
 
 构造函数 Promise() 创建一个新的 Promise 对象，这个构造函数主要用于包裹还没添加 pormise 支持的函数
 
+```ts
+let a = new Promise((res, rej) => {
+  res(1)
+})
+```
+
+如果在 new Promise 接收的回调里面使用 return 语句，return 并无实际意义，但后面的代码将不再执行，如果还未 resolve 或 reject，则永远 pending
+
+传入的回调的 resolve 和 reject 可以被保存引用到构造语句外，以随时在外部控制 Promise 的执行状态
+
 ## 使用 Promise
 
 Promise 是一个对象，代表一个异步操作的最终完成或者失败
