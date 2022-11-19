@@ -25,7 +25,12 @@ let changMsg: () => void = (): void => {
 ```
 
 此外，还有操作 DOM 元素的访问模板 ref。
-模板 ref 需要通过一个显式指定的泛型参数和一个初始值 null 来创建
+模板 ref 需要通过一个显式指定的泛型参数和一个初始值 null 来创建，泛型参数和初始值都可以省略
+
+有时，你可能需要为一个子组件（假设是 MyModal.vue）添加一个模板引用，以便调用它公开的方法，可以这样标注类型：
+`const modal = ref<InstanceType<typeof MyModal> | null>(null)`
+
+在挂载前，以及 v-if 卸载后，获取到的模板 ref.value 都是 null
 
 ```vue
 <script setup lang="ts">
@@ -196,7 +201,6 @@ const text = useDebouncedRef('hello')
 ## reactive
 
 返回一个对象的响应式代理。
-源码是`function reactive<T extends object>(target: T): UnwrapNestedRefs<T>`，所以 reactive 不接受传入简单数据类型。
 
 绑定复杂数据类型时，推荐使用 reactive 而不是 ref。在 script 中对数据进行修改，不需要像 ref 绑定的数据那样加上`.value`。
 
@@ -241,6 +245,21 @@ let change = () => {
   <div>{{ arr.list }}</div>
   <button @click="change">change</button>
 </template>
+```
+
+reactive 源码是`function reactive<T extends object>(target: T): UnwrapNestedRefs<T>`，所以 reactive 不接受传入简单数据类型。
+
+reactive 使用时，必须传入参数，且参数类型必须是 T extends object，如果传入泛型，这个参数必须符合泛型，但也可以只传入一个空对象或数组，后面用 as 作类型断言，这样就创建了一个空值的 reactive，且有类型提示
+
+reactive 使用时候最好传入正确的 T extends object 泛型，否则在使用它的成员时可能会报错
+
+```ts
+const res = [1, 2]
+const arr = reactive([])
+arr.splice(0, 0, ...res) // error: 类型“number”的参数不能赋给类型“never”的参数
+
+// 需要传入准确的泛型
+const arr = reactive<number[]>([])
 ```
 
 ## readonly
