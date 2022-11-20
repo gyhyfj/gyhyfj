@@ -29,7 +29,7 @@ npx eslint --init
 
 配置 eslint 忽略文件 .eslintignore
 
-```yml
+```yaml
 /dist // TODO 这里似乎需要修改
 /node_modules
 /.vscode
@@ -90,7 +90,7 @@ package.json 添加命令
 
 根目录创建 .stylelintignore
 
-```yml
+```yaml
 src/components/content-skeleton/ # 路径以 src/ 开头
 src/styles/module/
 ```
