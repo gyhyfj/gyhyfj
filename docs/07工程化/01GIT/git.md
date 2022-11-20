@@ -191,6 +191,32 @@ git push -f
 git rebase -i 分支/版本号
 ```
 
+### git 忽略文件的部分内容
+
+1. 在工程的根目录下创建/打开一个 .gitattributes 文件(会被提交到本地或者远程仓库)，或者在根目录下创建 .git/info/attributes（不会被提交到本地或者远程仓库）
+2. 在上面添加的文件（两者任选其一）中添加如下内容
+
+   ```bash
+    *.java filter=_config
+    # *.java 表示过滤所有.java 结尾的文件
+    # filter 是固定的,表示filter过滤器
+    # _config 是过滤器的名称, 后面需要用到
+   ```
+
+3. 然后打开终端 执行下面命令进行 git 设置 (注意下面 2 个配置, 只能配置一个生效!!! )
+
+   ```bash
+   # 配置1, 单行忽略(_config 是上面配置的过滤器名称)
+   # 设置后, 添加了 //@gitignore 结尾的代码行会被忽略提交
+   git config --global filter._config.clean "sed '/\/\/@gitignore$/'d"
+   git config --global filter._config.smudge cat
+
+   # 配置2, 多行忽略(_config 是上面配置的过滤器名称)
+   # 设置后, //#BEGIN 到 //#END 之间的代码行会被忽略提交
+   git config --global filter._config.clean "sed '/\/\/#BEGIN/,/\/\/#END$/d'"
+   git config --global filter._config.smudge cat
+   ```
+
 ## Git 工作流
 
 分为三种工作流：

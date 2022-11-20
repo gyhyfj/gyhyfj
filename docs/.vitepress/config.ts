@@ -504,8 +504,12 @@ const git = [
 ]
 const format = [
   {
-    text: '代码规范',
-    link: '/07工程化/02代码规范/代码规范',
+    text: 'lint组合',
+    link: '/07工程化/02代码规范/01lint组合',
+  },
+  {
+    text: 'vscode插件',
+    link: '/07工程化/02代码规范/02vscode插件',
   },
 ]
 const paradigm = [
@@ -958,7 +962,7 @@ export default {
               },
               {
                 text: '代码规范',
-                link: '/07工程化/02代码规范/代码规范',
+                link: '/07工程化/02代码规范/01lint组合',
               },
               {
                 text: '编程范式',
