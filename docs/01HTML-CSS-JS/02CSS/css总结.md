@@ -109,6 +109,17 @@ animation 是动画，它不需要触发事件就能执行，可以有多个关�
 3. 把 line-height 和容器的 height 设置为相等，可实现单行文本的垂直居中
 4. line-height 赋值为纯数字，表示为父级元素行高的倍数
 
+## 单词的折断
+
+CSS 属性 overflow-wrap 是用来说明当一个不能被分开的字符串太长而不能填入其包裹盒时，为防止其溢出，浏览器是否允许这样的单词中断换行。
+而 word-wrap 属性原本属于微软的一个私有属性，现在是 CSS3 文本规范草案中 overflow-wrap 的“别名”
+取值有 normal 和 break-word（表示如果行内没有多余的地方容纳该单词到结尾，则那些正常的不能被分割的单词会被强制分割换行）
+
+CSS 属性 word-break 指定了怎样在单词内断行
+取值有 normal break-all（对于 non-CJK 文本，可在任意位置断行） keep-all break-word（已弃用，请勿使用）
+
+与 word-break 相比，overflow-wrap 仅在无法将整个单词放在自己的行而不会溢出的情况下才会产生中断，更推荐使用 overflow-wrap:break-word 来添加给网站应用全局的 h 标签 p 标签等
+
 ## css 优化和提高性能的方法
 
 ### 1. 加载性能

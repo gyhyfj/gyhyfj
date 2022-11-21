@@ -143,6 +143,7 @@ onAction 侦听 action 被调用，接收一个工厂函数 `Test.$onAction((arg
 
 :::tip
 pinia 不能跨页面共享数据，想跨页面只能借助 localStorage
+如果 pinia 做了持久化，那么相当于也是做了跨页面共享数据，借助 localStorage，但是 pinia 不能监听 localStorage 的变化，所以不是实时的数据共享
 :::
 
 ### $onAction
