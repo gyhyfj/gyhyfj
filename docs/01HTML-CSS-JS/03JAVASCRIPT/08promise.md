@@ -212,3 +212,70 @@ const func = () => {
 }
 console.log(func()) // 1
 ```
+
+.catch 只能捕捉 .then 接收的回调中同步操作抛出的错误
+catch(e){} 只能捕捉 try 中同步操作抛出的错误
+
+```ts
+const wait = (ms: number) => new Promise(res => setTimeout(res, ms))
+wait(3000)
+  .then(async () => {
+    await Promise.reject(8)
+  })
+  .catch(err => console.log(err)) // 8 3秒后打印
+```
+
+```ts
+const wait = (ms: number) => new Promise(res => setTimeout(res, ms))
+wait(3000)
+  .then(async () => {
+    await wait(2000)
+    await Promise.reject(8)
+  })
+  .catch(err => console.log(err)) // 8 5秒后打印
+```
+
+```ts
+const wait = (ms: number) => new Promise(res => setTimeout(res, ms))
+
+const fn = async () => {
+  try {
+    await wait(3000)
+    throw new Error('8')
+  } catch (e) {
+    console.log(e) // 8
+  }
+}
+
+fn()
+```
+
+```ts
+const wait = (ms: number) => new Promise(res => setTimeout(res, ms))
+
+const fn = async () => {
+  try {
+    setTimeout(() => {
+      throw new Error('8')
+    }, 3000)
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+fn() // 无法捕捉异步抛出的错误
+```
+
+```ts
+const wait = (ms: number) => new Promise(res => setTimeout(res, ms))
+
+const fn = async () => {
+  try {
+    await Promise.reject(8) // 只有await了才能捕捉到错误
+  } catch (e) {
+    console.log(e) // 8
+  }
+}
+
+fn()
+```
