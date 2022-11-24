@@ -217,6 +217,12 @@ git rebase -i 分支/版本号
    git config --global filter._config.smudge cat
    ```
 
+4. 清除缓存 git rm -r --cached . 然后 git add .
+
+:::warning
+任何对 gitignore 配置的修改都需要清除对项目文件追踪的缓存，然后重新执行 git add .
+:::
+
 ## Git 工作流
 
 分为三种工作流：

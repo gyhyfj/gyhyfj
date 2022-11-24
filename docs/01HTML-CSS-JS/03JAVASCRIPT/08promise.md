@@ -213,8 +213,9 @@ const func = () => {
 console.log(func()) // 1
 ```
 
-.catch 只能捕捉 .then 接收的回调中同步操作抛出的错误
-catch(e){} 只能捕捉 try 中同步操作抛出的错误
+.catch(e=>{}) 只能捕捉操作链顶部 Promise reject 的内容以及后续的 .then(res=>{}) 中同步操作抛出的错误
+
+想要捕捉 setTimeout 的回调里抛出的错误，可以将 setTimeout 包装成 promise，然后把回调放在这个 promise 的回调的链式调用中，在链尾用 .catch(e=>{}) 捕捉错误
 
 ```ts
 const wait = (ms: number) => new Promise(res => setTimeout(res, ms))
@@ -235,6 +236,8 @@ wait(3000)
   .catch(err => console.log(err)) // 8 5秒后打印
 ```
 
+try{}catch(e){} 只能捕捉 try 中同步操作抛出的错误
+
 ```ts
 const wait = (ms: number) => new Promise(res => setTimeout(res, ms))
 
@@ -253,11 +256,19 @@ fn()
 ```ts
 const wait = (ms: number) => new Promise(res => setTimeout(res, ms))
 
+// const fn = async () => {
+//   try {
+//     setTimeout(() => {
+//       throw new Error('8')
+//     }, 3000)
+//   } catch (e) {
+//     console.log(e)
+//   }
+// }
+
 const fn = async () => {
   try {
-    setTimeout(() => {
-      throw new Error('8')
-    }, 3000)
+    Promise.reject(8)
   } catch (e) {
     console.log(e)
   }
