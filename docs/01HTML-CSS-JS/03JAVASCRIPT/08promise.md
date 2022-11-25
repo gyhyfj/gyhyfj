@@ -237,6 +237,8 @@ wait(3000)
 ```
 
 try{}catch(e){} 只能捕捉 try 中同步操作抛出的错误
+try{}catch(e){} 还能捕捉 try 中 require 语句抛出的错误
+注意 catch 后面的 e 不可省略
 
 ```ts
 const wait = (ms: number) => new Promise(res => setTimeout(res, ms))

@@ -4,13 +4,26 @@ https://xiaoman.blog.csdn.net/article/details/122740383
 
 ## Proxy
 
-Proxy 对象用于创建一个对象的代理，从而实现基本操作的拦截和自定义。
+Proxy 是一个构造函数，用于创建一个对象的代理，从而实现基本操作的拦截和自定义。
 
 const p = new Proxy(target, handler)
 
 target 是需要代理的目标对象（可以是任何类型的对象，包括原生数组，函数，甚至另一个代理）。
 
-handler 是包含各个捕获器（trap）的对象。如果为空对象，就只有 set、get 这两个默认捕获器，并且不会有过多的操作，get 捕获器就直接返回访问属性的值，set 捕获器就将新的值赋值给访问属性。
+handler 是对目标对象的劫持，成员是各个处理函数，也叫捕获器（trap）。
+如果为空对象，就只有 set、get 这两个默认捕获器，并且不会有过多的操作，get 捕获器就直接返回访问属性的值，set 捕获器就将新的值赋值给访问属性。
+
+```ts
+const obj = { age: 18 }
+const proxy = new Proxy(obj, {})
+console.log(proxy) // node 中是 { age: 18 } 浏览器中是 Proxy {age: 18}
+```
+
+处理函数有：
+
+```ts
+
+```
 
 ## Reflect
 
