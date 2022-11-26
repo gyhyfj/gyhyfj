@@ -81,7 +81,8 @@ git branch test # 创建新分支
 git branch -d test # 删除分支 -D是强制删除
 git branch -m master main # 重命名分支，把master重命名为main
 
-git checkout test # 切换分支
+git checkout test # 切换分支，如果没有则创建新分支
+git switch test # 切换分支，如果没有则不创建，推荐，避免在切换分支时因拼写错误而创建新分支
 git checkout -b test # 创建并切换到新分支
 
 git merge test # 把指定分支合并到当前分支
