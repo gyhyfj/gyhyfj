@@ -55,6 +55,9 @@ type Part = Pop<Arr> // type type Part = [1, 2]
 type TupleToUni<T> = T extends Array<infer E> ? E : never
 type TTuple = [string, number]
 type ToUnion = TupleToUni<TTuple> // string | number
+
+// 去除元组之类的readonly
+type ToMutable<T> = { -readonly [Key in keyof T]: T[Key] }
 ```
 
 infer 递归：

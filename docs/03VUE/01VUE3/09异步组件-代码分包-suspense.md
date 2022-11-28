@@ -43,6 +43,7 @@ export const axios = (url: string): Promise<NameList[]> => {
 
 拥有异步操作的子组件：
 setup 语法糖中的 await 可以直接使用，但如果是 setup 中自定义的函数使用 await，仍需要用 async
+ES7 以后可以直接使用顶层 await，在整个模块最外层使用 await，整个模块会变成一个巨大的 async 函数
 
 ```vue
 <!-- 异步组件 -->
@@ -103,7 +104,7 @@ const A = defineAsyncComponent(() => import('./components/A/A.vue')) // import �
       <A />
     </template>
     <template #fallback
-      ><!-- 加载中 -->
+      ><!-- 加载中，可以展示骨架屏 -->
       loading...
     </template>
   </Suspense>
