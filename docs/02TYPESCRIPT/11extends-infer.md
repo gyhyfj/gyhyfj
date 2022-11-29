@@ -1,4 +1,13 @@
-# 条件类型 & infer
+# extends & infer
+
+## extends
+
+书写泛型的时候，作为对类型参数的约束，`<T extends B>`表示 T 被约束为必须是对 B 的继承/拓展
+
+```ts
+T extends object // 表示 T 被限制为对象类型
+U extends keyof T // 表示 U 被限制为 T 的键名的字面量联合类型
+```
 
 ## 条件类型
 
@@ -13,9 +22,11 @@ https://blog.csdn.net/qq_36380426/article/details/124657643?ops_request_misc=%25
 
 ## infer
 
-infer 是 TypeScript 新增到的关键字，充当占位符
+infer 是 TypeScript 新增到的关键字，充当占位符，通常用法是 infer R，R 表示待推推断的类型
+
 infer 只能在条件类型的 extends 子句中使用，同时 infer 声明的类型变量只在条件类型的 true 分支中可用
-用于构造类型工具，进行类型提取
+
+infer 是 inference 的缩写，用于构造类型工具，进行类型提取，类型系统在获得足够的信息后，就能将 infer 后跟随的类型参数推导出来
 
 类型工具示例：
 

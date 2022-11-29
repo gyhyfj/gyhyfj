@@ -110,10 +110,48 @@ export default httpMethods
 
 ## Readonly
 
+将所有属性变为只读
+将所有只读属性（如果有）变为非只读
+
 ```ts
 type Readonly<T> = {
-  readonly [P in keyof T]: T[P]
+  readonly [K in keyof T]: T[K]
+}
+
+type ToMutable<T> = {
+  -readonly [K in keyof T]: T[K]
 }
 ```
 
-将所有属性变为只读
+示例：（除了接口的成员外，对数组也同样生效）
+
+```ts
+type Obj = typeof obj
+// type Obj = {
+//   name: string;
+//   age: number;
+// }
+
+type ReadonlyObj = Readonly<Obj>
+// type ReadonlyObj = {
+//   readonly name: string;
+//   readonly age: number;
+// }
+
+type MutableObj = ToMutable<ReadonlyObj>
+// type MutableObj = {
+//   name: string;
+//   age: number;
+// }
+
+type Test = {
+  readonly name: string
+  age: number
+}
+
+type MutableTest = ToMutable<Test>
+
+type Arr = readonly [1]
+type MutableArr = ToMutable<Arr>
+// type MutableArr = [1]
+```
