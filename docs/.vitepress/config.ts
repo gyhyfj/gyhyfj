@@ -142,8 +142,8 @@ const ts = [
     link: '/02TYPESCRIPT/03TS对象类型',
   },
   {
-    text: '04新增类型',
-    link: '/02TYPESCRIPT/04新增类型',
+    text: '04TS新增类型',
+    link: '/02TYPESCRIPT/04TS新增类型',
   },
   {
     text: '05模块',
@@ -154,32 +154,40 @@ const ts = [
     link: '/02TYPESCRIPT/06命名空间',
   },
   {
-    text: '07装饰器',
-    link: '/02TYPESCRIPT/07装饰器',
+    text: '07声明合并',
+    link: '/02TYPESCRIPT/07声明合并',
   },
   {
-    text: '08混入Mixins',
-    link: '/02TYPESCRIPT/08混入Mixins',
+    text: '08装饰器',
+    link: '/02TYPESCRIPT/08装饰器',
   },
   {
-    text: '09三斜杠指令',
-    link: '/02TYPESCRIPT/09三斜杠指令',
+    text: '09混入Mixins',
+    link: '/02TYPESCRIPT/09混入Mixins',
   },
   {
-    text: '10extends',
-    link: '/02TYPESCRIPT/10extends',
+    text: '10三斜杠指令',
+    link: '/02TYPESCRIPT/10三斜杠指令',
   },
   {
-    text: '11条件类型-infer',
-    link: '/02TYPESCRIPT/11条件类型-infer',
+    text: '11[]-in',
+    link: '/02TYPESCRIPT/11[]-in',
   },
   {
-    text: '12Record-Readonly',
-    link: '/02TYPESCRIPT/12Record-Readonly',
+    text: '12extends-infer',
+    link: '/02TYPESCRIPT/12extends-infer',
   },
   {
-    text: '13Partial-Pick-Omit-Required',
-    link: '/02TYPESCRIPT/13Partial-Pick-Omit-Required',
+    text: '13工具类型',
+    link: '/02TYPESCRIPT/13工具类型',
+  },
+  {
+    text: '14asserts-is',
+    link: '/02TYPESCRIPT/14asserts-is',
+  },
+  {
+    text: '15声明文件',
+    link: '/02TYPESCRIPT/15声明文件',
   },
   {
     text: '14文件类型检查',
@@ -190,8 +198,12 @@ const ts = [
     link: '/02TYPESCRIPT/15声明文件',
   },
   {
-    text: '16项目配置',
-    link: '/02TYPESCRIPT/16项目配置',
+    text: '16tsconfig',
+    link: '/02TYPESCRIPT/16tsconfig',
+  },
+  {
+    text: '17类型检查设置',
+    link: '/02TYPESCRIPT/17类型检查设置',
   },
 ]
 // NAV 3
