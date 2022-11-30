@@ -308,6 +308,10 @@ const vue3 = [
     text: '选项式API与组合式API',
     link: '/03VUE/01VUE3/25选项式API与组合式API',
   },
+  {
+    text: '环境变量',
+    link: '/03VUE/01VUE3/26环境变量',
+  },
 ]
 const router4 = [
   {

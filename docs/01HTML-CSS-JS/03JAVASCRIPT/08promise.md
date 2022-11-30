@@ -104,6 +104,24 @@ Promise 的构造器接收一个执行函数，在这个执行函数里手动地
 
 Promise.resolve() 和 Promise.reject() 是手动创建一个已经 resolve 或者 reject 的 Promise 快捷方法
 
+:::warning
+创建时候就会执行 resolve 中的语句，且是同步执行！！！！
+:::
+
+```ts
+console.log(1)
+Promise.resolve(console.log(2))
+console.log(3)
+// 1 2 3
+
+console.log(1)
+Promise.resolve(console.log(2)).then(() => {
+  console.log(4) // then中的仍是异步任务
+})
+console.log(3)
+// 1 2 3 4
+```
+
 ### Promise.resolve()
 
 Promise.resolve(value)返回一个 Promise，如果 value 是 Promise，则返回这个 Promise；如果 value 是 thenable，则返回其最终状态
