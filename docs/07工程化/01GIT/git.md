@@ -1,5 +1,8 @@
 # Git
 
+设置初始化默认分支为 main
+`git config --global init.defaultBranch main`
+
 ## Git
 
 三个区域：工作区 暂存区 仓库
@@ -191,6 +194,19 @@ git push -f
 ```bash
 git rebase -i 分支/版本号
 ```
+
+### .gitignore
+
+没有感叹号前缀的文件会被忽略
+如果在前面通过通配符被忽略的文件不想被忽略，则可以使用"!"对其做排除，如：
+
+```
+.vscode/*
+!.vscode/extensions.json
+```
+
+但是：如果一个文件所在的目录被定义在 gitignore 里，那再对这个文件设置"!"将不会生效，即这个文件依然会被忽略
+如果文件名本身以“!”开头，在使用"!"时需要以"\"做转义
 
 ### git 忽略文件的部分内容
 

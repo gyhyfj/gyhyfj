@@ -51,8 +51,6 @@ npm i prettier -D
 npm i eslint-config-prettier -D
 ```
 
-在 .eslintrc.js 的 extends 数组最后添加一项 'plugin:prettier/recommended'
-
 package.json 添加命令
 
 ```json
@@ -148,7 +146,7 @@ lint-staged 辅助工具
 {
   "src/**/*.{js,ts,jsx,tsx,vue}": "npm run eslint:fix",
   "src/**/*.{vue,css,scss,html}": "npm run stylelint:fix",
-  "src/**/*": "npm run format"
+  "src/**/*.{js,ts,jsx,tsx,vue,css,scss,less,html,md}": "npm run format"
 }
 ```
 
@@ -158,12 +156,6 @@ lint-staged 辅助工具
 
 ```bash
 npm i commitizen -D
-```
-
-安装 cz-conventional-changelog
-
-```bash
-commitizen init cz-conventional-changelog --save --save-exact
 ```
 
 安装自定义 commit 插件
@@ -185,6 +177,9 @@ npm i cz-customizable -D
 ```
 
 在根目录创建 .cz-config.js
+:::warning
+不识别 cjs 后缀名，在 package.json 中不能配置"type":"module"
+:::
 
 ```js
 // 提交代码: 使用 cz 命令

@@ -14,6 +14,7 @@ let a = new Promise((res, rej) => {
 ```
 
 如果在 new Promise 接收的回调里面使用 return 语句，return 并无实际意义，但后面的代码将不再执行，如果还未 resolve 或 reject，则永远 pending
+但在后面跟的 .then() 中接受的回调则不同
 
 传入的回调的 resolve 和 reject 可以被保存引用到构造语句外，以随时在外部控制 Promise 的执行状态
 
@@ -207,6 +208,44 @@ func()
 console.log('Z')
 
 // X Z Y
+```
+
+async await 可以搭配链式调用使用，控制逻辑的执行
+await 后的 promise 一定会被执行到链式调用调用完毕，才会执行下一行代码
+
+```ts
+const fn = async () => {
+  await Promise.resolve().then(() => {
+    console.log(1) // .then 后是微任务
+    console.log(2)
+  })
+  console.log('done') // await 后是微任务
+}
+
+fn() // 1 2 done
+
+const fn = async () => {
+  await Promise.resolve().then(() => {
+    Promise.resolve(1).then(console.log) // .then 后是微任务，.then 的微任务中 Promise.resolve() 是同步任务，它后面的 .then 又是微任务
+    Promise.resolve(2).then(console.log)
+  })
+  console.log('done')
+}
+
+fn() // 1 2 done
+
+let wait = new Promise((res, rej) => {
+  setTimeout(res, 1000, 1) // setTimeout 是宏任务，网络请求也是宏任务，虽然比微任务早放入任务队列，但却是随后执行的
+})
+
+const fn = async () => {
+  await Promise.resolve().then(() => {
+    wait.then(console.log)
+  })
+  console.log('done')
+}
+
+fn() // done 1
 ```
 
 try 语句
