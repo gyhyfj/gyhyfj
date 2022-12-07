@@ -262,6 +262,8 @@ arr.splice(0, 0, ...res) // error: 类型“number”的参数不能赋给类型
 const arr = reactive<number[]>([])
 ```
 
+reactive 还可以包裹 set 之类的对象，比如`const a = reactive(new Set())`，那么 vue 文件中的`a.has('key')`都会拥有响应式，自动更新视图
+
 ## readonly
 
 接受一个对象 (不论是响应式还是一般的) 或是一个 ref，返回一个原值的只读代理。
