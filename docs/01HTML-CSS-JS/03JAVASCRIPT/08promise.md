@@ -349,3 +349,31 @@ const fn = async () => {
 
 fn()
 ```
+
+try{}catch{}finally{}的执行顺序：
+try 块和 catch 块中的同步任务直接执行，异步任务推进任务执行队列，然后直接执行 finally 块中的代码。
+finally 块中的代码不会等待 try 和 catch 块中的异步执行完毕
+
+```ts
+const wait = (ms: number) => new Promise(res => setTimeout(res, ms))
+try {
+  wait(200).then(() => {
+    console.log(1)
+  })
+  try {
+    wait(200).then(() => {
+      console.log(2)
+    })
+  } finally {
+    wait(200).then(() => {
+      console.log(3)
+    })
+  }
+} finally {
+  wait(200).then(() => {
+    console.log(4)
+  })
+  console.log(5)
+}
+// 5 1 2 3 4
+```
