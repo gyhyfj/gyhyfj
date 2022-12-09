@@ -43,6 +43,17 @@ package.json 添加命令
 "eslint:fix": "eslint . --fix --ext .js,.jsx,.ts,.tsx,.vue"
 ```
 
+配置 eslint 忽略部分代码
+
+```ts
+/* eslint-disable */
+const watermark = require('watermark-dom') // @ts-ignore
+/* eslint-enable */
+// 不检查这一行 // eslint-disable-line
+// 只有某项规则不检查这一行 // eslint-disable-line no-use-before-undefined
+// 禁用下一行 // eslint-disable-next-line
+```
+
 ## prettier
 
 ```bash
