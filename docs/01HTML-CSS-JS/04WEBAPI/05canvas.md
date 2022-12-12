@@ -166,7 +166,7 @@ img.onload = function () {
 控制图像的缩放行为
 // imageSmoothingEnabled 属性来控制是否在缩放图像时使用平滑算法。默认值为 true，即启用平滑缩放
 // 过度缩放图像可能会导致图像模糊或像素化
-ctx.mozImageSmoothingEnabled = false 、、
+ctx.mozImageSmoothingEnabled = false
 ctx.webkitImageSmoothingEnabled = false
 ctx.msImageSmoothingEnabled = false
 ctx.imageSmoothingEnabled = false
