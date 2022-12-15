@@ -86,9 +86,11 @@ DOCTYPE（文档类型）告诉浏览器以什么样的模式（html、xhtml）�
 ## script 标签的 defer 和 async
 
 1. 如果只是简单的`<scrpit>`标签，浏览器会解析到该标签时中断 html 解析，开始加载脚本，并在加载完毕后执行，执行结束后继续解析 html
-
-2. `<script defer>`标签，会让脚本加载和解析 html 同时进行，并在 html 解析完毕后执行脚本
+2. `<script defer>`标签，会让脚本加载和解析 html 同时进行，并在 html 解析完毕后执行脚本。多个 defer 脚本会按顺序依次执行
 3. `<script async>`标签，会让脚本加载和解析 html 同时执行，但在加载完成后暂停 html 解析来执行脚本，执行完毕后继续解析 html 文档
+
+async 优先级比 defer 高，二者同时用时候 async 生效，会忽略 defer
+async 兼容性会差一些，所以有时候二者会同时用
 
 ## meta 标签
 
