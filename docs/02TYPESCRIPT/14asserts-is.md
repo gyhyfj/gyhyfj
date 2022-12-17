@@ -98,4 +98,22 @@ function assertIsDefined<T>(val: T): asserts val is NonNullable<T> {
     )
   }
 }
+/* 如果写成箭头函数，需要这样写： */
+const assertIsDefined: <T>(val: T) => asserts val is NonNullable<T> = <T>(
+  val: T
+) => {
+  if (val === undefined || val === null) {
+    throw new Error(`Expected 'val' to be defined, but received ${val}`)
+  }
+}
+```
+
+即使调用了这样的函数作为类型守卫，生效的区域还是十分狭窄，比如下文的回调函数、if 语句块等等，就生效不到，意义不是特别大
+
+示例：
+工具函数，判断是否是对象类型
+
+```ts
+const isObject = (value: unknown): value is Record<string | number, any> =>
+  typeof value === 'object' && value !== null // 返回一个布尔值
 ```
