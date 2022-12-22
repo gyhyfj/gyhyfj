@@ -52,3 +52,6 @@ Konva.Image.fromURL(
   }
 )
 ```
+
+缩放
+stage.width() 不随 stage 缩放而变化 取的是静态的属性
