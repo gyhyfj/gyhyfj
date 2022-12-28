@@ -201,8 +201,8 @@ const text = useDebouncedRef('hello')
 ## reactive
 
 返回一个对象的响应式代理。
-
-绑定复杂数据类型时，推荐使用 reactive 而不是 ref。在 script 中对数据进行修改，不需要像 ref 绑定的数据那样加上`.value`。
+如果对象中的成员是 ref 时，会被解构出来，访问不需要加`.value`
+绑定复杂数据类型时，推荐使用 reactive 而不是 ref
 
 ```vue
 <script lang="ts" setup>
@@ -269,6 +269,7 @@ reactive 还可以包裹 set 之类的对象，比如`const a = reactive(new Set
 接受一个对象 (不论是响应式还是一般的) 或是一个 ref，返回一个原值的只读代理。
 这仍是一个响应式对象，只是只读而已。
 只读代理是深层的：对任何嵌套 property 的访问都将是只读的。它的 ref 解包行为与 reactive() 相同，但解包得到的值是只读的。
+被 readonly 包裹的 reactive，即使其某个成员是 ref，这个成员也是不可改写的
 
 ```vue
 <script lang="ts" setup>
