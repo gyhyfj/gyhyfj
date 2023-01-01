@@ -77,3 +77,5 @@ https://www.smashingmagazine.com/2020/03/setting-height-width-images-important-a
 https://web.dev/cls/
 
 https://www.smashingmagazine.com/2019/12/browsers-containment-css-contain-property/
+
+display 为 none 或父元素 display 为 none 的 img 标签，浏览器仍会对其图片资源进行加载

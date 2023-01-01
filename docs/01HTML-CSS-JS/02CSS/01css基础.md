@@ -102,6 +102,13 @@ background-repeat: repeat/no-repeat/repeat-x/repeat-y;
 background-position: 像素值/关键字（center） 或 水平距离 垂直距离;
 background-size: cover(完全覆盖)、contain(最大容纳) 或 两个数值：像素值、百分比（相当于盒子自身宽高），第一个代表宽度，第二个是=代表高度
 
+:::danger
+样式覆盖时候需要注意：
+如果在某个地方写了 background background-size background-repeat 这类属性
+然后在后面用了一个新的 background 这个规则，但只定义了 image 这个子属性，那么前面定义的那些 size 之类的 css 样式都会被覆盖
+如果只是想覆写 image 而继承其他样式，只能在下面用 background-image 这样的属性来覆写
+:::
+
 ## filter
 
 filter：blur(5px); // 模糊内容，整个盒子（包括边框）模糊并向外晕染
