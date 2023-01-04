@@ -293,7 +293,7 @@ wait(3000)
   .catch(err => console.log(err)) // 8 5秒后打印
 ```
 
-try{}catch(e){} 只能捕捉 try 中同步操作抛出的错误
+try{}catch(e){} 只能捕捉 try 中同步操作抛出的错误，不能捕捉语法错误以及异步操作中抛出的错误
 try{}catch(e){} 还能捕捉 try 中 require 语句抛出的错误
 注意 catch 后面的 e 不可省略
 
