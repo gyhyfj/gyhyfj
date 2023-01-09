@@ -19,3 +19,6 @@ color 如果没有，则是纯黑
 color 和 inset 没有顺序关系，可以互换位置
 
 shadow 可以同时叠加多个，用逗号分割
+
+如果父元素有 overflow: hidden;
+子元素的 shadow 超出父元素的会被隐藏
