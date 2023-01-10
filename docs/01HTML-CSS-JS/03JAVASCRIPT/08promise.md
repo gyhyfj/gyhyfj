@@ -377,3 +377,26 @@ try {
 }
 // 5 1 2 3 4
 ```
+
+## 竞态问题
+
+如果有异步在队列中，只执行最后一个 promise 的方法
+
+```ts
+let currentID: number
+
+const printLastString = (note: string) => {
+  const id = Math.random()
+  currentID = id
+  new Promise(res => setTimeout(res, Math.random() * 100)).then(() => {
+    if (currentID !== id) {
+      return
+    }
+    console.log(note)
+  })
+}
+
+printLastString('1')
+printLastString('2')
+printLastString('3') // 调用printLastString时候立即给currentID赋值，但new Promise时候，id传入new时候的id，currentID是全局变量会在外面被引用继续被更新
+```
