@@ -44,15 +44,11 @@ package.json 添加命令
 ```
 
 配置 eslint 忽略部分代码
+忽略检查
 
-```ts
-/* eslint-disable */
-const watermark = require('watermark-dom') // @ts-ignore
-/* eslint-enable */
-// 不检查这一行 // eslint-disable-line
-// 只有某项规则不检查这一行 // eslint-disable-line no-use-before-undefined
-// 禁用下一行 // eslint-disable-next-line
-```
+1. 跳过某个片段 `/* eslint-disable */` + `/* eslint-enable */`
+2. 跳过当前行 `/* eslint-disable-line */`
+3. 跳过下一行 `/* eslint-disable-next-line */`
 
 ## prettier
 
@@ -103,6 +99,12 @@ package.json 添加命令
 src/components/content-skeleton/ # 路径以 src/ 开头
 src/styles/module/
 ```
+
+忽略检查
+
+1. 跳过某个片段 `/* stylelint-disable */` + `/* stylelint-enable */`
+2. 跳过当前行 `/* stylelint-disable-line */`
+3. 跳过下一行 `/* stylelint-disable-next-line */`
 
 ## commitlint
 

@@ -22,3 +22,42 @@ shadow 可以同时叠加多个，用逗号分割
 
 如果父元素有 overflow: hidden;
 子元素的 shadow 超出父元素的会被隐藏
+
+## 背景
+
+简写是` background : [background-color] [background-image] [background-repeat] [background-attachment] [background-position] / [background-size] [background-origin] [background-clip]`
+
+可以多个背景，用逗号分隔
+
+如果前面写了一些子属性，后面又用聚合属性覆写，聚合属性会用覆写前面的子属性
+
+```scss
+.box {
+  background-position: center;
+  // 如果使用百分比
+  // 默认是0% 0%，是左上角对左上角，如果设置50% 50%则是居中显示，如果设置100% 100%则是右下角对右下角，如果只写一个值则是水平方向对齐位置，垂直方向默认50%
+  // 如果使用单位
+  // 可以是px之类任意单位，0 0是左上角对左上角，如果只写一个值则是水平方向对齐位置，垂直方向默认50%
+  // 如果使用英文关键字
+  // 取值可选center top bottom left right，如果只写一个值则是另一个默认center
+  background-repeat: no-repeat; // 默认是repeat，还可选repeat-x、repeat-y
+  background-size: contain;
+  // 设置背景图片宽高
+  // 如果是百分比，则相对元素的宽高的百分比
+  // 如果是数值，则是宽高值，只写一个的话，另一个是auto等比缩放
+  // 关键字的值有cover和contain，都是等比缩放
+  // background-color: red; // 假如background-image存在透明的地方，就会显示background-color // 默认是transparent
+  border: 5px solid transparent;
+  border: 1px solid red;
+
+  background-image: url('https://**/*.png'); // 尽量用引号包裹，否则遇到特殊字符可能会识别出错
+  background-attachment: scroll; // 默认scroll，页面滚动时候背景跟着页面内容滚动，还可选fixed，页面滚动时候背景不滚动
+  background-origin: padding-box;
+  // 背景图片的相对定位（背景色永远是铺满）
+  // padding-box是从padding（含）开始绘制背景，border-box是从border（含）开始绘制背景，content-box是从content（含）开始绘制背景
+  background-clip: content-box; // 取值类似background-origin，但定位还是根据background-origin，然后再根据这个属性进行裁剪，只显示范围内的背景
+  // 可以设置多个值，从某一个区域裁剪至另一个区有，从内向外，顺序不能变
+  -webkit-background-clip: text;
+  // 这个私有属性会以区块内的文字作为裁剪区域向外裁剪
+}
+```

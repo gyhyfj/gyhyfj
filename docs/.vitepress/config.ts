@@ -97,6 +97,10 @@ const js = [
     link: '/01HTML-CSS-JS/03JAVASCRIPT/11形参为对象的函数',
   },
   {
+    text: '12遍历与迭代',
+    link: '/01HTML-CSS-JS/03JAVASCRIPT/12遍历与迭代',
+  },
+  {
     text: '常用代码',
     link: '/01HTML-CSS-JS/03JAVASCRIPT/常用代码',
   },

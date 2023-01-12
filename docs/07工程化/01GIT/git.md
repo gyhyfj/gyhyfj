@@ -113,7 +113,10 @@ git stash clear # 删除所有的stash
 # 远程操作
 
 # 连接远程仓库
-git remote add upstream xxxx.git # 添加与xxxx.git的连接并重命名为upstream
+git remote add origin xxxx.git # 添加与xxxx.git的连接并命名为origin
+
+# 移除与远程仓库的连接
+git remote remove origin # 移除与origin的连接
 
 # 展示配置的远程仓库
 git remote
@@ -130,6 +133,9 @@ git checkout -b test origin/test # 切换分支，并在本地创建同样的分
 # 推送本地更新到远程分支
 git push origin dev
 git push -u origin main # 加 -u 后，以后可以直接执行 git push
+
+# 断连的仓库重新连接后推送main分支
+git push --set-upstream origin main
 
 # 获取远程分支更新
 git fetch
@@ -177,6 +183,7 @@ git reset HEAD filename # reset --mixed，保留工作区，移除暂存区的�
 # 文件被修改了且commit了，但想继续修改并提交，且不产生新commit
 git add filename
 git commit --amend -m 'msg' # --amend用来修改上次commit的修改以及上次commit的msg
+# 或 git commit --amend 进入交互式流程
 ```
 
 2.刚线上更新的代码出现问题了，需要还原这次提交的代码
