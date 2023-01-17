@@ -103,6 +103,8 @@ field.addEventListener('change', function () {
 也就是说 http://example.com 与 https://example.com 的 sessionStorage 相互隔离。
 :::
 
+localStorage 中只能存储字符串值，所以需要用 JSON.stringify 和 parse 方法来转换对象或布尔值，也可以用`['true',true].includes(xxx)`来判断布尔值是否为 true
+
 ## location 对象
 
 window 对象给我们提供了一个 location 属性用于获取或者设置窗体的 URL，并且可以解析 URL，因为这个属性返回的是一个对象，所以我们将这个属性也称为 location 对象。

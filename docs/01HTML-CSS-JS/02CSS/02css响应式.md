@@ -72,6 +72,16 @@ mediafeature 分为 min-width、max-width、width（正好是某个宽度）、o
 }
 ```
 
+如果通过 js 来查询主题色：
+
+```ts
+const isDarkMode = [true, 'true'].includes(
+  localStorage.getItem('zmo-editor-theme-color') ??
+    (window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches)
+)
+```
+
 ## 常见的 css 布局单位
 
 ### px
