@@ -66,6 +66,10 @@ referrerpolicy
 2. img 标签没有基线，所以当设置`vertical-align: baseline` 时，图像的底部将会与容器的文字基线对齐
 3. object-position object-fit
 
+## 标签样式
+
+object-fit object-position
+
 ## Image 构造器
 
 ## 性能优化

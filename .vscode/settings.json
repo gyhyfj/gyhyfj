@@ -20,5 +20,13 @@
     "commandCenter.border": "#e7e7e799"
   },
   "peacock.color": "#662b2f",
-  "cSpell.words": ["dragend", "dragenter", "dragleave", "dragover", "dragstart"]
+  "cSpell.words": [
+    "dragend",
+    "dragenter",
+    "dragleave",
+    "dragover",
+    "dragstart",
+    "typeof",
+    "Konva"
+  ]
 }

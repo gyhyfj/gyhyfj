@@ -55,3 +55,25 @@ Konva.Image.fromURL(
 
 缩放
 stage.width() 不随 stage 缩放而变化 取的是静态的属性
+
+经验：
+
+```ts
+/* 版本号 */
+// version: '@@version' 打包时候替换该字符串
+
+/* 代码是否被压缩 */
+const isCompressed = !/param/.test(((param: any) => undefined).toString())
+
+/* 是否是浏览器环境 */
+const isBrowser =
+  typeof window !== 'undefined' &&
+  // browser case
+  ({}.toString.call(window) === '[object Window]' ||
+    // electron case
+    {}.toString.call(window) === '[object global]')
+
+/* 分辨率 */
+const pixelRatio =
+  (typeof window !== 'undefined' && window.devicePixelRatio) || 1
+```

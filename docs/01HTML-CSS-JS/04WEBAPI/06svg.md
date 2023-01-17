@@ -117,6 +117,8 @@ y // 终点 Y 轴坐标
 内部样式 // 给形状添加类名，写在`<style>`标签内
 外部样式 // 写在外部 css 文件种
 
+设置在 svg 根节点上的 fill 属性和 svg 标签 css 样式的 fill 属性会作为内部 path 的默认属性，但如果内部 path 也写了 fill 属性则这里的优先级最高
+
 常用属性样式：
 
 fill="red|none|transparent 等" // 填充
