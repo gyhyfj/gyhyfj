@@ -25,7 +25,7 @@ stroke // 描边颜色（省略则不会绘制）
 折线 polyline 标签
 points // 点集，两两一组表示一个坐标 `points="10 10, 200 80, 230 230"`
 stroke // 描边颜色
-fill // 填充颜色（自闭合填充，但不会补 stroke）（为 none 则不填充）
+fill // 填充颜色（自闭合填充，但不会补 stroke）（为 none 则不填充） fill 可以用`currentColor`，就可以继承外部的字体颜色 color 属性
 
 多边形 polygon 标签
 points // 点集，两两一组表示一个坐标，自动闭合
