@@ -195,8 +195,6 @@ npm i cz-customizable -D
 :::
 
 ```js
-// 提交代码: 使用 cz 命令
-// 相关配置: https://github.com/leoforfree/cz-customizable
 module.exports = {
   types: [
     {
@@ -234,16 +232,13 @@ module.exports = {
   ],
   messages: {
     type: '请选择提交类型(必填):\n',
-    // scope: '请输入文件修改范围(可选):',
-    // used if allowCustomScopes is true
     customScope: '请输入影响范围(可选):\n',
     subject: '请输入简要描述 (必填):\n',
     body: '请输入详细描述, 使用 "|" 分行(可选):\n',
     breaking: '请列出所有的破坏性变更, 例如: 描述、理由或迁移方式等(可选):\n',
-    // footer: '请列出需关闭的 issue, 例如: #31, #34(可选):\n',
     confirmCommit: '请确认此提交信息?',
   },
-  subjectLimit: 100, // subject文字长度默认
+  subjectLimit: 100,
   allowCustomScopes: true,
   allowBreakingChanges: ['feat', 'fix'],
   skipQuestions: ['scope', 'footer'],
