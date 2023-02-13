@@ -210,15 +210,19 @@ console.log('Z')
 // X Z Y
 ```
 
-async await 可以搭配链式调用使用，控制逻辑的执行
+async await 可以搭配链式调用使用
 await 后的 promise 一定会被执行到链式调用调用完毕，才会执行下一行代码
+或者说，await 后的链式调用都是同步任务
 
 ```ts
 const fn = async () => {
-  await Promise.resolve().then(() => {
-    console.log(1) // .then 后是微任务
-    console.log(2)
-  })
+  await Promise.resolve()
+    .then(() => {
+      console.log(1) // .then 后是微任务
+    })
+    .then(() => {
+      console.log(2)
+    })
   console.log('done') // await 后是微任务
 }
 

@@ -709,92 +709,6 @@ const daodejing = [
     link: '/散记/天命/道德经/08万物之注',
   },
 ]
-const wbcssg = [
-  {
-    text: '01 帝国丧钟：黄巾大起义',
-    link: '/散记/天命/文不醜说三国/01帝国丧钟：黄巾大起义',
-  },
-  {
-    text: '02 乱世秘钥：黄天的迷局',
-    link: '/散记/天命/文不醜说三国/02乱世秘钥：黄天的迷局',
-  },
-  {
-    text: '03 中平实录：士宦首争锋',
-    link: '/散记/天命/文不醜说三国/03中平实录：士宦首争锋',
-  },
-  {
-    text: '04 中平实录：士宦再争锋',
-    link: '/散记/天命/文不醜说三国/04中平实录：士宦再争锋',
-  },
-  {
-    text: '05 中平实录：董卓发迹史',
-    link: '/散记/天命/文不醜说三国/05中平实录：董卓发迹史',
-  },
-  {
-    text: '06 中平实录：士宦三争锋',
-    link: '/散记/天命/文不醜说三国/06中平实录：士宦三争锋',
-  },
-  {
-    text: '07 中平实录：士宦四争锋',
-    link: '/散记/天命/文不醜说三国/07中平实录：士宦四争锋',
-  },
-  {
-    text: '08 中平实录：士宦五争锋',
-    link: '/散记/天命/文不醜说三国/08中平实录：士宦五争锋',
-  },
-  {
-    text: '09 三日猜想：董卓的死局',
-    link: '/散记/天命/文不醜说三国/09三日猜想：董卓的死局',
-  },
-  {
-    text: '10 兄弟阋墙：讨董的背面',
-    link: '/散记/天命/文不醜说三国/10兄弟阋墙：讨董的背面',
-  },
-  {
-    text: '11 染指七州：袁绍的崛起',
-    link: '/散记/天命/文不醜说三国/11染指七州：袁绍的崛起',
-  },
-  {
-    text: '12 鸠占鹊巢：袁绍占冀州',
-    link: '/散记/天命/文不醜说三国/12鸠占鹊巢：袁绍占冀州',
-  },
-  {
-    text: '13 决战冀州：界桥的白马',
-    link: '/散记/天命/文不醜说三国/13决战冀州：界桥的白马',
-  },
-  {
-    text: '14 董卓被刺：魔头的终局',
-    link: '/散记/天命/文不醜说三国/14董卓被刺：魔头的终局',
-  },
-  {
-    text: '15 三处推理：刺董案疑云',
-    link: '/散记/天命/文不醜说三国/15三处推理：刺董案疑云',
-  },
-  {
-    text: '16 司徒王允：长安四十日',
-    link: '/散记/天命/文不醜说三国/16司徒王允：长安四十日',
-  },
-  {
-    text: '17 文和乱武：李郭占长安',
-    link: '/散记/天命/文不醜说三国/17文和乱武：李郭占长安',
-  },
-  {
-    text: '18 曹操身份考：曹氏掌故',
-    link: '/散记/天命/文不醜说三国/18曹操身份考：曹氏掌故',
-  },
-  {
-    text: '19 曹操入兖州：东郡太守',
-    link: '/散记/天命/文不醜说三国/19曹操入兖州：东郡太守',
-  },
-  {
-    text: '20 曹操入兖州：收降黄巾',
-    link: '/散记/天命/文不醜说三国/20曹操入兖州：收降黄巾',
-  },
-  {
-    text: '21 曹操入兖州：五大谜团',
-    link: '/散记/天命/文不醜说三国/21曹操入兖州：五大谜团',
-  },
-]
 
 export default {
   /* App Configs */
@@ -804,9 +718,11 @@ export default {
   title: 'gyhyfj',
   description: '有物混成 先天地生',
   titleTemplate: true, // The suffix for the title
+  cleanUrls: true,
   /* https://github.com/markdown-it/markdown-it#init-with-presets-and-options */
   markdown: {
     breaks: true, // Convert '\n' in paragraphs into <br>
+    // lineNumbers: true,
   },
   appearance: true, // Whether to enable "Dark Mode" or not
   lastUpdated: true, // Use git commit to get the timestamp
@@ -1037,7 +953,7 @@ export default {
               },
               {
                 text: '天命',
-                link: '/散记/天命/文不醜说三国/01帝国丧钟：黄巾大起义',
+                link: '/散记/天命/墨子/01墨家的由来',
               },
             ],
           },
@@ -1257,12 +1173,6 @@ export default {
           collapsed: true,
           text: '老子',
           items: daodejing,
-        },
-        {
-          collapsible: true,
-          collapsed: true,
-          text: '文不醜说三国',
-          items: wbcssg,
         },
       ],
     },
