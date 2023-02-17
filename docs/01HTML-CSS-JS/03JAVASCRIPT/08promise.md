@@ -13,8 +13,16 @@ let a = new Promise((res, rej) => {
 })
 ```
 
-如果在 new Promise 接收的回调里面使用 return 语句，return 并无实际意义，但后面的代码将不再执行，如果还未 resolve 或 reject，则永远 pending
-但在后面跟的 .then() 中接受的回调则不同
+如果在 new Promise 接收的回调里面使用 return 语句，这里的 return 唯一存在意义就是让后面的代码将不再执行，如果还未 resolve 或 reject，则永远 pending。
+resolve 或 reject 终究只是函数，执行后后面的代码还是会继续执行，不可代替 return
+但 throw new Error()可以造成后面的代码不再执行
+并且被 catch 捕捉错误时，如果前面有 reject()，则 catch 回调接收的参数是 reject 出去的那个，尽管 throw 的和 reject 的都被捕捉了。
+
+如果先 resolve 再 reject 只会取第一个那次，因为 Promise 最终状态不可改变
+
+但在后面跟的 .then() 中接受的回调则不同，then 中需要 return Promise 来给后面的链式调用使用
+
+链式调用中，后面的链中访问不到前面链中的变量，除非存在外面作为全局变量
 
 传入的回调的 resolve 和 reject 可以被保存引用到构造语句外，以随时在外部控制 Promise 的执行状态
 
@@ -353,6 +361,10 @@ const fn = async () => {
 
 fn()
 ```
+
+async 函数中的一列 await，如果哪个 await 失败后面的 await 就不再执行，
+即使用 try catch 包裹也没用，因为它们只是捕捉错误，错付发生了后面的代码就是不会继续执行
+除非用 try catch 包裹每行 await
 
 try{}catch{}finally{}的执行顺序：
 try 块和 catch 块中的同步任务直接执行，异步任务推进任务执行队列，然后直接执行 finally 块中的代码。

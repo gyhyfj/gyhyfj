@@ -329,4 +329,6 @@ animation-play-state：动画运动状态 running（运动） paused（暂停）
 :::danger
 父元素 子元素都是 flex 布局时候，注意一些属性的继承，
 比如 flex-direction， 子元素会继承父元素的属性
+
+flex 布局不可以使用 justify-self 属性！
 :::

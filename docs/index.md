@@ -12,7 +12,7 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /07工程化/03编程范式/函数式编程
+      link: /01HTML-CSS-JS/03JAVASCRIPT/08promise
     - theme: alt
       text: View on GitHub
       link: https://github.com/gyhyfj
