@@ -34,6 +34,8 @@ infer 是 inference 的缩写，用于构造类型工具，进行类型提取，
 // 获取数组中的元素的类型
 type Flatten<T> = T extends Array<infer U> ? U : T
 type Elem = Flatten<string[]> // type Elem = string
+// 也可以这样写来获取数组中元素的类型
+type Elem = typeof arr[number]
 
 // 获取函数的返回值类型
 type GetReturnType<T> = T extends (...args: any[]) => infer U ? U : T

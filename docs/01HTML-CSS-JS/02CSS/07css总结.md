@@ -376,3 +376,5 @@ zoom 兼容性差一些，是非标准属性，Firefox 和 Firefox for Android �
 ```css
 pointer-events: none;
 ```
+
+移动端 touchmove 仍会造成下方的滚动，需要 prevent @touchmove.prevent
