@@ -2,6 +2,7 @@
 /* 窗口滚动条 */
 html {
   --diy-scrollbar-dark: #1a1a1a;
+  overscroll-behavior: none;
 }
 .dark *::-webkit-scrollbar {
   width: 10px;
