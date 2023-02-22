@@ -377,4 +377,11 @@ zoom 兼容性差一些，是非标准属性，Firefox 和 Firefox for Android �
 pointer-events: none;
 ```
 
-移动端 touchmove 仍会造成下方的滚动，需要 prevent @touchmove.prevent
+移动端 touchmove 仍会造成下方的滚动，需要 prevent 或 @touchmove.prevent
+常用于出现弹窗或遮罩层时候，禁止滑动后方的内容
+
+```ts
+document.addEventListener('touchmove', e => e.preventDefault(), {
+  passive: false, // 这里如果为true则明确告诉浏览器不执行回调，那么preventDefault就不会被执行导致设置失效
+})
+```
