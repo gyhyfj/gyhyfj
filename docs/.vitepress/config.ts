@@ -20,7 +20,6 @@ for (const path of files) {
   let f2Obj = docsTree[f1].find(item => item.text === f2)
   if (f2Obj === undefined) {
     f2Obj = {
-      collapsible: true,
       collapsed: true,
       text: f2,
       items: [],
@@ -125,8 +124,8 @@ export default {
                 link: '/03VUE/03PINIA/01pinia',
               },
               {
-                text: 'QUASAR',
-                link: '/03VUE/04QUASAR/01初始化项目',
+                text: 'I18N',
+                link: '/03VUE/04I18N/01vite项目中使用i18n',
               },
               {
                 text: 'UNIAPP',
