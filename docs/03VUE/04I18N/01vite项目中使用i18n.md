@@ -23,24 +23,14 @@ const modules: LanModule = import.meta.glob('@/i18n/dict/**/*.ts', {
   import: 'default',
 })
 
-const lanFileArr: LanFile[] = []
-for (const path in modules) {
-  const prefix: string = path.split('/').slice(4, -1).join('.') + '.'
-  const lanFile: LanFile = modules[path]
-  for (const key in lanFile) {
-    if (prefix !== '.') {
-      lanFile[prefix + key] = lanFile[key]
-      delete lanFile[key]
-    }
-  }
-  lanFileArr.push(lanFile)
-}
+const messages = <{ [k in Lan]: Record<string, string> }>{}
 
-const messages = {}
-for (const lanFile of lanFileArr) {
-  for (const key in lanFile) {
-    for (const lan in lanFile[key]) {
-      ;(messages[lan] ??= {})[key] = lanFile[key][lan]
+for (const path in modules) {
+  let prefix: string = path.split('/').slice(4, -1).join('.')
+  prefix && (prefix += '.')
+  for (const key in modules[path]) {
+    for (const lan in modules[path][key]) {
+      ;(messages[lan] ??= {})[prefix + key] = modules[path][key][lan]
     }
   }
 }

@@ -64,6 +64,23 @@
 mediatype 分为 all、print、screen、speech
 mediafeature 分为 min-width、max-width、width（正好是某个宽度）、orientation（portrait 竖放、landscape 横放）、hover（取值 hover 表示设备可以实现悬浮，有鼠标等指点设备）
 
+还可以通过伪类查询设备是否有 hover 机制来区分设备，避免横屏带来的误判
+
+```css
+@media (any-hover: none) {
+  body::before {
+    content: 'hoverNone';
+    display: none;
+  }
+}
+```
+
+```js
+const strContent = getComputedStyle(document.body, '::before').content
+// 结果是'none'则表示支持 hover
+// 结果是'hoverNone'则表示不支持hover，是移动端
+```
+
 此外还有：查询终端系统所处的亮/暗模式：
 
 ```css
@@ -76,7 +93,7 @@ mediafeature 分为 min-width、max-width、width（正好是某个宽度）、o
 
 ```ts
 const isDarkMode = [true, 'true'].includes(
-  localStorage.getItem('zmo-editor-theme-color') ??
+  localStorage.getItem('theme-color') ??
     (window.matchMedia &&
       window.matchMedia('(prefers-color-scheme: dark)').matches)
 )
