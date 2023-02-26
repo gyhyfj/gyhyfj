@@ -26,8 +26,7 @@ const modules: LanModule = import.meta.glob('@/i18n/dict/**/*.ts', {
 const messages = <{ [k in Lan]: Record<string, string> }>{}
 
 for (const path in modules) {
-  let prefix: string = path.split('/').slice(4, -1).join('.')
-  prefix && (prefix += '.')
+  const prefix: string = [...path.split('/').slice(4, -1), ''].join('.')
   for (const key in modules[path]) {
     for (const lan in modules[path][key]) {
       ;(messages[lan] ??= {})[prefix + key] = modules[path][key][lan]
