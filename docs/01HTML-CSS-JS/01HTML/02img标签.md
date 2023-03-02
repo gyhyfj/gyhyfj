@@ -83,3 +83,9 @@ https://web.dev/cls/
 https://www.smashingmagazine.com/2019/12/browsers-containment-css-contain-property/
 
 display 为 none 或父元素 display 为 none 的 img 标签，浏览器仍会对其图片资源进行加载
+
+## Image 构造器
+
+img 对象的 onload 要定义在 src 获取赋值之前，不然有可能监听不到 load 事件
+
+img 标签的伪元素不会显示的 设置了和没设置没啥区别

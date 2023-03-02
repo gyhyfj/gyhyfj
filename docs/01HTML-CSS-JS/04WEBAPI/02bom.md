@@ -140,3 +140,13 @@ history.back()
 history.go(参数) // +1 是前进一个页面 -1 是后退一个页面
 history.pushState(state, title[, url])
 history.replaceState(state, title[, url])
+
+## getComputedStyle
+
+可以通过 getComputedStyle(DOM 元素)来获取元素的 style 属性
+
+```ts
+const { width, height } = getComputedStyle(canvas) // 120.32px 250.11px
+canvas.width = parseInt(width) // 120
+canvas.height = parseInt(height) // 250
+```
