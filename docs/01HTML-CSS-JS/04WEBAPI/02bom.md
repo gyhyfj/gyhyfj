@@ -38,7 +38,7 @@ window.onload 传统注册事件方式只能写一次，会以最后一个 windo
 setTimeout()
 clearTimeout()
 
-setInterval()
+setInterval() // 里面的是和 setTimeout 一样都不是立即执行的，而是延迟传入的时间后执行
 clearInterval()
 
 重要：
