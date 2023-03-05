@@ -1,4 +1,4 @@
-# Observable
+# Creation Operators
 
 ## Observable 构造函数
 
@@ -29,7 +29,7 @@ Observable 的订阅跟 addEventListener 在有很大的差异，Observable 不�
 ## Creation Operators
 
 使用 Creation Operators 建立 Observable 对象
-of - 参数列表
+of - 参数列表 ，不可以包装 Promise
 from - 参数数组 字符串 Promise 多个 Observable 以组成高阶 Observable 以在管道符中调用 mergeAll concatAll
 fromEvent - 传入注册监听和移除监听的方法来建立 Observable 实例
 throwError - 回调函数写法是返回一个 error，会在订阅时生成这个 error
@@ -50,8 +50,8 @@ iif
 常量实例
 EMPTY NEVER
 
-接受一个 observable 数组的
-concat 推送高阶 observable
-merge 推送高阶 observable
+接受一个 observable 数组/列表的
+concat 拼接 推送高阶 observable
+merge 融合 接受 observable 列表 推送高阶 observable
 combineLatest 每次推送一个数组
 zip 每次推送一个数组 每次都是等每个 observable 都推出值了然后一起推送 所以当某个是异步 observable 时，其他的同步 observable 的数据会跟随异步的节奏被推出

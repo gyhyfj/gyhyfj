@@ -1,6 +1,7 @@
 # 认识 RxJS
 
 ReactiveX 结合了观察者模式、迭代器模式和使用集合的函数式编程
+并不是发布订阅模式的原因是，observable 内部没有维护订阅者清单，订阅的过程只是在像执行一个 function
 
 ## pull push
 
@@ -60,3 +61,27 @@ Observable：被调用后可以同步或异步地返回零到无限多个值
 Observer 跟 Iterator 有个共通的特性，就是他们都是 渐进式（progressive） 的取得资料，差别只在于 Observer 是生产者（Producer）推送资料（push），而 Iterator 是使用者（Consumer）要求资料（ pull)!
 
 Observable 其实就是这两个 Pattern 思想的结合，Observable 具备生产者推送资料的特性，同时能像序列，拥有序列处理资料的方法（map， filter...）！
+
+## 核心概念
+
+整个 RxJS 说白了就是一个核心三个重点。
+
+一个核心是 Observable 再加上相关的 Operators（map，filter...）
+另外三个重点分别是 Observer Subject Schedulers
+
+Observable 是多个值的生产者，并将值“推送”给消费者 具有延迟计算和渐进式取值的特性，在处理大量数据时候渐进式取值会高效很多
+定义一个数据流，然后通过被订阅以启动数据流
+
+Observer 是观察者，一个回调函数的集合，是一个对象，有 next error complete 三个成员方法，是 Observable 的 subscribe 方法的参数，返回值是 Subscription，表示 Observable 的执行，可以被清理，通过调用 Subscription 的 unsubscribe 方法
+
+Subject 和它的变体
+BehaviorSubject
+ReplaySubject
+AsyncSubject
+既是一个 Observable 又是一个 Observer，它可以同时接受 Observable 发射出的数据，也可以向订阅了它的 observer 发射数据
+是多播（不是广播）
+
+在 RxJS 中，有热观察和冷观察的概念。其中的区别：
+
+Hot Observable：可以理解为现场直播，我们进场的时候只能看到即时的内容
+Cold Observable：可以理解为点播（电影），我们打开的时候会从头播放

@@ -1,4 +1,5 @@
-Pipeable-Options
+# Pipeable Operators
+
 所有這些函式都會拿到原本的 observable 並回傳一個新的 observable
 
 take 取几个
@@ -136,7 +137,8 @@ catchError 捕捉管道前面未捕捉的错误，接受一个回调，参数 1 
 retry 遇错重试 接受一个 number 或 RetryConfig 重试还不行后会推出错误，然后 observer 里需要定义 error 字段，否则就无法捕捉错误，导致进程挂掉
 repeat 重复 接受一个 number 或 RepeatConfig
 
-concatMap map 加上 concatAll 的简写 适合连续请求
+concatMap map 加上 concatAll 的简写 适合连续请求，写法是接受一个回调作为参数，这个回调生成一个 Observable
+下游可以继续使用 map，回调里有 value 和 index 两个值，可对这两个值进行处理
 
 ```ts
 fromEvent(document, 'click').pipe(
@@ -146,5 +148,28 @@ fromEvent(document, 'click').pipe(
 fromEvent(document, 'click').pipe(concatMap(() => of(1, 2, 3)))
 ```
 
-switchMap 适合只让最后一次请求发生副作用
-mergeMap 限制并行
+switchMap 下一个 Observable 送出数据时直接退订上一个 Observable，适合只让最后一次请求发生副作用 // 灰色是瀏覽器原生地停頓行為，實際上灰色的一開始就是 fetch 執行送出 request，只是卡在瀏覽器等待發送。
+mergeMap 可以接受第二个可选参数 concurrent 限制并行数量
+
+window 类似 buffer，接受一个 Observable 来通知什么时候释放缓存。不同的是 window 会把释放的缓存包装成一个 Observable
+windowToggle 类似 bufferToggle, 接受两个 Observable ，第一个通知什么时候取流，第二个通知什么时候放流
+
+groupBy 接受一个返回布尔值的回调，根据 true 还是 false 分组成两个 Observable 推出
+
+```ts
+const list = [
+  { name: 'Anna', score: 100, subject: 'English' },
+  { name: 'Anna', score: 90, subject: 'Math' },
+  { name: 'Anna', score: 96, subject: 'Chinese' },
+  { name: 'Jerry', score: 80, subject: 'English' },
+  { name: 'Jerry', score: 100, subject: 'Math' },
+  { name: 'Jerry', score: 90, subject: 'Chinese' },
+]
+
+zip([from(list), interval(1000)])
+  .pipe(
+    groupBy(data => data[0].name === 'Anna'),
+    mergeAll() // 这里发生了什么？如果用concatAll又发生什么？？为什么用concatAll后面就收不到false的Observable，难道concat时候提前收到了complete？或是concat结束的依据不是complete？或是内部奇怪的执行机制导致的？
+  )
+  .subscribe()
+```
