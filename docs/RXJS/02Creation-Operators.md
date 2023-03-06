@@ -31,19 +31,24 @@ Observable 的订阅跟 addEventListener 在有很大的差异，Observable 不�
 使用 Creation Operators 建立 Observable 对象
 of - 参数列表 ，不可以包装 Promise
 from - 参数数组 字符串 Promise 多个 Observable 以组成高阶 Observable 以在管道符中调用 mergeAll concatAll
-fromEvent - 传入注册监听和移除监听的方法来建立 Observable 实例
+fromEvent
 throwError - 回调函数写法是返回一个 error，会在订阅时生成这个 error
 interval - 按间隔送出 0 1 2 ..序列，不立即送出 0
 timer - 开始送出的时间 送出间隔 送出自然数序列 没有第二个参数则只送出 0
 
+defer 接受一个生成 Observable 的回调，当被订阅时生产这个 Observable
+// from(Promise)定义的 Observable 里面的 Promise 会被立即执行的，副作用也是会立即执行
+// defer(()=>from(Promise))这种方式定义的 Observable 只会在定义的时候才会执行里面的 Promise
+// 不仅仅是 Promise，需要从外部读值来创建 Observable 的非纯函数 Observable，可以用 defer 在 subscribe 时候再执行创建，从外部读值。`defer(() => of(mainInputRef.value.files![0]))`
+// `fromEvent(target,evName)`这样的代码如果不是放在 defer 的回调里延迟执行，写下的瞬间就已经要读取这个 dom 对象了，
+所以只能写在回调里靠 defer 延迟执行这个回调直至 subscribe
+fromEventPattern 传入注册监听和移除监听的方法来建立 Observable 实例
 ajax
 bindCallback
 bindNodeCallback
-defer
-fromEventPattern
 generate
 
-range
+range 接受两个参数 表示开始值和结束值，生成闭区间的整数序列
 timer
 iif
 

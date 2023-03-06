@@ -5,6 +5,8 @@
 take 取几个
 first 取第一个 相当于 take(1)
 takeUntil 返回一个 Observable 但当接受的参数的 Observable 发出数据时立刻结束这个返回的 Observable。 这个参数 Observable 只要定义了就行，不需要在外部被订阅
+// takeUntil 在后面也会立刻触发，因为管道符负责的是加工生成一个新 observable
+// takeUntil 会结束整个事件并送出 complete，如果是 fromEvent 之类的事件订阅也将不再会执行，只有继续新建一个 fromEvent Observable 问题：是否会造成内存泄漏？？？
 concatAll 把高阶 Observable 降阶，但只会按顺序处理并输出，当前处理结束后才处理下一个
 switchAll 把高阶 Observable 降阶，当后一个 Observable 开始推数据时不再订阅前一个 Observable
 mergeAll 把多个 observable 同时处理，而非串行，这是和 concatAll 和 switchAll 的区别
@@ -134,8 +136,8 @@ distinctUntilChanged 不会维护一个 Set，只会和最后一次送出的比�
 catchError 捕捉管道前面未捕捉的错误，接受一个回调，参数 1 是收到的错误，参数 2 是当前的这个 Observable 自己，返回值可以是另一个 Observable 或字符串之类的 ObservableInput
 可以让返回个 EMPTY 这样就直接结束了 可以让返回参数 2 这样就可以重试
 
-retry 遇错重试 接受一个 number 或 RetryConfig 重试还不行后会推出错误，然后 observer 里需要定义 error 字段，否则就无法捕捉错误，导致进程挂掉
-repeat 重复 接受一个 number 或 RepeatConfig
+retry 失败重试 接受一个 number 或 RetryConfig 重试还不行后会推出错误，然后 observer 里需要定义 error 字段，否则就无法捕捉错误，导致进程挂掉。 可以用于重发网络请求或登录后继续之前的网络请求
+repeat 成功重复 接受一个 number 或 RepeatConfig
 
 concatMap map 加上 concatAll 的简写 适合连续请求，写法是接受一个回调作为参数，这个回调生成一个 Observable
 下游可以继续使用 map，回调里有 value 和 index 两个值，可对这两个值进行处理
@@ -148,7 +150,8 @@ fromEvent(document, 'click').pipe(
 fromEvent(document, 'click').pipe(concatMap(() => of(1, 2, 3)))
 ```
 
-switchMap 下一个 Observable 送出数据时直接退订上一个 Observable，适合只让最后一次请求发生副作用 // 灰色是瀏覽器原生地停頓行為，實際上灰色的一開始就是 fetch 執行送出 request，只是卡在瀏覽器等待發送。
+switchMap 下一个 Observable 送出数据时直接退订上一个 Observable，适合只让最后一次请求发生副作用。可以接受回调返回一个 Promise，自动包装成 Observable
+// 灰色是瀏覽器原生地停頓行為，實際上灰色的一開始就是 fetch 執行送出 request，只是卡在瀏覽器等待發送。
 mergeMap 可以接受第二个可选参数 concurrent 限制并行数量
 
 window 类似 buffer，接受一个 Observable 来通知什么时候释放缓存。不同的是 window 会把释放的缓存包装成一个 Observable
@@ -173,3 +176,7 @@ zip([from(list), interval(1000)])
   )
   .subscribe()
 ```
+
+toArray 采集流中数据放入数组，流结束时推出这个数组
+
+finalize 接受一个回调 结束时候调用，无论 error 还是 next 还是 complete
