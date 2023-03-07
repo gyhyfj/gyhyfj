@@ -136,7 +136,11 @@ distinctUntilChanged 不会维护一个 Set，只会和最后一次送出的比�
 catchError 捕捉管道前面未捕捉的错误，接受一个回调，参数 1 是收到的错误，参数 2 是当前的这个 Observable 自己，返回值可以是另一个 Observable 或字符串之类的 ObservableInput
 可以让返回个 EMPTY 这样就直接结束了 可以让返回参数 2 这样就可以重试
 
-retry 失败重试 接受一个 number 或 RetryConfig 重试还不行后会推出错误，然后 observer 里需要定义 error 字段，否则就无法捕捉错误，导致进程挂掉。 可以用于重发网络请求或登录后继续之前的网络请求
+tap 执行副作用，接受参数可以是一个回调可以是 observer，但里面的 error 字段会在遇到错误时响应但不会捕捉错误，可以捕捉错误的管道符是 catchError
+
+retry 失败重试 接受一个 number 或 RetryConfig 重试还不行后会推出错误，然后 observer 里需要定义 error 字段，否则就无法捕捉错误。 可以用于重发网络请求或登录后继续之前的网络请求
+// 相当于重新 subscribe 因此重发网络请求可能需要结合 defer，每次 retry 都重新执行 retry 内的工厂函数
+
 repeat 成功重复 接受一个 number 或 RepeatConfig
 
 concatMap map 加上 concatAll 的简写 适合连续请求，写法是接受一个回调作为参数，这个回调生成一个 Observable
