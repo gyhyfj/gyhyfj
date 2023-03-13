@@ -30,7 +30,7 @@ always <!-- TODO -->
 状态转换可以定义为：
 一个字符串，例如 RESOLVE: 'resolved'
 具有 target 属性的对象，例如 RESOLVE: { target: 'resolved' },
-转换对象数组，用于条件转换
+转换对象数组，用于并行状态
 
 状态转换方法：
 machine 的 transition 方法是个纯函数 接受两个参数
