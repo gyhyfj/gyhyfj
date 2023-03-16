@@ -69,11 +69,13 @@ JSX 最终还是用纯 JS 的方式创建虚拟 DOM
 列表渲染使用数组 `map` 方法，作为一个`JS表达式`，写在`{}`中，要为遍历项添加`key`属性
 形如：`{songs.map(item => <li key={item.id}>{item.name}</li>)}`
 条件渲染，仍是在`{}`中写`JS表达式`，可以用三元运算符或`&&`运算符
-如果要在 DOM 结构中显示布尔值，不可以用`{isClearable}`，也不可以用`{true?isClearable:''}`或`{isClearable?true:false}`，只能用`{isClearable.toString()}`
+如果要在 DOM 结构中显示布尔值，不可以用`{isClearable}`，也不可以用`{true?isClearable:''}`或`{isClearable?true:false}`，只能用`{isClearable.toString()}`或 `{isClearable + ''}`之类的方法转成字符串
+对象不能写入`{}`，不会像 vue 的插值表达式那样总是自动执行 toString 方法
+但 Date 对象 数组却又能直接被渲染
 
 3.样式处理
 行内样式：
-内联样式 `style` 属性不接收字符串，只接收对象，并且这个对象也在`{}`中，可以直接写在里面，也可以定义为一个变量写在外面
+内联样式 `style` 属性不接收字符串，只接收对象，并且这个对象也在`{}`中，可以直接写在里面，也可以定义为一个变量写在外面。这个对象有它自己的大括号
 类名样式：
 类选择器不要使用 `class`，而是用 `className`，避免与 `ES6` 的 `class` 冲突
 可以用三元运算符动态控制类名
