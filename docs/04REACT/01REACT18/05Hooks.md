@@ -59,12 +59,12 @@ useEffect 回调函数中用到的数据就是依赖数据
 
 依赖项控制执行时机（useEffect 的第二个参数）：
 
-- 不添加依赖项
+- 不添加依赖项 `不传参`
   组件首次渲染执行一次，以及不管是哪个状态更改引起组件更新时都会重新执行
-- 添加空数组
+- 添加空数组 `[]`
   组件只在首次渲染时执行一次
-- 添加特定依赖项
-  副作用函数在首次渲染时执行，在依赖项发生变化时重新执行
+- 添加特定依赖项 `[count]`
+  副作用函数在首次渲染时执行，只在指定的依赖项发生变化时重新执行
 
 清理副作用：
 可以在传入 useEffet 的回调函数的末尾 return 一个新的函数，在新的函数中编写清理副作用的逻辑，比如清理定时器等
@@ -205,3 +205,8 @@ useContext 跨组件通信
 2. 使用 createContext 创建 Context 对象 `const Context = createContext()`，要声明在关联的组件之外外面
 3. 在顶层组件通过 Provider 提供数据 `<Context.Provider value={'this is name'}> <子组件 /> </Context.Provider> `
 4. 在底层组件通过 useContext 函数获取数据，参数为创建的 Context 对象 `const name = useContext(Context)`
+
+## 执行顺序
+
+useState 返回的 dispatch 函数修改状态一定是异步执行
+useEffect 只在收集的依赖变化后才执行
