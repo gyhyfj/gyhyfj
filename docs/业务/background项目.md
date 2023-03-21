@@ -31,3 +31,9 @@
 1. 用 switchMap 串联异步，用 tap 串联同步，用 map 做简单的数据加工，组成一个大的 observable
 2. 建立一个 Subject，用 takeUntil 接受它，并在外部调用这个 Subject 的 next 来发送提示结束推流
 3. 用 finalize 和 tap 打扫场地，需要重新调用时候重新 subscribe 这个大 observable 就可以了
+
+## 虚拟键盘
+
+https://developer.chrome.com/docs/web-platform/virtual-keyboard/
+
+navigator.virtualKeyboard 相关 API 和 css 环境变量和参数

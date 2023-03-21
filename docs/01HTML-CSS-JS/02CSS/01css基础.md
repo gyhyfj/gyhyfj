@@ -122,6 +122,8 @@ background: linear-gradient（方向，颜色1，颜色2，。。。） // 120de
 background: -webkit-linear-gradient（方向，颜色1，颜色2，。。。）
 ```
 
+在渐变中使用 transparent 关键字会在老的 safari 上有兼容性问题，建议在一个定义的渐变中全部用 rbg 或全部用 rgba
+
 ## transition 过度
 
 结合 hover 伪类使用（不是写在 hover 中的）

@@ -32,6 +32,7 @@ let changMsg: () => void = (): void => {
 
 此外，还有操作 DOM 元素的访问模板 ref。
 模板 ref 需要通过一个显式指定的泛型参数和一个初始值 null 来创建，泛型参数和初始值都可以省略
+ref 引用的组件不能用 addEventListener 添加事件，fromEvent 这样的 rxjs 操作符也不接受 ref 引用的对象传入
 
 有时，你可能需要为一个子组件（假设是 MyModal.vue）添加一个模板引用，以便调用它公开的方法，可以这样标注类型：
 `const modal = ref<InstanceType<typeof MyModal> | null>(null)`
