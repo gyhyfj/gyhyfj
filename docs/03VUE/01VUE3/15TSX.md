@@ -5,3 +5,5 @@ JSX 是 JavaScript 的一个类似 XML 的扩展，有了它，我们可以用�
 ```jsx
 const vnode = <div>hello</div>
 ```
+
+需要安装并配置：
