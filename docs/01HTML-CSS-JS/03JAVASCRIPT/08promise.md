@@ -218,6 +218,8 @@ console.log('Z')
 // X Z Y
 ```
 
+async 函数内的 for 循环，内部如果有 await 语句，会执行完 await 语句才进行下一轮循环
+
 async await 可以搭配链式调用使用
 await 后的 promise 一定会被执行到链式调用调用完毕，才会执行下一行代码
 或者说，await 后的链式调用都是同步任务
