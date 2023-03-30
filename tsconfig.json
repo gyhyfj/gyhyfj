@@ -1,5 +1,5 @@
 {
   "compilerOptions": {
-    "module": "esnext" // 这一行
+    "module": "esnext"
   }
 }

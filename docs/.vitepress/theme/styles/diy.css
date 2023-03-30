@@ -13,7 +13,7 @@ html {
   background-color: var(--diy-scrollbar-dark);
 }
 .dark *::-webkit-scrollbar-thumb {
-  border-radius: 0px;
+  border-radius: 5px;
   background-color: rgba(187, 187, 187, 0.25);
 }
 .dark *::-webkit-scrollbar-button {
@@ -30,11 +30,11 @@ html {
   background-color: var(--diy-scrollbar-dark);
 }
 .dark .VPSidebar::-webkit-scrollbar-thumb {
-  border-radius: 0px;
+  border-radius: 5px;
   background-color: var(--diy-scrollbar-dark);
 }
 .dark .VPSidebar:hover::-webkit-scrollbar-thumb {
-  border-radius: 0px;
+  border-radius: 5px;
   background-color: rgba(187, 187, 187, 0.25);
 }
 
@@ -57,7 +57,7 @@ html {
   background-color: var(--diy-scrollbar-light);
 }
 *::-webkit-scrollbar-thumb {
-  border-radius: 0px;
+  border-radius: 5px;
   background-color: rgba(187, 187, 187, 0.5);
 }
 *::-webkit-scrollbar-button {
@@ -74,11 +74,11 @@ html {
   background-color: var(--diy-scrollbar-light);
 }
 .VPSidebar::-webkit-scrollbar-thumb {
-  border-radius: 0px;
+  border-radius: 5px;
   background-color: var(--diy-scrollbar-light);
 }
 .VPSidebar:hover::-webkit-scrollbar-thumb {
-  border-radius: 0px;
+  border-radius: 5px;
   background-color: rgba(187, 187, 187, 0.3);
 }
 .VPSidebar::-webkit-scrollbar-button {
