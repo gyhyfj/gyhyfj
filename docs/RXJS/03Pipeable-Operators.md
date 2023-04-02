@@ -4,9 +4,11 @@
 
 take 取几个
 first 取第一个 相当于 take(1)
+takeWhile 在满足条件时候取，但不清楚不满足条件时候是否触发 complete // TODO:
 takeUntil 返回一个 Observable 但当接受的参数的 Observable 发出数据时立刻结束这个返回的 Observable。 这个参数 Observable 只要定义了就行，不需要在外部被订阅
 // takeUntil 在后面也会立刻触发，因为管道符负责的是加工生成一个新 observable
 // takeUntil 会结束整个事件并送出 complete，如果是 fromEvent 之类的事件订阅也将不再会执行，只有继续新建一个 fromEvent Observable 问题：是否会造成内存泄漏？？？
+first takeWhile takeUntil 用于控制轮询
 concatAll 把高阶 Observable 降阶，但只会按顺序处理并输出，当前处理结束后才处理下一个
 switchAll 把高阶 Observable 降阶，当后一个 Observable 开始推数据时不再订阅前一个 Observable
 mergeAll 把多个 observable 同时处理，而非串行，这是和 concatAll 和 switchAll 的区别
