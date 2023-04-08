@@ -68,3 +68,33 @@
   }
 }
 ```
+
+瀑布流的写法
+父元素
+
+```css
+.gallery {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(4, 250px);
+  column-gap: 15px;
+  grid-auto-rows: 1px;
+  grid-auto-flow: row;
+}
+```
+
+子元素
+
+```vue
+<Item
+  v-for="item list"
+  :key="item.id"
+  :style="`grid-row:auto /span ${~~(
+          (item.height! / item.width! / 1) * 250 +
+          15
+        )}`"
+  class="w-full"
+/>
+```
+
+如果取 vw 会出现垂直方向失去高度的现象
