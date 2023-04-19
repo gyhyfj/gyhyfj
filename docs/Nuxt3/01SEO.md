@@ -29,3 +29,8 @@ https://search.google.com/test/rich-results
 npm 上有个包 schema-dts 用于在 TS 中验证 JSON-LD 的类型
 
 ## 306 307
+
+## vitepress
+
+这是一个页面速度测试网站  
+https://pagespeed.web.dev/

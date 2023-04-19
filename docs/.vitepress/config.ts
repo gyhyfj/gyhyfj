@@ -58,6 +58,9 @@ export default {
     ['meta', { name: 'referrer', content: 'no-referrer' }],
   ],
   themeConfig: {
+    search: {
+      provider: 'local',
+    },
     siteTitle: '有物混成，先天地生', // Replace the default site title in nav
     // logo: '/image/favicon.ico',
     nav: [

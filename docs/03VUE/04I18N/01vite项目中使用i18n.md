@@ -53,8 +53,8 @@ export default defineConfig({
     __VUE_I18N_FULL_INSTALL__: false, // 如果只使用简单API
     __VUE_I18N_LEGACY_API__: false,
     __INTLIFY_PROD_DEVTOOLS__: false,
-   }
-)}
+  },
+})
 ```
 
 ```ts [vite-env.d.ts]
