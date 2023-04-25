@@ -1,11 +1,12 @@
 {
+  "scripts": {
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview"
+  },
   "devDependencies": {
     "fast-glob": "^3.2.12",
-    "vitepress": "latest"
-  },
-  "scripts": {
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs"
+    "vitepress": "latest",
+    "vue": "^3.2.47"
   }
 }

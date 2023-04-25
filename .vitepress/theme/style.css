@@ -1,0 +1,189 @@
+/**
+ * Customize default theme styling by overriding CSS variables:
+ * https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css
+ */
+
+/**
+ * Colors
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-c-brand: #4aa6c0; /* diy */
+  --vp-c-brand-light: #52b1cc; /* diy */
+  --vp-c-brand-lighter: #52b1cc; /* diy */
+  --vp-c-brand-lightest: #bcc0ff;
+  --vp-c-brand-dark: #52b1cc; /* diy */
+  --vp-c-brand-darker: #52b1cc; /* diy */
+  --vp-c-brand-dimm: rgba(100, 108, 255, 0.08);
+}
+
+/**
+ * Component: Button
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-button-brand-border: var(--vp-c-brand-light);
+  --vp-button-brand-text: var(--vp-c-white);
+  --vp-button-brand-bg: var(--vp-c-brand);
+  --vp-button-brand-hover-border: var(--vp-c-brand-light);
+  --vp-button-brand-hover-text: var(--vp-c-white);
+  --vp-button-brand-hover-bg: var(--vp-c-brand-light);
+  --vp-button-brand-active-border: var(--vp-c-brand-light);
+  --vp-button-brand-active-text: var(--vp-c-white);
+  --vp-button-brand-active-bg: var(--vp-button-brand-bg);
+}
+
+/**
+ * Component: Home
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(
+    120deg,
+    #bd34fe /* diy */,
+    #41d1ff
+  );
+
+  --vp-home-hero-image-background-image: linear-gradient(
+    -45deg,
+    #bd34fe 50%,
+    #47caff 50%
+  );
+  --vp-home-hero-image-filter: blur(40px);
+}
+
+@media (min-width: 640px) {
+  :root {
+    --vp-home-hero-image-filter: blur(56px);
+  }
+}
+
+@media (min-width: 960px) {
+  :root {
+    --vp-home-hero-image-filter: blur(72px);
+  }
+}
+
+/**
+ * Component: Custom Block
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-custom-block-tip-border: var(--vp-c-brand);
+  --vp-custom-block-tip-text: var(--vp-c-brand-darker);
+  --vp-custom-block-tip-bg: var(--vp-c-brand-dimm);
+}
+
+.dark {
+  --vp-c-brand: #16b8f3; /* diy zima blue */
+  --vp-c-brand-dark: #4aa6c0; /* diy */
+
+  --vp-custom-block-tip-border: var(--vp-c-brand);
+  --vp-custom-block-tip-text: var(--vp-c-brand-lightest);
+  --vp-custom-block-tip-bg: var(--vp-c-brand-dimm);
+}
+
+/**
+ * Component: Algolia
+ * -------------------------------------------------------------------------- */
+
+.DocSearch {
+  --docsearch-primary-color: var(--vp-c-brand) !important;
+}
+
+/**
+ * Custom Style
+ * -------------------------------------------------------------------------- */
+/* dark mode */
+/* 窗口滚动条 */
+html {
+  --diy-scrollbar-dark: #1a1a1a;
+  overscroll-behavior: none;
+}
+.dark *::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: var(--diy-scrollbar-dark);
+}
+.dark *::-webkit-scrollbar-track {
+  background-color: var(--diy-scrollbar-dark);
+}
+.dark *::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgba(187, 187, 187, 0.25);
+}
+.dark *::-webkit-scrollbar-button {
+  height: 0;
+  background-color: #0099ff;
+}
+/* 侧边栏滚动条 */
+.dark .VPSidebar::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: var(--diy-scrollbar-dark);
+}
+.dark .VPSidebar::-webkit-scrollbar-track {
+  background-color: var(--diy-scrollbar-dark);
+}
+.dark .VPSidebar::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: var(--diy-scrollbar-dark);
+}
+.dark .VPSidebar:hover::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgba(187, 187, 187, 0.25);
+}
+
+.dark .VPSidebar::-webkit-scrollbar-button {
+  height: 0;
+  background-color: #0099ff;
+}
+
+/* light mode */
+/* 窗口滚动条 */
+html {
+  --diy-scrollbar-light: #f9f9f9;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: var(--diy-scrollbar-light);
+}
+*::-webkit-scrollbar-track {
+  background-color: var(--diy-scrollbar-light);
+}
+*::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgba(187, 187, 187, 0.5);
+}
+*::-webkit-scrollbar-button {
+  height: 0;
+  background-color: #0099ff;
+}
+/* 侧边栏滚动条 */
+.VPSidebar::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: var(--diy-scrollbar-light);
+}
+.VPSidebar::-webkit-scrollbar-track {
+  background-color: var(--diy-scrollbar-light);
+}
+.VPSidebar::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: var(--diy-scrollbar-light);
+}
+.VPSidebar:hover::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgba(187, 187, 187, 0.3);
+}
+.VPSidebar::-webkit-scrollbar-button {
+  height: 0;
+  background-color: #0099ff;
+}
+
+/* scroll bar side effect */
+html {
+  overflow: overlay;
+}
