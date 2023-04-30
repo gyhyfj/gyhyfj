@@ -7,19 +7,20 @@ SEO 的目标是提高网站在搜索引擎搜索结果中的排名,
 
 SEO 的意义是
 
-1. 排名越高带来的自然流量(organic traffic)越高, 带来更多的转换
+1. 排名越高带来的自然流量(organic traffic)越高, 潜在用户越多
 2. 提高品牌的可信度
-3. 低成本
-4. 和 SEM 相比, 后者必须付费, 且会带有一个 Sponsored 的 label, 且基本都会被广告插件拦截
+3. 和 SEM 相比, 后者必须付费, 且会带有一个 Sponsored 的 label, 且基本都会被广告插件拦截
+4. 节省广告预算
 
 SEO 在国外意义更大一些
 因为国内的互联网环境 流量大部分都被私域分割完了 流量都在抖音 未被分割的流量, 又非常依赖竞价排名
 
 ## How to improve SEO
 
-1. 技术手段: 针对爬虫和网页性能做技术优化
-2. 内容策略: 创建针对特定关键词的内容策略
-3. 放置外链: 在互联网上放置指向自己网站的链接
+1. 内部优化
+   URL 结构, 网页性能, SEO 相关标签, 语义化标签, 图片 alt 属性, 内部链接, 关键词策略, 高质量内容
+2. 外部优化
+   回链, 社交媒体分享
 
 ## Search Systems
 
@@ -45,7 +46,7 @@ SEO 在国外意义更大一些
    - 30x 遵循重定向
    - 40x 认作错误, 不加载 HTML
    - 50x 爬虫会稍后再返回来查看状态码是否仍是 50x
-4. 渲染队列 这里的工作耗费非常大所以整个互联网上能得到渲染的 URL 是非常有限的，并且通常只处理同步 JS 代码生成的内容
+4. 渲染队列 这里的工作耗费非常大所以整个互联网上能得到渲染的 URL 是非常有限的, 并且通常只处理同步 JS 代码生成的内容
 5. 索引页面 爬虫会把有资格的页面索引起来并将会在搜索引擎的搜索结果中显示
 
 ## SEO 相关的状态码
@@ -92,14 +93,10 @@ XML Sitemaps 告诉爬虫网站有哪些 URL 以及多久更新一次
 
 这两个文件虽然不是必需的, 但可以促进爬虫爬取内容和索引, 因此您的内容将更快地被提取并被相应地排名
 
-## meta robot 标签
+## meta robots 标签
 
-meta robot 标签是爬虫必须始终遵守的指令标签
+meta robots 标签是爬虫必须始终遵守的指令标签
 如果写了`<meta name="robots" content="noindex, nofollow" />`, 会命令搜索引擎不要索引当前页面, 并且不要去爬这个页面上的链接
-
-重要的内容应该放到 title 的靠前的位置
-
-https://search.google.com/search-console/welcome
 
 200 - it crawls and parses the HTML.
 30X - it follows the redirects.
@@ -116,7 +113,7 @@ https://search.google.com/search-console/welcome
 ## meta title 标签
 
 title 是搜索结果中展示的链接的名称
-是谷歌用来理解你的页面内容的主要元素之一, 最好在里面使用关键字
+是谷歌用来理解你的页面内容的主要元素之一, 最好在里面使用关键字, 且重要内容应放得靠前
 
 ## meta description 标签
 
@@ -136,39 +133,41 @@ title 是搜索结果中展示的链接的名称
 ## Structured Data and JSON-LD
 
 结构化数据有助于搜索引擎理解您的页面
-想让富媒体搜索结果显示在 Google 搜索结果中，需要使用`<script type="application/ld+json">` 标签包裹一个 JSON 对象
+想让富媒体搜索结果显示在 Google 搜索结果中, 需要使用`<script type="application/ld+json">` 标签包裹一个 JSON 对象
 参考 [JSON for Linking Data](https://json-ld.org/)
 
 [谷歌结构化数据常规指南](https://developers.google.com/search/docs/appearance/structured-data/sd-policies?hl=zh-cn) 推荐使用 JSON-LD 这种格式标记自己的网页
 
-可以用 [谷歌富媒体搜索结果测试](https://search.google.com/test/rich-results)，来验证抓取的结构化数据
+可以用 [谷歌富媒体搜索结果测试](https://search.google.com/test/rich-results) 和[架构标记验证器](https://validator.schema.org/) , 来验证抓取的结构化数据
 
 npm 上有个包 schema-dts 用于在 TS 中验证 JSON-LD 的类型
 
 ## 尾随斜杠
 
-随斜杠是 URL 末尾的 /。 通常，尾随斜杠 URL 是指 Web 服务器上的目录，而非尾随斜杠 URL 则表示文件。
-无论是文件还是目录，搜索引擎都会分开处理这两种 URL。 在这两种 URL 中呈现相同的内容时，你的网站会提供对搜索引擎优化 (SEO) 产生负面影响的重复内容。
-显式配置后，Static Web Apps 会应用一组 URL 规范化和重定向规则，以帮助改进网站的性能和 SEO。
-trailingSlash 在 azure-swa 上取值默认 auto 可以设置 always 或 never
+随斜杠是 URL 末尾的 /
+通常, 尾随斜杠 URL 是指 Web 服务器上的目录, 而非尾随斜杠 URL 则表示文件
+无论是文件还是目录, 搜索引擎都会分开处理这两种 URL, 在这两种 URL 中呈现相同的内容时, 你的网站会提供对搜索引擎优化 (SEO) 产生负面影响的重复内容。
+显式配置后, SWA 会应用一组 URL 规范化和重定向规则, 以帮助改进网站的性能和 SEO。
+trailingSlash 在 azure-swa 上取值默认 auto, 可以设置 always 或 never
+如果是 never, 一切以尾随斜杠结尾的请求都会 301 重定向到非尾随斜杠, 如`/path/`到`/path`, `/path/index.html`到`/path`, `/contact.html`到`/contact`
 
-nextjs 默认采取丢弃 trailingSlash 的策略，但提供了配置可以配置这个
-nuxtjs 对自定义的 Link 组件提供了配置 trailingSlash 的选项， 它的处理方式是如果没配置或者传入了一个不可用的值，就会作为 unset
+nextjs 默认采取丢弃 trailingSlash 的策略, 但提供了配置可以配置这个
+nuxtjs 对自定义的 Link 组件提供了配置 trailingSlash 的选项, 它的处理方式是如果没配置或者传入了一个不可用的值, 就会作为 unset
 
 ## Core Web Vitals
 
 核心网页指标 得分过低会影响排名
 
-Core Web Vitals 是 Web Vitals 的一个子集，目前由三个衡量加载、交互性和视觉稳定性的指标组成。这些指标是最大内容绘制（LCP）、首次输入延迟（FID）和累积布局偏移（CLS）。
+Core Web Vitals 是 Web Vitals 的一个子集, 目前由三个衡量加载、交互性和视觉稳定性的指标组成。这些指标是最大内容绘制（LCP）、首次输入延迟（FID）和累积布局偏移（CLS）。
 [在线测试](https://pagespeed.web.dev/)
 
-LCP (Largest Contentful Paint) 最大内容绘制 是一个以用户为中心的性能指标，可以测试用户感知到的页面加载速度，因为当页面主要内容可能加载完成的时候，它记录下了这个时间点
+LCP (Largest Contentful Paint) 最大内容绘制 是一个以用户为中心的性能指标, 可以测试用户感知到的页面加载速度, 因为当页面主要内容可能加载完成的时候, 它记录下了这个时间点
 在页面加载过程中, 最大内容可能会发生变化
 
-FID (First Input Delay) 首次输入延迟 测量当用户第一次在页面上交互的时候（点击链接、点击按钮或者自定义基于 js 的事件），到浏览器实际开始处理这个事件的时间
+FID (First Input Delay) 首次输入延迟 测量当用户第一次在页面上交互的时候（点击链接、点击按钮或者自定义基于 js 的事件）, 到浏览器实际开始处理这个事件的时间
 
 CLS (Cumulative Layout Shift) 累计布局偏移
-一个网站在页面加载时意外地改变布局，可能会导致意外的用户错误和分心。
+一个网站在页面加载时意外地改变布局, 可能会导致意外的用户错误和分心。
 
 2021 年 6 月起谷歌提供了一组具体的指标和范围来分析和优化您的性能。
 
@@ -179,5 +178,9 @@ Speed Index: 15%
 Time to Interactive: 15%
 Cumulative Layout Shift: 5%
 
-虽然 Core Web Vitals 确实是一项旨在衡量和推动页面体验和搜索排名改善的举措，但最终受益于这些变化的是用户。
-Core Web Vitals 有助于获得最佳页面体验。根据亚马逊在 2012 年进行的一项研究，额外一秒的加载时间可能会使公司损失 16 亿美元。像这样的研究展示了良好的页面体验和快速网站的重要性，这两者都是 Core Web Vitals 帮助实现的。
+虽然 Core Web Vitals 确实是一项旨在衡量和推动页面体验和搜索排名改善的举措, 但最终受益于这些变化的是用户。
+Core Web Vitals 有助于获得最佳页面体验。根据亚马逊在 2012 年进行的一项研究, 额外一秒的加载时间可能会使公司损失 16 亿美元。像这样的研究展示了良好的页面体验和快速网站的重要性, 这两者都是 Core Web Vitals 帮助实现的。
+
+## 管理 SEO 效果
+
+[谷歌搜索控制台](https://search.google.com/search-console/welcome)
