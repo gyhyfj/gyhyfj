@@ -1,0 +1,5 @@
+pnpm-lock.yaml
+.vscode/
+public/
+.vitepress/cache/
+.vitepress/dist/

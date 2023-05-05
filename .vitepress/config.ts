@@ -31,15 +31,62 @@ for (let path of files) {
 
 const nav = [
   {
-    text: '服务端渲染',
+    text: 'HTML/CSS/JS',
+    items: [
+      {
+        text: 'HTML',
+        link: 'HTML-CSS-JS/HTML/Canvas',
+      },
+      {
+        text: 'CSS',
+        link: 'HTML-CSS-JS/CSS/flex与grid',
+      },
+      {
+        text: 'JavaScript',
+        link: 'HTML-CSS-JS/JavaScript/Promise',
+      },
+    ],
+  },
+  {
+    text: 'Utils',
+    items: [
+      {
+        text: 'Git',
+        link: 'Utils/Git/01git',
+      },
+      {
+        text: 'RxJS',
+        link: 'Utils/RxJS/01认识RxJS',
+      },
+      {
+        text: 'XState',
+        link: 'Utils/XState/01有限状态机与XState',
+      },
+    ],
+  },
+  {
+    text: 'SSR',
     items: [
       {
         text: 'SEO',
-        link: '服务端渲染/seo/01 seo',
+        link: 'SSR/seo/seo',
       },
       {
         text: 'NUXT3',
-        link: '服务端渲染/nuxt3/01 overview',
+        link: 'SSR/nuxt3/SSR-in-Vue',
+      },
+    ],
+  },
+  {
+    text: '微前端',
+    items: [
+      {
+        text: 'Overview',
+        link: '微前端/Overview/overview',
+      },
+      {
+        text: 'WuJie',
+        link: '微前端/无界/工作原理',
       },
     ],
   },

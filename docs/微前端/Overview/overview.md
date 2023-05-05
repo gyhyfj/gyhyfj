@@ -52,8 +52,8 @@ webcomponents 方式隔离更好一些,
 隔离非常完美
 
 缺点:
-dom 割裂感严重，弹框只能在 iframe，而且有滚动条
-通讯非常麻烦，而且刷新 iframe url 状态丢失
+dom 割裂感严重, 弹框只能在 iframe, 而且有滚动条
+通讯非常麻烦, 而且刷新 iframe url 状态丢失
 前进后退按钮无效
 
 ### qiankun
@@ -65,7 +65,7 @@ qiankun 是基于 single-spa 的微前端方案
 TODO: JS 沙箱 样式隔离
 
 优点:
-html entry 的方式引入子应用，相比 js entry 降低了应用改造的成本
+html entry 的方式引入子应用, 相比 js entry 降低了应用改造的成本
 做了静态资源预加载能力
 完备的沙箱方案
 
@@ -73,7 +73,7 @@ html entry 的方式引入子应用，相比 js entry 降低了应用改造的�
 适配成本非常高, 工程化、生命周期、静态资源路径、路由等都要做一系列的适配工作
 css 隔离有问题
 js 沙箱在某些场景下执行性能下降严重 proxy + with
-无法同时激活多个子应用，也不支持子应用保活
+无法同时激活多个子应用, 也不支持子应用保活
 无法支持 vite 等 esmodule 脚本运行
 
 ### garfish
@@ -87,12 +87,12 @@ micro-app 是基于 webcomponent + qiankun sandbox 的微前端方案
 优点:
 使用 webcomponet 加载子应用相比 single-spa 这种注册监听方案更加优雅
 支持子应用保活
-降低子应用改造的成本，提供静态资源预加载能力
+降低子应用改造的成本, 提供静态资源预加载能力
 
 缺点:
 css 样式隔离有问题
 js 沙箱做全局变量查找缓存, 性能有所优化, 但仍会下降
-支持 vite 运行，但必须使用 plugin 改造子应用，且 js 代码没办法做沙箱隔离
+支持 vite 运行, 但必须使用 plugin 改造子应用, 且 js 代码没办法做沙箱隔离
 对于不支持 webcompnent 的浏览器没有做降级处理
 
 ### EMP 方案
@@ -115,7 +115,7 @@ emp2.0 也从这种方案切走了
 缺点:
 隔离 js 使用一个空的 iframe 进行隔离, 不够严格
 子应用 axios 需要自行适配
-iframe 沙箱的 src 设置了主应用的 host，初始化 iframe 的时候需要等待 iframe 的 location.orign 从'about:blank'初始化为主应用的 host，这个采用的计时器去等待的不是很优雅
+iframe 沙箱的 src 设置了主应用的 host, 初始化 iframe 的时候需要等待 iframe 的 location.orign 从'about:blank'初始化为主应用的 host, 这个采用的计时器去等待的不是很优雅
 
 ## 为什么使用微前端
 

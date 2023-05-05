@@ -8,7 +8,7 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: 服务端渲染/seo/01 seo
+      link: HTML-CSS-JS/JavaScript/Promise
     - theme: alt
       text: View on GitHub
       link: https://github.com/gyhyfj
