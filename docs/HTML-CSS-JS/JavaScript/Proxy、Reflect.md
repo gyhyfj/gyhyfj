@@ -22,17 +22,32 @@ handler 是对目标对象的劫持，成员是各个处理函数，也叫捕获
 9. getPrototypeOf(target)：拦截 Object.getPrototypeOf(proxy)，返回一个对象。
 10. isExtensible(target)：拦截 Object.isExtensible(proxy)，返回一个布尔值。
 11. setPrototypeOf(target, proto)：拦截 Object.setPrototypeOf(proxy, proto)，返回一个布尔值。
-12. apply(target, object, args)：拦截 Proxy 实例作为函数调用的操作，比如 proxy(...args)、proxy.call(object, ...args)、proxy.apply(...)
+12. apply(target, object, args)：拦截 Proxy 实例作为函数调用的操作，比如 proxy(...args)、proxy.call(object, ...args)、proxy.apply(...)。
 13. construct(target, args)：拦截 Proxy 实例作为构造函数调用的操作，比如 new proxy(...args)
 
 ## Reflect
 
-Reflect 是一个对象，字面意思是"反射"。
-它主要提供了很多操作 JavaScript 对象的方法，有点像 Object 中操作对象的方法。
+Reflect 是一个对象, 是 ES6 为了操作对象而提供的新 API
 
-如果我们有 Object 可以做这些操作，那么为什么还需要有 Reflect 这样的新增对象呢？
-这是因为在早期的 ECMA 规范中没有考虑到这种对 对象本身 的操作如何设计会更加规范，所以将这些 API 放到了 Object 上面；但是 Object 作为一个构造函数，这些操作实际上放到它身上并不合适；另外还包含一些类似于 in、delete 操作符，让 JS 看起来是会有一些奇怪的；所以在 ES6 中新增了 Reflect，让我们这些操作都集中到了 Reflect 对象上。
+设计目的是：
 
-用 Reflect 的好处是
-之前的方式是说到底还是在操作原对象，因为都是在用 target、key 等直接去操作，改用 Reflect 就真正意义上不直接操作原对象。
-在有的时候 Reflect 会更加有用。比如：使用 Object.freeze(obj)将对象冻结后，之前的方式就无法判断出设置值到底是设置成功了还是失败了。而 Reflect 可以有返回值，代表是设置成功还是失败。
+1. 将 Object 对象的一些明显属于语言内部的方法（比如 Object.defineProperty），放到 Reflect 对象上。现阶段，某些方法同时在 Object 和 Reflect 对象上部署，未来的新方法将只部署在 Reflect 对象上。
+2. 修改某些 Object 方法的返回结果，让其变得更合理。比如，Object.defineProperty(obj, name, desc)在无法定义属性时，会抛出一个错误
+3. 让 Object 操作都变成函数行为。某些 Object 操作是命令式，如 in 和 delete
+4. Reflect 对象的方法与 Proxy 对象的方法一一对应，只要是 Proxy 对象的方法，就能在 Reflect 对象上找到对应的方法。这就让 Proxy 对象可以方便地调用对应的 Reflect 方法，完成默认行为。不管 Proxy 怎么修改默认行为，你总可以在 Reflect 上获取默认行为。
+
+Reflect 一共有 13 种静态方法
+
+- Reflect.apply(target, thisArg, args)
+- Reflect.construct(target, args)
+- Reflect.get(target, name, receiver)
+- Reflect.set(target, name, value, receiver)
+- Reflect.defineProperty(target, name, desc)
+- Reflect.deleteProperty(target, name)
+- Reflect.has(target, name)
+- Reflect.ownKeys(target)
+- Reflect.isExtensible(target)
+- Reflect.preventExtensions(target)
+- Reflect.getOwnPropertyDescriptor(target, name)
+- Reflect.getPrototypeOf(target)
+- Reflect.setPrototypeOf(target, prototype)

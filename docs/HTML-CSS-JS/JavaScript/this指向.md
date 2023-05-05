@@ -15,6 +15,8 @@
 为了避免这种细微的 bug, 最好总是从 Object 调用这些方法
 :::
 
+ES6 模块中 顶层 this 指向 undefined，不应该在顶层代码使用 this
+
 ## 改变 this 指向
 
 ### Function.prototype.call()

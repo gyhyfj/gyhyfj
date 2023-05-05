@@ -69,11 +69,11 @@ const nav = [
     items: [
       {
         text: 'SEO',
-        link: 'SSR/seo/seo',
+        link: 'SSR/SEO/SEO',
       },
       {
         text: 'NUXT3',
-        link: 'SSR/nuxt3/SSR-in-Vue',
+        link: 'SSR/NUXT3/SSR-in-Vue',
       },
     ],
   },
