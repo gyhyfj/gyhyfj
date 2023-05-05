@@ -1,228 +1,143 @@
-# Promise
+# 异步编程
 
-## Promise 准确描述
+## Promise
 
-一个 Promise 代表一个在它创建时不一定已知值的代理
-一个 Promise 必然处于三种状态之一：pending、fulfilled、rejected
+Promise 是一个对象，从它可以获取异步操作的消息
 
-构造函数 Promise() 创建一个新的 Promise 对象，这个构造函数主要用于包裹还没添加 pormise 支持的函数
+Promise 也有一些缺点。首先，无法取消 Promise，一旦新建它就会立即执行，无法中途取消。其次，如果不设置回调函数，Promise 内部抛出的错误，不会反应到外部。第三，当处于 pending 状态时，无法得知目前进展到哪一个阶段（刚刚开始还是即将完成）。
+
+Promise 构造函数接受一个函数作为参数，该函数的两个参数分别是 resolve 和 reject。它们是两个函数，由 JavaScript 引擎提供，不用自己部署。
+
+resolve 函数的作用是，将 Promise 对象的状态从 pending 变为 resolved
+
+reject 函数的作用是，将 Promise 对象的状态从 pending 变为 rejected
+
+调用 resolve 或 reject 并不会终结 Promise 的参数函数的执行
+
+一般来说，调用 resolve 或 reject 以后，Promise 的使命就完成了，后继操作应该放到 then 方法里面，而不应该直接写在 resolve 或 reject 的后面
+
+### then 方法
+
+then 方法接受两个可选参数，返回一个新的 Promise 实例
+第一个参数是 resolved 状态的回调函数，第二个参数是 rejected 状态的回调函数
+
+### catch 方法
+
+catch 方法是 then(null, rejection)或 then(undefined, rejection)的别名，用于指定发生错误时的回调函数
+可以捕获前面未被捕获的错误或 reject
+
+如果前面的 Promise 在 resolve 语句后再抛出错误，不会被捕获，因为 Promise 的状态一旦改变，就不会再变了
+
+Promise 和 try/catch 代码块不同的是，Promise 对象抛出的错误不会传递到外层代码，即不会有任何反应
+
+目前可以通过 unhandledRejection 事件监听未捕获的 reject 错误，但这个事件有计划在未来被废弃
+
+### finally 方法
+
+finally 方法用于指定不管 Promise 对象最后状态如何，都会执行的操作，不接受任何参数，本质上是 then 方法的特例
+
+### Promise.all() 方法
+
+Promise.all()方法接收一个 Promise 实例的数组，返回一个新的 promise
+只有全部 resolve 后才会 resolve
+resolve 一个数组，依次存放每个 Promise resolve 的东西
+
+### Promise.race() 方法
+
+Promise.race()方法接收一个 Promise 实例的 iterable，返回一个新的 promise
+只要有一个 resolve 就会 resolve
+resolve 一个最快 resolve 的 Promise resolve 的内容
+
+### Promise.allSettled() 方法
+
+Promise.allSettled()方法接收一个 Promise 实例的 iterable，返回一个新的 promise
+只有等到参数数组的所有 Promise 对象都发生状态变更，不论成功和失败，才 resolve 出最终结果的数组, 形如：
 
 ```ts
-let a = new Promise((res, rej) => {
-  res(1)
-})
+;[
+  { status: 'rejected', reason: 'xxx' }, // reject 的成员
+  { status: 'fulfilled', value: 'xxx' }, // resolve 的成员
+]
 ```
 
-如果在 new Promise 接收的回调里面使用 return 语句，这里的 return 唯一存在意义就是让后面的代码将不再执行，如果还未 resolve 或 reject，则永远 pending。
-resolve 或 reject 终究只是函数，执行后后面的代码还是会继续执行，不可代替 return
-但 throw new Error()可以造成后面的代码不再执行
-并且被 catch 捕捉错误时，如果前面有 reject()，则 catch 回调接收的参数是 reject 出去的那个，尽管 throw 的和 reject 的都被捕捉了。
+### Promise.any() 方法
 
-如果先 resolve 再 reject 只会取第一个那次，因为 Promise 最终状态不可改变
+Promise.any()方法接收一个 Promise 实例的 iterable，返回一个新的 promise
+只要参数实例有一个变成 fulfilled 状态，包装实例就会变成 fulfilled 状态；如果所有参数实例都变成 rejected 状态，包装实例就会变成 rejected 状态
 
-但在后面跟的 .then() 中接受的回调则不同，then 中需要 return Promise 来给后面的链式调用使用
+### Promise.resolve()方法
 
-链式调用中，后面的链中访问不到前面链中的变量，除非存在外面作为全局变量
+如果参数是 Promise 实例，那么 Promise.resolve 将不做任何修改、原封不动地返回这个实例
 
-传入的回调的 resolve 和 reject 可以被保存引用到构造语句外，以随时在外部控制 Promise 的执行状态
+如果参数是一个 thenable 对象，那么 Promise.resolve()方法会将这个对象转为 Promise 对象，然后就立即执行 thenable 对象的 then()方法
 
-## 使用 Promise
+如果参数是一个原始值，或没有参数，或者是一个不具有 then()方法的对象，则 Promise.resolve()方法返回一个新的 Promise 对象，状态为 resolved，这会作为微任务执行
 
-Promise 是一个对象，代表一个异步操作的最终完成或者失败
+### Promise.reject()方法
 
-本质上 Promise 是一个函数返回的对象，我们可以在上面绑定成功和失败后的回调函数，这样我们就不需要在一开始把成功和失败的回调函数作为参数传入这个函数了。
+Promise.reject()方法返回一个 Promise 对象，接收的参数会原封不动地作为 reject 的理由
 
-也就是这样的改写过程：
+### Tips
 
-```js
-// 改写前：成功和识别的回调都作为参数传入
-asyncFunc(config, successCallback, failtureCallback)
+链式调用中，后面的链中访问不到前面链中的变量，除非 resolve 过去，或者存在外面作为全局变量
 
-// 改写后：异步函数调用
-const promise = asyncFunc(config)
-promise.then(successCallback, failtureCallback)
-```
+用 Promise 封装 setTimeout：`const wait = delay => new Promise(res => setTimeout(res, delay))`
 
-可以通过多次 then 方法添加多个回调，它们会按照插入顺序执行，也就是链式调用
+.catch(e=>{}) 只能捕捉操作链顶部 Promise reject 的内容以及后续的 .then() 中同步操作抛出的错误
 
-## 链式调用
+想要捕捉 setTimeout 的回调里抛出的错误，可以将 setTimeout 包装成 promise，然后把回调放在这个 promise 的回调的链式调用中，在链尾用 .catch(e=>{}) 捕捉错误
 
-连续执行多个异步操作是一个常见的需求，在上一个操作成功后执行下一个操作，并带着上一次操作的结果
-
-创建 Promise 链可以实现这个需求，then 函数会返回一个新的 Promise 对象
-这样会解决回调地狱的问题
-
-then 里的参数是可选的，常见的写法是只写一个 successCallback，如`then(res=>res + 1)`,
-而 failtureCallback 交给 catch 方法处理，
-catch(failureCallback) 其实是 then(null, failureCallback) 的缩写形式
-所以，catch 的后面仍可以继续使用链式操作
-
-通常，一遇到异常抛出，浏览器就会顺着 Promise 链寻找下一个 onRejected 失败回调函数或者由 .catch() 指定的回调函数
-
-.finally()方法在前面的 Promise 无论被 resolve 还是 reject 都会被调用，返回一个 Promise
-
-## Promise 拒绝事件
-
-当 Promise 被拒绝时，会有下面两个事件之一被派发到全局作用域（window、Worker 等）：
-
-1. rejectionhandled （当 Promise 被拒绝、并且在 reject 函数处理该 rejection 之后会派发此事件）
-2. unhandledrejection（当 Promise 被拒绝，但没有提供 reject 函数来处理该 rejection 时，会派发此事件）
-
-这两种情况，事件对象都有两个属性，一个是 promise 属性，指向被拒绝的 Promise，一个是 reason 属性，描述被拒绝的原因
-
-用途是：
-可以通过以上事件为 Promise 失败时候提供补偿。并且因为在每一个上下文中，这个事件都是全局的，因此不论源码如何，所有错误都会被自己所定义的同一个处理函数捕获和处理。
-举例，nodejs 中，有些依赖的模块可能有未被处理的 Promise 拒绝，这些都会在运行时被打印到 console，我们可以在自己的代码中捕获这些信息，然后添加分析处理函数，或干脆不让这些信息在 console 显示，以维持输出整洁：
-
-```js
-window.addEventListener(
-  'unhandledrejection',
-  event => {
-    /* 你可以在这里添加一些代码，以便检查
-     event.promise 中的 promise 和
-     event.reason 中的 rejection 原因 */
-
-    event.preventDefault()
-  },
-  false
-)
-```
-
-## 用 Promise 封装旧式 API
-
-例如 setTimeout 函数，是一个异步函数，但不返回 Promise，仍用旧的方式来传入成功和失败的回调
-混用旧式回调和 Promise 可能会出现时许问题
-
-用 Promise 封装 setTimeout：
-
-```js
-// 改写前
-setTimeout(() => console.log('3s passed'), 3000)
-
-// 改写后
-const wait = ms => new Promise(res => setTimeout(res, ms)) // res是resolve函数
+```ts
+const wait = (ms: number) => new Promise(res => setTimeout(res, ms))
 wait(3000)
-  .then(() => console.log('3s passed'))
-  .catch(err => console.log(err))
+  .then(async () => {
+    await Promise.reject(8)
+  })
+  .catch(err => console.log(err)) // 8 3秒后打印
 ```
-
-Promise 的构造器接收一个执行函数，在这个执行函数里手动地 resolve 和 reject 一个 Promise
-因为 setTimeout 不会真的执行失败，所以可以省略 reject 这个参数
-
-## Promise.resolve() 和 Promise.reject()
-
-Promise.resolve() 和 Promise.reject() 是手动创建一个已经 resolve 或者 reject 的 Promise 快捷方法
-
-:::warning
-创建时候就会执行 resolve 中的语句，且是同步执行！！！！
-:::
 
 ```ts
-console.log(1)
-Promise.resolve(console.log(2))
-console.log(3)
-// 1 2 3
-
-console.log(1)
-Promise.resolve(console.log(2)).then(() => {
-  console.log(4) // then中的仍是异步任务
-})
-console.log(3)
-// 1 2 3 4
+const wait = (ms: number) => new Promise(res => setTimeout(res, ms))
+wait(3000)
+  .then(async () => {
+    await wait(2000)
+    await Promise.reject(8)
+  })
+  .catch(err => console.log(err)) // 8 5秒后打印
 ```
 
-### Promise.resolve()
+## async
 
-Promise.resolve(value)返回一个 Promise，如果 value 是 Promise，则返回这个 Promise；如果 value 是 thenable，则返回其最终状态
+async 函数是 Generator 函数的语法糖, 内置执行器, 更好的语义, 更广的适用性, 返回值是 Promise
+只有 async 函数内部的 await 操作执行完或遇到 return 语句或抛出错误，才会发生状态变化，执行 then 方法指定的回调函数。
 
-例如：
+可以看作是多个异步操作，包装成的一个 Promise 对象
 
-```js
-Promise.resolve(1) // Promise { 1 }，1作为返回值传给后续操作
-```
+## try-catch-finally
 
-例如：
-
-```js
-var original = Promise.resolve(33) // Promise {33}
-var cast = Promise.resolve(original) // 直接返回original Promise {33}
-/* 异步任务 */
-cast.then(function (value) {
-  console.log('value: ' + value) // value: 33
-})
-/* 同步任务 */
-console.log('original === cast ? ' + (original === cast)) // original === cast ? true
-
-/*
- *  打印顺序如下，这里有一个同步异步先后执行的区别
- *  original === cast ? true
- *  value: 33
- */
-```
-
-### Promise.reject()
-
-Promise.reject(reason) 返回一个带有拒绝原因的 Promise 对象
+如果 try 中抛出异常，则进入 catch 语句
+catch 块指定一个标识符作为形参，保存由 throw 语句指定的值
+如果从 finally 块中返回一个值，那么这个值将会成为整个 try-catch-finally 的返回值，无论是否有 return 语句在 try 和 catch 中。
 
 ```js
-Promise.reject(new Error('fail'))
-```
-
-## Promise.all() 和 Promise.race()
-
-并行运行异步操作的两个组合式工具
-
-### Promise.all()
-
-接收一个 iterable 类型（Array，Map，Set），如一个 promise 数组，返回一个 Promise，值是一个结果数组。
-
-Promise.all()等待所有都完成，或第一个失败
-
-```js
-const promise1 = Promise.resolve(3)
-const promise2 = 42 // 输入不是Promise但也没关系
-const promise3 = new Promise((resolve, reject) => {
-  setTimeout(resolve, 100, 'foo')
-})
-
-Promise.all([promise1, promise2, promise3]).then(values => {
-  console.log(values) // [ 3, 42, 'foo' ]
-})
-```
-
-如果传入为空迭代，则作为同步任务立即执行
-
-### Promise.race()
-
-接收一个 iterable 类型（Array，Map，Set），一旦某个 promise 被 resolve 或 inject，返回的 promise 就会 resolve 或 inject
-
-## 书写规范
-
-不要嵌套
-总是返回或终止 Promise 链
-
-## async await
-
-async 标注的函数作为同步任务执行，但执行到内部的 await 语句，会作为微任务放入任务队列，await 语句下面的代码，其实相当于写在 Promise.then 里面的
-
-```js
-async function func() {
-  console.log('X')
-  await Promise.resolve()
-  console.log('Y')
+const func = () => {
+  try {
+    let a = 0 // a的作用域只在这个花括号内
+    return a
+  } catch (e) {
+    console.log(e)
+  } finally {
+    return 1
+  }
 }
-
-func()
-console.log('Z')
-
-// X Z Y
+console.log(func()) // 1
 ```
 
-async 函数内的 for 循环，内部如果有 await 语句，会执行完 await 语句才进行下一轮循环
+await 后面的 Promise 可以通过.catch 捕获它的错误
+也可以用 try catch 包裹代码块，
 
-async await 可以搭配链式调用使用
+注意 await 搭配链式调用时候的代码执行顺序:
 await 后的 promise 一定会被执行到链式调用调用完毕，才会执行下一行代码
-或者说，await 后的链式调用都是同步任务
 
 ```ts
 const fn = async () => {
@@ -262,54 +177,8 @@ const fn = async () => {
 fn() // done 1
 ```
 
-try 语句
-try 语句包含了由一个或者多个语句组成的 try 块，和一个或多个（条件 catch 块） catch 块或者一个 finally 块的其中一个，或者两个兼有
-
-如果 try 中抛出异常，则进入 catch 语句
-catch 块指定一个标识符作为形参，保存由 throw 语句指定的值
-
-如果从 finally 块中返回一个值，那么这个值将会成为整个 try-catch-finally 的返回值，无论是否有 return 语句在 try 和 catch 中。
-
-```js
-const func = () => {
-  try {
-    let a = 0 // a的作用域只在这个花括号内
-    return a
-  } catch (e) {
-    console.log(e)
-  } finally {
-    return 1
-  }
-}
-console.log(func()) // 1
-```
-
-.catch(e=>{}) 只能捕捉操作链顶部 Promise reject 的内容以及后续的 .then(res=>{}) 中同步操作抛出的错误
-
-想要捕捉 setTimeout 的回调里抛出的错误，可以将 setTimeout 包装成 promise，然后把回调放在这个 promise 的回调的链式调用中，在链尾用 .catch(e=>{}) 捕捉错误
-
-```ts
-const wait = (ms: number) => new Promise(res => setTimeout(res, ms))
-wait(3000)
-  .then(async () => {
-    await Promise.reject(8)
-  })
-  .catch(err => console.log(err)) // 8 3秒后打印
-```
-
-```ts
-const wait = (ms: number) => new Promise(res => setTimeout(res, ms))
-wait(3000)
-  .then(async () => {
-    await wait(2000)
-    await Promise.reject(8)
-  })
-  .catch(err => console.log(err)) // 8 5秒后打印
-```
-
 try{}catch(e){} 只能捕捉 try 中同步操作抛出的错误，不能捕捉语法错误以及异步操作中抛出的错误
 try{}catch(e){} 还能捕捉 try 中 require 语句抛出的错误
-注意 catch 后面的 e 不可省略
 
 ```ts
 const wait = (ms: number) => new Promise(res => setTimeout(res, ms))
@@ -369,8 +238,9 @@ async 函数中的一列 await，如果哪个 await 失败后面的 await 就不
 除非用 try catch 包裹每行 await
 
 try{}catch{}finally{}的执行顺序：
-try 块和 catch 块中的同步任务直接执行，异步任务推进任务执行队列，然后直接执行 finally 块中的代码。
-finally 块中的代码不会等待 try 和 catch 块中的异步执行完毕
+try 块和 catch 块中的同步任务直接执行，异步任务推进任务执行队列，然后**直接执行** finally 块中的代码。
+
+**finally 块中的代码不会等待 try 和 catch 块中的异步执行完毕**
 
 ```ts
 const wait = (ms: number) => new Promise(res => setTimeout(res, ms))
@@ -394,27 +264,4 @@ try {
   console.log(5)
 }
 // 5 1 2 3 4
-```
-
-## 竞态问题
-
-如果有异步在队列中，只执行最后一个 promise 的方法
-
-```ts
-let currentID: number
-
-const printLastString = (note: string) => {
-  const id = Math.random()
-  currentID = id
-  new Promise(res => setTimeout(res, Math.random() * 100)).then(() => {
-    if (currentID !== id) {
-      return
-    }
-    console.log(note)
-  })
-}
-
-printLastString('1')
-printLastString('2')
-printLastString('3') // 调用printLastString时候立即给currentID赋值，但new Promise时候，id传入new时候的id，currentID是全局变量会在外面被引用继续被更新
 ```

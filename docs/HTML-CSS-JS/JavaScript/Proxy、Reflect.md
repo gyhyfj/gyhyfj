@@ -2,26 +2,28 @@
 
 ## Proxy
 
-Proxy 是一个构造函数，用于创建一个对象的代理，从而实现基本操作的拦截和自定义。
+Proxy 是一个构造函数，用于创建一个对象的代理，从而实现对基本操作的拦截
 
 const p = new Proxy(target, handler)
 
 target 是需要代理的目标对象（可以是任何类型的对象，包括原生数组，函数，甚至另一个代理）。
-
 handler 是对目标对象的劫持，成员是各个处理函数，也叫捕获器（trap）。
-如果为空对象，就只有 set、get 这两个默认捕获器，并且不会有过多的操作，get 捕获器就直接返回访问属性的值，set 捕获器就将新的值赋值给访问属性。
 
-```ts
-const obj = { age: 18 }
-const proxy = new Proxy(obj, {})
-console.log(proxy) // node 中是 { age: 18 } 浏览器中是 Proxy {age: 18}
-```
+一共有 13 种拦截操作：
 
-处理函数有：
-
-```ts
-
-```
+1. get(target, propKey, receiver)：拦截对象属性的读取
+2. set(target, propKey, value, receiver)：拦截对象属性的设置，返回一个布尔值
+3. has(target, propKey)：拦截 propKey in proxy 的操作，返回一个布尔值
+4. deleteProperty(target, propKey)：拦截`delete proxy[propKey]`的操作，返回一个布尔值
+5. ownKeys(target)：拦截 Object.getOwnPropertyNames(proxy)、Object.getOwnPropertySymbols(proxy)、Object.keys(proxy)、for...in 循环，返回一个数组。该方法返回目标对象所有自身的属性的属性名，而 Object.keys()的返回结果仅包括目标对象自身的可遍历属性。
+6. getOwnPropertyDescriptor(target, propKey)：拦截 Object.getOwnPropertyDescriptor(proxy, propKey)，返回属性的描述对象
+7. defineProperty(target, propKey, propDesc)：拦截 Object.defineProperty(proxy, propKey, propDesc)、Object.defineProperties(proxy, propDescs)，返回一个布尔值
+8. preventExtensions(target)：拦截 Object.preventExtensions(proxy)，返回一个布尔值
+9. getPrototypeOf(target)：拦截 Object.getPrototypeOf(proxy)，返回一个对象。
+10. isExtensible(target)：拦截 Object.isExtensible(proxy)，返回一个布尔值。
+11. setPrototypeOf(target, proto)：拦截 Object.setPrototypeOf(proxy, proto)，返回一个布尔值。
+12. apply(target, object, args)：拦截 Proxy 实例作为函数调用的操作，比如 proxy(...args)、proxy.call(object, ...args)、proxy.apply(...)
+13. construct(target, args)：拦截 Proxy 实例作为构造函数调用的操作，比如 new proxy(...args)
 
 ## Reflect
 
