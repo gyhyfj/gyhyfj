@@ -105,25 +105,4 @@ const supportSafeArea = (): boolean => {
 
 取 css 变量值的函数
 var()函数可以定义多个 fallback value，以嵌套形式作为第二个参数
-var()函数可以接收`0px`作为参数，但不能接收`0`作为参数
-
-变量需要用`--`开头，并且大小写敏感
-值是字符串，通过 var()来获取值，进行字符串拼接。但建议定义完整的取值作为字符串，避免 lint 工具对它进行格式化导致失效
-
-在 JS 中获取变量值
-
-```ts
-// 获取节点上定义的变量或继承的变量
-getComputedStyle(boxRef.value).getPropertyValue('--red-rgb') // 255, 0, 0
-
-// 获取定义在:root上的css3变量
-document.documentElement.getPropertyValue('--propaganda-height')
-```
-
-通过 JS 修改变量值
-
-```ts
-boxRef.value.style.setProperty('--red-rgb', '255,255,0') // 会插入一条新规则，通常优先级更高，但也要考虑原值用了!important的情形
-
-document.documentElement.style.setProperty('--propaganda-height', '40px') // 修改 :root 上的css3变量值
-```
+var()函数可以接收`0px`作为运算的参数，但不能接收`0`作为参数

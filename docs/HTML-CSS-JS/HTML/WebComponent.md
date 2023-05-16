@@ -83,7 +83,7 @@ template 元素及其内容不会在 DOM 中呈现，但仍可使用 JavaScript 
 在 template 标签中可以写 style 标签以及 dom 标签
 
 在 template 标签中也可以写 slot 标签，里面写默认内容
-template中定义具名插槽，自定义元素中使用具名插槽`<div slot="插槽名">内容</div>`
+template 中定义具名插槽，自定义元素中使用具名插槽`<div slot="插槽名">内容</div>`
 
 ```html
 <template id="my-paragraph">
