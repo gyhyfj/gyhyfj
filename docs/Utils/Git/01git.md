@@ -134,8 +134,11 @@ git checkout -b test origin/test # 切换分支，并在本地创建同样的分
 git push origin dev
 git push -u origin main # 加 -u 后，以后可以直接执行 git push
 
-# 断连的仓库重新连接后推送main分支
+# 未连接的仓库重新连接后推送main分支
 git push --set-upstream origin main
+
+# 删除远程的dev分支
+git push origin --delete dev
 
 # 获取远程分支更新
 git fetch
