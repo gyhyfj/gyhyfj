@@ -252,7 +252,11 @@ git rebase -i 分支/版本号
 
 ## Git 工作流
 
-分为三种工作流：
+合适的 Git 工作流往往取决于项目的代码规模、协作人数、应用场景等，
+
+工作流分为 Feature branch 和 Trunk-based 工作流， 前者是功能驱动式开发
+
+前者分为三种工作流：
 `Git flow` 适于版本发布
 `GitHub flow` 适于持续发布
 `GitLab flow` 适于持续发布和版本发布
