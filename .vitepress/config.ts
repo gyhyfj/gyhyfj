@@ -51,10 +51,6 @@ const nav = [
     text: 'Utils',
     items: [
       {
-        text: 'Git',
-        link: 'Utils/Git/01git',
-      },
-      {
         text: 'RxJS',
         link: 'Utils/RxJS/01认识RxJS',
       },
@@ -78,6 +74,19 @@ const nav = [
     ],
   },
   {
+    text: '工程化',
+    items: [
+      {
+        text: 'Git与Monorepo',
+        link: '工程化/Git与Monorepo/01git',
+      },
+      {
+        text: '代码规范',
+        link: '工程化/代码规范/代码规范',
+      },
+    ],
+  },
+  {
     text: '微前端',
     items: [
       {
@@ -87,6 +96,15 @@ const nav = [
       {
         text: 'WuJie',
         link: '微前端/无界/工作原理',
+      },
+    ],
+  },
+  {
+    text: '408',
+    items: [
+      {
+        text: '计算机网络',
+        link: '408/计算机网络/OSI七层模型',
       },
     ],
   },
