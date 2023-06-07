@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 import fg from 'fast-glob'
 
 const files = fg
-  .sync(['docs/**/*.md', '!docs/*.md','!doc/待处理/**/*.md'], { stats: false })
+  .sync(['docs/**/*.md', '!docs/*.md', '!doc/待处理/**/*.md'], { stats: false })
   .map(path => path.slice(5).split('/'))
 const sidebar: any = {}
 

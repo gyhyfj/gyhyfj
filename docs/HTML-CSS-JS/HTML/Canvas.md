@@ -3,7 +3,7 @@
 1. 创建固定大小的画布
    使用 canvas 标签，传入 height 和 weight 参数，不带单位，默认是 px
    `<canvas width="300" height="300"></canvas>`
-   通过css设置的宽高只是会拉伸canvas，而不会作用到canvas本身的属性
+   通过 css 设置的宽高只是会拉伸 canvas，而不会作用到 canvas 本身的属性
 2. 获取渲染上下文
    先获取 canvas 元素，再使用 getContext()方法获取渲染上下文
    `let canvas = document.querySelector('canvas') as HTMLCanvasElement`
