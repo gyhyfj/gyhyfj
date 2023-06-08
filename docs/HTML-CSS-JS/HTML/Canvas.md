@@ -1,5 +1,14 @@
 # CANVAS
 
+canvas 的实质是可以用 js 操作的位图，在没有 canvas 之前只能通过 flash 或 dom 模拟来实现
+
+可以用于：
+
+- 游戏开发
+- 数据可视化
+- 图片处理
+- 网页特效
+
 1. 创建固定大小的画布
    使用 canvas 标签，传入 height 和 weight 参数，不带单位，默认是 px
    `<canvas width="300" height="300"></canvas>`
