@@ -18,10 +18,11 @@ canvas 的实质是可以用 js 操作的位图，在没有 canvas 之前只能�
    `let canvas = document.querySelector('canvas') as HTMLCanvasElement`
    `if(!canvas.getContext) { return } // 判断浏览器兼容性`
    `let ctx = canvas.getContext('2d') as CanvasRenderingContext2D`
-   getContext 方法接收一个参数，是绘图上下文的类型：
+   getContext 方法接收的第一个参数，是绘图上下文的类型：
    - 2d：二维渲染上下文，可以用`CanvasRenderingContext2D()`来替换 `getContext('2d')`
    - webgl2
    - bitmaprenderer
+   可以接收第二个参数，是一个对象，如果需要频繁使用getImageData这个方法，可以传入`{ willReadFrequently: true }`
 3. 拿到渲染上下文后进行绘制
    所以在 vue 中要在 onMounted 中调用
 
