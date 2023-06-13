@@ -4,6 +4,12 @@
 
 分为 专用 worker, shared workers, service workers, 音频 workers, chrome workers 等
 
+## 进程与线程
+
+进程是一个独立的程序执行实例
+线程是进程内的一个执行单元，共享进程的地址空间和资源
+一个进程可以有多个线程
+
 ## 专用 worker 的基础用法
 
 使用构造函数创建一个 worker 对象, worker 将运行在与当前 window 不同的另一个全局上下文中，这个上下文由一个对象表示，标准情况下为 DedicatedWorkerGlobalScop
