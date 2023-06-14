@@ -178,6 +178,8 @@ fn() // done 1
 ```
 
 try{}catch(e){} 只能捕捉 try 中同步操作抛出的错误，不能捕捉语法错误以及异步操作中抛出的错误
+try{}catch(e){} 还能捕捉 try 中 await 的 Promise 的 then 语句里同步抛出的错误，包括 then 语句 await 的 Promise 抛出的错误
+
 try{}catch(e){} 还能捕捉 try 中 require 语句抛出的错误
 
 ```ts

@@ -30,9 +30,9 @@ flex-grow
   // grid-template-columns: repeat(auto-fill, 200px);
   // grid-template-columns: 200px 1fr 2fr;
   // grid-template-columns: 1fr 1fr 2fr;
-  // grid-template-columns: 1fr 1fr minmax(300px, 2fr); // 函数中间参数之间要有列表
-  // grid-template-columns: 300px auto 300px; // 等同于1fr
-  // grid-template-columns: 300px 1fr 300px; // 等同于auto
+  // grid-template-columns: 1fr 1fr minmax(300px, 2fr); // 宽度在最小值到最大值之间自适应
+  // grid-template-columns: 300px auto 300px; // 宽度自动填满，等同于1fr
+  // grid-template-columns: 300px 1fr 300px; // 宽度自动填满，等同于auto
 
   /*  声明行的高度  */
   grid-template-rows: 100px 100px;
@@ -79,6 +79,7 @@ flex-grow
     grid-row-end: 2; // 子项的四个边框所在的网格线编号，可以从1正向编号，也可以从-1反向编号
 
     grid-area: sidebar; // 指定这个物体放在之前声明的哪个单元格内
+    grid-area: 1(row-start) / 1(column-start) / 3(row-end) / 4(column-end)
 
     justify-self: start;
     align-self: start;
