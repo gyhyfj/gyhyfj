@@ -18,6 +18,7 @@ document.documentElement.getPropertyValue('--propaganda-height')
 ```
 
 通过 JS 修改变量值
+style.setProperty(propertyName, value, priority)
 
 ```ts
 boxRef.value.style.setProperty('--red-rgb', '255,255,0') // 会插入一条新规则，通常优先级更高，但也要考虑原值用了!important的情形
