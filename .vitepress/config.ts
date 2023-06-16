@@ -119,6 +119,7 @@ export default defineConfig({
   titleTemplate: true,
   srcDir: 'docs',
   ignoreDeadLinks: true,
+  cleanUrls: true,
   head: [
     [
       'link',
