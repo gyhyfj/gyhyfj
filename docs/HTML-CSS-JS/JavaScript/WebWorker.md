@@ -157,3 +157,10 @@ ImageBitmap 示能够被绘制到 canvas 上的位图图像,具有低延迟的�
 const imageEl = await loadImage(imageSrc, true)
 const imageBitMap = await createImageBitmap(imageEl)
 ```
+
+## MessageChannel
+
+多个 worker 之间的通信，直接的做法是将主线程作为桥梁，通过主线程转发实现 worker 间通信
+
+但效率低下，代码复杂度比较高
+可以通过 MessageChannel 实现线程间通信，将 port1 和 port2 转移给不同线程，通过 MessagePort 的 message 事件 和 postMessage 方法直接通信

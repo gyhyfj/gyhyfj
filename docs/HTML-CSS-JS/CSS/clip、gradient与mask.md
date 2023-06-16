@@ -28,6 +28,8 @@
 
 ### conic-gradient 锥形渐变
 
+https://yuanchuan.dev/gradient-shapes/
+
 第一个参数是方向和中心位置，不写默认是 `from 0deg at 50% 50%`
 
 后面颜色的写法是 `red 6deg 18deg,` 第一个角度表示起点 第二个角度表示终点，未被分配的区域赋予渐变效果
