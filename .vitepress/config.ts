@@ -2,8 +2,11 @@ import { defineConfig } from 'vitepress'
 import fg from 'fast-glob'
 
 const files = fg
-  .sync(['docs/**/*.md', '!docs/*.md', '!doc/待处理/**/*.md'], { stats: false })
+  .sync(['docs/**/*.md', '!docs/*.md', '!docs/待处理', '!docs/public'], {
+    stats: false,
+  })
   .map(path => path.slice(5).split('/'))
+
 const sidebar: any = {}
 
 for (let path of files) {
@@ -114,8 +117,8 @@ export default defineConfig({
   title: 'gyhyfj',
   description: '有物混成 先天地生',
   titleTemplate: true,
-  cleanUrls: true,
   srcDir: 'docs',
+  ignoreDeadLinks: true,
   head: [
     [
       'link',

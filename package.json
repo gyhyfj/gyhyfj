@@ -1,11 +1,12 @@
 {
   "scripts": {
     "dev": "vitepress dev",
-    "docs:build": "vitepress build",
-    "docs:preview": "vitepress preview",
+    "build": "vitepress build",
+    "preview": "vitepress preview",
     "format": "prettier --write ."
   },
   "devDependencies": {
+    "@types/node": "^20.3.1",
     "fast-glob": "^3.2.12",
     "prettier": "^2.8.8",
     "vitepress": "latest"
