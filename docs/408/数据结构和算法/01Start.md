@@ -40,3 +40,55 @@ n!
 ## 算法
 
 排序 二分查找 递归 广度优先搜索 深度优先搜索 回溯算法 动态规划 贪心算法
+
+## 数组
+
+双指针
+这种技巧经常在排序数组中使用
+
+<!-- prettier-ignore-start -->
+::: code-group
+<<< ./code/调整数组顺序使奇数位于偶数前面.ts
+<<< ./code/和为S的两个数字.ts
+<<< ./code/和为S的连续正数序列.ts
+:::
+<!-- prettier-ignore-end -->
+
+N 数之和问题
+基本上都是一个套路，主要考虑如何降低时间复杂度，而且也会用到上面的双指针技巧
+做法都是先排序，然后通过首尾双指针来逼近结果，从而达到降低一层时间复杂度的效果
+
+<!-- prettier-ignore-start -->
+::: code-group
+<<< ./code/两数之和.ts
+<<< ./code/三数之和.ts
+<<< ./code/四数之和.ts
+:::
+<!-- prettier-ignore-end -->
+
+二维数组
+需要用到抽象建模能力
+
+<!-- prettier-ignore-start -->
+::: code-group
+<<< ./code/构建乘积数组.ts
+<<< ./code/顺时针打印矩阵.ts
+:::
+<!-- prettier-ignore-end -->
+
+数据统计
+数组的统计和计算，如何降低算法复杂度
+
+<!-- prettier-ignore-start -->
+::: code-group
+<<< ./code/数组中出现次数超过数组长度一半的数字.ts
+<<< ./code/连续子数组的最大和.ts
+<<< ./code/扑克牌顺子.ts
+<<< ./code/第一个只出现一次的字符.ts
+:::
+<!-- prettier-ignore-end -->
+
+## 链表
+
+需要遍历才能查询到元素，查询慢
+插入元素只需断开连接重新赋值，插入快
