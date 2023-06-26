@@ -92,3 +92,39 @@ N 数之和问题
 
 需要遍历才能查询到元素，查询慢
 插入元素只需断开连接重新赋值，插入快
+
+基本应用
+
+<!-- prettier-ignore-start -->
+::: code-group
+<<< ./code/从尾到头打印链表.ts
+<<< ./code/删除链表中的节点.ts
+<<< ./code/反转链表.ts
+<<< ./code/复杂链表的复制.ts
+:::
+<!-- prettier-ignore-end -->
+
+环类问题
+
+<!-- prettier-ignore-start -->
+::: code-group
+<<< ./code/链表中环的入口.ts
+<<< ./code/圆圈中最后剩下的数字.ts
+:::
+<!-- prettier-ignore-end -->
+
+双指针
+
+两个指针从不同位置出发
+两个指针以不同速度移动
+
+<!-- prettier-ignore-start -->
+::: code-group
+<<< ./code/两个链表的第一个公共节点.ts
+<<< ./code/链表的倒数第k个节点.ts
+:::
+<!-- prettier-ignore-end -->
+
+## 栈和队列
+
+两种限制访问顺序的数据结构：栈（后进先出）、队列（先进先出）
