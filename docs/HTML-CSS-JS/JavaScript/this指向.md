@@ -19,6 +19,9 @@ ES6 模块中 顶层 this 指向 undefined，不应该在顶层代码使用 this
 
 ## 改变 this 指向
 
+thisArgs 在非严格模式下，指定为 null 或 undefined 时会自动替换为指向全局对象，原始值会被包装
+在严格模式下，不会执行上述操作
+
 ### Function.prototype.call()
 
 `call()` 方法使用一个指定的 `this` 值和单独给出的一个或多个参数来**调用一个函数**。
@@ -41,7 +44,7 @@ let obj = {
 fn.call(obj, 1, 2) // console.log(this) // { name: 'zs', age: 10 } 3
 ```
 
-### Function.prototype.apply()
+### Function.prototype.apply Reflect.apply
 
 apply() 方法**调用一个**具有给定 this 值的函数, 以及以一个数组 (或一个类数组对象 ) 的形式提供的参数。
 即 : 改变默认 this 指向地调用函数
@@ -56,6 +59,12 @@ let b = [3, 4, 5]
 // a.push(a, ...b) // <ref *1> [ 1, 2, [Circular *1], 3, 4, 5 ]
 a.push.apply(a, b) // [ 1, 2, 3, 4, 5 ]
 // 将数组b作为apply的参数数组, push到数组a中
+
+let a = [1, 2]
+let b = [3, 4, 5]
+
+Reflect.apply(Array.prototype.push, a, b)
+console.log(a) // [1, 2, 3, 4, 5]
 ```
 
 示例 :
