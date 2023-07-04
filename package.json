@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "scripts": {
     "dev": "vitepress dev",
     "build": "vitepress build",
@@ -7,8 +8,12 @@
   },
   "devDependencies": {
     "@types/node": "^20.3.3",
+    "@vercel/node": "^2.15.3",
     "fast-glob": "^3.3.0",
     "prettier": "^2.8.8",
     "vitepress": "latest"
+  },
+  "dependencies": {
+    "ofetch": "^1.1.1"
   }
 }
