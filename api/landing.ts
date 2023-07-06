@@ -9,6 +9,6 @@ export default (req, res) => {
   }
   obj['query'] = req.query
   // 发送服务器
-  
+
   res.status(204)
 }
