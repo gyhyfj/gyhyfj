@@ -24,6 +24,8 @@ style.setProperty(propertyName, value, priority)
 boxRef.value.style.setProperty('--red-rgb', '255,255,0') // 会插入一条新规则，通常优先级更高，但也要考虑原值用了!important的情形
 
 document.documentElement.style.setProperty('--propaganda-height', '40px') // 修改 :root 上的css3变量值
+document.body.style.setProperty('--propaganda-height', '40px') // 修改 body 上的css3变量值 , 在body作用域内会覆盖root上的变量
+document.body.style.removeProperty('--a') // 移除body上定义的css3变量
 ```
 
 ## 对比预处理语言的变量

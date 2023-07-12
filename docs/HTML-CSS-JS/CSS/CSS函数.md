@@ -106,3 +106,13 @@ const supportSafeArea = (): boolean => {
 取 css 变量值的函数
 var()函数可以定义多个 fallback value，以嵌套形式作为第二个参数
 var()函数可以接收`0px`作为运算的参数，但不能接收`0`作为参数
+
+## min max
+
+用法是
+
+```css
+.box {
+  width: max(100%, var(--x), 10rem);
+}
+```
