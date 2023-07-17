@@ -414,6 +414,17 @@ console.log(Object.prototype.toString.call(x.data)) // [object Uint8ClampedArray
 ctx.putImageData(imagedata, dx, dy) // dx dy 表示要放置的位置
 ctx.putImageData(imagedata, dx, dy, dirtyX, dirtyY, dirtyWidth, dirtyHeight) // 后四个参数表示复制过来后不显示整个图像，只显示这四个参数裁剪出的那块图像
 
+这两个 api 拿到的不是真正的 rgba 数据
+ctx.getImageData 拿到的不是填写的 rgba
+
+```ts
+ctx.fillStyle = 'rgba(80,20,100,0.1)'
+ctx.fill()
+const data = ctx.getImageData(0, 0, 40, 40) // getImageData  拿到的是不是正确的颜色  78, 20, 98, 26
+```
+
+同理，ctx.putImageData 把一个 imgData 绘制到 canvas 后再 getImageData,拿到的是叠加了透明度的 rgb
+
 ## 保存图片
 
 保存图片 toDataURL()
