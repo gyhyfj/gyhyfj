@@ -1,3 +1,24 @@
-![gyhyfj's GitHub stats](https://github-readme-stats.vercel.app/api?username=gyhyfj&theme=vue&show_icons=true&count_private=true)
-
-![gyhyfj's Most used languages](https://github-readme-stats.vercel.app/api/top-langs/?username=gyhyfj&layout=compact&hide_border=true&langs_count=10&count_private=true)
+  <picture>
+    <source
+      srcset="
+        https://github-readme-stats.vercel.app/api?username=gyhyfj&show_icons=true&theme=light&count_private=true&hide=stars&show=discussions_started
+      "
+      media="(prefers-color-scheme:light),(prefers-color-scheme:no-preference)"
+    />
+    <img
+      height="195"
+      src="https://github-readme-stats.vercel.app/api?username=gyhyfj&theme=dark&hide_border=true&show_icons=true&count_private=true&hide=stars&show=discussions_started"
+    />
+  </picture>
+  <picture>
+    <source
+      srcset="
+        https://github-readme-stats.vercel.app/api/top-langs/?username=gyhyfj&layout=compact&theme=light&langs_count=8&count_private=true
+      "
+      media="(prefers-color-scheme:light),(prefers-color-scheme:no-preference)"
+    />
+    <img
+      height="195"
+      src="https://github-readme-stats.vercel.app/api/top-langs/?username=gyhyfj&layout=compact&theme=dark&hide_border=true&langs_count=8&count_private=true"
+    />
+  </picture>
