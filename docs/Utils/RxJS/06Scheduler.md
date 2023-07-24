@@ -8,9 +8,9 @@ A Scheduler has a (virtual) clock. It provides a notion of "time" by a getter me
 
 null
 queueScheduler
-asapScheduler （as soon as possible 调度器，尽可能快） Schedules on the micro task queue, which is the same queue used for promises 在瀏覽器其實就是 setTimeout 設為 0 秒 (在 NodeJS 中是用 process.nextTick).因為都是在 setTimeout 中執行，所以不會有 block event loop 的問題，很適合用在永遠不會退訂的 observable，例如在背景下持續監聽 server 送來的通知
+asapScheduler (as soon as possible 调度器, 尽可能快) Schedules on the micro task queue, which is the same queue used for promises 在瀏覽器其實就是 setTimeout 設為 0 秒 (在 NodeJS 中是用 process.nextTick).因為都是在 setTimeout 中執行, 所以不會有 block event loop 的問題, 很適合用在永遠不會退訂的 observable, 例如在背景下持續監聽 server 送來的通知
 asyncScheduler Schedules work with setInterval. Use this for time-based operations
-animationFrameScheduler Schedules task that will happen just before next browser content repaint 它是利用 Window.requestAnimationFrame 這個 API 去實作的，所以執行週期就跟 Window.requestAnimationFrame 一模一樣。
+animationFrameScheduler Schedules task that will happen just before next browser content repaint 它是利用 Window.requestAnimationFrame 這個 API 去實作的, 所以執行週期就跟 Window.requestAnimationFrame 一模一樣.
 
 Static creation operators usually take a Scheduler as argument:
 bindCallback

@@ -4,16 +4,16 @@ grid 相当于二维的 flex
 
 ## flex 布局
 
-父元素 子元素都是 flex 布局时候，注意一些属性的继承，比如 flex-direction， 子元素会继承父元素的属性
+父元素 子元素都是 flex 布局时候, 注意一些属性的继承, 比如 flex-direction, 子元素会继承父元素的属性
 
 flex 布局不可以使用 justify-self 属性
 
 flex-shrink
-定义了在容器空间不足的情况下，成员将如何缩小
-取值是一个非负数，表示相对收缩比例
+定义了在容器空间不足的情况下, 成员将如何缩小
+取值是一个非负数, 表示相对收缩比例
 flex-grow
-定义了在容器空间有剩余的情况下，成员将如何扩大。默认是 0 表示不会扩大
-取值是一个非负数，表示相对扩大比例
+定义了在容器空间有剩余的情况下, 成员将如何扩大. 默认是 0 表示不会扩大
+取值是一个非负数, 表示相对扩大比例
 
 ## grid 布局
 
@@ -31,8 +31,8 @@ flex-grow
   // grid-template-columns: 200px 1fr 2fr;
   // grid-template-columns: 1fr 1fr 2fr;
   // grid-template-columns: 1fr 1fr minmax(300px, 2fr); // 宽度在最小值到最大值之间自适应
-  // grid-template-columns: 300px auto 300px; // 宽度自动填满，等同于1fr
-  // grid-template-columns: 300px 1fr 300px; // 宽度自动填满，等同于auto
+  // grid-template-columns: 300px auto 300px; // 宽度自动填满, 等同于1fr
+  // grid-template-columns: 300px 1fr 300px; // 宽度自动填满, 等同于auto
 
   /*  声明行的高度  */
   grid-template-rows: 100px 100px;
@@ -45,7 +45,7 @@ flex-grow
 
   // grid-template-areas:
   //   '. header header'
-  //   'sidebar content content'; // 这里对容器内的区域进行划分，点表示空单元格，
+  //   'sidebar content content'; // 这里对容器内的区域进行划分, 点表示空单元格,
 
   //  .sidebar {
   //   grid-area: sidebar;
@@ -59,7 +59,7 @@ flex-grow
   // place-items: center center;
   // place-items: center; // 简写justify-items和align-items
 
-  // justify-content: center; // 控制整个网格在盒子中的对齐 （不一定盒子的全部空间都被划分成了网格，可能只划分了一部分）
+  // justify-content: center; // 控制整个网格在盒子中的对齐  (不一定盒子的全部空间都被划分成了网格, 可能只划分了一部分)
   // align-content: center;
   // place-content: center center;
   // place-content: center;
@@ -67,16 +67,16 @@ flex-grow
   grid-template-columns: 200px 200px;
   grid-template-rows: 100px 100px;
   grid-auto-rows: 100px; // 格子不够时候遵循这个创建隐式网格 // TODO:
-  // grid-auto-columns: 10px; // grid-auto-rows grid-auto-columns 只能同时生效一个， 取决于grid-auto-flow
+  // grid-auto-columns: 10px; // grid-auto-rows grid-auto-columns 只能同时生效一个,  取决于grid-auto-flow
 
   /* 直系子元素 */
   .items {
     grid-column-start: 1;
     grid-column-end: 2;
-    grid-column: 1; // 是grid-column-start和grid-column-end的简写，中间用斜杠分开
+    grid-column: 1; // 是grid-column-start和grid-column-end的简写, 中间用斜杠分开
     grid-column: 1 / span 2; // 相当于grid-column-start: 1;  grid-column-end: span 2;
     grid-row-start: 1;
-    grid-row-end: 2; // 子项的四个边框所在的网格线编号，可以从1正向编号，也可以从-1反向编号
+    grid-row-end: 2; // 子项的四个边框所在的网格线编号, 可以从1正向编号, 也可以从-1反向编号
 
     grid-area: sidebar; // 指定这个物体放在之前声明的哪个单元格内
     grid-area: 1(row-start) / 1(column-start) / 3(row-end) / 4(column-end)

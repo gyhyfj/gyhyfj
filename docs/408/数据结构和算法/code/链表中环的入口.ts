@@ -1,6 +1,6 @@
 import { ListNode, LinkedList } from './linkList'
 
-// 给一个链表，若其中包含环，请找出该链表的环的入口结点，否则，输出null
+// 给一个链表, 若其中包含环, 请找出该链表的环的入口结点, 否则, 输出null
 
 const list = new LinkedList<number>()
 const arr = Array.from({ length: 6 }, (_, k) => k + 1)
@@ -19,9 +19,9 @@ rear!.next = node3! // 1 2 3 4 5 6 , 6->3, 环长是4
 
 // console.log(...list) // 此时会无限循环, 因此链表不应当实现迭代协议, 除非保证没有环
 
-// 判断链表是否有环： P1 P2 从头部出发，P1走两步，P2走一步，如果可以相遇，则环存在
-// 从环内某个节点开始计数，再回到此节点时得到链表环的长度 length
-// P1、P2 回到head节点，让 P1 先走 length 步，然后P1P2一起单步前进,当P2和P1相遇时即为链表环的起点
+// 判断链表是否有环:  P1 P2 从头部出发, P1走两步, P2走一步, 如果可以相遇, 则环存在
+// 从环内某个节点开始计数, 再回到此节点时得到链表环的长度 length
+// P1、P2 回到head节点, 让 P1 先走 length 步, 然后P1P2一起单步前进,当P2和P1相遇时即为链表环的起点
 const fn = <U>(list: LinkedList<U>) => {
   if (!list.head || !list.head.next) {
     return null

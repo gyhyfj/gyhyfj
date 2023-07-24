@@ -1,9 +1,9 @@
 import { Stack } from './stack'
 
-// 用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型
+// 用两个栈来实现一个队列, 完成队列的Push和Pop操作.  队列中的元素为int类型
 
 // 入队时候把数值入栈stack1
-// 出队时候如果stack2为空，就把stack1中的元素逐个出栈再入栈stack2
+// 出队时候如果stack2为空, 就把stack1中的元素逐个出栈再入栈stack2
 const fn = () => {
   const stack1 = new Stack<number>()
   const stack2 = new Stack<number>()

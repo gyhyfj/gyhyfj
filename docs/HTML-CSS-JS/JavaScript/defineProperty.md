@@ -10,7 +10,7 @@ writable
 get
 set
 
-configurable 默认是 false, 表示该属性不会被删除或修改（包括描述符的其他字段）
+configurable 默认是 false, 表示该属性不会被删除或修改 (包括描述符的其他字段)
 描述符不能同时具有 [value 或 writable] 和 [get 或 set] 键
 
 如果从 Reflect 去用会返回布尔值

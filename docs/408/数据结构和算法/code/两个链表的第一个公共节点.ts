@@ -1,5 +1,5 @@
 import { ListNode, LinkedList } from './linkList'
-// 输入两个链表，找出它们的第一个公共结点
+// 输入两个链表, 找出它们的第一个公共结点
 
 const list1 = new LinkedList<number>()
 const list2 = new LinkedList<number>()
@@ -15,9 +15,9 @@ rear.next = list1.head!.next!.next!.next // 值为3的节点
 // 0 1 2 3 4 5 6 7 8 9 长度是10
 // 0 1 2 3 4 -> 3 4 5 6 7 8 9 长度是12
 
-// 解法1：WeakSet
-// 先遍历第一个链表，把节点全部加入WeakSet
-// 然后遍历第二个链表，逐个查询WeakSet中有无该节点，有则返回
+// 解法1: WeakSet
+// 先遍历第一个链表, 把节点全部加入WeakSet
+// 然后遍历第二个链表, 逐个查询WeakSet中有无该节点, 有则返回
 // 时间复杂度O(n), 空间复杂度O(n)
 const fn = <U>(list1: LinkedList<U>, list2: LinkedList<U>) => {
   const set = new WeakSet<ListNode<U>>()
@@ -38,10 +38,10 @@ const fn = <U>(list1: LinkedList<U>, list2: LinkedList<U>) => {
 
 console.log(fn(list1, list2))
 
-// 解法2：双指针
+// 解法2: 双指针
 // 先找到两个链表的长度length1、length2
-// 让长一点的链表先走length2-length1步，让长链表和短链表起点相同
-// 两个链表一起前进，比较获得第一个相等的节点
+// 让长一点的链表先走length2-length1步, 让长链表和短链表起点相同
+// 两个链表一起前进, 比较获得第一个相等的节点
 // 时间复杂度O(n) 空间复杂度O(1)
 const fn2 = <U>(list1: LinkedList<U>, list2: LinkedList<U>) => {
   let len1 = 0,

@@ -11,7 +11,7 @@ let pentagon = new Konva.RegularPolygon({
   fill: 'red',
   stroke: 'black',
   strokeWidth: 4,
-  shadowOffsetX: 0, // shadowOffsetX shadowOffsetY 只要有一个不为0 阴影就开始生效  和box-shadow不同，这里的阴影是永远在的，图形是透明就会显示后面的阴影
+  shadowOffsetX: 0, // shadowOffsetX shadowOffsetY 只要有一个不为0 阴影就开始生效  和box-shadow不同, 这里的阴影是永远在的, 图形是透明就会显示后面的阴影
   shadowOffsetY: 0,
   shadowOpacity: 0.1, // 单独用这个来控制阴影的透明度
   shadowBlur: 0,
@@ -56,7 +56,7 @@ Konva.Image.fromURL(
 缩放
 stage.width() 不随 stage 缩放而变化 取的是静态的属性
 
-经验：
+经验:
 
 ```ts
 /* 版本号 */

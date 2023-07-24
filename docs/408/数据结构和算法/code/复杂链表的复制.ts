@@ -1,6 +1,6 @@
 export {}
-// 输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针指向任意一个节点），
-// 返回结果为复制后复杂链表的head。
+// 输入一个复杂链表 (每个节点中有节点值, 以及两个指针, 一个指向下一个节点, 另一个特殊指针指向任意一个节点) ,
+// 返回结果为复制后复杂链表的head.
 
 class SpecialListNode<T = unknown> {
   next: SpecialListNode<T> | null = null
@@ -32,9 +32,9 @@ list.head = node1
 node1.next = node2
 node2.next = node3
 
-// 创建一个空的结果链表，和一个WeakMap
-// 先从头到尾遍历原链表，逐个把节点插入新链表，其中random字段暂时设置为null，同时在WeakMap中保持新旧节点的对应关系
-// 然后再从头到尾遍历原链表，逐个为新链表的random字段填充值，值为每个旧节点根据WeakMap查找出的新节点
+// 创建一个空的结果链表, 和一个WeakMap
+// 先从头到尾遍历原链表, 逐个把节点插入新链表, 其中random字段暂时设置为null, 同时在WeakMap中保持新旧节点的对应关系
+// 然后再从头到尾遍历原链表, 逐个为新链表的random字段填充值, 值为每个旧节点根据WeakMap查找出的新节点
 // 时间复杂度O(n), 空间复杂度O(n)
 
 const fn = <U>(list: SpecialLinkedList<U>) => {
