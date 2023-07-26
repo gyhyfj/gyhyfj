@@ -29,7 +29,7 @@ Observable 的订阅跟 addEventListener 在有很大的差异, Observable 不�
 ## Creation Operators
 
 使用 Creation Operators 建立 Observable 对象
-of - 参数列表 , 不可以包装 Promise
+~~of - 参数列表 , 不可以包装 Promise (deprecated in v8 )~~
 from - 参数数组 字符串 Promise 多个 Observable 以组成高阶 Observable 以在管道符中调用 mergeAll concatAll
 fromEvent
 throwError - 回调函数写法是返回一个 error, 会在订阅时生成这个 error
@@ -54,6 +54,7 @@ iif
 
 常量实例
 EMPTY NEVER
+EMPTY 后面跟的 pipe 都不会执行，subscribe后的 next 也不会执行，而是执行complete
 
 接受一个 observable 数组/列表的
 concat 拼接 推送高阶 observable
