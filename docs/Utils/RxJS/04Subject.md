@@ -14,6 +14,8 @@ Subject 可以拿去订阅 Observable(source) 代表他是一个 Observer, 同�
 ## 变种
 
 BehaviorSubject 会存储送出的最新的那个值, 当又新的 observer 订阅时都会立即发送这个值. 这种行为是一种状态的表达而不是单纯的事件
+可以用于解决 子组件接收未初始化时 Observable 就已经发送的消息
+
 ReplaySubject 接受一个数字参数, 相比 BehaviorSubject 会记录这些数量的最新值并送给新订阅者
 AsyncSubject 会在 subject 结束时送出最后一个值, 很少用
 

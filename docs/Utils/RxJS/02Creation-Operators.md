@@ -54,7 +54,7 @@ iif
 
 常量实例
 EMPTY NEVER
-EMPTY 后面跟的 pipe 都不会执行，subscribe后的 next 也不会执行，而是执行complete
+EMPTY 后面跟的 pipe 都不会执行，subscribe 后的 next 也不会执行，而是执行 complete
 
 接受一个 observable 数组/列表的
 concat 拼接 推送高阶 observable
