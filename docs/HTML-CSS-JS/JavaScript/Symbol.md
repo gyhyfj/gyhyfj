@@ -31,7 +31,8 @@ Symbol 值作为属性名, 遍历对象的时候, 该属性不会出现在 for..
 
 第一种方法是通过对象索引签名添加这个属性
 第二种方法是声明对象时, 就通过索引签名的形式添加这个属性
-第三种方法是通过 Object.defineProperty, 将 Symbol 作为属性名参数传入, 添加到对象上
+第三种方法是通过 Reflect.defineProperty, 将 Symbol 作为属性名参数传入, 添加到对象上
+
 
 ```ts
 let mySymbol = Symbol()
@@ -47,7 +48,7 @@ let a = {
 
 // 第三种写法
 let a = {}
-Object.defineProperty(a, mySymbol, { value: 'Hello!' })
+Reflect.defineProperty(a, mySymbol, { value: 'Hello!' })
 
 // 以上写法都得到同样结果
 a[mySymbol] // "Hello!"

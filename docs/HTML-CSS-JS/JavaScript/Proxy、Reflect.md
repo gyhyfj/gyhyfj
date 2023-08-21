@@ -42,7 +42,25 @@ Reflect 一共有 13 种静态方法
 - Reflect.construct(target, args)
 - Reflect.get(target, name, receiver)
 - Reflect.set(target, name, value, receiver)
+  给对象挂一个属性
+  类似于 Reflect.defineProperty(target, name, {value, configurable:true, enumerable:true, writable:true})
 - Reflect.defineProperty(target, name, desc)
+  描述符的字段有
+  value
+  configurable - 默认 false
+  enumerable - 默认 false
+  writable - 默认 false
+  get
+  set
+
+  configurable 默认是 false, 表示该属性不会被删除或修改 (包括描述符的其他字段)
+  描述符不能同时具有 [value 或 writable] 和 [get 或 set] 键
+
+  如果从 Reflect 去用会返回布尔值, 通过 if-else 捕捉失败
+  如果从 Object 去用会返回传入的对象, 通过 try-catch 捕捉失败
+
+  defineProperty 与 proxy 的区别是 defineProperty 会污染原对象
+
 - Reflect.deleteProperty(target, name)
 - Reflect.has(target, name)
 - Reflect.ownKeys(target)
