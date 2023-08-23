@@ -27,6 +27,8 @@ then 方法接受两个可选参数, 返回一个新的 Promise 实例
 const b = a.then(res => 9) // .then运算先执行, 然后再执行赋值运算, 把新的promise赋值给b
 ```
 
+then 方法的第二个回调不能捕捉第一个回调中抛出的错误，只能在后续的链式调用中捕捉本次链式调用抛出的错误
+
 ### catch 方法
 
 catch 方法是 then(null, rejection)或 then(undefined, rejection)的别名, 用于指定发生错误时的回调函数
