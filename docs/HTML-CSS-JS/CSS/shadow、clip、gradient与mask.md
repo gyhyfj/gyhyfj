@@ -31,7 +31,7 @@ color 和 inset 没有顺序关系, 可以互换位置
 可以多个叠加, 用逗号隔开
 
 内部参数用逗号隔开,
-在渐变中使用 transparent 关键字会在老的 safari 上有兼容性问题, 建议在一个定义的渐变中全部用 rbg 或全部用 rgba
+在渐变中使用 transparent 关键字会在 [Safari<15.4](https://bugs.webkit.org/show_bug.cgi?id=150940) 上有兼容性问题, 建议在一个定义的渐变中全部用 rbg 或全部用 rgba
 
 ### linear-gradient 线形渐变
 
@@ -50,6 +50,11 @@ color 和 inset 没有顺序关系, 可以互换位置
 `red 10%, 30%, blue 90%` 这里的 `30%` 表示颜色过渡的中间点
 
 如果列表中的颜色没有跟百分比, 则均匀过渡
+
+在tailwindcss中的写法是
+`bg-gradient-to-r from-cyan-500 to-blue-500`
+`bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500`
+`bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%`
 
 ### conic-gradient 锥形渐变
 

@@ -137,7 +137,11 @@ export default defineConfig({
         href: '/image/favicon.ico',
       },
     ],
-    ['script', { src: '/js/analyze.js' }],
+    [
+      'script',
+      { defer: 'true' },
+      '!function(t,e,n,c,a,i,r){t[n]=t[n]||function(){(t[n].q=t[n].q||[]).push(arguments)},(i=e.createElement(c)).async=1,i.src="https://www.clarity.ms/tag/cicn88937g",(r=e.getElementsByTagName(c)[0]).parentNode.insertBefore(i,r)}(window,document,"clarity","script");',
+    ],
     ['meta', { name: 'referrer', content: 'no-referrer' }],
   ],
   markdown: {
