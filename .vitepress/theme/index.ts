@@ -3,6 +3,7 @@ import { h } from 'vue'
 import Theme from 'vitepress/theme'
 import './style.css'
 import { inject } from '@vercel/analytics'
+// import { ofetch } from 'ofetch'
 
 export default {
   ...Theme,
@@ -14,11 +15,23 @@ export default {
   enhanceApp({ app, router, siteData }) {
     if (!(import.meta as any).env.SSR) {
       inject()
-      fetch(
-        `/api/landing?date=${Date.now()}&width=${screen.width}&height=${
-          screen.height
-        }`
-      )
+
+      const clientInfo = {
+        timeStamp: Date.now(),
+        userAgent: navigator.userAgent,
+        screenWidth: screen.width,
+        screenHeight: screen.height,
+      }
+
+      // ofetch('/api/landing', { method: 'POST', body: clientInfo }).then(res => {
+      //   console.log(res)
+      // })
+      fetch('/api/landing', {
+        method: 'POST',
+        body: JSON.stringify(clientInfo),
+      })
+        .then(res => res.json())
+        .then(console.log)
     }
   },
 }

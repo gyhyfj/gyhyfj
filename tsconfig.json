@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "module": "esnext",
-    "moduleResolution": "Bundler"
+    "moduleResolution": "Node"
   },
   "include": [".vitepress/**/*.ts", "api/**/*.ts"]
 }

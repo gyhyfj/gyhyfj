@@ -13,39 +13,35 @@ Nginx (engine x) 是一个高性能的 HTTP 和反向代理 web 服务器, 同�
 反向代理:
 用户请求目标服务器, 由代理服务器决定访问哪个 ip
 
-## 安装
+## 下载安装
 
-centOS
+先在 http://nginx.org/en/download.html 查看需要版本的下载链接
+然后
 
 ```bash
-# 安装依赖的库
-yum install gcc-c++ # 编译工具
-yum install -y pcre pcre-devel # nginx 的 http 模块使用 pcre 来解析正则表达式
-yum install -y zlib zlib-devel # nginx 使用 zlib 对 http 包的内容进行 gzip
-yum install -y openssl openssl-devel # OpenSSL 是一个强大的安全套接字层密码库, 囊括主要的密码算法、常用的密钥和证书封装管理功能及 SSL 协议
-# 下载nginx
-wget https://nginx.org/download/nginx-1.23.1.tar.gz
-# 解压nginx
-tar -zxvf nginx-1.23.1.tar.gz
-cd nginx-1.23.1
-# 执行nginx-configure文件
-./configure
-# 编译
+
+wget http://nginx.org/download/nginx-1.25.2.tar.gz
+tar -zxvf nginx-1.25.2.tar.gz
+cd nginx-1.25.2
+
+sudo apt install libpcre3 libpcre3-dev
+sudo apt install openssl libssl-dev
+
+./configure --prefix=/usr/local/nginx --with-http_ssl_module --with-http_stub_status_module
+
 make
 make install
+
 # 查询nginx安装目录
 whereis nginx
-# 进入安装目录执行nginx
-cd /usr/local/nginx
-cd sbin/
-./nginx
-# 清理下载的压缩包和解压文件
-rm nginx-1.23.1.tar.gz
-rm -rf nginx-1.23.1/
-# 配置nginx环境变量
-cd /etc/
-vim profile # 在 export PATH 上一行插入 PATH=$PATH:/usr/local/nginx/sbin
-source /etc/profile
+
+# 执行nginx
+sudo /usr/local/nginx/sbin/nginx
+
+# 添加环境变量
+vim /etc/environment
+# 添加:/usr/local/nginx/sbin
+source /etc/environment
 ```
 
 ## Nginx 常用命令
