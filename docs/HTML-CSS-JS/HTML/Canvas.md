@@ -1,7 +1,11 @@
 # CANVAS
 
-canvas 的实质是可以用 js 操作的位图, 在没有 canvas 之前只能通过 flash 或 dom 模拟来实现
+已知 bug
 
+- putImageData 不能如实绘制 a 通道到画布 [#1471900](https://bugs.chromium.org/p/chromium/issues/detail?id=1471900)
+- drawImage 接收 9 个参数时候可能行为异常 [#1472700](https://bugs.chromium.org/p/chromium/issues/detail?id=1472700)
+
+canvas 的实质是可以用 js 操作的位图, 在没有 canvas 之前只能通过 flash 或 dom 模拟来实现
 可以用于:
 
 - 游戏开发

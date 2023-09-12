@@ -123,7 +123,7 @@ const nav = [
 
 export default defineConfig({
   title: 'gyhyfj',
-  description: '有物混成 先天地生',
+  // description: '有物混成 先天地生',
   titleTemplate: true,
   srcDir: 'docs',
   ignoreDeadLinks: true,
@@ -151,7 +151,7 @@ export default defineConfig({
   lastUpdated: true,
   themeConfig: {
     // logo: '/logo.svg',
-    siteTitle: '有物混成',
+    siteTitle: 'Give it five minutes',
     lastUpdatedText: 'Updated Date',
     search: {
       provider: 'local',

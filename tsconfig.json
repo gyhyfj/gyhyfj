@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "module": "esnext",
-    "moduleResolution": "Node"
+    "moduleResolution": "Node",
+    "allowSyntheticDefaultImports": true
   },
   "include": [".vitepress/**/*.ts", "api/**/*.ts"]
 }
