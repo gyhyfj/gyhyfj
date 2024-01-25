@@ -136,7 +136,7 @@ git push --set-upstream origin main
 git push -u origin main # -u 是 --set-upstream 的简写
 
 # 删除远程的dev分支
-git push origin --delete dev
+git push --delete origin dev
 
 # 获取远程分支更新
 git fetch
@@ -359,3 +359,9 @@ GitLab flow 只存在一个主分支 master, 它是所有其他分支的"上游"
 ssh-keygen -t ed25519 -C "gyhyfj@gmail.com"
 ssh -T git@gitlab.com
 ```
+
+## 403 的问题
+
+win10 电脑切换账号拉取代码 403:
+需要清除系统之前保存的账号信息
+cmd 运行`rundll32.exe keymgr.dll,KRShowKeyMgr`, 拉起「存储的用户名和密码」窗口, 清除其中相关条目, 然后重新执行 git 操作, git 会弹出图形界面让输入账号和密码
