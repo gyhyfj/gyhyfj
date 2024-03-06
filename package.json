@@ -7,14 +7,14 @@
     "format": "prettier --write ."
   },
   "devDependencies": {
-    "@types/node": "^20.10.4",
+    "@types/node": "^20.11.24",
     "@vercel/node": "^2.15.10",
     "fast-glob": "^3.3.2",
     "prettier": "^2.8.8",
     "vitepress": "latest"
   },
   "dependencies": {
-    "@vercel/analytics": "^1.1.1",
+    "@vercel/analytics": "^1.2.2",
     "ofetch": "^1.3.3"
   }
 }

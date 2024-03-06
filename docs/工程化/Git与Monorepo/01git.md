@@ -140,6 +140,7 @@ git push --delete origin dev
 
 # 获取远程分支更新
 git fetch
+git switch -c xxx origin/xxx
 # 更新 git remote 中所有的远程 repo 所包含分支的最新 commit-id, 将其存到仓库区, 即 .git/FETCH_HEAD 文件中
 
 git diff origin/dev # 查看与 远程仓库名/分支名 区别
